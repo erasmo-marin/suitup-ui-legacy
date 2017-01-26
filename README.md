@@ -1,33 +1,9 @@
-#react-express-webpack-boilerplate
+#suitup-toolkit
 
-The intention of this project is to provide a base for new projects development. It uses:
+Suitup react toolkit is a set of components to allow you to create complex web apps easily.
 
-* Express as server
-* Handlebars as server-side template system
-* React for front
-* Webpack as module bundler
-* Babel + react and es6 presets
-* Moment for dates manipulation
-
-
-##Running
-
-Just do:
-
-```
-npm install
-#run webpack
-npm run build
-#start server with nodemon
-npm run start
-```
-
-Also, you can run webpack in watch mode:
-
-```
-npm run watch
-```
+Suitup toolkit is in early development.
 
 ##License
 
-GPL 3.0
+MIT
