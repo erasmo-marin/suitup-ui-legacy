@@ -1,0 +1,53 @@
+@import 'theme/card';
+
+.card {
+	box-sizing: border-box;
+	background: #fff;
+	border-radius: 4px;
+	overflow: hidden;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+
+	.card-content {
+		padding: 1rem;
+		font-size: 15px;
+		line-height: 1.5;
+	    font-weight: normal;
+	    color: rgba(0,0,0,0.87);
+		p {
+			-webkit-font-smoothing: antialiased;
+		}
+	}
+
+	.card-footer {
+		border-top: 1px solid #dedede;
+		padding-top: 1rem;
+		padding-bottom: 1rem;
+		overflow: hidden;
+
+		.card-action {
+
+			float: left;
+
+			&.start {
+				float: left;
+			}
+
+			&.end {
+				float: right;
+			}
+
+			margin-right: 1rem;
+			button {
+				font-size: 15px;
+				background: transparent;
+				text-transform: uppercase;
+				color: #ffab40;
+    			transition: color .3s ease;
+    			&:hover {
+					color: #ffd8a6;
+				}
+			}
+		}
+	}
+
+}

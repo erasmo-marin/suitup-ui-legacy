@@ -1,0 +1,28 @@
+@import 'theme/button';
+
+button {
+
+	width: @width;
+	height: @height;
+	color: @color;
+	background-color: @backgroundColor;
+	padding: @padding;
+    border: none;
+    outline: none;
+    cursor: pointer;
+
+	&.transparent {
+		background-color: transparent;
+	}
+
+	&.circular {
+		border-radius: 50%;
+		width: @width;
+		height: @width;
+		padding: 1rem;
+	}
+	&.rounded {
+		border-radius: @borderRadius;
+	}
+
+}

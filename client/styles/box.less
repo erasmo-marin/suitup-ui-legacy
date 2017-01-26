@@ -1,0 +1,63 @@
+@import 'theme/box';
+
+.box {
+	box-sizing: border-box;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+	&.horizontal {
+		flex-direction: row;
+	}
+
+	&.vertical {
+		flex-direction: column;
+	}
+
+	&.fill-space {
+		.box-child {
+			flex-grow: 1;
+		}
+	}
+
+	&.centered {
+		justify-content: center;
+	}
+
+	.box-child {
+		box-sizing: border-box;
+		width: 100%;
+
+		&.c-1 {
+			width: calc(100% - 1rem);
+		}
+
+		&.c-2 {
+			width: calc(50% - 1rem);
+		}
+
+		&.c-3 {
+			width: calc(33% - 1rem);
+		}
+
+		&.c-6 {
+			width: calc(16.5% - 1rem);
+		}
+
+		&.c-8 {
+			width: calc(12.5% - 1rem);
+		}
+
+		&.c-10 {
+			width: calc(10% - 1rem);
+		}
+
+		&.c-12 {
+			width: calc(8.33333% - 1rem);
+		}
+
+		&.c-16 {
+			width: calc(6.25% - 1rem);
+		}
+	}
+}
