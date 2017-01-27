@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Image } from '../components';
+import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image } from '../components';
 
 class Index extends React.Component {
 
@@ -7,8 +7,12 @@ class Index extends React.Component {
 		super(props);
 		this.toggleMenu = ::this.toggleMenu;
 		this.onMenuHide = ::this.onMenuHide;
+		this.openModal = ::this.openModal;
+		this.onModalChange = ::this.onModalChange;
 		this.state = {
+			modalText: "chao",
 			menuVisible: false,
+			modalVisible: false,
 			menus: [{
 						text: "Home",
 						href: "/home"
@@ -31,21 +35,54 @@ class Index extends React.Component {
 		});
 	}
 
+	openModal() {
+		this.setState({
+			modalVisible: true,
+			modalText: "Hola"
+		})
+	}
+
 	onMenuHide(){
 		this.setState({
 			menuVisible: false
 		});	
 	}
 
+	onModalChange(visible) {
+
+		if(visible == this.state.modalVisible)
+			return;
+
+		this.setState({
+			modalVisible: visible
+		});
+	}
+
+
 	render () {
 		return (
 				<Layout vertical>
+					<Modal visible={this.state.modalVisible} onChange={this.onModalChange}>
+						<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
+						<Modal.Content>
+							<p style={{textAlign: "center"}}>hola, soy un modal {this.state.modalText}</p>
+						</Modal.Content>
+						<Modal.Footer>
+							<Modal.Action start text="Ok" onClick={() => {console.log("Modal Ok")}}/>
+							<Modal.Action end text="Cancel" onClick={() => {console.log("Modal Cancel")}}/>
+						</Modal.Footer>
+					</Modal>
 					<Menu right visible={this.state.menuVisible} items={this.state.menus} onHide={this.onMenuHide}/>
 					<Header top>
 						<Box horizontal>
 							<Box.Child>
 								<Button menu type="button" onClick={this.toggleMenu}>
 									<Icon name="menu" size={48}/>
+								</Button>
+							</Box.Child>
+							<Box.Child>
+								<Button type="button" onClick={this.openModal}>
+									Open Modal
 								</Button>
 							</Box.Child>
 						</Box>

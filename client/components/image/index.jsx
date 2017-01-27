@@ -61,20 +61,15 @@ class Image extends React.Component {
     }
 
     if (this.props.width && !this.props.height) {
-      console.log("1");
       width = this.computeSizeInPixels(this.props.width, "x");
       height = this.getHeightFromWidth(dimensions, width);
     } else if (this.props.height && !this.props.width) {
-      console.log("2");
       height = this.computeSizeInPixels(this.props.height, "y");
       width = this.getWidthFromHeight(dimensions, height);
     } else {
-      console.log("3");
       width = this.computeSizeInPixels(this.props.width, "x");
       height = this.computeSizeInPixels(this.props.height, "y");
     }
-
-    console.log("dm", width, height);
 
     this.setState({
       width: `${width}px`,
@@ -115,22 +110,16 @@ class Image extends React.Component {
       size = parseFloat(size.replace("px", ""));
     }
 
-    console.log("size 1", size);
-
     let width = this.image.offsetWidth;
     let height = this.image.offsetHeight;
-    console.log(this.image, width, height);
 
     if(isPercent) {
       if (axis == "x") {
         size = (size*width)/100;
-        console.log("size 2", size);
       } else if (axis == "y") {
         size = (size*height)/100;
-        console.log("size 3", size);
       }
     }
-    console.log("computeSizeInPixels", size, axis);
     return size;
   }
 
@@ -158,6 +147,10 @@ class Image extends React.Component {
       backgroundSize: "cover",
       backgroundPositon: "center"
     };
+
+    if(this.props.style) {
+      style = {...this.props.style, style}
+    }
   	
   	let classes = {
       "image": true
@@ -165,7 +158,7 @@ class Image extends React.Component {
 
     classes = classnames(classes);
 
-    return (<div className={classes} style={style} ref={(c) => {this.image = c}}>
+    return (<div {...this.props} className={classes} style={style} ref={(c) => {this.image = c}}>
               {this.props.children}
             </div>);
   }

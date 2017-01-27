@@ -10,8 +10,12 @@ class Layout extends React.Component {
 
 	render () {
 		return (
-				<div className="layout">
-					{this.props.children}
+				<div>
+					<div className="layout" id="layout">
+						{this.props.children}
+					</div>
+					<div className="modal-mount-point" id="modalMountPoint">
+					</div>
 				</div>
 			);
 	}
