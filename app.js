@@ -7,11 +7,20 @@ var bodyParser = require('body-parser');
 var hbs = require('hbs');
 var helpers = require("./views/helpers");
 var session = require('express-session');
+var webpack = require('webpack');
+var webpackConfig = require('./webpack.config');
+var compiler = webpack(webpackConfig);
 
 //routes
 var routes = require('./routes/index');
 
 var app = express();
+
+app.use(require("webpack-dev-middleware")(compiler, {
+    noInfo: true, publicPath: webpackConfig.output.publicPath
+}));
+app.use(require("webpack-hot-middleware")(compiler));
+
 hbs.registerPartials(__dirname + '/views/partials');
 
 // view engine setup

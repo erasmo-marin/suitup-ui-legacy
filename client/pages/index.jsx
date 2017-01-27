@@ -97,7 +97,7 @@ class Index extends React.Component {
 											<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 										</Card.Content>
 										<Card.Footer>
-											<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok"/>
+											<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok jajajaj"/>
 											<Card.Action end onClick={()=>{ console.log("Cancel card") }} text="Cancel"/>
 										</Card.Footer>
 									</Card>

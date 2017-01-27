@@ -1,6 +1,7 @@
 var path = require('path');
 var webpack = require('webpack');
 var chalk = require('chalk');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 var env = 'development';
 env = process.env.ENVIRONMENT || env;
@@ -13,15 +14,14 @@ var definePlugin = new webpack.DefinePlugin({
     }
 });
 
-var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');
+/*var commonsPlugin = new webpack.optimize.CommonsChunkPlugin('common.js');*/
 var pluginsSettings = [];
 
 if (env == 'production') {
     console.log("Building in production mode");
     pluginsSettings = [
-        new webpack.HotModuleReplacementPlugin(),
         definePlugin,
-        commonsPlugin,
+        /*commonsPlugin,*/
         new webpack.optimize.DedupePlugin(),
         new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
@@ -35,36 +35,40 @@ if (env == 'production') {
 } else {
     console.log("Building in development mode");
     pluginsSettings = [
-        new webpack.HotModuleReplacementPlugin(),
         definePlugin,
-        commonsPlugin
+        /*commonsPlugin,*/
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin("suitup-toolkit.css")
     ];
 }
 
 module.exports = {
+    context: __dirname,
     cache: true,
-    entry: {
-        app:  './client/index.jsx'
-    },
+    entry: ['./client/index.jsx', 'webpack-hot-middleware/client'],
     output: {
-        path: 'public/bundle',
-        filename: 'app.js'
+        publicPath: '/',
+        path: __dirname,
+        filename: 'suitup-toolkit.js'
     },
     module: {
         loaders: [
             {
-                loader: "babel-loader",
                 test: /\.jsx?$/,
-                exclude: /node_modules/,
+                loaders: ['babel-loader?presets[]=react,presets[]=es2015'],
+                /*include: path.join(__dirname, 'src'),*/
+                exclude: '/node_modules'/*,
                 query: {
                     plugins: ['react-hot-loader/babel'],
                     presets: ['babel-preset-es2015', 'babel-preset-react', 'babel-preset-stage-1'].map(require.resolve)
-                }
+                }*/
             },
             {
                 test:/\.less$/,
                 exclude:'/node_modules',
-                loader:"style!css!less"
+                loader: ExtractTextPlugin.extract(['css','less'])
             } 
         ]
     },
