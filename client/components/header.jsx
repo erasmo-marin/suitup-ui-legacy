@@ -11,14 +11,16 @@ class Header extends React.Component {
 
   render () {
   	
+    let {fixed, top, bottom, children, ...rest} = this.props;
+
   	let classes = classnames({
-  		fixed: this.props.fixed,
-  		top: this.props.top,
-  		bottom: this.props.bottom
+  		fixed: fixed,
+  		top: top,
+  		bottom: bottom
   	});
 
-    return (<header className={classes}>
-              {this.props.children}
+    return (<header {...rest} className={classes}>
+              {children}
             </header>);
   }
 }

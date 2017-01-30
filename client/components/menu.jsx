@@ -7,8 +7,11 @@ import '../styles/menu.less';
 
 class Item extends React.Component {
 	render() {
-		return	(<div className="menu-item">
-    				    <Link to={this.props.href}>{this.props.text}</Link>
+
+    let {href, text, ...rest} = this.props;
+
+		return	(<div {...rest} className="menu-item">
+    				    <Link to={href}>{text}</Link>
     				 </div>)
 	}
 }
@@ -48,12 +51,15 @@ class Menu extends React.Component {
   }
 
   render () {
+
+    let {children, left, right, visible, onShow, onHide, ...rest} = this.props;
+
   	let classes = classnames({
   		menu: true,
   		fixed: true,
-  		left: this.props.left,
-  		right: this.props.right,
-  		visible: this.state.visible
+  		left: left,
+  		right: right,
+  		visible: visible
   	});
 
     let veilClasses = classnames({
@@ -61,24 +67,41 @@ class Menu extends React.Component {
        visible: this.state.visible
     });
 
-    return (<div>
+    return (<div {...rest}>
               <div className={veilClasses} onClick={this.hide}/>
               <nav className={classes}>
-          			<If condition={this.props.header}>
-          				<div className='menu-header'>
-          					{this.props.header}
-          				</div>
-          			</If>
-          			<If condition={this.props.items}>
-          				{
-          					this.props.items.map((link, index) => {
-          						return (<Item href={link.href} text={link.text} key={index}/>);
-          					})
-          				}
-          			</If>
+                {children}
       		    </nav>
             </div>);
   }
 }
 
+class Header extends React.Component {
+
+  constructor(props) {
+    super(props);
+  }
+
+  render () {
+    
+    let classes = classnames({
+      "menu-header": true
+    });
+
+    let {icon, title, ...rest} = this.props;
+
+
+    return (<div {...rest} className={classes}>
+              <If condition={this.props.icon}>
+                <div className="menu-header-icon">
+                  {icon}
+                </div>
+              </If>
+              <span className="menu-header-title">{title}</span>
+            </div>);
+  }
+}
+
+Menu.Header = Header;
+Menu.Item = Item;
 export default Menu;

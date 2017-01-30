@@ -40,6 +40,8 @@ class Button extends React.Component {
   }
 
   render () {
+
+    let {text, children, transparent, circular, rounded, menu, pressed, type, onClick, onMouseUp, onMouseDown, ...rest} = this.props;
   	
   	let classes = {
       transparent: this.props.transparent,
@@ -51,10 +53,10 @@ class Button extends React.Component {
 
     classes = classnames(classes);
 
-    return (<button type={this.props.type} className={classes} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
-              {this.props.children}
-              <If condition={this.props.text}>
-                <span>{this.props.text}</span>
+    return (<button {...rest} type={type} className={classes} onClick={this.onClick} onMouseDown={this.onMouseDown} onMouseUp={this.onMouseUp}>
+              {children}
+              <If condition={text}>
+                <span>{text}</span>
               </If>
             </button>);
   }

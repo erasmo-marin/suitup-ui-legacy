@@ -1,0 +1,86 @@
+@slideWrapperMarginBottom: 20px;
+
+.slider {
+	width: 100%;
+	background-color: blue;
+	position: relative;
+	overflow-x: hidden;
+	background: transparent;
+
+	.slider-slide-wrapper {
+		top: 0;
+		left: 0;
+		transform: translateX(-20%);
+		min-width: 100%;
+		/*width: 500%;*/
+		overflow-x: hidden;
+		transition: all 0.5s ease-in-out;
+		margin-bottom: @slideWrapperMarginBottom;
+
+		&.react-draggable-dragging {
+			transition: none;
+		}
+
+		.slide {
+			width: 100%;
+		    vertical-align: top;
+		    display: inline-block;
+			background: #fff;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+
+			&.active {
+				box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+			}
+
+		}
+	}
+
+
+	.slider-arrow {
+
+		position: absolute;
+		width: 36px;
+		height: 36px;
+	    top: 0;
+	    bottom: @slideWrapperMarginBottom;
+	    margin: auto;
+		cursor: pointer;
+		color: #fff;
+		text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+		z-index: 2;
+
+		&.slider-arrow-left {
+			left: 0;
+		}
+
+		&.slider-arrow-right {
+			right: 0;
+		}
+
+	}
+
+	.slider-dots-wrapper {
+		position: absolute;
+		text-align: center;
+		width: 100%;
+		bottom: 0;
+
+		.slider-dots {
+			display: inline-block;
+
+			.dot {
+				width: 5px;
+				height: 5px;
+				margin: 8px;
+				background: gray;
+				border-radius: 50%;
+				cursor: pointer;
+
+				&.active {
+					background: #000;
+				}
+			}
+
+		}
+	}
+}

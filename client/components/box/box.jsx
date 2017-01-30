@@ -9,42 +9,44 @@ class Box extends React.Component {
 
   constructor(props) {
     super(props);
-    this.setupChildProps();
   }
 
-  setupChildProps() {
-    if(this.props.children && this.props.rows) {
-      if(isArray(this.props.children)) {
-          this.children = this.props.children.map(function(element) {
+  setupChildProps(props) {
+    if(props.children && props.rows) {
+      if(isArray(props.children)) {
+          return props.children.map(function(element) {
             return React.cloneElement(
               element, {
-                rows: this.props.rows
+                rows: props.rows
               }
           )}, this);
       } else {
-        this.children = React.cloneElement(
-          this.props.children, {
-            rows: this.props.rows
+        return React.cloneElement(
+          props.children, {
+            rows: props.rows
           }
         )
       }
     } else {
-      this.children = this.props.children;
+      return props.children;
     }
   }
 
   render () {
+
+    let {horizontal, vertical, autoFill, centered, children, rows, ...rest} = this.props;
     
     let classes = classnames({
       box: true,
-      horizontal: this.props.horiontal,
-      vertical: this.props.vertical,
-      "fill-space": this.props.autoFill
+      horizontal: horizontal,
+      vertical: vertical,
+      "fill-space": autoFill,
+      centered: centered
     });
 
     return (
-              <div className={classes}>
-                { this.children }
+              <div {...rest} className={classes}>
+                { this.setupChildProps(this.props) }
               </div>
            );
   }

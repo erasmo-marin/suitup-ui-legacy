@@ -10,29 +10,30 @@ class BoxChild extends React.Component {
 
   render () {
   	
+    let style = {};
+    let {rows, wide, width, children, ...rest} = this.props;
+    
   	let classes = {
       "box-child": true
   	};
 
-    let style = {};
-
-    if(this.props.rows && !this.props.wide) {
-      classes["c-" + this.props.rows] = true;
+    if(rows && !wide) {
+      classes["c-" + rows] = true;
     }
 
-    if(this.props.wide) {
-      classes["c-" + this.props.wide] = true;
+    if(wide) {
+      classes["c-" + wide] = true;
     }
 
-    if(this.props.width) {
-      style.width = this.props.width;
+    if(width) {
+      style.width = width;
     }
 
     classes = classnames(classes);
 
     return (
-              <div className={classes} style={style}>
-                { this.props.children }
+              <div {...rest} className={classes} style={style}>
+                { children }
               </div>
            );
   }

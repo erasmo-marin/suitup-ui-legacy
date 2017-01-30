@@ -1,13 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import classnames from 'classnames';
+import ImageVail from './imageVail';
 import '../../styles/image.less';
 
 const sizes = {
-  icon: {
-    width: 240,
-    height: 240
-  },
   square: {
     width: 600,
     height: 600    
@@ -27,6 +24,10 @@ const sizes = {
   backdrop: {
     width: 1600,
     height: 900
+  },
+  banner: {
+    width: 2000,
+    height: 400
   }
 }
 
@@ -125,43 +126,48 @@ class Image extends React.Component {
 
   render () {
 
-    let width, height;
+    let {width, height, src, style, type, centered, children, ...rest} = this.props;
 
-    if(this.props.width && (this.isPercent(this.props.width) || this.isPixel(this.props.width))) {
-      width = this.props.width;
+    let rwidth, rheight;
+
+    if(width && (this.isPercent(width) || this.isPixel(width))) {
+      rwidth = width;
     } else {
-      width = this.state.width;
+      rwidth = this.state.width;
     }
 
-    if(this.props.height && (this.isPercent(this.props.height) || this.isPixel(this.props.height))) {
-      height = this.props.height;
+    if(height && (this.isPercent(height) || this.isPixel(height))) {
+      rheight = height;
     } else {
-      height = this.state.height;
+      rheight = this.state.height;
     }
 
 
-    let style = {
-      backgroundImage: `url(${this.props.src})`,
-      width: `${width}`,
-      height: `${height}`,
+    let rstyle = {
+      backgroundImage: src != 'none' ? `url(${src})` : 'none',
+      width: `${rwidth}`,
+      height: `${rheight}`,
       backgroundSize: "cover",
       backgroundPositon: "center"
     };
 
-    if(this.props.style) {
-      style = {...this.props.style, style}
+    if(style) {
+      rstyle = {...style, rstyle}
     }
   	
   	let classes = {
-      "image": true
+      "image": true,
+      centered: centered
   	};
 
     classes = classnames(classes);
 
-    return (<div {...this.props} className={classes} style={style} ref={(c) => {this.image = c}}>
-              {this.props.children}
+    return (<div {...rest} className={classes} style={rstyle} ref={(c) => {this.image = c}}>
+              {children}
             </div>);
   }
 }
+
+Image.Vail = ImageVail;
 
 export default Image;

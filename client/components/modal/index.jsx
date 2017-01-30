@@ -100,16 +100,19 @@ class Modal extends React.Component {
   }
 
   renderModal(props) {
-    console.log("render modal");
+
+    let {children, onHide, onShow, onChange, visible, ...rest} = this.props;
+
+
     let classes = classnames({
                     "modal-container": true,
                   });
 
 
-    return( <div className={classes} ref={(c) => this.modal = c} onClick={this.hide}>
+    return( <div {...rest} className={classes} ref={(c) => this.modal = c} onClick={this.hide}>
               <div className="modal" ref={(c) => this.modalInner = c} style={{position: "relative"}} onClick={this.preventPropagation}>
                 <NotifyResize onResize={this.centerVertically} />
-                  {props.children}
+                  {children}
               </div>
             </div>);
   }

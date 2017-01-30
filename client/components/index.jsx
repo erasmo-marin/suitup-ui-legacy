@@ -8,6 +8,7 @@ import Box from './box';
 import Card from './card';
 import Image from './image';
 import Modal from './modal';
+import Slider from './slider';
 import Container from './container';
 
-export {Container, Header, Footer, Layout, Menu, Box, Button, Icon, Card, Image, Modal};
+export {Container, Header, Footer, Layout, Menu, Box, Button, Icon, Card, Image, Modal, Slider};

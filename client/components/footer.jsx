@@ -9,8 +9,11 @@ class Footer extends React.Component {
   }
 
   render () {
-    return (<footer>
-    			{this.props.children}
+
+  	let {children, ...rest} = this.props;
+
+    return (<footer {...rest}>
+    			{children}
     		</footer>);
   }
 }

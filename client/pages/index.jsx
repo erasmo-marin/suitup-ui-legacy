@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image } from '../components';
+import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../components';
+import Logo from './logo';
 
 class Index extends React.Component {
 
@@ -13,20 +14,18 @@ class Index extends React.Component {
 			modalText: "chao",
 			menuVisible: false,
 			modalVisible: false,
-			menus: [{
-						text: "Home",
-						href: "/home"
-				    },
-				    {
-						text: "Profile",
-						href: "/profile"
-				    },
-				    {
-						text: "Contact",
-						href: "/contact"
-				    }]
+			sliderSettings: {
+				autoPlay: false,
+				autoPlayDuration: 0,
+				showArrows: true,
+				showDots: true,
+				centerMode: false, //show the other sliders and the current slider in the middle
+				displayItems: 1, //the number of items to display
+				arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
+				lazyLoad: false, //when true, the slider only loads the slides when needed
+				minimalRender: false //when true, the unused slides are not rendered, can cause some lag
+			}
 		}
-
 	}
 
 	toggleMenu(){
@@ -60,34 +59,161 @@ class Index extends React.Component {
 
 
 	render () {
+
+		let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
+
 		return (
 				<Layout vertical>
-					<Modal visible={this.state.modalVisible} onChange={this.onModalChange}>
-						<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
-						<Modal.Content>
-							<p style={{textAlign: "center"}}>hola, soy un modal {this.state.modalText}</p>
-						</Modal.Content>
-						<Modal.Footer>
-							<Modal.Action start text="Ok" onClick={() => {console.log("Modal Ok")}}/>
-							<Modal.Action end text="Cancel" onClick={() => {console.log("Modal Cancel")}}/>
-						</Modal.Footer>
-					</Modal>
-					<Menu right visible={this.state.menuVisible} items={this.state.menus} onHide={this.onMenuHide}/>
-					<Header top>
+					<Header top style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}>
 						<Box horizontal>
 							<Box.Child>
-								<Button menu type="button" onClick={this.toggleMenu}>
-									<Icon name="menu" size={48}/>
-								</Button>
-							</Box.Child>
-							<Box.Child>
-								<Button type="button" onClick={this.openModal}>
-									Open Modal
+								<Button menu type="button" onClick={this.toggleMenu} style={{backgroundColor: 'rgb(35,35,35)'}}>
+									<Icon name="menu" size={24}/>
 								</Button>
 							</Box.Child>
 						</Box>
 					</Header>
+					<Modal visible={this.state.modalVisible} onChange={this.onModalChange}>
+						<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
+						<Modal.Content>
+							<p>
+								Hola, soy un modal, y me usan mucho para mostrar contenido
+								bloqueando la interacción con la vista principal de la web app.
+							</p>
+						</Modal.Content>
+						<Modal.Footer>
+							<Modal.Action key={1} start text="Entendido" onClick={() => {console.log("Modal Ok")}}/>
+							<Modal.Action key={2} end text="Cancelar" onClick={() => {console.log("Modal Cancel")}}/>
+						</Modal.Footer>
+					</Modal>
+					<Menu left visible={this.state.menuVisible} onHide={this.onMenuHide}>
+						<Menu.Header title="Suitup Toolkit" icon={logo} style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)', border: 'none'}}/>
+						<Menu.Item href="/" text="Inicio"/>
+					</Menu>
+
 					<Container>
+						<h1 style={{textAlign: 'center'}}>Bienvenido al demo de Suitup</h1>
+						<p>Suitup UI Toolkit es un conjunto de componentes de React diseñado para construir atractivas
+						   interfaces webs en poco tiempo. La filosofía de Suitup es mantener los componentes minimalistas y
+						   elegantes, pero no por ello menos customizables. Como un traje a medida, Suitup se acomodará a tus
+						   necesidades, ya que ofrece la posibilidad de escribir temas de manera rápida y modular, pero a la vez
+						   manteniendo un orden lógico y sencillo que hará tu código mucho más mantenible.</p>
+						<p>Con Suitup, el uso de elementos se reduce al mínimo, con los componentes que te ofrecemos
+						   debería ser suficiente para construir tus layouts e interfaces. Desde componentes complejos,
+						   como un Modal o un Slider, hasta componentes más sencillos, como Container, Suitup cubrirá
+						   la mayoría de las necesidades típicas en la construcción de aplicaciones web.</p>
+					</Container>
+
+					<Container>
+						<h3>Slider</h3>
+						<p>El componente de Slider te permite mostrar mucha información de forma segmentada
+							y visualmente agradable al usuario. Puedes agregar cualquier cosa que se te ocurra
+							dentro. ¿Una foto? ¿Un action call?</p>
+						<p>El slider de Suitup-toolkit implementa lazyload, que renderiza tus slides en el momento de
+							necesitarse, y minimalRender, que sólo renderiza los slides que se están ocupando, para casos
+							donde la cantidad de slides es muy grande.</p>
+						<Slider settings={this.state.sliderSettings}>
+							<Slider.Slide key={1}>
+								<Image src="http://materializecss.com/images/sample-1.jpg" type="backdrop" width="100%">
+									<Image.Vail>
+										<Container>
+											<h1>Hola, bienvenido a Suitup</h1>
+											<h4>Los sliders pueden contener cualquier componente</h4>
+											<Button type="button" style={{marginTop: "50px"}} onClick={this.openModal}>
+												Abrir Modal
+											</Button>
+										</Container>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+							<Slider.Slide key={2}>
+								<Image src="http://f.fwallpapers.com/images/forest-canada.png" type="backdrop" width="100%">
+									<Image.Vail>
+										<Container>
+											<h3 style={{color: '#fff'}}>Lazy load</h3>
+											<h5 style={{color: '#fff'}}>El componente de Slider incluye la opción de
+																		Lazyload. En este modo, los slides se renderizan 
+																		r primera vez cuando se van a necesitar. Ideal para 
+																		galerías fotográficas.</h5>
+										</Container>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+							<Slider.Slide key={3}>
+								<Image src="https://c1.staticflickr.com/4/3081/2916344739_917dbbe51e_b.jpg" type="backdrop" width="100%">
+									<Image.Vail>
+										<Container>
+											<h3 style={{color: '#fff'}}>Personalizable</h3>
+											<h5 style={{color: '#fff'}}>El slider te permite mostrar o esconder los puntos,
+																		las flechas y cambiar el padding.</h5>
+										</Container>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+							<Slider.Slide key={4}>
+								<Image src="https://s-media-cache-ak0.pinimg.com/originals/5f/0c/66/5f0c66ebcfa9639e92e646ce6f8660a7.jpg" type="backdrop" width="100%">
+									<Image.Vail>
+										<Container>
+											<h3 style={{color: '#fff'}}>Draggable</h3>
+											<h5 style={{color: '#fff'}}>Arrastra el slide a la izquierda o a la derecha para pasar al slide siguiente o anterior.</h5>
+										</Container>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+							<Slider.Slide key={5}>
+								<Image src="http://www.beautiful-views.net/views/banff-canada-mountains-river-forest.jpg" type="backdrop" width="100%">
+									<Image.Vail>
+										<Container>
+											<h3 style={{color: '#fff'}}>Miniaturas</h3>
+											<h5 style={{color: '#fff'}}>Muestra miniaturas en lugar de puntos para cambiar el slide (esto desactiva el lazy load)</h5>
+											<Button>Activar miniaturas</Button>
+										</Container>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+							<Slider.Slide key={6}>
+								<Image src='none' type="backdrop" width="100%">
+									<Image.Vail>
+										<Box vertical rows={2}>
+											<Box.Child key={1}>
+												<Container>
+													<h3 style={{color: '#fff'}}>Más de un item por slide</h3>
+													<h5 style={{color: '#fff'}}>No es necesario como opción, la flexibilidad de Box
+														te permite construir este tipo de layouts con el mínimo
+														esfuerzo.</h5>
+												</Container>
+											</Box.Child>
+											<Box.Child key={2}>
+												<Box horizontal centered>
+													<Box.Child key={1}>
+														<Container>
+															<Image centered src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com" type="mediumh" width="80%"/>
+														</Container>
+													</Box.Child>
+													<Box.Child key={2}>
+														<Container>
+															<Image centered src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="80%"/>
+														</Container>
+													</Box.Child>
+												</Box>
+											</Box.Child>
+										</Box>
+									</Image.Vail>
+								</Image>
+							</Slider.Slide>
+						</Slider>
+					</Container>
+					<Container>
+						<h3>Modales</h3>
+						<p>Los modales sirven para mostrar información bloqueando la interacción del usuario con 
+						la vista principal. El modal de suitup-toolkit incluye animación y blur.</p>
+						<Button type="button" onClick={this.openModal}>
+							Abrir Modal
+						</Button>
+					</Container>
+					<Container>
+						<h3>Cards</h3>
+						<p>Las tarjetas sirven como punto de entrada para información detallada.</p>
 						<Container>
 							<Box horizontal rows={3}>
 								<Box.Child key={1}>
@@ -97,7 +223,7 @@ class Index extends React.Component {
 											<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 										</Card.Content>
 										<Card.Footer>
-											<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok jajajaj"/>
+											<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok"/>
 											<Card.Action end onClick={()=>{ console.log("Cancel card") }} text="Cancel"/>
 										</Card.Footer>
 									</Card>
@@ -122,6 +248,87 @@ class Index extends React.Component {
 								</Box.Child>
 							</Box>
 						</Container>
+						<h3>Tarjetas con distintos layouts</h3>
+						<p>Puedes construir tu tarjeta de la manera que se te de la gana. Utiliza el componente
+							Box para mostrar el contenido con distintas orientaciones y proporciones. No te imponemos
+							una forma única de hacer las cosas.</p>
+						<Container>
+							<Box horizontal rows={2}>
+								<Box.Child key={1}>
+									<Card>
+										<Box horizontal rows={3}>
+											<Box.Child wide={2} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+											</Box.Child>
+											<Box.Child wide={1} key={2}>
+												<Card.Content>
+													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+												</Card.Content>
+											</Box.Child>
+										</Box>
+									</Card>
+								</Box.Child>
+								<Box.Child key={2}>
+									<Card>
+										<Box horizontal>
+											<Box.Child wide={2} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+											</Box.Child>
+											<Box.Child wide={1} key={2}>
+												<Card.Content>
+													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+												</Card.Content>
+											</Box.Child>
+										</Box>
+									</Card>
+								</Box.Child>
+							</Box>
+						</Container>
+						<Container>
+							<Box horizontal rows={2}>
+								<Box.Child key={1}>
+									<Card>
+										<Box horizontal rows={3}>
+											<Box.Child wide={2} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
+											</Box.Child>
+											<Box.Child wide={1} key={2}>
+												<Card.Content>
+													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+												</Card.Content>
+											</Box.Child>
+										</Box>
+									</Card>
+								</Box.Child>
+								<Box.Child key={2}>
+									<Card>
+										<Box horizontal>
+											<Box.Child wide={2} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
+											</Box.Child>
+											<Box.Child wide={1} key={2}>
+												<Card.Content>
+													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+												</Card.Content>
+											</Box.Child>
+										</Box>
+									</Card>
+								</Box.Child>
+							</Box>
+						</Container>
+						<h3>Imágenes</h3>
+						<p>El componente de imagen mantiene el aspect ratio deseado aunque tu imagen 
+						   no los tenga (aunque idealmente debería tenerlo).</p>
+						<p>Suitup incluye un conjunto de aspect ratio por defecto recomendados, estos son:</p>
+						<ul>
+							<li>Square (1:1)</li>
+							<li>Poster (2:3)</li>
+							<li>Mediumv (3:4)</li>
+							<li>Mediumh (4:3)</li>
+							<li>Backdrop (16:9)</li>
+							<li>Backdrop (16:9)</li>
+							<li>Banner (5:1)</li>
+						</ul>
 						<Container>
 							<Box horizontal rows={3}>
 								<Box.Child key={1}>
@@ -135,72 +342,8 @@ class Index extends React.Component {
 								</Box.Child>
 							</Box>
 						</Container>
-						<Container>
-							<Box horizontal rows={2}>
-								<Box.Child key={1}>
-									<Card>
-										<Box horizontal rows={3}>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={1} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-								<Box.Child key={2}>
-									<Card>
-										<Box horizontal>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={1} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-							</Box>
-						</Container>
-						<Container>
-							<Box horizontal rows={2}>
-								<Box.Child key={1}>
-									<Card>
-										<Box horizontal rows={3}>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={1} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-								<Box.Child key={2}>
-									<Card>
-										<Box horizontal>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={1} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-							</Box>
-						</Container>
 					</Container>
-					<Footer/>
+					<Footer style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}/>
 				</Layout>
 			);
 	}
