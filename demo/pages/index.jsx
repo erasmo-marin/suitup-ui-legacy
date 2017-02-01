@@ -90,7 +90,6 @@ class Index extends React.Component {
 						<Menu.Header title="Suitup Toolkit" icon={logo} style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)', border: 'none'}}/>
 						<Menu.Item href="/" text="Inicio"/>
 					</Menu>
-
 					<Container>
 						<h1 style={{textAlign: 'center'}}>Bienvenido al demo de Suitup</h1>
 						<p>Suitup UI Toolkit es un conjunto de componentes de React diseñado para construir atractivas
@@ -103,7 +102,6 @@ class Index extends React.Component {
 						   como un Modal o un Slider, hasta componentes más sencillos, como Container, Suitup cubrirá
 						   la mayoría de las necesidades típicas en la construcción de aplicaciones web.</p>
 					</Container>
-
 					<Container>
 						<h3>Slider</h3>
 						<p>El componente de Slider te permite mostrar mucha información de forma segmentada

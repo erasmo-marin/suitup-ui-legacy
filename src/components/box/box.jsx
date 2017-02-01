@@ -34,14 +34,16 @@ class Box extends React.Component {
 
   render () {
 
-    let {horizontal, vertical, autoFill, centered, children, rows, ...rest} = this.props;
+    let {horizontal, vertical, autoFill, centered, justify, children, rows, ...rest} = this.props;
     
     let classes = classnames({
       box: true,
       horizontal: horizontal,
       vertical: vertical,
       "fill-space": autoFill,
-      centered: centered
+      centered: (justify == 'center'),
+      left: (justify == 'left'),
+      right: (justify == 'right')
     });
 
     return (

@@ -4,14 +4,13 @@
 	box-sizing: border-box;
 	display: flex;
 	flex-direction: row;
-	justify-content: space-around;
+	justify-content: space-between;
 	flex-grow: 0;
 
 	&.horizontal {
 		flex-direction: row;
 		.box-child {
 			box-sizing: border-box;
-			width: 100%;
 
 			&.c-1 {
 				width: calc(100% - 1rem);
@@ -70,4 +69,13 @@
 	&.centered {
 		justify-content: center;
 	}
+
+	&.left {
+		justify-content: flex-start;
+	}
+
+	&.right {
+		justify-content:flex-end;
+	}
+
 }
