@@ -104,21 +104,27 @@ class Index extends React.Component {
 					</Container>
 					<Container>
 						<h3>Grilla</h3>
-						<p>La grilla de Suitup UI Toolkit es dinámica, puedes cambiar el número de columnas a gusto.</p>
+						<p>La grilla de Suitup UI Toolkit es dinámica, puedes cambiar el número de columnas y el gutter a gusto. El gutter por default es de 1rem.</p>
 					</Container>
 					<Container>
 						<Box rows={6}>
-							<Box.Child key={1} wide={1} style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>
-								Hola
+							<Box.Child key={1} wide={1}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Hola</div>
 							</Box.Child>
-							<Box.Child key={2} wide={2} style={{backgroundColor: 'blue', color: 'white', textAlign: 'center'}}>
-								Soy
+							<Box.Child key={2} wide={2}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Soy</div>
 							</Box.Child>
-							<Box.Child key={3} wide={1} style={{backgroundColor: 'green', color: 'white', textAlign: 'center'}}>
-								una
+							<Box.Child key={3} wide={1}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>una</div>
 							</Box.Child>
-							<Box.Child key={4} wide={2} style={{backgroundColor: 'yellow', color: 'white', textAlign: 'center'}}>
-								grilla
+							<Box.Child key={4} wide={2}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>grilla</div>
+							</Box.Child>
+							<Box.Child key={5} wide={3}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>con 6 rows</div>
+							</Box.Child>
+							<Box.Child key={6} wide={3}>
+								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>y 6 Box.Child</div>
 							</Box.Child>
 						</Box>
 					</Container>
@@ -202,13 +208,13 @@ class Index extends React.Component {
 												</Container>
 											</Box.Child>
 											<Box.Child key={2}>
-												<Box horizontal centered>
-													<Box.Child key={1}>
+												<Box horizontal centered rows={2}>
+													<Box.Child key={1} wide={1}>
 														<Container>
 															<Image centered src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com" type="mediumh" width="80%"/>
 														</Container>
 													</Box.Child>
-													<Box.Child key={2}>
+													<Box.Child key={2} wide={1}>
 														<Container>
 															<Image centered src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="80%"/>
 														</Container>
@@ -274,7 +280,7 @@ class Index extends React.Component {
 							<Box horizontal rows={2}>
 								<Box.Child key={1} wide={1}>
 									<Card>
-										<Box horizontal rows={3}>
+										<Box horizontal rows={3} gutter="0">
 											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
@@ -288,7 +294,7 @@ class Index extends React.Component {
 								</Box.Child>
 								<Box.Child key={2} wide={1}>
 									<Card>
-										<Box horizontal rows={3}>
+										<Box horizontal rows={3} gutter="0">
 											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
@@ -306,7 +312,7 @@ class Index extends React.Component {
 							<Box horizontal rows={2}>
 								<Box.Child key={1} wide={1}>
 									<Card>
-										<Box horizontal rows={3}>
+										<Box horizontal rows={3} gutter="0">
 											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
@@ -320,7 +326,7 @@ class Index extends React.Component {
 								</Box.Child>
 								<Box.Child key={2} wide={1}>
 									<Card>
-										<Box horizontal rows={3}>
+										<Box horizontal rows={3} gutter="0">
 											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
