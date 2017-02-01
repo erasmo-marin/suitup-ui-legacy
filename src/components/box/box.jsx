@@ -15,6 +15,9 @@ class Box extends React.Component {
     if(props.children && props.rows) {
       if(isArray(props.children)) {
           return props.children.map(function(element) {
+
+            let wide = element.props.wide ? element.props.wide : 1;
+
             return React.cloneElement(
               element, {
                 rows: props.rows
@@ -38,7 +41,7 @@ class Box extends React.Component {
     
     let classes = classnames({
       box: true,
-      horizontal: horizontal,
+      horizontal: vertical == null ? true : false,
       vertical: vertical,
       "fill-space": autoFill,
       centered: (justify == 'center'),
@@ -69,6 +72,5 @@ Box.propTypes = {
     return error
   }
 }
-
 
 export default Box;

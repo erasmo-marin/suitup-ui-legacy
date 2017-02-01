@@ -103,6 +103,26 @@ class Index extends React.Component {
 						   la mayoría de las necesidades típicas en la construcción de aplicaciones web.</p>
 					</Container>
 					<Container>
+						<h3>Grilla</h3>
+						<p>La grilla de Suitup UI Toolkit es dinámica, puedes cambiar el número de columnas a gusto.</p>
+					</Container>
+					<Container>
+						<Box rows={6}>
+							<Box.Child key={1} wide={1} style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>
+								Hola
+							</Box.Child>
+							<Box.Child key={2} wide={2} style={{backgroundColor: 'blue', color: 'white', textAlign: 'center'}}>
+								Soy
+							</Box.Child>
+							<Box.Child key={3} wide={1} style={{backgroundColor: 'green', color: 'white', textAlign: 'center'}}>
+								una
+							</Box.Child>
+							<Box.Child key={4} wide={2} style={{backgroundColor: 'yellow', color: 'white', textAlign: 'center'}}>
+								grilla
+							</Box.Child>
+						</Box>
+					</Container>
+					<Container>
 						<h3>Slider</h3>
 						<p>El componente de Slider te permite mostrar mucha información de forma segmentada
 							y visualmente agradable al usuario. Puedes agregar cualquier cosa que se te ocurra
@@ -214,7 +234,7 @@ class Index extends React.Component {
 						<p>Las tarjetas sirven como punto de entrada para información detallada.</p>
 						<Container>
 							<Box horizontal rows={3}>
-								<Box.Child key={1}>
+								<Box.Child key={1} wide={1}>
 									<Card>
 										<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
 										<Card.Content>
@@ -226,7 +246,7 @@ class Index extends React.Component {
 										</Card.Footer>
 									</Card>
 								</Box.Child>
-								<Box.Child key={2}>
+								<Box.Child key={2} wide={1}>
 									<Card>
 										<Box vertical>
 											<Box.Child>
@@ -235,7 +255,7 @@ class Index extends React.Component {
 										</Box>
 									</Card>
 								</Box.Child>
-								<Box.Child key={3}>
+								<Box.Child key={3} wide={1}>
 									<Card>
 										<Box vertical>
 											<Box.Child>
@@ -252,13 +272,13 @@ class Index extends React.Component {
 							una forma única de hacer las cosas.</p>
 						<Container>
 							<Box horizontal rows={2}>
-								<Box.Child key={1}>
+								<Box.Child key={1} wide={1}>
 									<Card>
 										<Box horizontal rows={3}>
-											<Box.Child wide={2} key={1}>
+											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
-											<Box.Child wide={1} key={2}>
+											<Box.Child wide={2} key={2}>
 												<Card.Content>
 													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 												</Card.Content>
@@ -266,13 +286,13 @@ class Index extends React.Component {
 										</Box>
 									</Card>
 								</Box.Child>
-								<Box.Child key={2}>
+								<Box.Child key={2} wide={1}>
 									<Card>
-										<Box horizontal>
-											<Box.Child wide={2} key={1}>
+										<Box horizontal rows={3}>
+											<Box.Child wide={1} key={1}>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
-											<Box.Child wide={1} key={2}>
+											<Box.Child wide={2} key={2}>
 												<Card.Content>
 													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 												</Card.Content>
@@ -284,13 +304,13 @@ class Index extends React.Component {
 						</Container>
 						<Container>
 							<Box horizontal rows={2}>
-								<Box.Child key={1}>
+								<Box.Child key={1} wide={1}>
 									<Card>
 										<Box horizontal rows={3}>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
+											<Box.Child wide={1} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
-											<Box.Child wide={1} key={2}>
+											<Box.Child wide={2} key={2}>
 												<Card.Content>
 													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 												</Card.Content>
@@ -298,13 +318,13 @@ class Index extends React.Component {
 										</Box>
 									</Card>
 								</Box.Child>
-								<Box.Child key={2}>
+								<Box.Child key={2} wide={1}>
 									<Card>
-										<Box horizontal>
-											<Box.Child wide={2} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="poster" width="100%"/>
+										<Box horizontal rows={3}>
+											<Box.Child wide={1} key={1}>
+												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 											</Box.Child>
-											<Box.Child wide={1} key={2}>
+											<Box.Child wide={2} key={2}>
 												<Card.Content>
 													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
 												</Card.Content>
@@ -316,8 +336,11 @@ class Index extends React.Component {
 						</Container>
 						<h3>Imágenes</h3>
 						<p>El componente de imagen mantiene el aspect ratio deseado aunque tu imagen 
-						   no los tenga (aunque idealmente debería tenerlo).</p>
-						<p>Suitup incluye un conjunto de aspect ratio por defecto recomendados, estos son:</p>
+						   no los tenga (aunque idealmente debería tenerlo). Si deseas un contenedor 
+						   que mantenga el aspect ratio, puedes usar el componente de imagen junto a
+						   el prop src='none'.</p>
+						<p>Suitup incluye un conjunto de aspect ratio por defecto recomendados los cuales
+						pueden cambiarse desde el archivo de configuración, estos son:</p>
 						<ul>
 							<li>Square (1:1)</li>
 							<li>Poster (2:3)</li>
@@ -329,13 +352,13 @@ class Index extends React.Component {
 						</ul>
 						<Container>
 							<Box horizontal rows={3}>
-								<Box.Child key={1}>
+								<Box.Child key={1} wide={1}>
 									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
 								</Box.Child>
-								<Box.Child key={2}>
+								<Box.Child key={2} wide={1}>
 									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
 								</Box.Child>
-								<Box.Child key={3}>
+								<Box.Child key={3} wide={1}>
 									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
 								</Box.Child>
 							</Box>
