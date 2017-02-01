@@ -251,7 +251,7 @@ class Slider extends React.Component {
                 <If condition={this.state.showDots}>
                   <div className="slider-dots-wrapper">
                     <div className="slider-dots">
-                      <Box horizontal>
+                      <Box horizontal rows={this.props.children.length} gutter="0">
                         {
                           this.props.children.map((child, index) => {
                             let classes = classnames({
@@ -259,7 +259,7 @@ class Slider extends React.Component {
                               active: (index == this.state.activeIndex) ? true : false
                             });
 
-                            return (<Box.Child key={index} onClick={() => this.goTo(index) }>
+                            return (<Box.Child key={index} onClick={() => this.goTo(index) } wide={1}>
                                       <div className={classes}/>
                                     </Box.Child>)
                           })

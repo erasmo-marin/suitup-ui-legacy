@@ -1,6 +1,9 @@
 import React from 'react';
 import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../../lib';
 import Logo from './logo';
+import Highlight from 'react-highlight';
+import jsxToString from 'jsx-to-string';
+import ExampleView from './exampleView';
 
 class Index extends React.Component {
 
@@ -58,6 +61,7 @@ class Index extends React.Component {
 	}
 
 
+
 	render () {
 
 		let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
@@ -107,27 +111,32 @@ class Index extends React.Component {
 						<p>La grilla de Suitup UI Toolkit es dinámica, puedes cambiar el número de columnas y el gutter a gusto. El gutter por default es de 1rem.</p>
 					</Container>
 					<Container>
-						<Box rows={6}>
-							<Box.Child key={1} wide={1}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Hola</div>
-							</Box.Child>
-							<Box.Child key={2} wide={2}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Soy</div>
-							</Box.Child>
-							<Box.Child key={3} wide={1}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>una</div>
-							</Box.Child>
-							<Box.Child key={4} wide={2}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>grilla</div>
-							</Box.Child>
-							<Box.Child key={5} wide={3}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>con 6 rows</div>
-							</Box.Child>
-							<Box.Child key={6} wide={3}>
-								<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>y 6 Box.Child</div>
-							</Box.Child>
-						</Box>
+						<ExampleView>
+							<Container>
+								<Box rows={6}>
+									<Box.Child key={1} wide={1}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Hola</div>
+									</Box.Child>
+									<Box.Child key={2} wide={2}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Soy</div>
+									</Box.Child>
+									<Box.Child key={3} wide={1}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>una</div>
+									</Box.Child>
+									<Box.Child key={4} wide={2}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>grilla</div>
+									</Box.Child>
+									<Box.Child key={5} wide={3}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>con 6 rows</div>
+									</Box.Child>
+									<Box.Child key={6} wide={3}>
+										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>y 6 Box.Child</div>
+									</Box.Child>
+								</Box>
+							</Container>
+						</ExampleView>
 					</Container>
+
 					<Container>
 						<h3>Slider</h3>
 						<p>El componente de Slider te permite mostrar mucha información de forma segmentada
@@ -136,96 +145,98 @@ class Index extends React.Component {
 						<p>El slider de Suitup-toolkit implementa lazyload, que renderiza tus slides en el momento de
 							necesitarse, y minimalRender, que sólo renderiza los slides que se están ocupando, para casos
 							donde la cantidad de slides es muy grande.</p>
-						<Slider settings={this.state.sliderSettings}>
-							<Slider.Slide key={1}>
-								<Image src="http://materializecss.com/images/sample-1.jpg" type="backdrop" width="100%">
-									<Image.Vail>
-										<Container>
-											<h1>Hola, bienvenido a Suitup</h1>
-											<h4>Los sliders pueden contener cualquier componente</h4>
-											<Button type="button" style={{marginTop: "50px"}} onClick={this.openModal}>
-												Abrir Modal
-											</Button>
-										</Container>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-							<Slider.Slide key={2}>
-								<Image src="http://f.fwallpapers.com/images/forest-canada.png" type="backdrop" width="100%">
-									<Image.Vail>
-										<Container>
-											<h3 style={{color: '#fff'}}>Lazy load</h3>
-											<h5 style={{color: '#fff'}}>El componente de Slider incluye la opción de
-																		Lazyload. En este modo, los slides se renderizan 
-																		r primera vez cuando se van a necesitar. Ideal para 
-																		galerías fotográficas.</h5>
-										</Container>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-							<Slider.Slide key={3}>
-								<Image src="https://c1.staticflickr.com/4/3081/2916344739_917dbbe51e_b.jpg" type="backdrop" width="100%">
-									<Image.Vail>
-										<Container>
-											<h3 style={{color: '#fff'}}>Personalizable</h3>
-											<h5 style={{color: '#fff'}}>El slider te permite mostrar o esconder los puntos,
-																		las flechas y cambiar el padding.</h5>
-										</Container>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-							<Slider.Slide key={4}>
-								<Image src="https://s-media-cache-ak0.pinimg.com/originals/5f/0c/66/5f0c66ebcfa9639e92e646ce6f8660a7.jpg" type="backdrop" width="100%">
-									<Image.Vail>
-										<Container>
-											<h3 style={{color: '#fff'}}>Draggable</h3>
-											<h5 style={{color: '#fff'}}>Arrastra el slide a la izquierda o a la derecha para pasar al slide siguiente o anterior.</h5>
-										</Container>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-							<Slider.Slide key={5}>
-								<Image src="http://www.beautiful-views.net/views/banff-canada-mountains-river-forest.jpg" type="backdrop" width="100%">
-									<Image.Vail>
-										<Container>
-											<h3 style={{color: '#fff'}}>Miniaturas</h3>
-											<h5 style={{color: '#fff'}}>Muestra miniaturas en lugar de puntos para cambiar el slide (esto desactiva el lazy load)</h5>
-											<Button>Activar miniaturas</Button>
-										</Container>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-							<Slider.Slide key={6}>
-								<Image src='none' type="backdrop" width="100%">
-									<Image.Vail>
-										<Box vertical rows={2}>
-											<Box.Child key={1}>
-												<Container>
-													<h3 style={{color: '#fff'}}>Más de un item por slide</h3>
-													<h5 style={{color: '#fff'}}>No es necesario como opción, la flexibilidad de Box
-														te permite construir este tipo de layouts con el mínimo
-														esfuerzo.</h5>
-												</Container>
-											</Box.Child>
-											<Box.Child key={2}>
-												<Box horizontal centered rows={2}>
-													<Box.Child key={1} wide={1}>
-														<Container>
-															<Image centered src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com" type="mediumh" width="80%"/>
-														</Container>
-													</Box.Child>
-													<Box.Child key={2} wide={1}>
-														<Container>
-															<Image centered src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="80%"/>
-														</Container>
-													</Box.Child>
-												</Box>
-											</Box.Child>
-										</Box>
-									</Image.Vail>
-								</Image>
-							</Slider.Slide>
-						</Slider>
+						<ExampleView>
+							<Slider settings={this.state.sliderSettings}>
+								<Slider.Slide key={1}>
+									<Image src="http://materializecss.com/images/sample-1.jpg" type="backdrop" width="100%">
+										<Image.Vail>
+											<Container>
+												<h1>Hola, bienvenido a Suitup</h1>
+												<h4>Los sliders pueden contener cualquier componente</h4>
+												<Button type="button" style={{marginTop: "50px"}} onClick={this.openModal}>
+													Abrir Modal
+												</Button>
+											</Container>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+								<Slider.Slide key={2}>
+									<Image src="http://f.fwallpapers.com/images/forest-canada.png" type="backdrop" width="100%">
+										<Image.Vail>
+											<Container>
+												<h3 style={{color: '#fff'}}>Lazy load</h3>
+												<h5 style={{color: '#fff'}}>El componente de Slider incluye la opción de
+																			Lazyload. En este modo, los slides se renderizan 
+																			r primera vez cuando se van a necesitar. Ideal para 
+																			galerías fotográficas.</h5>
+											</Container>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+								<Slider.Slide key={3}>
+									<Image src="https://c1.staticflickr.com/4/3081/2916344739_917dbbe51e_b.jpg" type="backdrop" width="100%">
+										<Image.Vail>
+											<Container>
+												<h3 style={{color: '#fff'}}>Personalizable</h3>
+												<h5 style={{color: '#fff'}}>El slider te permite mostrar o esconder los puntos,
+																			las flechas y cambiar el padding.</h5>
+											</Container>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+								<Slider.Slide key={4}>
+									<Image src="https://s-media-cache-ak0.pinimg.com/originals/5f/0c/66/5f0c66ebcfa9639e92e646ce6f8660a7.jpg" type="backdrop" width="100%">
+										<Image.Vail>
+											<Container>
+												<h3 style={{color: '#fff'}}>Draggable</h3>
+												<h5 style={{color: '#fff'}}>Arrastra el slide a la izquierda o a la derecha para pasar al slide siguiente o anterior.</h5>
+											</Container>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+								<Slider.Slide key={5}>
+									<Image src="http://www.beautiful-views.net/views/banff-canada-mountains-river-forest.jpg" type="backdrop" width="100%">
+										<Image.Vail>
+											<Container>
+												<h3 style={{color: '#fff'}}>Miniaturas</h3>
+												<h5 style={{color: '#fff'}}>Muestra miniaturas en lugar de puntos para cambiar el slide (esto desactiva el lazy load)</h5>
+												<Button>Activar miniaturas</Button>
+											</Container>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+								<Slider.Slide key={6}>
+									<Image src='none' type="backdrop" width="100%">
+										<Image.Vail>
+											<Box vertical rows={2}>
+												<Box.Child key={1}>
+													<Container>
+														<h3 style={{color: '#fff'}}>Más de un item por slide</h3>
+														<h5 style={{color: '#fff'}}>No es necesario como opción, la flexibilidad de Box
+															te permite construir este tipo de layouts con el mínimo
+															esfuerzo.</h5>
+													</Container>
+												</Box.Child>
+												<Box.Child key={2}>
+													<Box horizontal centered rows={2}>
+														<Box.Child key={1} wide={1}>
+															<Container>
+																<Image centered src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com" type="mediumh" width="80%"/>
+															</Container>
+														</Box.Child>
+														<Box.Child key={2} wide={1}>
+															<Container>
+																<Image centered src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="80%"/>
+															</Container>
+														</Box.Child>
+													</Box>
+												</Box.Child>
+											</Box>
+										</Image.Vail>
+									</Image>
+								</Slider.Slide>
+							</Slider>
+						</ExampleView>
 					</Container>
 					<Container>
 						<h3>Modales</h3>
@@ -239,106 +250,110 @@ class Index extends React.Component {
 						<h3>Cards</h3>
 						<p>Las tarjetas sirven como punto de entrada para información detallada.</p>
 						<Container>
-							<Box horizontal rows={3}>
-								<Box.Child key={1} wide={1}>
-									<Card>
-										<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
-										<Card.Content>
-											<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-										</Card.Content>
-										<Card.Footer>
-											<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok"/>
-											<Card.Action end onClick={()=>{ console.log("Cancel card") }} text="Cancel"/>
-										</Card.Footer>
-									</Card>
-								</Box.Child>
-								<Box.Child key={2} wide={1}>
-									<Card>
-										<Box vertical>
-											<Box.Child>
+							<ExampleView>
+								<Container>
+									<Box horizontal rows={3}>
+										<Box.Child key={1} wide={1}>
+											<Card>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-								<Box.Child key={3} wide={1}>
-									<Card>
-										<Box vertical>
-											<Box.Child>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-							</Box>
+												<Card.Content>
+													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+												</Card.Content>
+												<Card.Footer>
+													<Card.Action start onClick={()=>{ console.log("Ok card") }} text="Ok"/>
+													<Card.Action end onClick={()=>{ console.log("Cancel card") }} text="Cancel"/>
+												</Card.Footer>
+											</Card>
+										</Box.Child>
+										<Box.Child key={2} wide={1}>
+											<Card>
+												<Box vertical>
+													<Box.Child>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+										<Box.Child key={3} wide={1}>
+											<Card>
+												<Box vertical>
+													<Box.Child>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+									</Box>
+								</Container>
+							</ExampleView>
 						</Container>
 						<h3>Tarjetas con distintos layouts</h3>
 						<p>Puedes construir tu tarjeta de la manera que se te de la gana. Utiliza el componente
 							Box para mostrar el contenido con distintas orientaciones y proporciones. No te imponemos
 							una forma única de hacer las cosas.</p>
 						<Container>
-							<Box horizontal rows={2}>
-								<Box.Child key={1} wide={1}>
-									<Card>
-										<Box horizontal rows={3} gutter="0">
-											<Box.Child wide={1} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={2} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-								<Box.Child key={2} wide={1}>
-									<Card>
-										<Box horizontal rows={3} gutter="0">
-											<Box.Child wide={1} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={2} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-							</Box>
-						</Container>
-						<Container>
-							<Box horizontal rows={2}>
-								<Box.Child key={1} wide={1}>
-									<Card>
-										<Box horizontal rows={3} gutter="0">
-											<Box.Child wide={1} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={2} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-								<Box.Child key={2} wide={1}>
-									<Card>
-										<Box horizontal rows={3} gutter="0">
-											<Box.Child wide={1} key={1}>
-												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
-											</Box.Child>
-											<Box.Child wide={2} key={2}>
-												<Card.Content>
-													<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
-												</Card.Content>
-											</Box.Child>
-										</Box>
-									</Card>
-								</Box.Child>
-							</Box>
+							<ExampleView>
+								<Container>
+									<Box horizontal rows={2}>
+										<Box.Child key={1} wide={1}>
+											<Card>
+												<Box horizontal rows={3} gutter="0">
+													<Box.Child wide={1} key={1}>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+													</Box.Child>
+													<Box.Child wide={2} key={2}>
+														<Card.Content>
+															<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+														</Card.Content>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+										<Box.Child key={2} wide={1}>
+											<Card>
+												<Box horizontal rows={3} gutter="0">
+													<Box.Child wide={1} key={1}>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+													</Box.Child>
+													<Box.Child wide={2} key={2}>
+														<Card.Content>
+															<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+														</Card.Content>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+										<Box.Child key={3} wide={1}>
+											<Card>
+												<Box horizontal rows={3} gutter="0">
+													<Box.Child wide={1} key={1}>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+													</Box.Child>
+													<Box.Child wide={2} key={2}>
+														<Card.Content>
+															<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+														</Card.Content>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+										<Box.Child key={4} wide={1}>
+											<Card>
+												<Box horizontal rows={3} gutter="0">
+													<Box.Child wide={1} key={1}>
+														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
+													</Box.Child>
+													<Box.Child wide={2} key={2}>
+														<Card.Content>
+															<p>Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.</p>
+														</Card.Content>
+													</Box.Child>
+												</Box>
+											</Card>
+										</Box.Child>
+									</Box>
+								</Container>
+							</ExampleView>
 						</Container>
 						<h3>Imágenes</h3>
 						<p>El componente de imagen mantiene el aspect ratio deseado aunque tu imagen 
@@ -357,17 +372,21 @@ class Index extends React.Component {
 							<li>Banner (5:1)</li>
 						</ul>
 						<Container>
-							<Box horizontal rows={3}>
-								<Box.Child key={1} wide={1}>
-									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
-								</Box.Child>
-								<Box.Child key={2} wide={1}>
-									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
-								</Box.Child>
-								<Box.Child key={3} wide={1}>
-									<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
-								</Box.Child>
-							</Box>
+							<ExampleView>
+								<Container>
+									<Box horizontal rows={3}>
+										<Box.Child key={1} wide={1}>
+											<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
+										</Box.Child>
+										<Box.Child key={2} wide={1}>
+											<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
+										</Box.Child>
+										<Box.Child key={3} wide={1}>
+											<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
+										</Box.Child>
+									</Box>
+								</Container>
+							</ExampleView>
 						</Container>
 					</Container>
 					<Footer style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}/>
