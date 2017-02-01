@@ -1,14 +1,18 @@
 var path = require('path');
 var webpack = require('webpack');
 var chalk = require('chalk');
- 
+//var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
+console.log(__dirname);
+
 module.exports = {
     context: __dirname,
     cache: true,
-    entry: ['./src/components/index.jsx'],
+    entry: ['./demo/index.jsx', 'webpack-hot-middleware/client'],
     output: {
-        path: './dist',
-        filename: 'suitup.toolkit.min.js'
+        publicPath: '/',
+        path: __dirname,
+        filename: 'main.js'
     },
     module: {
         loaders: [
@@ -18,10 +22,9 @@ module.exports = {
                 exclude: '/node_modules'
             },
             {
-                test:/\.less$/,
-                exclude:'/node_modules',
-                loader:"style!css!less"
-            } 
+                test: /\.less$/,
+                loader: 'style-loader!css-loader!less-loader'
+            }
         ]
     },
     resolve: {
@@ -30,17 +33,13 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+                'NODE_ENV': JSON.stringify('development')
             }
         }),
-        new webpack.optimize.DedupePlugin(),
+        new webpack.optimize.CommonsChunkPlugin('common.js'),
         new webpack.optimize.OccurenceOrderPlugin(),
-        new webpack.optimize.UglifyJsPlugin({
-          mangle: true,
-          sourcemap: false,
-          compress: {
-            warnings: false,
-          }
-        })
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+        /*new ExtractTextPlugin("main.css")*/
     ]
 };

@@ -1,10 +1,10 @@
 {
-  "name": "smartboxtv",
-  "version": "0.0.0",
-  "private": true,
+  "name": "suitup-ui-toolkit",
+  "version": "0.0.1",
+  "description": "Suitup UI Toolkit is a set of React components to build web apps faster",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "webpack",
+    "build": "babel src/components/ -d lib/ && webpack && lessc --clean-css src/styles/index.less dist/suitup-toolkit.min.css",
     "watch": "webpack --progress --colors --watch"
   },
   "dependencies": {
@@ -19,6 +19,8 @@
     "hbs": "~4.0.0",
     "jsome": "^2.3.25",
     "keymirror": "^0.1.1",
+    "less": "^2.7.2",
+    "less-plugin-clean-css": "^1.5.1",
     "lodash": "^4.17.4",
     "moment": "^2.14.1",
     "morgan": "~1.7.0",
@@ -37,6 +39,7 @@
     "autoprefixer-loader": "^3.2.0",
     "babel-core": "^6.22.1",
     "babel-loader": "^6.2.10",
+    "babel-plugin-lodash": "^3.2.11",
     "babel-plugin-transform-function-bind": "^6.22.0",
     "babel-polyfill": "^6.9.1",
     "babel-preset-es2015": "^6.22.0",

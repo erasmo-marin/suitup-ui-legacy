@@ -8,7 +8,7 @@ var hbs = require('hbs');
 var helpers = require("./views/helpers");
 var session = require('express-session');
 var webpack = require('webpack');
-var webpackConfig = require('./webpack.config');
+var webpackConfig = require('./webpack.config.demo');
 var compiler = webpack(webpackConfig);
 
 //routes

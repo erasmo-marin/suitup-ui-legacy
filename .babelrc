@@ -4,5 +4,5 @@
     "es2015",
     "stage-1"
   ],
-  "plugins": ["react-hot-loader/babel", "jsx-control-statements", "transform-function-bind"]
+  "plugins": ["jsx-control-statements", "transform-function-bind", "lodash"]
 }
