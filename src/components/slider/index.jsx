@@ -251,7 +251,7 @@ class Slider extends React.Component {
                 <If condition={this.state.showDots}>
                   <div className="slider-dots-wrapper">
                     <div className="slider-dots">
-                      <Box horizontal rows={this.props.children.length} gutter="0">
+                      <Box horizontal columns={this.props.children.length} gutter="0">
                         {
                           this.props.children.map((child, index) => {
                             let classes = classnames({

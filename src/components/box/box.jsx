@@ -12,7 +12,7 @@ class Box extends React.Component {
   }
 
   setupChildProps(props) {
-    if(props.children && props.rows) {
+    if(props.children && props.columns) {
       if(isArray(props.children)) {
           return props.children.map(function(element) {
 
@@ -20,14 +20,14 @@ class Box extends React.Component {
 
             return React.cloneElement(
               element, {
-                rows: props.rows,
+                columns: props.columns,
                 gutter: props.gutter ? props.gutter : "0.5rem"
               }
           )}, this);
       } else {
         return React.cloneElement(
           props.children, {
-            rows: props.rows,
+            columns: props.columns,
             gutter: props.gutter ? props.gutter : "0.5rem"
           }
         )
@@ -39,7 +39,7 @@ class Box extends React.Component {
 
   render () {
 
-    let {horizontal, vertical, autoFill, centered, justify, children, rows, gutter, ...rest} = this.props;
+    let {horizontal, vertical, autoFill, centered, justify, children, columns, gutter, ...rest} = this.props;
     
     if(!gutter) {
       gutter = '0.5rem';

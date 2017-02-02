@@ -11,14 +11,14 @@ class BoxChild extends React.Component {
   render () {
   	
     let cstyle = {};
-    let {rows, wide, width, children, style, gutter, ...rest} = this.props;
+    let {columns, wide, width, children, style, gutter, ...rest} = this.props;
     
   	let classes = {
       "box-child": true
   	};
 
-    if(wide && rows) {
-      cstyle.width = `${(100/rows)*wide}%`;
+    if(wide && columns) {
+      cstyle.width = `${(100/columns)*wide}%`;
       cstyle.padding = gutter;
     }
 

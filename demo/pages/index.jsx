@@ -113,24 +113,24 @@ class Index extends React.Component {
 					<Container>
 						<ExampleView>
 							<Container>
-								<Box rows={6}>
+								<Box columns={6}>
 									<Box.Child key={1} wide={1}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Hola</div>
+										<div style={{backgroundColor: '#3273dc', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>Hola</div>
 									</Box.Child>
 									<Box.Child key={2} wide={2}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>Soy</div>
+										<div style={{backgroundColor: '#546e7a', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>Soy</div>
 									</Box.Child>
 									<Box.Child key={3} wide={1}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>una</div>
+										<div style={{backgroundColor: '#23d160', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>una</div>
 									</Box.Child>
 									<Box.Child key={4} wide={2}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>grilla</div>
+										<div style={{backgroundColor: '#ffdd57', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>grilla</div>
 									</Box.Child>
 									<Box.Child key={5} wide={3}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>con 6 rows</div>
+										<div style={{backgroundColor: '#f57f17', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>con 6 columnas</div>
 									</Box.Child>
 									<Box.Child key={6} wide={3}>
-										<div style={{backgroundColor: 'red', color: 'white', textAlign: 'center'}}>y 6 Box.Child</div>
+										<div style={{backgroundColor: '#ff3860', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>y 6 Box.Child</div>
 									</Box.Child>
 								</Box>
 							</Container>
@@ -208,7 +208,7 @@ class Index extends React.Component {
 								<Slider.Slide key={6}>
 									<Image src='none' type="backdrop" width="100%">
 										<Image.Vail>
-											<Box vertical rows={2}>
+											<Box vertical columns={2}>
 												<Box.Child key={1}>
 													<Container>
 														<h3 style={{color: '#fff'}}>Más de un item por slide</h3>
@@ -218,7 +218,7 @@ class Index extends React.Component {
 													</Container>
 												</Box.Child>
 												<Box.Child key={2}>
-													<Box horizontal centered rows={2}>
+													<Box horizontal centered columns={2}>
 														<Box.Child key={1} wide={1}>
 															<Container>
 																<Image centered src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com" type="mediumh" width="80%"/>
@@ -252,7 +252,7 @@ class Index extends React.Component {
 						<Container>
 							<ExampleView>
 								<Container>
-									<Box horizontal rows={3}>
+									<Box horizontal columns={3}>
 										<Box.Child key={1} wide={1}>
 											<Card>
 												<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
@@ -294,10 +294,10 @@ class Index extends React.Component {
 						<Container>
 							<ExampleView>
 								<Container>
-									<Box horizontal rows={2}>
+									<Box horizontal columns={2}>
 										<Box.Child key={1} wide={1}>
 											<Card>
-												<Box horizontal rows={3} gutter="0">
+												<Box horizontal columns={3} gutter="0">
 													<Box.Child wide={1} key={1}>
 														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 													</Box.Child>
@@ -311,7 +311,7 @@ class Index extends React.Component {
 										</Box.Child>
 										<Box.Child key={2} wide={1}>
 											<Card>
-												<Box horizontal rows={3} gutter="0">
+												<Box horizontal columns={3} gutter="0">
 													<Box.Child wide={1} key={1}>
 														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 													</Box.Child>
@@ -325,7 +325,7 @@ class Index extends React.Component {
 										</Box.Child>
 										<Box.Child key={3} wide={1}>
 											<Card>
-												<Box horizontal rows={3} gutter="0">
+												<Box horizontal columns={3} gutter="0">
 													<Box.Child wide={1} key={1}>
 														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 													</Box.Child>
@@ -339,7 +339,7 @@ class Index extends React.Component {
 										</Box.Child>
 										<Box.Child key={4} wide={1}>
 											<Card>
-												<Box horizontal rows={3} gutter="0">
+												<Box horizontal columns={3} gutter="0">
 													<Box.Child wide={1} key={1}>
 														<Image src="http://materializecss.com/images/sample-1.jpg" type="mediumv" width="100%"/>
 													</Box.Child>
@@ -374,7 +374,7 @@ class Index extends React.Component {
 						<Container>
 							<ExampleView>
 								<Container>
-									<Box horizontal rows={3}>
+									<Box horizontal columns={3}>
 										<Box.Child key={1} wide={1}>
 											<Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
 										</Box.Child>
