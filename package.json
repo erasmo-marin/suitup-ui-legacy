@@ -5,6 +5,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "build": "babel src/components/ -d lib/ && webpack && lessc --clean-css src/styles/index.less dist/suitup-toolkit.min.css",
+    "buildStaticSite": "webpack --config webpack.config.staticsite.js",
     "watch": "webpack --progress --colors --watch"
   },
   "dependencies": {

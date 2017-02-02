@@ -13,7 +13,8 @@ class Routes extends React.Component {
 	render() {
 		return (<Router history={browserHistory}>
 					<Route path="/" component={ Index }>
-						{/*<IndexRoute component={ Game } />*/}
+			        </Route>
+					<Route path="/suitup-toolkit-website" component={ Index }>
 			        </Route>
 				</Router>);
 	}
