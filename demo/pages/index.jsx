@@ -113,7 +113,7 @@ class Index extends React.Component {
 					<Container>
 						<ExampleView>
 							<Container>
-								<Box columns={6}>
+								<Box columns={6} gutter="15px">
 									<Box.Child key={1} wide={1}>
 										<div style={{backgroundColor: '#3273dc', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>Hola</div>
 									</Box.Child>

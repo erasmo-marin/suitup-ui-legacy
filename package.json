@@ -4,7 +4,8 @@
   "description": "Suitup UI Toolkit is a set of React components to build web apps faster",
   "scripts": {
     "start": "nodemon ./bin/www",
-    "build": "babel src/components/ -d lib/ && webpack && lessc --clean-css src/styles/index.less dist/suitup-toolkit.min.css",
+    "babel": "babel src/components/ -d lib/",
+    "build": "npm run babel && webpack && lessc --clean-css src/styles/index.less dist/suitup-toolkit.min.css",
     "watch": "webpack --progress --colors --watch"
   },
   "dependencies": {

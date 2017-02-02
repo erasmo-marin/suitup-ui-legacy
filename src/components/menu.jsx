@@ -25,6 +25,7 @@ class Menu extends React.Component {
     }
   }
 
+
   hide() {
     this.setState({
       visible: false
@@ -51,7 +52,7 @@ class Menu extends React.Component {
 
   render () {
 
-    let {children, left, right, visible, onShow, onHide, ...rest} = this.props;
+    let {children, left, right, visible, onShow, onHide, style, ...rest} = this.props;
 
   	let classes = classnames({
   		menu: true,

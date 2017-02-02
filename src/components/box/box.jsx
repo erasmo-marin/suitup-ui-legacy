@@ -13,6 +13,12 @@ class Box extends React.Component {
 
   setupChildProps(props) {
     if(props.children && props.columns) {
+
+      let gutter = this.parseGutter(props.gutter);
+      if(gutter && gutter.number) {
+        gutter = (gutter.number/2) + gutter.measure;
+      }
+
       if(isArray(props.children)) {
           return props.children.map(function(element) {
 
@@ -21,14 +27,14 @@ class Box extends React.Component {
             return React.cloneElement(
               element, {
                 columns: props.columns,
-                gutter: props.gutter ? props.gutter : "0.5rem"
+                gutter: gutter ? gutter : "0.5rem"
               }
           )}, this);
       } else {
         return React.cloneElement(
           props.children, {
             columns: props.columns,
-            gutter: props.gutter ? props.gutter : "0.5rem"
+            gutter: gutter ? gutter : "0.5rem"
           }
         )
       }
@@ -37,6 +43,20 @@ class Box extends React.Component {
     }
   }
 
+  parseGutter(gutter) {
+
+    if(!gutter)
+      return;
+
+    let number = parseFloat(gutter);
+
+    return {
+              number: number,
+              measure: gutter.replace(number, "")
+           }
+  }
+
+
   render () {
 
     let {horizontal, vertical, autoFill, centered, justify, children, columns, gutter, ...rest} = this.props;
@@ -44,7 +64,6 @@ class Box extends React.Component {
     if(!gutter) {
       gutter = '0.5rem';
     }
-
 
     let classes = classnames({
       box: true,
@@ -56,9 +75,15 @@ class Box extends React.Component {
       right: (justify == 'right')
     });
 
+    gutter = this.parseGutter(gutter);
+
+    if(gutter && gutter.number) {
+      gutter = (gutter.number/2*-1) + gutter.measure;
+    }
+
     let cstyle = {
-      marginLeft: `-${gutter}`,
-      marginRight: `-${gutter}`
+      marginLeft: gutter,
+      marginRight: gutter
     }
 
     return (
