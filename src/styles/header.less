@@ -1,33 +1,33 @@
 @import 'theme/header';
 
 header {
-	width: @width;
-	height: @height;
-	color: @color;
-	background-color: @backgroundColor;
-	opacity: @opacity;
-	box-shadow: 0 2px 5px rgba(0,0,0,.26);
-	
-	&.fixed {
-		position: fixed;
-		left: 0;
-		&.top {
-			top: 0;
-		}
+    width: @width;
+    height: @height;
+    color: @color;
+    background-color: @backgroundColor;
+    opacity: @opacity;
+    box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    
+    &.fixed {
+        position: fixed;
+        left: 0;
+        &.top {
+            top: 0;
+        }
 
-		&.bottom {
-			bottom: 0;
-		}
-	}
+        &.bottom {
+            bottom: 0;
+        }
+    }
 
-	button {
-		&.menu-button {
-			height: @height;
-			line-height: @height;
-			text-align: center;
-			&.pressed {
-				background-color: rgba(0,0,0,0.2);
-			}
-		}
-	}
+    button {
+        &.menu-button {
+            height: @height;
+            line-height: @height;
+            text-align: center;
+            &.pressed {
+                background-color: rgba(0,0,0,0.2);
+            }
+        }
+    }
 }

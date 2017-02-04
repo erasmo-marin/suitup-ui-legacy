@@ -10,14 +10,14 @@ class ModalAction extends React.Component {
   }
 
   render () {
-  	
+    
     let {text, onClick, start, end, ...rest} = this.props;
 
-  	let classes = {
+    let classes = {
       "modal-action": true,
       start: start,
       end: end
-  	};
+    };
 
     classes = classnames(classes);
 

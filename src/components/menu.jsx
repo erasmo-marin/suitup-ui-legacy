@@ -5,14 +5,14 @@ import classnames from 'classnames';
 
 
 class Item extends React.Component {
-	render() {
+  render() {
 
     let {href, text, ...rest} = this.props;
 
-		return	(<div {...rest} className="menu-item">
-    				    <Link to={href}>{text}</Link>
-    				 </div>)
-	}
+    return  (<div {...rest} className="menu-item">
+                <Link to={href}>{text}</Link>
+             </div>)
+  }
 }
 
 class Menu extends React.Component {
@@ -54,13 +54,13 @@ class Menu extends React.Component {
 
     let {children, left, right, visible, onShow, onHide, style, ...rest} = this.props;
 
-  	let classes = classnames({
-  		menu: true,
-  		fixed: true,
-  		left: left,
-  		right: right,
-  		visible: visible
-  	});
+    let classes = classnames({
+      menu: true,
+      fixed: true,
+      left: left,
+      right: right,
+      visible: visible
+    });
 
     let veilClasses = classnames({
       "menu-veil": true,
@@ -71,7 +71,7 @@ class Menu extends React.Component {
               <div className={veilClasses} onClick={this.hide}/>
               <nav className={classes}>
                 {children}
-      		    </nav>
+              </nav>
             </div>);
   }
 }

@@ -41,14 +41,14 @@ class Button extends React.Component {
   render () {
 
     let {text, children, transparent, circular, rounded, menu, pressed, type, onClick, onMouseUp, onMouseDown, ...rest} = this.props;
-  	
-  	let classes = {
+    
+    let classes = {
       transparent: this.props.transparent,
       circular: this.props.circular,
       rounded: this.props.rounded,
       "menu-button": this.props.menu,
       pressed: this.state.pressed
-  	};
+    };
 
     classes = classnames(classes);
 

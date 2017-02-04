@@ -12,10 +12,10 @@ class Card extends React.Component {
   }
 
   render () {
-  	
-  	let classes = classnames({
+    
+    let classes = classnames({
       "card": true,
-  	});
+    });
 
     let style = {
       maxWidth: this.props.width ? this.props.width : undefined,

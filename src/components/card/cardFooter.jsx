@@ -9,10 +9,10 @@ class CardFooter extends React.Component {
   }
 
   render () {
-  	
-  	let classes = {
+    
+    let classes = {
       "card-footer": true
-  	};
+    };
 
     classes = classnames(classes);
 

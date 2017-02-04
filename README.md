@@ -7,7 +7,7 @@ Suitup UI Toolkit is a set of React components to build web apps faster. Themeab
 Add it to your project:
 
 ``
-npm install suitup-ui-toolkit --save
+npm install suitup-ui --save
 ``
 
 And then just import the components you need. The components load their own styles, no css imports required. If you need to make a theme, you need to build your own Suit.

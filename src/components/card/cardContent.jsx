@@ -9,10 +9,10 @@ class CardContent extends React.Component {
   }
 
   render () {
-  	
-  	let classes = {
+    
+    let classes = {
       "card-content": true
-  	};
+    };
 
     classes = classnames(classes);
 

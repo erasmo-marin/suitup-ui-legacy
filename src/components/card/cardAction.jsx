@@ -10,12 +10,12 @@ class CardAction extends React.Component {
   }
 
   render () {
-  	
-  	let classes = {
+    
+    let classes = {
       "card-action": true,
       start: this.props.start,
       end: this.props.end
-  	};
+    };
 
     classes = classnames(classes);
 

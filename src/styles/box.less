@@ -1,44 +1,44 @@
 @import 'theme/box';
 
 .box {
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	flex-grow: 0;
-	flex-wrap: wrap;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-grow: 0;
+    flex-wrap: wrap;
 
-	&.horizontal {
-		flex-direction: row;
-		.box-child {
-			box-sizing: border-box;
-		}
-	}
+    &.horizontal {
+        flex-direction: row;
+        .box-child {
+            box-sizing: border-box;
+        }
+    }
 
-	&.vertical {
-		flex-direction: column;
-		.box-child {
-			box-sizing: border-box;
-			width: 100%;
-		}
-	}
+    &.vertical {
+        flex-direction: column;
+        .box-child {
+            box-sizing: border-box;
+            width: 100%;
+        }
+    }
 
-	&.fill-space {
-		.box-child {
-			flex-grow: 1;
-		}
-	}
+    &.fill-space {
+        .box-child {
+            flex-grow: 1;
+        }
+    }
 
-	&.centered {
-		justify-content: center;
-	}
+    &.centered {
+        justify-content: center;
+    }
 
-	&.left {
-		justify-content: flex-start;
-	}
+    &.left {
+        justify-content: flex-start;
+    }
 
-	&.right {
-		justify-content:flex-end;
-	}
+    &.right {
+        justify-content:flex-end;
+    }
 
 }

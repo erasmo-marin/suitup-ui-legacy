@@ -11,10 +11,10 @@ class ModalFooter extends React.Component {
   render () {
 
     let {children, ...rest} = this.props;
-  	
-  	let classes = {
+    
+    let classes = {
       "modal-footer": true
-  	};
+    };
 
     classes = classnames(classes);
 

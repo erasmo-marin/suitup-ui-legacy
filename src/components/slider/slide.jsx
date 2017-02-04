@@ -8,10 +8,10 @@ class Slide extends React.Component {
   }
 
   render () {
-  	
-  	let classes = {
+    
+    let classes = {
       "slide": true
-  	};
+    };
 
     classes = classnames(classes);
 

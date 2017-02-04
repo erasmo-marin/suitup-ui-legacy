@@ -11,10 +11,10 @@ class ModalContent extends React.Component {
   render () {
 
     let {children, ...rest} = this.props;
-  	
-  	let classes = {
+    
+    let classes = {
       "modal-content": true
-  	};
+    };
 
     classes = classnames(classes);
 

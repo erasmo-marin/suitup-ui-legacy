@@ -22,22 +22,22 @@ class Slider extends React.Component {
     this.slides = [];
 
     this.state = {
-      alreadyLoaded: [], //save the slides that has been rendered before
-      activeIndex: 0, //index of the current active slider
-      position: null, //the position object for the slider
-      positionTrack: null, //the position used to track the drag event
-      autoPlay: false,
-      autoPlayDuration: 0,
-      activeSlideWidth: 100,
-      dragging: false,
-      showArrows: true,
-      showDots: true,
-      centerMode: false, //show the other sliders and the current slider in the middle
-      displayItems: 1, //the number of items to display
-      arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
-      lazyLoad: false, //when true, the slider only loads the slides when needed
-      minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
-      animation: "translate" //translate - fade - zoom
+        alreadyLoaded: [], //save the slides that has been rendered before
+        activeIndex: 0, //index of the current active slider
+        position: null, //the position object for the slider
+        positionTrack: null, //the position used to track the drag event
+        autoPlay: false,
+        autoPlayDuration: 0,
+        activeSlideWidth: 100,
+        dragging: false,
+        showArrows: true,
+        showDots: true,
+        centerMode: false, //show the other sliders and the current slider in the middle
+        displayItems: 1, //the number of items to display
+        arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
+        lazyLoad: false, //when true, the slider only loads the slides when needed
+        minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
+        animation: "translate" //translate - fade - zoom
     }
     this.loadSettings(this.props);
   }
@@ -187,10 +187,10 @@ class Slider extends React.Component {
   }
 
   render () {
-    	
-  	let classes = {
+      
+    let classes = {
       "slider": true
-  	};
+    };
 
     classes = classnames(classes);
     //let translate = this.state.activeIndex * (100/this.props.children.length) * -1;

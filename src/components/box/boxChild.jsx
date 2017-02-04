@@ -9,13 +9,13 @@ class BoxChild extends React.Component {
   }
 
   render () {
-  	
+    
     let cstyle = {};
     let {columns, wide, width, children, style, gutter, ...rest} = this.props;
     
-  	let classes = {
+    let classes = {
       "box-child": true
-  	};
+    };
 
     if(wide && columns) {
       cstyle.width = `${(100/columns)*wide}%`;

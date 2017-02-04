@@ -9,10 +9,10 @@ class ImageVail extends React.Component {
   }
 
   render () {
-  	
-  	let classes = classnames({
+    
+    let classes = classnames({
       "image-vail": true
-  	});
+    });
 
     let style = {
       width: '100%',

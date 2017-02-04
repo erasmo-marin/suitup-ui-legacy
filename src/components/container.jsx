@@ -9,10 +9,10 @@ class Container extends React.Component {
   }
 
   render () {
-  	
-  	let classes = {
+    
+    let classes = {
       "container": true
-  	};
+    };
 
     classes = classnames(classes);
 

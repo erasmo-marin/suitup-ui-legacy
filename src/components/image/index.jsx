@@ -153,11 +153,11 @@ class Image extends React.Component {
     if(style) {
       rstyle = {...style, rstyle}
     }
-  	
-  	let classes = {
+    
+    let classes = {
       "image": true,
       centered: centered
-  	};
+    };
 
     classes = classnames(classes);
 
