@@ -17,7 +17,7 @@ var routes = require('./routes/index');
 var app = express();
 
 app.use(require("webpack-dev-middleware")(compiler, {
-    noInfo: true, publicPath: webpackConfig.output.publicPath
+    publicPath: webpackConfig.output.publicPath
 }));
 app.use(require("webpack-hot-middleware")(compiler));
 

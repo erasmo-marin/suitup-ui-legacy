@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     context: __dirname,
     cache: true,
+    devtool: 'cheap-module-eval-source-map',
     entry: ['webpack-hot-middleware/client', 'react-hot-loader/patch', './demo/index.jsx'],
     output: {
         publicPath: '/',
@@ -18,7 +19,9 @@ module.exports = {
                         exclude: '/node_modules',
                         options: {
                                    presets: [
-                                     [ 'es2015'/*, { modules: false }*/ ]
+                                     ['es2015'],
+                                     "stage-1",
+                                     "react"
                                    ],
                                    plugins: ['react-hot-loader/babel']
                                  }
@@ -30,12 +33,12 @@ module.exports = {
                     },
                     { 
                         test: /\.md$/,
-                        use: ["html-loader", "markdown-loader"]
+                        use: ["raw-loader"]
                     }
         ]
     },
     resolve: {
-        extensions: ['.js','.jsx']
+        extensions: ['.js','.jsx', '.md', '.json']
     },
     plugins: [
         new webpack.DefinePlugin({

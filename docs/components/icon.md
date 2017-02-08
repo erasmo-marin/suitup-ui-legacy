@@ -1,4 +1,4 @@
-#Icon
+# Icon
 
 Icon component
 

@@ -1,16 +1,11 @@
-# Card
-
-Card component
-
-```jsx
 import React from 'react';
 import MarkdownJsx from 'markdown-to-jsx';
-import Highlight from 'react-highlight';
+import {PrismCode} from "react-prism";
 
 const CodeBlock = ({children, ...props}) => (
-        <Highlight {...props}>
-          { children }
-        </Highlight>
+      <PrismCode {...props}>
+        { children }
+      </PrismCode>
 );
 
 class Markdown extends React.Component {
@@ -27,7 +22,7 @@ class Markdown extends React.Component {
                                 code: {
                                     component: CodeBlock,
                                     props: {
-                                        className: 'js'
+                                        className: 'language-jsx'
                                     },
                                 },
                             },
@@ -39,18 +34,3 @@ class Markdown extends React.Component {
 }
 
 export default Markdown;
-
-
-<Card>
-	<div>Test</div>
-</Card>
-```
-
-## Subcomponents
-
-### Card.Content
-todo
-### Card.Footer
-todo
-### Card.Action
-todo

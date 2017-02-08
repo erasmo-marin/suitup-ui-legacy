@@ -1,31 +1,33 @@
 import React from 'react';
 import { Container, Content, Layout, Box} from '../../../src/components';
 //index
-import index from '../../../docs/index.md';
+import index from '../../../docs/index';
 
 //components
-import button from '../../../docs/components/button.md';
-import card from '../../../docs/components/card.md';
-import header from '../../../docs/components/header.md';
-import icon from '../../../docs/components/icon.md';
-import image from '../../../docs/components/image.md';
-import components from '../../../docs/components/index.md';
-import menu from '../../../docs/components/menu.md';
-import modal from '../../../docs/components/modal.md';
-import slider from '../../../docs/components/slider.md';
+import button from '../../../docs/components/button';
+import card from '../../../docs/components/card';
+import header from '../../../docs/components/header';
+import icon from '../../../docs/components/icon';
+import image from '../../../docs/components/image';
+import components from '../../../docs/components/index';
+import menu from '../../../docs/components/menu';
+import modal from '../../../docs/components/modal';
+import slider from '../../../docs/components/slider';
 
 //containers
-import box from '../../../docs/containers/box.md';
-import container from '../../../docs/containers/container.md';
-import containers from '../../../docs/containers/index.md';
-import layout from '../../../docs/containers/layout.md';
+import box from '../../../docs/containers/box';
+import container from '../../../docs/containers/container';
+import containers from '../../../docs/containers/index';
+import layout from '../../../docs/containers/layout';
 
 //responsive
-import responsive from '../../../docs/responsive/index.md';
-import devices from '../../../docs/responsive/devices.md';
+import responsive from '../../../docs/responsive/index';
+import devices from '../../../docs/responsive/devices';
 
 //theming
-import theming from '../../../docs/theming/index.md';
+import theming from '../../../docs/theming/index';
+
+import Markdown from './markdown';
 
 
 const docsMap = {
@@ -68,8 +70,7 @@ class Docs extends React.Component {
 
     render () {
         
-
-        let {folder, file} = this.props.params;
+        let {folder, file} = this.props.match.params;
 
         if(!folder) {
             folder = "index";
@@ -83,7 +84,7 @@ class Docs extends React.Component {
 
         return (
                 <Container>
-                   
+                    <Markdown source={source}/>
                 </Container>
             );
     }

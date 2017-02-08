@@ -73,6 +73,7 @@ class WebLayout extends React.Component {
                         <Menu.Item text="Theming" href="/theming"/>
                     </Menu>
                     {this.props.children}
+
                     <Footer style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}/>
                 </Layout>
             );
