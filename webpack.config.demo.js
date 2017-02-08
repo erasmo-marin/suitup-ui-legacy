@@ -24,10 +24,14 @@ module.exports = {
                                  }
                     },
                     {
-                        test:/\.less$/,
+                        test: /\.less$/,
                         exclude:'/node_modules',
                         use:["style-loader", "css-loader", "less-loader"]
-                    } 
+                    },
+                    { 
+                        test: /\.md$/,
+                        use: ["html-loader", "markdown-loader"]
+                    }
         ]
     },
     resolve: {

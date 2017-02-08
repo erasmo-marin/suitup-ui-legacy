@@ -43,7 +43,6 @@ class WebLayout extends React.Component {
     render () {
 
         let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
-
         return (
                 <Layout vertical>
                     <Header fixed top style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}>
@@ -63,6 +62,15 @@ class WebLayout extends React.Component {
                             <Menu.SubItem text="Container" href="/containers/container"/>
                             <Menu.SubItem text="Box" href="/containers/box"/>
                         </Menu.Item>
+                        <Menu.Item text="Components">
+                            <Menu.SubItem text="Card" href="/components/card"/>
+                            <Menu.SubItem text="Modal" href="/components/modal"/>
+                            <Menu.SubItem text="Slider" href="/components/slider"/>
+                        </Menu.Item>
+                        <Menu.Item text="Responsive">
+                            <Menu.SubItem text="Devices and breakpoints" href="/responsive/devices"/>
+                        </Menu.Item>
+                        <Menu.Item text="Theming" href="/theming"/>
                     </Menu>
                     {this.props.children}
                     <Footer style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}/>
