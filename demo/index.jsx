@@ -1,28 +1,24 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Routes from './routes';
-import '../src/styles/index.less';
+import {Router, Route, browserHistory} from 'react-router';
+import { AppContainer } from 'react-hot-loader';
+import App from './app';
 
-class App extends React.Component {
+const render = (Component) => {
+  ReactDOM.render(
+    <AppContainer key={Math.random()}>
+      <Component/>
+    </AppContainer>,
+    document.getElementById('app')
+  );
+};
 
-  constructor(props) {
-    super(props);
-  }
+render(App);
 
-  render () {
-    return (<Routes/>);
-  }
-
-}
-
-ReactDOM.render(
-  <App />,
-  document.getElementById('app')
-);
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./app', () => {
+    render(<App />)
+  })
 }
-
-export default App;
 

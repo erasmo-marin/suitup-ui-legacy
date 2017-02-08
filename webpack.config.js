@@ -11,36 +11,58 @@ module.exports = {
         filename: 'suitup.toolkit.min.js'
     },
     module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loaders: ['babel-loader?presets[]=react,presets[]=es2015'],
-                exclude: '/node_modules'
-            },
-            {
-                test:/\.less$/,
-                exclude:'/node_modules',
-                loader:"style!css!less"
-            } 
+        rules: [
+                    {
+                        test: /\.jsx?$/,
+                        loader: 'babel-loader',
+                        exclude: '/node_modules',
+                        options: {
+                                   presets: [
+                                     [ 'es2015', { modules: false } ]
+                                   ]
+                                 }
+                    },
+                    {
+                        test:/\.less$/,
+                        exclude:'/node_modules',
+                        use:["style-loader", "css-loader", "less-loader"]
+                    } 
         ]
     },
     resolve: {
-        extensions: ['', '.js','.jsx']
+        extensions: ['.js','.jsx']
     },
     plugins: [
+        new webpack.LoaderOptionsPlugin({
+          minimize: true,
+          debug: false
+        }),
         new webpack.DefinePlugin({
             'process.env': {
-                'NODE_ENV': JSON.stringify('production')
+            'NODE_ENV': JSON.stringify('production')
             }
         }),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.optimize.OccurenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({
-          mangle: true,
-          sourcemap: false,
-          compress: {
-            warnings: false,
-          }
-        })
+            output: {
+                comments: false
+            },
+            mangle: true,
+            sourcemap: false,
+            debug: false,
+            minimize: true,
+            compress: {
+                warnings: false,
+                screw_ie8: true,
+                conditionals: true,
+                unused: true,
+                comparisons: true,
+                sequences: true,
+                dead_code: true,
+                evaluate: true,
+                if_return: true,
+                join_vars: true,
+            },
+        }),
+        new webpack.optimize.AggressiveMergingPlugin()
     ]
 };

@@ -10,5 +10,20 @@ import Image from './image';
 import Modal from './modal';
 import Slider from './slider';
 import Container from './container';
+import {Device, Mobile, Tablet, Desktop, Widescreen} from './device';
 
-export {Container, Header, Footer, Layout, Menu, Box, Button, Icon, Card, Image, Modal, Slider};
+export {
+            Container,
+            Header,
+            Footer,
+            Layout,
+            Menu,
+            Box,
+            Button,
+            Icon,
+            Card,
+            Image,
+            Modal,
+            Slider,
+            Device
+        };

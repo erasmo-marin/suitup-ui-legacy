@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../../lib';
+import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../../src/components';
 import Logo from './logo';
 import Highlight from 'react-highlight';
 import jsxToString from 'jsx-to-string';
@@ -68,7 +68,7 @@ class Index extends React.Component {
 
         return (
                 <Layout vertical>
-                    <Header top style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}>
+                    <Header fixed top style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}>
                         <Box horizontal>
                             <Box.Child>
                                 <Button menu type="button" onClick={this.toggleMenu} style={{backgroundColor: 'rgb(35,35,35)'}}>
@@ -93,6 +93,11 @@ class Index extends React.Component {
                     <Menu left visible={this.state.menuVisible} onHide={this.onMenuHide}>
                         <Menu.Header title="Suitup UI" icon={logo} style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)', border: 'none'}}/>
                         <Menu.Item href="/" text="Inicio"/>
+                        <Menu.Item text="Containers">
+                            <Menu.SubItem text="Layout"/>
+                            <Menu.SubItem text="Container"/>
+                            <Menu.SubItem text="Box"/>
+                        </Menu.Item>
                     </Menu>
                     <Container>
                         <h1 style={{textAlign: 'center'}}>Bienvenido al demo de Suitup</h1>

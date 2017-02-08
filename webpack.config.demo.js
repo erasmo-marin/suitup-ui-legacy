@@ -1,30 +1,37 @@
 var path = require('path');
 var webpack = require('webpack');
-var chalk = require('chalk');
+ 
 module.exports = {
     context: __dirname,
     cache: true,
-    entry: ['./demo/index.jsx', 'webpack-hot-middleware/client'],
+    entry: ['webpack-hot-middleware/client', 'react-hot-loader/patch', './demo/index.jsx'],
     output: {
         publicPath: '/',
         path: __dirname,
         filename: 'main.js'
     },
     module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loaders: ['babel-loader?presets[]=react,presets[]=es2015'],
-                exclude: '/node_modules'
-            },
-            {
-                test: /\.less$/,
-                loader: 'style-loader!css-loader!less-loader'
-            }
+        rules: [
+                    {
+                        test: /\.jsx?$/,
+                        loader: 'babel-loader',
+                        exclude: '/node_modules',
+                        options: {
+                                   presets: [
+                                     [ 'es2015'/*, { modules: false }*/ ]
+                                   ],
+                                   plugins: ['react-hot-loader/babel']
+                                 }
+                    },
+                    {
+                        test:/\.less$/,
+                        exclude:'/node_modules',
+                        use:["style-loader", "css-loader", "less-loader"]
+                    } 
         ]
     },
     resolve: {
-        extensions: ['', '.js','.jsx']
+        extensions: ['.js','.jsx']
     },
     plugins: [
         new webpack.DefinePlugin({
@@ -32,9 +39,12 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('development')
             }
         }),
-        new webpack.optimize.CommonsChunkPlugin('common.js'),
-        new webpack.optimize.OccurenceOrderPlugin(),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "commons",
+            filename: 'common.js'
+        }),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NamedModulesPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 };

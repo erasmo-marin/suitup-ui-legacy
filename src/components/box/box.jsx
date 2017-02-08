@@ -102,8 +102,8 @@ Box.propTypes = {
 
     let error = null
     React.Children.forEach(prop, function (child) {
-      if (child.type !== Child) {
-        error = new Error('`' + componentName + '` children should be of type `Box.Child`.');
+      if (child.type.name != 'Box.Child' && child.type.name != 'BoxChild') {
+        error = new Error('`' + componentName + '` children should be of type `Box.Child`, instead it was of type ' + child.type.name);
       }
     })
     return error
