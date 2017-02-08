@@ -23,7 +23,6 @@
     "react-draggable": "^2.2.3",
     "react-highlight": "^0.9.0",
     "react-notify-resize": "^2.0.4",
-    "react-router": "^4.0.0-beta.5",
     "react-router-dom": "^4.0.0-beta.5"
   },
   "devDependencies": {
@@ -46,7 +45,6 @@
     "css-loader": "^0.26.1",
     "express": "~4.13.4",
     "express-session": "^1.14.0",
-    "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "hbs": "~4.0.0",
     "jsome": "^2.3.25",
     "jsx-control-statements": "^3.1.5",
