@@ -4,6 +4,7 @@ var webpack = require('webpack');
 module.exports = {
     context: __dirname,
     cache: true,
+    devtool: 'cheap-module-eval-source-map',
     entry: ['webpack-hot-middleware/client', 'react-hot-loader/patch', './demo/index.jsx'],
     output: {
         publicPath: '/',
@@ -18,7 +19,9 @@ module.exports = {
                         exclude: '/node_modules',
                         options: {
                                    presets: [
-                                     [ 'es2015'/*, { modules: false }*/ ]
+                                     ['es2015'],
+                                     "stage-1",
+                                     "react"
                                    ],
                                    plugins: ['react-hot-loader/babel']
                                  }
@@ -26,7 +29,7 @@ module.exports = {
                     {
                         test:/\.less$/,
                         exclude:'/node_modules',
-                        use:["style-loader", "css-loader", "less-loader"]
+                        use: ["style-loader", "css-loader", "less-loader"]
                     } 
         ]
     },
@@ -38,10 +41,6 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': JSON.stringify('development')
             }
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            filename: 'common.js'
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

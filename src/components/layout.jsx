@@ -26,7 +26,6 @@ class Layout extends React.Component {
     }
 
     render () {
-
         let header = this.findHeader(this.props.children);
         console.log(header);
 
