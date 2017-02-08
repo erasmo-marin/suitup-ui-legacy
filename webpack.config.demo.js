@@ -42,6 +42,10 @@ module.exports = {
                 'NODE_ENV': JSON.stringify('development')
             }
         }),
+        new webpack.optimize.CommonsChunkPlugin({
+            name: "commons",
+            filename: 'common.js'
+        }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),
         new webpack.NoEmitOnErrorsPlugin()
