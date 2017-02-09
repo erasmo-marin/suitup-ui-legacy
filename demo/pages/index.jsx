@@ -1,9 +1,6 @@
 import React from 'react';
 import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../../src/components';
 import Logo from './logo';
-import Highlight from 'react-highlight';
-import jsxToString from 'jsx-to-string';
-import ExampleView from './exampleView';
 
 class Index extends React.Component {
 
@@ -67,16 +64,7 @@ class Index extends React.Component {
         let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
 
         return (
-                <Layout vertical>
-                    <Header fixed top style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}>
-                        <Box horizontal>
-                            <Box.Child>
-                                <Button menu type="button" onClick={this.toggleMenu} style={{backgroundColor: 'rgb(35,35,35)'}}>
-                                    <Icon name="menu" size={24}/>
-                                </Button>
-                            </Box.Child>
-                        </Box>
-                    </Header>
+                <div>
                     <Modal visible={this.state.modalVisible} onChange={this.onModalChange}>
                         <Image src="http://materializecss.com/images/sample-1.jpg" type="mediumh" width="100%"/>
                         <Modal.Content>
@@ -90,15 +78,6 @@ class Index extends React.Component {
                             <Modal.Action key={2} end text="Cancelar" onClick={() => {console.log("Modal Cancel")}}/>
                         </Modal.Footer>
                     </Modal>
-                    <Menu left visible={this.state.menuVisible} onHide={this.onMenuHide}>
-                        <Menu.Header title="Suitup UI" icon={logo} style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)', border: 'none'}}/>
-                        <Menu.Item href="/" text="Inicio"/>
-                        <Menu.Item text="Containers">
-                            <Menu.SubItem text="Layout"/>
-                            <Menu.SubItem text="Container"/>
-                            <Menu.SubItem text="Box"/>
-                        </Menu.Item>
-                    </Menu>
                     <Container>
                         <h1 style={{textAlign: 'center'}}>Bienvenido al demo de Suitup</h1>
                         <p>Suitup UI es un conjunto de componentes de React diseñado para construir atractivas
@@ -116,8 +95,6 @@ class Index extends React.Component {
                         <p>La grilla de Suitup UI es dinámica, puedes cambiar el número de columnas y el gutter a gusto. El gutter por default es de 1rem.</p>
                     </Container>
                     <Container>
-                        <ExampleView>
-                            <Container>
                                 <Box columns={6} gutter="15px">
                                     <Box.Child key={1} wide={1}>
                                         <div style={{backgroundColor: '#3273dc', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>Hola</div>
@@ -138,8 +115,6 @@ class Index extends React.Component {
                                         <div style={{backgroundColor: '#ff3860', color: '#fff', textAlign: 'center', minHeight: '5rem', lineHeight: '5rem', borderRadius: '4px'}}>y 6 Box.Child</div>
                                     </Box.Child>
                                 </Box>
-                            </Container>
-                        </ExampleView>
                     </Container>
 
                     <Container>
@@ -150,7 +125,6 @@ class Index extends React.Component {
                         <p>El slider de Suitup UI implementa lazyload, que renderiza tus slides en el momento de
                             necesitarse, y minimalRender, que sólo renderiza los slides que se están ocupando, para casos
                             donde la cantidad de slides es muy grande.</p>
-                        <ExampleView>
                             <Slider settings={this.state.sliderSettings}>
                                 <Slider.Slide key={1}>
                                     <Image src="http://materializecss.com/images/sample-1.jpg" type="backdrop" width="100%">
@@ -241,7 +215,6 @@ class Index extends React.Component {
                                     </Image>
                                 </Slider.Slide>
                             </Slider>
-                        </ExampleView>
                     </Container>
                     <Container>
                         <h3>Modales</h3>
@@ -255,7 +228,6 @@ class Index extends React.Component {
                         <h3>Cards</h3>
                         <p>Las tarjetas sirven como punto de entrada para información detallada.</p>
                         <Container>
-                            <ExampleView>
                                 <Container>
                                     <Box horizontal columns={3}>
                                         <Box.Child key={1} wide={1}>
@@ -290,14 +262,12 @@ class Index extends React.Component {
                                         </Box.Child>
                                     </Box>
                                 </Container>
-                            </ExampleView>
                         </Container>
                         <h3>Tarjetas con distintos layouts</h3>
                         <p>Puedes construir tu tarjeta de la manera que se te de la gana. Utiliza el componente
                             Box para mostrar el contenido con distintas orientaciones y proporciones. No te imponemos
                             una forma única de hacer las cosas.</p>
                         <Container>
-                            <ExampleView>
                                 <Container>
                                     <Box horizontal columns={2}>
                                         <Box.Child key={1} wide={1}>
@@ -358,7 +328,6 @@ class Index extends React.Component {
                                         </Box.Child>
                                     </Box>
                                 </Container>
-                            </ExampleView>
                         </Container>
                         <h3>Imágenes</h3>
                         <p>El componente de imagen mantiene el aspect ratio deseado aunque tu imagen 
@@ -377,8 +346,6 @@ class Index extends React.Component {
                             <li>Banner (5:1)</li>
                         </ul>
                         <Container>
-                            <ExampleView>
-                                <Container>
                                     <Box horizontal columns={3}>
                                         <Box.Child key={1} wide={1}>
                                             <Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
@@ -390,12 +357,9 @@ class Index extends React.Component {
                                             <Image src="http://pngimg.com/upload/cat_PNG106.png" type="square" width="100%"/>
                                         </Box.Child>
                                     </Box>
-                                </Container>
-                            </ExampleView>
                         </Container>
                     </Container>
-                    <Footer style={{backgroundColor: 'rgb(35,35,35)', color: 'rgb(50, 186, 141)'}}/>
-                </Layout>
+                </div>
             );
     }
 } 
