@@ -53,7 +53,7 @@ const docsMap = {
     },
     responsive: {
         index: responsive,
-        deivces: devices
+        devices: devices
     },
     theming: {
         index: theming

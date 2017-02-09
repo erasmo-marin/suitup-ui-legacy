@@ -1,5 +1,5 @@
 {
-    "name": "Suitup UI Toolkit",
+    "name": "Suitup UI",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
@@ -12,7 +12,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#232323",
-    "background_color": "#232323",
+    "theme_color": "#373d49",
+    "background_color": "#373d49",
     "display": "standalone"
 }
