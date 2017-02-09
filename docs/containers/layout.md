@@ -1,8 +1,10 @@
 # Layout
 
-Layout component
+The layout component defines your app main container. It's required by Suitup to great things, like auto add margin if the Header is fixed, or create the mount point for modals.
 
-```xml
+Only one `Layout` is expected per page.
+
+```jsx
 <Layout>
     <Container>
         <Box horizontal columns={5} gutter="1rem">

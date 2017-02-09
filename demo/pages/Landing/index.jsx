@@ -9,9 +9,19 @@ class Landing extends React.Component {
 
     render () {
 
+        let imageStyle = {
+            background: "linear-gradient(161deg, rgba(53,215,187,1) 0%, rgba(0,128,128,1) 100%)",
+            color: "#fff"
+        }
+
+        let imageChildStyle = {
+            backgroundImage: 'url(/img/noise.png)',
+            backgroundRepeat: 'repeat'
+        }
+
         return (
-                <Image width="100%" type="backdrop" src="/img/landing.jpg">
-                    <Image.Vail>
+                <Image width="100%" type="backdrop" src="none" style={imageStyle}>
+                    <div style={imageChildStyle}>
                         <Container>
                             <Box horizontal columns={12}>
                                 <Box.Child wide={4} key={1}>
@@ -20,10 +30,11 @@ class Landing extends React.Component {
                                 <Box.Child wide={8}  key={2}>
                                     <h1>Suitup UI</h1>
                                     <h3>It suits to your needs like a custom made suit</h3>
+                                    <Button flat>Get Started</Button>
                                 </Box.Child>
                             </Box>
                         </Container>
-                    </Image.Vail>
+                    </div>
                 </Image>
             );
     }

@@ -26,18 +26,20 @@ class Layout extends React.Component {
     }
 
     render () {
-        let header = this.findHeader(this.props.children);
-        console.log(header);
 
+        let {children, ...rest} = this.props;
+
+        let header = this.findHeader(children);
         let classes = classnames({
             "layout": true,
             "fixed-header": header && header.props.fixed ? true : false
         });
 
+
         return (
                 <div>
-                    <div className={classes} id="layout">
-                        {this.props.children}
+                    <div {...rest} className={classes} id="layout">
+                        {children}
                     </div>
                     <div className="modal-mount-point" id="modalMountPoint">
                     </div>

@@ -1,9 +1,9 @@
 # Button
 
-Button component
+A very simple and clickeable button, like most of the buttons out there.
 
-```xml
-<Button>
+```jsx
+<Button onClick={onClickHandler}>
 	click me
 </Button>
 ```

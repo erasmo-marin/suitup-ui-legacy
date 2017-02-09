@@ -1,7 +1,7 @@
 # Icon
 
-Icon component
+A component to display an icon. Suitup Icon uses [Material Icons](https://material.io/icons/).
 
 ```jsx
-<Icon name="name"/>
+<Icon name="name" size={24}/>
 ```

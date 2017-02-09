@@ -6,3 +6,61 @@ Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:
 Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*\*?|\/|~|\^|%|\.{3}/}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","string",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
 !function(a){var e=a.util.clone(a.languages.javascript);a.languages.jsx=a.languages.extend("markup",e),a.languages.jsx.tag.pattern=/<\/?[\w\.:-]+\s*(?:\s+(?:[\w\.:-]+(?:=(?:("|')(\\?[\w\W])*?\1|[^\s'">=]+|(\{[\w\W]*?\})))?|\{\.{3}\w+\})\s*)*\/?>/i,a.languages.jsx.tag.inside["attr-value"].pattern=/=[^\{](?:('|")[\w\W]*?(\1)|[^\s>]+)/i,a.languages.insertBefore("inside","attr-name",{spread:{pattern:/\{\.{3}\w+\}/,inside:{punctuation:/\{|\}|\./,"attr-value":/\w+/}}},a.languages.jsx.tag);var s=a.util.clone(a.languages.jsx);delete s.punctuation,s=a.languages.insertBefore("jsx","operator",{punctuation:/=(?={)|[{}[\];(),.:]/},{jsx:s}),a.languages.insertBefore("inside","attr-value",{script:{pattern:/=(\{(?:\{[^}]*\}|[^}])+\})/i,inside:s,alias:"language-javascript"}},a.languages.jsx.tag)}(Prism);
 !function(){if(("undefined"==typeof self||self.Prism)&&("undefined"==typeof global||global.Prism)){var i=function(i){return Prism.plugins.autolinker&&Prism.plugins.autolinker.processGrammar(i),i},a={pattern:/(.)\bdata:[^\/]+\/[^,]+,(?:(?!\1)[\s\S]|\\\1)+(?=\1)/,lookbehind:!0,inside:{"language-css":{pattern:/(data:[^\/]+\/(?:[^+,]+\+)?css,)[\s\S]+/,lookbehind:!0},"language-javascript":{pattern:/(data:[^\/]+\/(?:[^+,]+\+)?javascript,)[\s\S]+/,lookbehind:!0},"language-json":{pattern:/(data:[^\/]+\/(?:[^+,]+\+)?json,)[\s\S]+/,lookbehind:!0},"language-markup":{pattern:/(data:[^\/]+\/(?:[^+,]+\+)?(?:html|xml),)[\s\S]+/,lookbehind:!0}}},n=["url","attr-value","string"];Prism.plugins.dataURIHighlight={processGrammar:function(i){i&&!i["data-uri"]&&(Prism.languages.DFS(i,function(i,e,r){n.indexOf(r)>-1&&"Array"!==Prism.util.type(e)&&(e.pattern||(e=this[i]={pattern:e}),e.inside=e.inside||{},"attr-value"==r?Prism.languages.insertBefore("inside",e.inside["url-link"]?"url-link":"punctuation",{"data-uri":a},e):e.inside["url-link"]?Prism.languages.insertBefore("inside","url-link",{"data-uri":a},e):e.inside["data-uri"]=a)}),i["data-uri"]=a)}},Prism.hooks.add("before-highlight",function(n){if(a.pattern.test(n.code))for(var e in a.inside)if(a.inside.hasOwnProperty(e)&&!a.inside[e].inside&&a.inside[e].pattern.test(n.code)){var r=e.match(/^language-(.+)/)[1];Prism.languages[r]&&(a.inside[e].inside={rest:i(Prism.languages[r])})}Prism.plugins.dataURIHighlight.processGrammar(n.grammar)})}}();
+
+(function() {
+
+if (typeof self === 'undefined' || !self.Prism || !self.document) {
+    return;
+}
+
+Prism.hooks.add('complete', function (env) {
+    if (!env.code) {
+        return;
+    }
+
+    // works only for <code> wrapped inside <pre> (not inline)
+    var pre = env.element.parentNode;
+    var clsReg = /\s*\bline-numbers\b\s*/;
+    if (
+        !pre || !/pre/i.test(pre.nodeName) ||
+            // Abort only if nor the <pre> nor the <code> have the class
+        (!clsReg.test(pre.className) && !clsReg.test(env.element.className))
+    ) {
+        return;
+    }
+
+    if (env.element.querySelector(".line-numbers-rows")) {
+        // Abort if line numbers already exists
+        return;
+    }
+
+    if (clsReg.test(env.element.className)) {
+        // Remove the class "line-numbers" from the <code>
+        env.element.className = env.element.className.replace(clsReg, '');
+    }
+    if (!clsReg.test(pre.className)) {
+        // Add the class "line-numbers" to the <pre>
+        pre.className += ' line-numbers';
+    }
+
+    var match = env.code.match(/\n(?!$)/g);
+    var linesNum = match ? match.length + 1 : 1;
+    var lineNumbersWrapper;
+
+    var lines = new Array(linesNum + 1);
+    lines = lines.join('<span></span>');
+
+    lineNumbersWrapper = document.createElement('span');
+    lineNumbersWrapper.setAttribute('aria-hidden', 'true');
+    lineNumbersWrapper.className = 'line-numbers-rows';
+    lineNumbersWrapper.innerHTML = lines;
+
+    if (pre.hasAttribute('data-start')) {
+        pre.style.counterReset = 'linenumber ' + (parseInt(pre.getAttribute('data-start'), 10) - 1);
+    }
+
+    env.element.appendChild(lineNumbersWrapper);
+
+});
+
+}());
