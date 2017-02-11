@@ -41,6 +41,12 @@ Suitup includes the following components:
 9. Footer
 10. Button
 11. Icon
+12. Device helpers for responsive design
+  * Device.Mobile: Component that shows only on Mobile
+  * Device.Tablet: Component that shows only on Tablet
+  * Device.Desktop: Component that shows only on Desktop
+  * Device.Widescreen: Component that shows only on Widescreen
+  * Device.Screen: A store that notifies when the Screen type changes
 
 
 And this is the list of components to be added in the future:
@@ -48,17 +54,41 @@ And this is the list of components to be added in the future:
 1. Calendar
 2. Tile
 3. Tabs
-4. Screen helpers for responsive design
-  * Screen.Tablet
-  * Screen.phone
-  * Screen.desktop
-  * Screen.bigScreen
-  * Screen.mobile
-5. Form
+4. Form
   * Form.Field
   * Form.Group
   * Form.Input
-6. Form widgets
+5. Form widgets
   * Input, Select, Check, Toggle
-7. Table
-8. Search
+6. Table
+7. Search
+
+## Running the demo
+
+We include a demo that you can use to get started. Just clone the repo, install the dependencies and run it:
+
+```bash
+git clone https://github.com/erasmo-marin/suitup-ui.git
+cd suitup-ui
+npm install
+npm install -g less
+npm run start
+```
+
+###building
+
+```bash
+npm run build
+```
+
+## Theming
+
+Theming feature is on development. Suitup will expose theme variables in `/src/styles/theme` folder. Basic theming will be just simple as modifying the color palette in `/src/styles/theme/colors`. More complex theming will be available modifying the specific per-module `.less` file in the `/src/styles/theme` folder.
+
+## CLI
+
+A cli is in development. It will allow you to build themes, customize settings, generate your project from bolierplate, etc.
+
+## Docs
+
+For the while, you can access to more documentation in the `/docs` folder. Docs are not linked here. A website is in development.
