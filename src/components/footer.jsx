@@ -1,20 +1,20 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 class Footer extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-  constructor(props) {
-    super(props);
-  }
+    render() {
+        let { children, ...rest } = this.props;
 
-  render () {
-
-    let {children, ...rest} = this.props;
-
-    return (<footer {...rest}>
+        return (
+            <footer {...rest}>
                 {children}
-            </footer>);
-  }
+            </footer>
+        );
+    }
 }
 
 export default Footer;

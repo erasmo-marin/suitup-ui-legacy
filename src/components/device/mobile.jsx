@@ -1,8 +1,7 @@
-import React from 'react';
-import Device from './device';
+import React from "react";
+import Device from "./device";
 
 class Mobile extends React.Component {
-
     constructor() {
         super(props);
     }
@@ -10,7 +9,7 @@ class Mobile extends React.Component {
     render() {
         <Device device="mobile">
             {this.props.children}
-        </Device>
+        </Device>;
     }
 }
 

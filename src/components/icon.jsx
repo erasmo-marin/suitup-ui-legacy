@@ -1,29 +1,32 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import classnames from 'classnames';
+import React from "react";
+import ReactDOM from "react-dom";
+import classnames from "classnames";
 
 class Icon extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-  constructor(props) {
-    super(props);
-  }
+    render() {
+        let { size, circle, name, ...rest } = this.props;
 
-  render () {
-    
-    let classes = {
-      "material-icons": true,
-      "md-18": this.props.size == 18,
-      "md-24": this.props.size == 24,
-      "md-36": this.props.size == 36,
-      "md-48": this.props.size == 48
-    };
+        let classes = {
+            "material-icons": true,
+            "md-18": size == 18,
+            "md-24": size == 24,
+            "md-36": size == 36,
+            "md-48": size == 48,
+            circle: circle
+        };
 
-    classes = classnames(classes);
+        classes = classnames(classes);
 
-    return (<i className={classes}>
-              {this.props.name}
-            </i>);
-  }
+        return (
+            <i {...rest} className={classes}>
+                {name}
+            </i>
+        );
+    }
 }
 
 export default Icon;

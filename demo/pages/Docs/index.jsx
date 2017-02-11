@@ -60,8 +60,6 @@ const docsMap = {
     }
 }
 
-console.log(docsMap);
-
 class Docs extends React.Component {
 
     constructor (props) {

@@ -1,30 +1,30 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import classnames from 'classnames';
-import Button from '../button';
+import React from "react";
+import ReactDOM from "react-dom";
+import classnames from "classnames";
+import Button from "../button";
 
 class ModalAction extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
-  constructor(props) {
-    super(props);
-  }
+    render() {
+        let { text, onClick, start, end, ...rest } = this.props;
 
-  render () {
-    
-    let {text, onClick, start, end, ...rest} = this.props;
+        let classes = {
+            "modal-action": true,
+            start: start,
+            end: end
+        };
 
-    let classes = {
-      "modal-action": true,
-      start: start,
-      end: end
-    };
+        classes = classnames(classes);
 
-    classes = classnames(classes);
-
-    return (<div {...rest} className={classes}>
-              <Button text={text} onClick={onClick}/>
-            </div>);
-  }
+        return (
+            <div {...rest} className={classes}>
+                <Button text={text} onClick={onClick} />
+            </div>
+        );
+    }
 }
 
 export default ModalAction;

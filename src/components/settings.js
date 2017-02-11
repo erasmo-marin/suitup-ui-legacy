@@ -3,7 +3,7 @@ const defaultSettings = {
         aspectRatios: {
             square: {
                 width: 600,
-                height: 600    
+                height: 600
             },
             mediumv: {
                 width: 600,
@@ -27,20 +27,38 @@ const defaultSettings = {
             }
         }
     },
+    Device: {
+        Breakpoints: {
+            mobile: {
+                from: 0,
+                to: 768
+            },
+            tablet: {
+                from: 769,
+                to: 999
+            },
+            desktop: {
+                from: 1000,
+                to: 1191
+            },
+            widescreen: {
+                from: 1192,
+                to: Number.MAX_SAFE_INTEGER
+            }
+        }
+    },
     /*If you don't pass gutter or columns props, Box will use this defaults*/
     Box: {
         gutter: "1rem",
         columns: 12
     }
-}
+};
 
-let settings = {};
-
+let settings = defaultSettings;
 
 class S {
-
     setSettings(userSettings) {
-        settings = {...defaultSettings, ...settings};
+        settings = { ...defaultSettings, ...userSettings };
     }
 
     getSettings() {
@@ -54,7 +72,6 @@ class S {
     resetToDefault() {
         settings = defaultSettings;
     }
-
 }
 
 const s = new S();

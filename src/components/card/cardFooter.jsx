@@ -3,22 +3,22 @@ import ReactDOM from 'react-dom';
 import classnames from 'classnames';
 
 class CardFooter extends React.Component {
-
   constructor(props) {
     super(props);
   }
 
-  render () {
-    
+  render() {
     let classes = {
       "card-footer": true
     };
 
     classes = classnames(classes);
 
-    return (<div className={classes}>
-              {this.props.children}
-            </div>);
+    return (
+      <div className={classes}>
+        {this.props.children}
+      </div>
+    );
   }
 }
 

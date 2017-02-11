@@ -8,6 +8,12 @@
     flex-grow: 0;
     flex-wrap: wrap;
 
+    .box-child {
+        &.full-height {
+            height: 100%;
+        }
+    }
+
     &.horizontal {
         flex-direction: row;
         .box-child {
@@ -41,4 +47,27 @@
         justify-content:flex-end;
     }
 
+    &.align-start {
+        align-items: flex-start;
+    }
+
+    &.align-end {
+        align-items: flex-end;
+    }
+
+    &.align-center {
+        align-items: center;
+    }
+
+    &.align-stretch {
+        align-items: stretch;
+    }
+
+    &.align-baseline {
+        align-items: baseline;
+    }
+    
+    &.full-height {
+        height: 100%;
+    }
 }

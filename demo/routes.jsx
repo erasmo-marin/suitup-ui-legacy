@@ -17,7 +17,7 @@ class Routes extends React.Component {
         return (<Router>
                     <Layout>
                         <Route exact path="/" component={ Landing }/>
-                        <Route path="/fulldemo" component={ FullDemo } />
+                        <Route path="/fulldemo" component={ FullDemo } onEnter={() => {console.log("onEnter")}} willLeave={() => {console.log("will leave")}} />
                         <Route path="/:folder/:file" component={ Docs } />
                     </Layout>
                 </Router>);
