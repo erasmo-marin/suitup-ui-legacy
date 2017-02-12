@@ -1,9 +1,8 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 
-class Item extends React.Component {
+class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.toggleItems = ::this.toggleItems;
@@ -48,7 +47,7 @@ class Item extends React.Component {
     }
 }
 
-class SubItem extends React.Component {
+class MenuSubItem extends React.PureComponent {
     render() {
         let { text, href, ...rest } = this.props;
         return (
@@ -139,7 +138,7 @@ class Menu extends React.Component {
     }
 }
 
-class Header extends React.Component {
+class MenuHeader extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -164,7 +163,7 @@ class Header extends React.Component {
     }
 }
 
-Menu.Header = Header;
-Menu.Item = Item;
-Menu.SubItem = SubItem;
+Menu.Header = MenuHeader;
+Menu.Item = MenuItem;
+Menu.SubItem = MenuSubItem;
 export default Menu;

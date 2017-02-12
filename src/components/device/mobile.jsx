@@ -1,16 +1,10 @@
 import React from "react";
 import Device from "./device";
 
-class Mobile extends React.Component {
-    constructor() {
-        super(props);
-    }
-
-    render() {
+const Mobile = ({children}) => (
         <Device device="mobile">
-            {this.props.children}
-        </Device>;
-    }
-}
+            {children}
+        </Device>
+);
 
 export default Mobile;

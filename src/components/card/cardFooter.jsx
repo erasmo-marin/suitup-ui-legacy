@@ -1,5 +1,4 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
 import classnames from 'classnames';
 
 class CardFooter extends React.Component {

@@ -1,54 +1,87 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import classnames from "classnames";
 import { NotifyResize } from "react-notify-resize";
 import ModalAction from "./modalAction";
 import ModalContent from "./modalContent";
 import ModalFooter from "./modalFooter";
-import shallowCompare from "react-addons-shallow-compare";
+import { isEqual } from "lodash";
+import { requestModalMount, requestModalUnmount, requestModalUpdate } from "../layout";
 
 class Modal extends React.Component {
+    constructor(props) {
+        super(props);
+        this.renderKey = Math.random();
+        this.modal = null;
+    }
+
+    componentDidMount() {
+        console.log("modal mount");
+        this.modal = this.renderModal(this.props);
+        requestModalMount(this.modal);
+    }
+
+    componentWillUnmount() {
+        requestModalUnmount(this.modal);
+    }
+
+    componentWillReceiveProps(nextProps) {
+
+        if(isEqual(this.props, nextProps)) return;
+
+        console.log("modal receive props");
+        this.modal = this.renderModal(nextProps);
+        requestModalUpdate(this.modal);   
+    }
+
+    renderModal(props) {
+        return <ModalImplementation {...props} key={this.renderKey} />;
+    }
+
+    render() {
+        return null;
+    }
+}
+
+class ModalImplementation extends React.Component {
     constructor(props) {
         super(props);
         this.show = ::this.show;
         this.hide = ::this.hide;
         this.centerVertically = ::this.centerVertically;
-        window.cv = this.centerVertically;
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if (nextProps.visible) {
+            this.show();
+        } else {
+            this.hide();
+        }
     }
 
     componentDidMount() {
-        let c = this.renderModal(this.props);
-        ReactDOM.render(c, document.getElementById("modalMountPoint"));
         if (this.props.visible) {
-            setTimeout(
-                () => {
-                    this.modal.classList.add("visible");
-                },
-                500
-            );
+            setTimeout(() => {
+                this.show();
+            }, 500);
         }
         window.addEventListener("resize", this.centerVertically);
     }
 
-    shouldComponentUpdate(nextProps) {
-        return shallowCompare(this, nextProps);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (!shallowCompare(this, nextProps)) {
-            return;
-        }
-
-        let c = this.renderModal(nextProps);
-        ReactDOM.render(c, document.getElementById("modalMountPoint"));
-
-        if (nextProps.visible) {
-            this.show();
-        }
-    }
-
     componentWillUnmount() {
         window.removeEventListener("resize", this.centerVertically);
+    }
+
+    preventPropagation(e) {
+        if (!e) return;
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    centerVertically() {
+        let diff = window.innerHeight - this.modalInner.offsetHeight;
+        if (diff > 0) {
+            this.modalInner.style.marginTop = diff / 2 + "px";
+        }
     }
 
     show() {
@@ -83,37 +116,14 @@ class Modal extends React.Component {
         }
     }
 
-    centerVertically() {
-        let diff = window.innerHeight - this.modalInner.offsetHeight;
-        if (diff > 0) {
-            this.modalInner.style.marginTop = diff / 2 + "px";
-        }
-    }
-
-    preventPropagation(e) {
-        if (!e) return;
-        e.preventDefault();
-        e.stopPropagation();
-    }
-
-    renderModal(props) {
-        let {
-            children,
-            onHide,
-            onShow,
-            onChange,
-            visible,
-            ...rest
-        } = this.props;
-
-        let classes = classnames({
-            "modal-container": true
-        });
+    render() {
+        console.log("rendering modal");
+        let { visible, children, ...rest } = this.props;
 
         return (
             <div
                 {...rest}
-                className={classes}
+                className="modal-container"
                 ref={c => this.modal = c}
                 onClick={this.hide}
             >
@@ -128,10 +138,6 @@ class Modal extends React.Component {
                 </div>
             </div>
         );
-    }
-
-    render() {
-        return null;
     }
 }
 

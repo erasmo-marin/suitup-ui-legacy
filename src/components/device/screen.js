@@ -43,7 +43,7 @@ class ScreenClass extends EventEmitter {
     }
 
     offScreenChange(callback) {
-        this.removeListener(this.eventName, callback);
+        this.removeListener("screenChange", callback);
     }
 }
 

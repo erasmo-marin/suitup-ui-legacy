@@ -42,6 +42,16 @@ class WebLayout extends React.Component {
 
     render () {
 
+        let contentStyle = {
+            minHeight: 'calc(100vh - 264px)'
+        }
+
+        let footerStyle = {
+            background: "#f2f2f2",
+            borderTop: "1px solid #ddd",
+            color: "#444"
+        }
+
         let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
         return (
                 <Layout style={{backgroundColor: 'rgb(251,251,251)'}}>
@@ -78,8 +88,25 @@ class WebLayout extends React.Component {
                         <Menu.Item text="Theming" href="/theming"  key={7}/>
                         <Menu.Item href="/fulldemo" text="Full demo"  key={8}/>
                     </Menu>
-                    {this.props.children}
-                    <Footer style={{backgroundColor: '#373D49', color: '#35D7BB'}}/>
+                    <div className="content" style={contentStyle}>
+                        {this.props.children}
+                    </div>
+                    <Footer style={footerStyle}>
+                        <Container style={{textAlign: "center"}}>
+                            <p>Created by <a href="https://github.com/erasmo-marin">@erasmo-marin</a> with ❤️ for you</p>
+                            <Box columns={5} justify="center">
+                                <Box.Child wide={1} key={1}>
+                                    <a href="https://github.com/erasmo-marin/suitup-ui">Github repo</a>
+                                </Box.Child>
+                                <Box.Child wide={1} key={2}>
+                                    <a href="https://www.npmjs.com/package/suitup-ui">Suitup on NPM</a>
+                                </Box.Child>
+                                <Box.Child wide={1} key={3}>
+                                    <a href="https://github.com/erasmo-marin/suitup-ui/issues/new">Report a bug</a>
+                                </Box.Child>
+                            </Box>
+                        </Container>
+                    </Footer>
                 </Layout>
             );
     }

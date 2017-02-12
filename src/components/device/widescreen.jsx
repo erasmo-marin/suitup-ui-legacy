@@ -1,16 +1,10 @@
 import React from "react";
 import Device from "./device";
 
-class Widescreen extends React.Component {
-    constructor() {
-        super(props);
-    }
-
-    render() {
+const Widescreen = ({children}) => (
         <Device device="widescreen">
-            {this.props.children}
-        </Device>;
-    }
-}
+            {children}
+        </Device>
+);
 
 export default Widescreen;

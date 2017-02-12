@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import classnames from "classnames";
 import CardContent from "./cardContent";
 import CardFooter from "./cardFooter";

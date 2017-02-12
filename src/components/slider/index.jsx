@@ -1,4 +1,5 @@
 import React from "react";
+import Element from "react/lib/ReactElement";
 import classnames from "classnames";
 import Slide from "./slide";
 import Icon from "../icon";

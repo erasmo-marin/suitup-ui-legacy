@@ -62,10 +62,7 @@ class Index extends React.Component {
 
     onModalChange(visible) {
         if (visible == this.state.modalVisible) return;
-
-        this.setState({
-            modalVisible: visible
-        });
+        this.state.modalVisible = visible;
     }
 
     render() {

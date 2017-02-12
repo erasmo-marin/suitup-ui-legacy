@@ -1,17 +1,9 @@
-import React from 'react';
 import Device from './device';
 
-class Desktop extends React.Component {
-
-    constructor() {
-        super(props);
-    }
-
-    render() {
+const Desktop = ({children}) => (
         <Device device="desktop">
-            {this.props.children}
+            {children}
         </Device>
-    }
-}
+);
 
 export default Desktop;
