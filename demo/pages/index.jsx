@@ -66,6 +66,14 @@ class Index extends React.Component {
     }
 
     render() {
+
+        let horizontalCardWides = {
+            mobile: 12,
+            tablet: 6,
+            desktop: 6,
+            widescreen: 6
+        }
+
         return (
             <div>
                 <Modal
@@ -484,8 +492,8 @@ class Index extends React.Component {
                     </p>
                     <Container>
                         <Container>
-                            <Box horizontal columns={2}>
-                                <Box.Child key={1} wide={1}>
+                            <Box horizontal columns={12}>
+                                <Box.Child key={1} wide={6} wides={horizontalCardWides}>
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -505,7 +513,7 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={2} wide={1}>
+                                <Box.Child key={2} wide={6} wides={horizontalCardWides}>
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -525,7 +533,7 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={3} wide={1}>
+                                <Box.Child key={3} wide={6} wides={horizontalCardWides}>
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -545,7 +553,7 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={4} wide={1}>
+                                <Box.Child key={4} wide={6} wides={horizontalCardWides}>
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
