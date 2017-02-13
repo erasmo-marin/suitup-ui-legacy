@@ -2,6 +2,7 @@ import React from "react";
 import { isArray, without, findIndex } from "lodash";
 import { EventEmitter } from "events";
 import classnames from "classnames";
+import Screen from "./device/screen";
 
 class ModalMountController extends EventEmitter {
 
@@ -54,14 +55,27 @@ class Layout extends React.Component {
         super(props);
         this.onModalsChange = ::this.onModalsChange;
         this.modalsController = modalMountController;
+        this.onScreenChange = ::this.onScreenChange;
         this.state = {
-            modals: []
+            modals: [],
+            screen: Screen.getScreen()
         }
+    }
+
+    componentDidMount() {
         modalMountController.onModalsChange(this.onModalsChange);
+        Screen.onScreenChange(this.onScreenChange);
+    }
+
+    onScreenChange(screen) {
+        this.setState({
+            screen: screen
+        });
     }
 
     componentWillUnmount() {
         modalMountController.offModalsChange(this.onModalsChange);
+        Screen.offScreenChange(this.onScreenChange);
     }
 
     onModalsChange() {
@@ -90,7 +104,11 @@ class Layout extends React.Component {
         let header = this.findHeader(children);
         let classes = classnames({
             layout: true,
-            "fixed-header": header && header.props.fixed ? true : false
+            "fixed-header": header && header.props.fixed ? true : false,
+            "is-mobile": this.state.screen == 'mobile',
+            "is-tablet": this.state.screen == 'tablet',
+            "is-desktop": this.state.screen == 'desktop',
+            "is-widescreen": this.state.screen == 'widescreen'
         });
 
         return (

@@ -64,9 +64,13 @@ p {
 .layout {
     @import 'theme/layout';
     position: relative;
+    overflow-x: hidden;
 
     &.fixed-header {
         margin-top: 64px;
     }
 
+    &.is-mobile {
+        margin-top: 54px;
+    }
 }

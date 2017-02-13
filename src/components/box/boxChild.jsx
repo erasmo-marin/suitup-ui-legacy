@@ -6,6 +6,17 @@ class BoxChild extends React.Component {
         super(props);
     }
 
+    parseGutter(gutter) {
+        if (!gutter) return;
+
+        let number = parseFloat(gutter);
+
+        return {
+            number: number,
+            measure: gutter.replace(number, "")
+        };
+    }
+
     render() {
         let cstyle = {};
         let {

@@ -16,6 +16,7 @@ class Box extends React.Component {
 
     setupChildProps(props) {
         if (props.children && props.columns) {
+
             let gutter = this.parseGutter(props.gutter);
             if (gutter && gutter.number) {
                 gutter = gutter.number / 2 + gutter.measure;
