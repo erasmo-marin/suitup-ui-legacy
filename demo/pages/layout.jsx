@@ -6,9 +6,10 @@ const Logo = (props) => {
     let style = {
         backgroundImage: `url(${props.url})`,
         backgroundSize: 'contain',
-        backgroundPosition: 'center',
-        width: `${props.width}px`,
-        height: `${props.height}px`
+        backgroundPosition: 'center center',
+        backgroundRepeat: 'no-repeat',
+        width: props.width,
+        height: props.height
     }
 
     return (
@@ -52,7 +53,7 @@ class WebLayout extends React.Component {
             color: "#444"
         }
 
-        let logo = <Logo url="/img/logo.svg" width={60} height={64}/>
+        let logo = <Logo url="/img/logo.svg" width='50px' height='100%'/>
         return (
                 <Layout style={{backgroundColor: 'rgb(251,251,251)'}}>
                     <Header fixed top style={{backgroundColor: '#373D49', color: 'rgb(50, 186, 141)'}}>

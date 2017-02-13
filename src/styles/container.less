@@ -1,8 +1,6 @@
-@import 'theme/container';
-
 .container {
+    @import 'theme/container';
     width: 100%;
-    max-width: 980px;
     margin: 0 auto;
     padding: 1rem;
     box-sizing: border-box;
@@ -10,4 +8,18 @@
     &.full-height {
         height: 100%;
     }
+
+    &.tablet-wide {
+       padding-left: 2rem;
+       padding-right: 2rem;
+    }
+
+    &.desktop-wide {
+       max-width: 960px; 
+    }
+
+    &.widescreen-wide {
+       max-width: 1152px; 
+    }
+
 }

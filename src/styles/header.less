@@ -1,6 +1,5 @@
-@import 'theme/header';
-
 header {
+    @import 'theme/header';
     width: @width;
     height: @height;
     color: @color;
@@ -21,14 +20,20 @@ header {
         }
     }
 
-    button {
-        &.menu-button {
-            height: @height;
-            line-height: @height;
-            text-align: center;
-            &.pressed {
-                background-color: rgba(0,0,0,0.2);
-            }
+    button.menu-button {
+        height: @height;
+        line-height: @height;
+        text-align: center;
+        &.pressed {
+            background-color: rgba(0,0,0,0.2);
+        }
+    }
+
+    &.is-mobile {
+        height: @heightMobile;
+        button.menu-button {
+            height: @heightMobile;
+            line-height: @heightMobile;
         }
     }
 }

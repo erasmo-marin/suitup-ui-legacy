@@ -1,13 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
+import Screen from "./device/screen";
 
 class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.toggleItems = ::this.toggleItems;
         this.state = {
-            subItems: false
+            subItems: false,
         };
     }
 
@@ -69,9 +70,31 @@ class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.hide = ::this.hide;
+        this.onScreenChange = ::this.onScreenChange;
         this.state = {
-            visible: this.props.visible
+            visible: this.props.visible,
+            screen: Screen.getScreen()
         };
+    }
+
+    componentDidMount() {
+        Screen.onScreenChange(this.onScreenChange);
+    }
+
+    componentWillUnmount() {
+        Screen.offScreenChange(this.onScreenChange);
+    }
+
+    onScreenChange(screen) {
+        this.setState({
+            screen: screen
+        });
+    }
+
+    toggleItems() {
+        this.setState({
+            subItems: !this.state.subItems
+        });
     }
 
     hide() {
@@ -119,7 +142,11 @@ class Menu extends React.Component {
             fixed: true,
             left: left,
             right: right,
-            visible: visible
+            visible: visible,
+            "is-mobile": this.state.screen == 'mobile',
+            "is-tablet": this.state.screen == 'tablet',
+            "is-desktop": this.state.screen == 'desktop',
+            "is-widescreen": this.state.screen == 'widescreen'
         });
 
         let veilClasses = classnames({

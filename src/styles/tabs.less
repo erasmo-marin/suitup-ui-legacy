@@ -1,0 +1,26 @@
+.tabs {
+    @import './theme/tabs';
+    .tabs-buttons {
+        position: relative;
+        background: @backgroundColor;
+        .tab {
+            text-align: center;
+            text-transform: uppercase;
+            height: @height;
+            line-height: 3rem;
+            color: @color;
+            cursor: pointer;
+            font-size: 0.9rem;
+            user-select: none;
+        }
+        .active-tab-indicator {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            height: 2px;
+            background: @indicatorColor;
+            transition: all 1s cubic-bezier(0.23, 1, 0.32, 1) 0ms;
+        }
+    }
+
+}

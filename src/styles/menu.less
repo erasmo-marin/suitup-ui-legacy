@@ -1,5 +1,3 @@
-@import 'theme/menu';
-
 .menu-veil {
     position: fixed;
     top: 0;
@@ -19,6 +17,7 @@
 
 
 .menu {
+    @import 'theme/menu';
     position: fixed;
     background-color: #fff;
     top: 0;
@@ -47,18 +46,19 @@
     .menu-header {
         border-bottom: 1px solid #e0e0e0;
         box-sizing: border-box;
-        height: 64px;
+        height: @headerHeight;
         box-sizing: border-box;
         margin-bottom: 1rem;
 
         .menu-header-icon {
+            height: 100%;
             display: inline-block;
             vertical-align: top;
         }
 
         span.menu-header-title {
             padding-left: 22px;
-            line-height: 64px;
+            line-height: @headerHeight;
             font-size: 1rem;
             font-weight: 300;
             display: inline-block;
@@ -120,6 +120,15 @@
             }
         }
 
+    }
+
+    &.is-mobile {
+        .menu-header {
+            height: @headerHeightMobile;
+            span.menu-header-title {
+                line-height: @headerHeightMobile;
+            }
+        }
     }
 
 }

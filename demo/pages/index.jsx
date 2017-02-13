@@ -12,9 +12,9 @@ import {
     Card,
     Modal,
     Image,
-    Slider
+    Slider,
+    Tabs
 } from "../../src/components";
-import Logo from "./logo";
 
 class Index extends React.Component {
     constructor(props) {
@@ -66,8 +66,6 @@ class Index extends React.Component {
     }
 
     render() {
-        let logo = <Logo url="/img/logo.svg" width={60} height={64} />;
-
         return (
             <div>
                 <Modal
@@ -82,6 +80,7 @@ class Index extends React.Component {
                     <Modal.Content>
                         <p>
                             Hola, soy un modal, y me usan mucho para mostrar contenido
+
 
                             bloqueando la interacción con la vista principal de la web app.
                         </p>
@@ -213,14 +212,18 @@ class Index extends React.Component {
                     <p>
                         El componente de Slider te permite mostrar mucha información de forma segmentada
 
+
                         y visualmente agradable al usuario. Puedes agregar cualquier cosa que se te ocurra
+
 
                         dentro. ¿Una foto? ¿Un action call?
                     </p>
                     <p>
                         El slider de Suitup UI implementa lazyload, que renderiza tus slides en el momento de
 
+
                         necesitarse, y minimalRender, que sólo renderiza los slides que se están ocupando, para casos
+
 
                         donde la cantidad de slides es muy grande.
                     </p>
@@ -262,9 +265,14 @@ class Index extends React.Component {
                                         <h5 style={{ color: "#fff" }}>
                                             El componente de Slider incluye la opción de
 
-                                            Lazyload. En este modo, los slides se renderizan{" "}
 
-                                            r primera vez cuando se van a necesitar. Ideal para{" "}
+                                            Lazyload. En este modo, los slides se renderizan
+                                            {" "}
+
+
+                                            r primera vez cuando se van a necesitar. Ideal para
+                                            {" "}
+
 
                                             galerías fotográficas.
                                         </h5>
@@ -285,6 +293,7 @@ class Index extends React.Component {
                                         </h3>
                                         <h5 style={{ color: "#fff" }}>
                                             El slider te permite mostrar o esconder los puntos,
+
 
                                             las flechas y cambiar el padding.
                                         </h5>
@@ -341,7 +350,9 @@ class Index extends React.Component {
                                                 <h5 style={{ color: "#fff" }}>
                                                     No es necesario como opción, la flexibilidad de Box
 
+
                                                     te permite construir este tipo de layouts con el mínimo
+
 
                                                     esfuerzo.
                                                 </h5>
@@ -384,7 +395,9 @@ class Index extends React.Component {
                 <Container>
                     <h3>Modales</h3>
                     <p>
-                        Los modales sirven para mostrar información bloqueando la interacción del usuario con{" "}
+                        Los modales sirven para mostrar información bloqueando la interacción del usuario con
+                        {" "}
+
 
                         la vista principal. El modal de SuitUp UI incluye animación y blur.
                     </p>
@@ -463,7 +476,9 @@ class Index extends React.Component {
                     <p>
                         Puedes construir tu tarjeta de la manera que se te de la gana. Utiliza el componente
 
+
                         Box para mostrar el contenido con distintas orientaciones y proporciones. No te imponemos
+
 
                         una forma única de hacer las cosas.
                     </p>
@@ -555,16 +570,22 @@ class Index extends React.Component {
                     </Container>
                     <h3>Imágenes</h3>
                     <p>
-                        El componente de imagen mantiene el aspect ratio deseado aunque tu imagen{" "}
+                        El componente de imagen mantiene el aspect ratio deseado aunque tu imagen
+                        {" "}
 
-                        no los tenga (aunque idealmente debería tenerlo). Si deseas un contenedor{" "}
+
+                        no los tenga (aunque idealmente debería tenerlo). Si deseas un contenedor
+                        {" "}
+
 
                         que mantenga el aspect ratio, puedes usar el componente de imagen junto a
+
 
                         el prop src='none'.
                     </p>
                     <p>
                         Suitup incluye un conjunto de aspect ratio por defecto recomendados los cuales
+
 
                         pueden cambiarse desde el archivo de configuración, estos son:
                     </p>
@@ -602,6 +623,26 @@ class Index extends React.Component {
                             </Box.Child>
                         </Box>
                     </Container>
+                </Container>
+                <Container>
+                    <h3>Tabs</h3>
+                    <Tabs>
+                        <Tabs.Tab title="Tab 1">
+                            <p style={{ color: "red" }}>
+                                {"Hello, I'm the first tab content"}
+                            </p>
+                        </Tabs.Tab>
+                        <Tabs.Tab title="Tab 2">
+                            <p style={{ color: "green" }}>
+                                {"Hello, I'm the second tab content"}
+                            </p>
+                        </Tabs.Tab>
+                        <Tabs.Tab title="Tab 3">
+                            <p style={{ color: "blue" }}>
+                                {"Hello, I'm the third tab content"}
+                            </p>
+                        </Tabs.Tab>
+                    </Tabs>
                 </Container>
             </div>
         );

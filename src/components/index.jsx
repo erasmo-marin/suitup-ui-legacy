@@ -11,6 +11,7 @@ import Modal from "./modal";
 import Slider from "./slider";
 import Container from "./container";
 import { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
+import Tabs from "./tabs";
 
 export {
     Container,
@@ -30,5 +31,6 @@ export {
     Tablet,
     Desktop,
     Widescreen,
-    Screen
+    Screen,
+    Tabs
 };
