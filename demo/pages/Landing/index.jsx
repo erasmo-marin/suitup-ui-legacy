@@ -1,5 +1,6 @@
 import React from 'react';
-import { Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider } from '../../../src/components';
+import { Device, Container, Header, Footer, Menu, Content, Layout, Box, Button, Icon, Card, Modal, Image, Slider, Tabs } from '../../../src/components';
+import {PrismCode} from "react-prism";
 
 class Landing extends React.Component {
 
@@ -9,13 +10,14 @@ class Landing extends React.Component {
 
     render () {
 
-        let imageStyle = {
+        let heroStyle = {
             background: "linear-gradient(161deg, rgba(53,215,187,1) 0%, rgba(0,128,128,1) 100%)",
             color: "#fff",
-            height: "80vh"
+            height: "80vh",
+            minHeight: "600px"
         }
 
-        let imageChildStyle = {
+        let heroChildStyle = {
             backgroundImage: 'url(/img/noise.png)',
             backgroundRepeat: 'repeat',
             width: '100%',
@@ -23,7 +25,12 @@ class Landing extends React.Component {
         }
 
         let featuresSection = {
-            height: "80vh"
+            background: '#f7f7f7'
+        }
+
+        let gettingStartedSection = {
+            borderTop: '1px solid #dedede',
+            background: '#fdfdfd'
         }
 
         let icons = {
@@ -39,15 +46,15 @@ class Landing extends React.Component {
 
         return (
                 <div className="sections">
-                    <section style={imageStyle}>
-                        <div style={imageChildStyle}>
+                    <section style={heroStyle}>
+                        <div style={heroChildStyle}>
                             <Container verticalExpand>
                                 <Box horizontal columns={12} align="center" verticalExpand>
                                     <Box.Child wide={4} key={1}>
                                         <Image width="100%" type="square" src="/img/logo-big.png"/>
                                     </Box.Child>
                                     <Box.Child wide={8}  key={2}>
-                                        <h1>Suitup UI</h1>
+                                        <h1>SuitUp UI</h1>
                                         <h3>It suits to your needs like a custom made suit</h3>
                                         <Button flat>Get Started</Button>
                                     </Box.Child>
@@ -55,7 +62,7 @@ class Landing extends React.Component {
                             </Container>
                         </div>
                     </section>
-                    <section>
+                    <section style={featuresSection}>
                         <Container>
                             <Box columns={6} justify="center" gutter="5rem">
                                 <Box.Child key={1} wide={2} wides={iconWides} style={{textAlign: 'center'}}>
@@ -86,9 +93,50 @@ class Landing extends React.Component {
                                 <Box.Child key={6} wide={2} wides={iconWides} style={{textAlign: 'center'}}>
                                     <Icon name="favorite" size={48} circle style={icons}/>
                                     <h3>Made with love</h3>
-                                    <p>From a front-web developer to others front-end developers.</p>
+                                    <p>From a front-end developer to others front-end developers.</p>
                                 </Box.Child>
                             </Box>
+                        </Container>
+                    </section>
+                    <section style={gettingStartedSection}>
+                        <Container>
+                            <h2 style={{textAlign: 'center'}}>Getting started</h2>
+                            <Device devices={["mobile","tablet"]}>
+                                <Tabs>
+                                    <Tabs.Tab title="Install Suitup UI from npm:">
+                                    </Tabs.Tab>
+                                    <Tabs.Tab title="Running the included demo">
+                                    </Tabs.Tab>
+                                </Tabs>
+                            </Device>
+                            <Device devices={["desktop","widescreen"]}>
+                                <Box columns={12}>
+                                    <Box.Child wide={6}>
+                                        <h4 style={{textAlign: 'center'}}>Adding it to your project</h4>
+                                            <p>Install Suitup UI from npm:</p>
+                                            <pre className='lang-jsx'>
+                                                <PrismCode className='lang-jsx'>
+                                                    {"$ npm install --save suitup-ui\n"}
+                                                </PrismCode>
+                                            </pre>
+                                            <p>Import the styles and the components you need:</p>
+                                            <pre className='lang-jsx'>
+                                                <PrismCode className='lang-jsx'>
+                                                    {"import \"../node_modules/suitup-ui/dist/suitup-toolkit.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"}
+                                                </PrismCode>
+                                            </pre>       
+                                    </Box.Child>
+                                    <Box.Child wide={6}>
+                                        <h4 style={{textAlign: 'center'}}>Running the included demo</h4>
+                                        <p>Import the styles and the components you need:</p>
+                                        <pre className='lang-jsx'>
+                                            <PrismCode className='lang-jsx'>
+                                                {"import \"../node_modules/suitup-ui/dist/suitup-toolkit.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"}
+                                            </PrismCode>
+                                        </pre>
+                                    </Box.Child>
+                                </Box>
+                            </Device>
                         </Container>
                     </section>
                 </div>

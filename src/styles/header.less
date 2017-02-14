@@ -22,10 +22,14 @@ header {
 
     button.menu-button {
         height: @height;
-        line-height: @height;
-        text-align: center;
+        padding: 0 2rem;
+        i {
+            line-height: @height;
+            text-align: center;
+        }
+        
         &.pressed {
-            background-color: rgba(0,0,0,0.2);
+            background-color: rgba(0,0,0,0.5);
         }
     }
 
@@ -33,7 +37,11 @@ header {
         height: @heightMobile;
         button.menu-button {
             height: @heightMobile;
-            line-height: @heightMobile;
+            padding: 0 2rem;
+            i {
+                line-height: @heightMobile;
+                text-align: center;
+            }
         }
     }
 }

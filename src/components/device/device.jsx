@@ -16,9 +16,9 @@ const Device = ({ device, devices, children }) => {
     });
 
     return (
-        <Device device="desktop">
+        <div className={classes}>
             {children}
-        </Device>
+        </div>
     );
 };
 
