@@ -17,6 +17,7 @@ module.exports = {
                 loader: "babel-loader",
                 exclude: /(node_modules|bower_components)/,
                 options: {
+                    babelrc: false,
                     presets: [["es2015", { modules: false }], "react", "stage-1"],
                     plugins: ["jsx-control-statements", "transform-function-bind", "lodash"]
                 }
