@@ -20,15 +20,15 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: "babel-loader",
-                exclude: "/node_modules",
+                exclude: /(node_modules|bower_components)/,
                 options: {
-                    presets: [["es2015"], "stage-1", "react"],
-                    plugins: ["react-hot-loader/babel"]
+                    presets: [["es2015", { modules: false }], "stage-1", "react"],
+                    plugins: ["react-hot-loader/babel", "jsx-control-statements", "transform-function-bind", "lodash"]
                 }
             },
             {
                 test: /\.less$/,
-                exclude: "/node_modules",
+                exclude: /(node_modules|bower_components)/,
                 use: ["style-loader", "css-loader", "less-loader"]
             },
             {
@@ -45,10 +45,6 @@ module.exports = {
             "process.env": {
                 NODE_ENV: JSON.stringify("development")
             }
-        }),
-        new webpack.optimize.CommonsChunkPlugin({
-            name: "commons",
-            filename: "common.js"
         }),
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NamedModulesPlugin(),

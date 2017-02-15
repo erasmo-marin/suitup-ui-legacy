@@ -94,15 +94,15 @@ class WebLayout extends React.Component {
                     </div>
                     <Footer style={footerStyle}>
                         <Container style={{textAlign: "center"}}>
-                            <p>Created by <a href="https://github.com/erasmo-marin">@erasmo-marin</a> with ❤️ for you</p>
-                            <Box columns={5} justify="center">
-                                <Box.Child wide={1} key={1}>
+                            <p>Created by <a href="https://github.com/erasmo-marin">@erasmo-marin</a> with ❤️ </p>
+                            <Box columns={15} justify="center">
+                                <Box.Child wide={3} wides={{"mobile": 5, "tablet": 5}} key={1}>
                                     <a href="https://github.com/erasmo-marin/suitup-ui">Github repo</a>
                                 </Box.Child>
-                                <Box.Child wide={1} key={2}>
+                                <Box.Child wide={3} wides={{"mobile": 5, "tablet": 5}} key={2}>
                                     <a href="https://www.npmjs.com/package/suitup-ui">Suitup on NPM</a>
                                 </Box.Child>
-                                <Box.Child wide={1} key={3}>
+                                <Box.Child wide={3} wides={{"mobile": 5, "tablet": 5}} key={3}>
                                     <a href="https://github.com/erasmo-marin/suitup-ui/issues/new">Report a bug</a>
                                 </Box.Child>
                             </Box>

@@ -69,14 +69,23 @@ class Landing extends React.Component {
                                 align="center"
                                 verticalExpand
                             >
-                                <Box.Child wide={4} key={1}>
-                                    <Image
-                                        width="100%"
-                                        type="square"
-                                        src="/img/logo-big.png"
-                                    />
+                                <Box.Child wide={4} wides={{"tablet": 12, "mobile": 12}} key={1}>
+                                    <Device devices={["mobile", "tablet"]}>
+                                        <Image
+                                            width="30%"
+                                            type="square"
+                                            src="/img/logo-big.png"
+                                        />
+                                    </Device>
+                                    <Device devices={["desktop", "widescreen"]}>
+                                        <Image
+                                            width="100%"
+                                            type="square"
+                                            src="/img/logo-big.png"
+                                        />
+                                    </Device>
                                 </Box.Child>
-                                <Box.Child wide={8} key={2}>
+                                <Box.Child wide={8} wides={{"tablet": 12, "mobile": 12}} key={2}>
                                     <h1>SuitUp UI</h1>
                                     <h3>
                                         It suits to your needs like a custom made suit
@@ -104,7 +113,7 @@ class Landing extends React.Component {
                                 />
                                 <h3>Customizable</h3>
                                 <p>
-                                    Flexible and configurable in runtime. Create your own themes. Suitup UI adhere to Progressive Truthfulness.
+                                    Flexible and configurable in runtime. Suitup UI adhere to Progressive Truthfulness.
                                 </p>
                             </Box.Child>
                             <Box.Child
@@ -165,14 +174,14 @@ class Landing extends React.Component {
                                 style={{ textAlign: "center" }}
                             >
                                 <Icon
-                                    name="autorenew"
+                                    name="palette"
                                     size={48}
                                     circle
                                     style={icons}
                                 />
-                                <h3>Up to date</h3>
+                                <h3>Themeable</h3>
                                 <p>
-                                    We are always experimenting with the last tools available.
+                                    Inline styles are good, all Components support it. Create your theme in seconds just changing some variables.
                                 </p>
                             </Box.Child>
                             <Box.Child
@@ -199,8 +208,8 @@ class Landing extends React.Component {
                     <Container>
                         <h2 style={{ textAlign: "center" }}>Getting started</h2>
                         <Device devices={["mobile", "tablet", "desktop"]}>
-                            <Tabs>
-                                <Tabs.Tab title="Install Suitup UI from npm:">
+                            <Tabs indicatorColor="#35D7BB" style={{background: 'transparent'}}>
+                                <Tabs.Tab title="Install from npm" style={{color: '#444'}}>
                                     <Container>
                                         <p>Install Suitup UI from npm:</p>
                                         <pre className="lang-bash">
@@ -220,12 +229,30 @@ class Landing extends React.Component {
                                         </pre>
                                     </Container>
                                 </Tabs.Tab>
-                                <Tabs.Tab title="Running the included demo">
+                                <Tabs.Tab title="Running demo" style={{color: '#444'}}>
+                                    <Container>
+                                        <p>Clone Suitup UI repo:</p>
+                                        <pre className="lang-bash">
+                                            <PrismCode className="lang-bash">
+                                                {"$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"}
+                                            </PrismCode>
+                                        </pre>
+                                        <p>
+                                            Install dependencies and run:
+                                        </p>
+                                        <pre className="lang-jsx">
+                                            <PrismCode className="lang-jsx">
+                                                {
+                                                    "$ npm install\n$ npm install -g less\n$ npm run start"
+                                                }
+                                            </PrismCode>
+                                        </pre>
+                                    </Container>
                                 </Tabs.Tab>
                             </Tabs>
                         </Device>
                         <Device devices={["widescreen"]}>
-                            <Box columns={12}>
+                            <Box columns={12} gutter="4rem">
                                 <Box.Child wide={6}>
                                     <h4 style={{ textAlign: "center" }}>
                                         Adding it to your project
@@ -251,13 +278,19 @@ class Landing extends React.Component {
                                     <h4 style={{ textAlign: "center" }}>
                                         Running the included demo
                                     </h4>
+                                    <p>Clone Suitup UI repo:</p>
+                                    <pre className="lang-bash">
+                                        <PrismCode className="lang-bash">
+                                            {"$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"}
+                                        </PrismCode>
+                                    </pre>
                                     <p>
-                                        Import the styles and the components you need:
+                                        Install dependencies and run:
                                     </p>
                                     <pre className="lang-jsx">
                                         <PrismCode className="lang-jsx">
                                             {
-                                                "import \"../node_modules/suitup-ui/dist/suitup-toolkit.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"
+                                                "$ npm install\n$ npm install -g less\n$ npm run start"
                                             }
                                         </PrismCode>
                                     </pre>

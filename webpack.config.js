@@ -15,14 +15,15 @@ module.exports = {
             {
                 test: /\.jsx?$/,
                 loader: "babel-loader",
-                exclude: "/node_modules",
+                exclude: /(node_modules|bower_components)/,
                 options: {
-                    presets: [["es2015", { modules: false }]]
+                    presets: [["es2015", { modules: false }], "react", "stage-1"],
+                    plugins: ["jsx-control-statements", "transform-function-bind", "lodash"]
                 }
             },
             {
                 test: /\.less$/,
-                exclude: "/node_modules",
+                exclude: /(node_modules|bower_components)/,
                 use: ["style-loader", "css-loader", "less-loader"]
             }
         ]

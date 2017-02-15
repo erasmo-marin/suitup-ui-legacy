@@ -1,4 +1,0 @@
-{
-  "presets": ["react", "stage-1"],
-  "plugins": ["jsx-control-statements", "transform-function-bind", "lodash", "add-module-exports"]
-}

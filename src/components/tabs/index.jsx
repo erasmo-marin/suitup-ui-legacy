@@ -46,8 +46,14 @@ class Tabs extends React.Component {
         }
     }
 
+    /*
+     * Style tag is applyied only to tabs buttons,
+     * that's the expected behavior. But at the same
+     * time, other props like className are applied
+     * to the root container.
+     */
     render() {
-        let { children, ...rest } = this.props;
+        let { children, style, indicatorColor, ...rest } = this.props;
         let {
             activeTab,
             activeTabIndicatorOffset,
@@ -64,23 +70,25 @@ class Tabs extends React.Component {
 
         let indicatorStyle = {
             width: activeTabIndicatorWidth,
-            marginLeft: activeTabIndicatorOffset
+            marginLeft: activeTabIndicatorOffset,
+            background: indicatorColor
         };
 
         return (
             <div {...rest} className="tabs">
-                <div className="tabs-buttons">
+                <div style={style} className="tabs-buttons">
                     <Box horizontal gutter="0" columns={children.length}>
                         {children.map((child, index) => {
                             return (
                                 <Box.Child key={index} wide={1}>
                                     <div
+                                        style={child.props ? child.props.style : null}
                                         className="tab"
                                         onClick={() => {
                                             this.onTabClick(child, index);
                                         }}
                                     >
-                                        <span>{child.props.title}</span>
+                                        {child.props.title}
                                     </div>
                                 </Box.Child>
                             );
