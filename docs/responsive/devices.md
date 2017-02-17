@@ -23,7 +23,7 @@ Example:
 ```
 
 
-## Helpers
+### Helpers
 
 You can use the provided device helpers to write more declarative and clear code:
 
@@ -42,11 +42,11 @@ You can use the provided device helpers to write more declarative and clear code
 	</Widescreen>
 ```
 
-# Responsiveness
-
-<span style="color:red">*this section describes a feature that is still in development*</span>
+## Responsiveness
 
 Suitup components and Contianers can receive styles and props to target specific breakpoints.
+
+### Box
 
 For example, you can set custom wides for each breakpoints on the `Box.Child` Component. If you miss a breakpoint, Box.Child will use the wide value, or, if it's missing too, it will use the default wide value.
 
@@ -83,3 +83,27 @@ class MyComponent extends React.Component {
 	}
 }
 ```
+
+### Responsive inline styles
+
+<span style="color:red">*this section describes a feature that is still in development*</span>
+
+Suitup accepts responsive inline styles. You can write styles this way:
+
+```jsx
+
+//set color red on tablet, blue on desktop and yellow on mobile and widescreen
+let myStyle = {
+	tablet: {
+		color: 'red'
+	},
+	desktop: {
+		color: 'blue'
+	},
+	color: 'yellow'
+}
+
+```
+
+
+

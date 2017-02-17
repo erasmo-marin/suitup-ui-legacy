@@ -23,14 +23,28 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 options: {
                     babelrc: false,
-                    presets: [["es2015", { modules: false }], "stage-1", "react"],
-                    plugins: ["react-hot-loader/babel", "jsx-control-statements", "transform-function-bind", "lodash"]
+                    presets: [
+                        ["es2015", { modules: false }],
+                        "stage-3",
+                        "react"
+                    ],
+                    plugins: [
+                        "react-hot-loader/babel",
+                        "jsx-control-statements",
+                        "transform-function-bind",
+                        "lodash"
+                    ]
                 }
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: ["style-loader", "css-loader", "less-loader"]
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "postcss-loader",
+                    "less-loader"
+                ]
             },
             {
                 test: /\.md$/,

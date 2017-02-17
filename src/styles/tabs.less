@@ -8,10 +8,13 @@
             text-transform: uppercase;
             height: @height;
             line-height: 3rem;
-            color: @color;
+            color: @inactiveTabColor;
             cursor: pointer;
             font-size: 0.9rem;
             user-select: none;
+            &.active {
+                color: @activeTabColor;
+            }
         }
         .active-tab-indicator {
             position: absolute;

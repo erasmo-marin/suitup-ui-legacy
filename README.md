@@ -12,7 +12,7 @@ npm install suitup-ui --save
 And then just import the components you need. If you need to make a theme, you need to build your own Suit.
 
 ```javascript
-import "../node_modules/suitup-ui/dist/suitup-toolkit.min.css";
+import "../node_modules/suitup-ui/dist/suitup.ui.min.css";
 import { Layout, Container, Box, Button } from 'suitup-ui';
 ``` 
 ##Components

@@ -1,25 +1,41 @@
 import React from "react";
 import classnames from "classnames";
 import { isArray } from "lodash";
+import Screen from "./screen";
 
-const Device = ({ device, devices, children }) => {
-    if (!isArray(devices)) {
-        devices = [device];
+class Device extends React.Component {
+    constructor(props) {
+        super(props);
+        this.onScreenChange = ::this.onScreenChange;
+        this.state = {
+            screen: Screen.getScreen()
+        };
     }
 
-    let classes = classnames({
-        device: true,
-        mobile: devices.indexOf("mobile") < 0 ? false : true,
-        tablet: devices.indexOf("tablet") < 0 ? false : true,
-        desktop: devices.indexOf("desktop") < 0 ? false : true,
-        widescreen: devices.indexOf("widescreen") < 0 ? false : true
-    });
+    componentDidMount() {
+        Screen.onScreenChange(this.onScreenChange);
+    }
 
-    return (
-        <div className={classes}>
-            {children}
-        </div>
-    );
-};
+    componentWillUnmount() {
+        Screen.offScreenChange(this.onScreenChange);
+    }
+
+    onScreenChange(screen) {
+        this.setState({ screen });
+    }
+
+    render() {
+        let { device, devices, children } = this.props;
+        if (!isArray(devices)) {
+            devices = [device];
+        }
+
+        if (devices.indexOf(this.state.screen) < 0) {
+            return null;
+        }
+
+        return React.Children.only(children);
+    }
+}
 
 export default Device;

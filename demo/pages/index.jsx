@@ -13,7 +13,12 @@ import {
     Modal,
     Image,
     Slider,
-    Tabs
+    Tabs,
+    Mobile,
+    Tablet,
+    Desktop,
+    Widescreen,
+    Device
 } from "../../src/components";
 
 class Index extends React.Component {
@@ -66,13 +71,12 @@ class Index extends React.Component {
     }
 
     render() {
-
         let horizontalCardWides = {
             mobile: 12,
             tablet: 6,
             desktop: 6,
             widescreen: 6
-        }
+        };
 
         return (
             <div>
@@ -275,12 +279,12 @@ class Index extends React.Component {
 
 
                                             Lazyload. En este modo, los slides se renderizan
-                                            {" "}
 
+                                            {" "}
 
                                             r primera vez cuando se van a necesitar. Ideal para
-                                            {" "}
 
+                                            {" "}
 
                                             galerías fotográficas.
                                         </h5>
@@ -404,8 +408,8 @@ class Index extends React.Component {
                     <h3>Modales</h3>
                     <p>
                         Los modales sirven para mostrar información bloqueando la interacción del usuario con
-                        {" "}
 
+                        {" "}
 
                         la vista principal. El modal de SuitUp UI incluye animación y blur.
                     </p>
@@ -493,7 +497,11 @@ class Index extends React.Component {
                     <Container>
                         <Container>
                             <Box horizontal columns={12}>
-                                <Box.Child key={1} wide={6} wides={horizontalCardWides}>
+                                <Box.Child
+                                    key={1}
+                                    wide={6}
+                                    wides={horizontalCardWides}
+                                >
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -513,7 +521,11 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={2} wide={6} wides={horizontalCardWides}>
+                                <Box.Child
+                                    key={2}
+                                    wide={6}
+                                    wides={horizontalCardWides}
+                                >
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -533,7 +545,11 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={3} wide={6} wides={horizontalCardWides}>
+                                <Box.Child
+                                    key={3}
+                                    wide={6}
+                                    wides={horizontalCardWides}
+                                >
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -553,7 +569,11 @@ class Index extends React.Component {
                                         </Box>
                                     </Card>
                                 </Box.Child>
-                                <Box.Child key={4} wide={6} wides={horizontalCardWides}>
+                                <Box.Child
+                                    key={4}
+                                    wide={6}
+                                    wides={horizontalCardWides}
+                                >
                                     <Card>
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
@@ -579,12 +599,12 @@ class Index extends React.Component {
                     <h3>Imágenes</h3>
                     <p>
                         El componente de imagen mantiene el aspect ratio deseado aunque tu imagen
-                        {" "}
 
+                        {" "}
 
                         no los tenga (aunque idealmente debería tenerlo). Si deseas un contenedor
-                        {" "}
 
+                        {" "}
 
                         que mantenga el aspect ratio, puedes usar el componente de imagen junto a
 
@@ -610,21 +630,21 @@ class Index extends React.Component {
                         <Box horizontal columns={3}>
                             <Box.Child key={1} wide={1}>
                                 <Image
-                                    src="http://pngimg.com/upload/cat_PNG106.png"
+                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
                                     type="square"
                                     width="100%"
                                 />
                             </Box.Child>
                             <Box.Child key={2} wide={1}>
                                 <Image
-                                    src="http://pngimg.com/upload/cat_PNG106.png"
+                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
                                     type="square"
                                     width="100%"
                                 />
                             </Box.Child>
                             <Box.Child key={3} wide={1}>
                                 <Image
-                                    src="http://pngimg.com/upload/cat_PNG106.png"
+                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
                                     type="square"
                                     width="100%"
                                 />
@@ -652,6 +672,32 @@ class Index extends React.Component {
                         </Tabs.Tab>
                     </Tabs>
                 </Container>
+
+                <Container>
+                    <h3>Responsive</h3>
+                    <p>Resize the browser to see the changes!!. The Device component only accepts one children. Wrap your components in a div.</p>
+                    <Mobile>
+                        <p style={{ textAlign: "center", color: "red" }}>
+                            {"Hi, I'm just visible on Mobile!"}
+                        </p>
+                    </Mobile>
+                    <Tablet>
+                        <p style={{ textAlign: "center", color: "blue" }}>
+                            {"Hi, I'm just visible on Tablet!"}
+                        </p>
+                    </Tablet>
+                    <Desktop>
+                        <p style={{ textAlign: "center", color: "green" }}>
+                            {"Hi, I'm just visible on Desktop!"}
+                        </p>
+                    </Desktop>
+                    <Widescreen>
+                        <p style={{ textAlign: "center", color: "gray" }}>
+                            {"Hi, I'm just visible on Widescreen!"}
+                        </p>
+                    </Widescreen>
+                </Container>
+
             </div>
         );
     }

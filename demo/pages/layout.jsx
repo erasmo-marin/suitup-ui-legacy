@@ -55,18 +55,18 @@ class WebLayout extends React.Component {
 
         let logo = <Logo url="/img/logo.svg" width='50px' height='100%'/>
         return (
-                <Layout style={{backgroundColor: 'rgb(251,251,251)'}}>
-                    <Header fixed top style={{backgroundColor: '#373D49', color: 'rgb(50, 186, 141)'}}>
+                <Layout style={{/*backgroundColor: 'rgb(251,251,251)'*/}}>
+                    <Header fixed top style={{/*backgroundColor: '#373D49', color: 'rgb(50, 186, 141)'*/}}>
                         <Box horizontal>
                             <Box.Child key={1}>
-                                <Button menu type="button" onClick={this.toggleMenu} style={{backgroundColor: '#373D49'}}>
+                                <Button menu type="button" onClick={this.toggleMenu} style={{/*backgroundColor: '#373D49'*/}}>
                                     <Icon name="menu" size={24}/>
                                 </Button>
                             </Box.Child>
                         </Box>
                     </Header>
                     <Menu left visible={this.state.menuVisible} onHide={this.onMenuHide}>
-                        <Menu.Header title="Suitup UI" icon={logo} style={{backgroundColor: '#373D49', color: '#35D7BB', border: 'none'}}  key={1}/>
+                        <Menu.Header title="Suitup UI" icon={logo} style={{/*backgroundColor: '#373D49', color: '#35D7BB', border: 'none'*/}}  key={1}/>
                         <Menu.Item href="/" text="Inicio" key={2}/>
                         <Menu.Item text="Containers"  key={3}>
                             <Menu.SubItem text="Layout" href="/containers/layout" key={1}/>

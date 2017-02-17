@@ -1,6 +1,7 @@
 import React from "react";
 import Tab from "./tab";
 import Box from "../box/box";
+import classnames from 'classnames';
 import { isObject } from "lodash";
 
 class Tabs extends React.Component {
@@ -17,7 +18,7 @@ class Tabs extends React.Component {
         }
 
         this.state = {
-            activeTab: null,
+            activeTab: children[activeTab - 1],
             activeTabIndicatorOffset: (
                 (activeTab - 1) * 100 / children.length + "%"
             ),
@@ -79,11 +80,16 @@ class Tabs extends React.Component {
                 <div style={style} className="tabs-buttons">
                     <Box horizontal gutter="0" columns={children.length}>
                         {children.map((child, index) => {
+                            let classes = classnames({
+                                tab: true,
+                                active: this.state.activeTab == child
+                            });
+
                             return (
                                 <Box.Child key={index} wide={1}>
                                     <div
                                         style={child.props ? child.props.style : null}
-                                        className="tab"
+                                        className={classes}
                                         onClick={() => {
                                             this.onTabClick(child, index);
                                         }}

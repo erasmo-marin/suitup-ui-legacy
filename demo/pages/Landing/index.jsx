@@ -147,7 +147,7 @@ class Landing extends React.Component {
                                 />
                                 <h3>Extensible</h3>
                                 <p>
-                                    Build your components with the basic pieces we provide.
+                                    Build your components with the basic pieces we provide. Most of the components accept children as prop.
                                 </p>
                             </Box.Child>
                             <Box.Child
@@ -223,7 +223,7 @@ class Landing extends React.Component {
                                         <pre className="lang-jsx">
                                             <PrismCode className="lang-jsx">
                                                 {
-                                                    "import \"../node_modules/suitup-ui/dist/suitup-toolkit.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"
+                                                    "import \"../node_modules/suitup-ui/dist/suitup.ui.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"
                                                 }
                                             </PrismCode>
                                         </pre>
@@ -269,7 +269,7 @@ class Landing extends React.Component {
                                     <pre className="lang-jsx">
                                         <PrismCode className="lang-jsx">
                                             {
-                                                "import \"../node_modules/suitup-ui/dist/suitup-toolkit.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"
+                                                "import \"../node_modules/suitup-ui/dist/suitup.ui.min.css\";\nimport { Layout, Container, Box, Button } from 'suitup-ui';"
                                             }
                                         </PrismCode>
                                     </pre>

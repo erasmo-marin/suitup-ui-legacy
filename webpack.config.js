@@ -1,5 +1,6 @@
-var path = require("path");
 var webpack = require("webpack");
+var CompressionPlugin = require("compression-webpack-plugin");
+var path = require("path");
 var chalk = require("chalk");
 
 module.exports = {
@@ -8,7 +9,7 @@ module.exports = {
     entry: ["./src/components/index.jsx"],
     output: {
         path: "./dist",
-        filename: "suitup.toolkit.min.js"
+        filename: "suitup.ui.min.js"
     },
     module: {
         rules: [
@@ -18,14 +19,27 @@ module.exports = {
                 exclude: /(node_modules|bower_components)/,
                 options: {
                     babelrc: false,
-                    presets: [["es2015", { modules: false }], "react", "stage-1"],
-                    plugins: ["jsx-control-statements", "transform-function-bind", "lodash"]
+                    presets: [
+                        ["es2015", { modules: false }],
+                        "stage-3",
+                        "react"
+                    ],
+                    plugins: [
+                        "jsx-control-statements",
+                        "transform-function-bind",
+                        "lodash"
+                    ]
                 }
             },
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: ["style-loader", "css-loader", "less-loader"]
+                use: [
+                    "style-loader",
+                    "css-loader",
+                    "postcss-loader",
+                    "less-loader"
+                ]
             }
         ]
     },
@@ -40,7 +54,7 @@ module.exports = {
         new webpack.DefinePlugin({
             "process.env": {
                 NODE_ENV: JSON.stringify("production"),
-                LIB_VERSION: JSON.stringify(require('./package.json').version)
+                LIB_VERSION: JSON.stringify(require("./package.json").version)
             }
         }),
         new webpack.optimize.UglifyJsPlugin({
@@ -64,6 +78,13 @@ module.exports = {
                 join_vars: true
             }
         }),
-        new webpack.optimize.AggressiveMergingPlugin()
+        new webpack.optimize.AggressiveMergingPlugin(),
+        new CompressionPlugin({
+            asset: "[path].gz[query]",
+            algorithm: "gzip",
+            test: /\.js$|\.css$|\.html$/,
+            threshold: 10240,
+            minRatio: 0.8
+        })
     ]
 };
