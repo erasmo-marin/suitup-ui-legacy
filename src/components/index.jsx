@@ -1,3 +1,4 @@
+import Settings from "./settings";
 import Header from "./header";
 import Footer from "./footer";
 import Layout from "./layout";
@@ -12,6 +13,8 @@ import Slider from "./slider";
 import Container from "./container";
 import { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
 import Tabs from "./tabs";
+
+window.settings = Settings;
 
 export {
     Container,
@@ -32,5 +35,6 @@ export {
     Desktop,
     Widescreen,
     Screen,
-    Tabs
+    Tabs,
+    Settings
 };

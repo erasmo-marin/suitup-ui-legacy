@@ -16,7 +16,6 @@ class ModalMountController extends EventEmitter {
     }
 
     requestModalMount(component) {
-        console.log(component);
         this.modals.push(component);
         this.emitChange(this.modals);
     }

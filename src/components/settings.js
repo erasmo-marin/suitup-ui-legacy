@@ -1,3 +1,5 @@
+import { EventEmitter } from "events";
+
 const defaultSettings = {
     Image: {
         aspectRatios: {
@@ -56,9 +58,23 @@ const defaultSettings = {
 
 let settings = defaultSettings;
 
-class S {
+class S extends EventEmitter {
+
+    emitChange(settings) {
+        this.emit("settingsChange", settings);
+    }
+
+    onSettingsChange(callback) {
+        this.on("settingsChange", callback);
+    }
+
+    offSettingsChange(callback) {
+        this.removeListener("settingsChange", callback);
+    }
+
     setSettings(userSettings) {
         settings = { ...defaultSettings, ...userSettings };
+        this.emitChange(settings);
     }
 
     getSettings() {
@@ -71,6 +87,7 @@ class S {
 
     resetToDefault() {
         settings = defaultSettings;
+        this.emitChange(settings);
     }
 }
 

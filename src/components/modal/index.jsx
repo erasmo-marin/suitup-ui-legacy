@@ -15,7 +15,6 @@ class Modal extends React.Component {
     }
 
     componentDidMount() {
-        console.log("modal mount");
         this.modal = this.renderModal(this.props);
         requestModalMount(this.modal);
     }
@@ -28,7 +27,6 @@ class Modal extends React.Component {
 
         if(isEqual(this.props, nextProps)) return;
 
-        console.log("modal receive props");
         this.modal = this.renderModal(nextProps);
         requestModalUpdate(this.modal);   
     }
@@ -117,7 +115,6 @@ class ModalImplementation extends React.Component {
     }
 
     render() {
-        console.log("rendering modal");
         let { visible, children, ...rest } = this.props;
 
         return (
