@@ -1,3 +1,8 @@
+[![npm version](https://badge.fury.io/js/suitup-ui.svg)](https://badge.fury.io/js/suitup-ui)
+[![npm version](https://david-dm.org/erasmo-marin/suitup-ui.svg)](https://david-dm.org/erasmo-marin/suitup-ui.svg)
+[![devDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/dev-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=devDependencies)
+[![optionalDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/optional-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=optionalDependencies)
+
 #Suitup UI Toolkit
 
 Suitup UI Toolkit is a set of React components to build web apps faster. Themeable, minimalist and easy to use. It will fit to your needs like a custom made suit, so SuitUp! and get started.
