@@ -1,6 +1,6 @@
 {
   "name": "suitup-ui",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "description": "Suitup UI Toolkit is a set of React components to build web apps faster",
   "main": "lib/index.js",
   "scripts": {
