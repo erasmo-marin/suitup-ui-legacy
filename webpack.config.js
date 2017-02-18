@@ -20,7 +20,7 @@ module.exports = {
                 options: {
                     babelrc: false,
                     presets: [
-                        ["es2015", { modules: false }],
+                        ["es2015", { loose: true, modules: false }],
                         "stage-3",
                         "react"
                     ],
