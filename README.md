@@ -2,6 +2,8 @@
 [![npm version](https://david-dm.org/erasmo-marin/suitup-ui.svg)](https://david-dm.org/erasmo-marin/suitup-ui.svg)
 [![devDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/dev-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=devDependencies)
 [![optionalDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/optional-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=optionalDependencies)
+[![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/erasmo-marin/suitup-ui)
+
 
 #Suitup UI Toolkit
 
