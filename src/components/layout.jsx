@@ -1,6 +1,6 @@
 import React from "react";
 import { isArray, without, findIndex } from "lodash";
-import { EventEmitter } from "events";
+import { EventEmitter } from "fbemitter";
 import classnames from "classnames";
 import Screen from "./device/screen";
 
@@ -36,11 +36,7 @@ class ModalMountController extends EventEmitter {
     }
 
     onModalsChange(callback) {
-        this.on(this.changeEvent, callback);
-    }
-
-    offModalsChange(callback) {
-        this.removeListener(this.changeEvent, callback);
+        this.addListener(this.changeEvent, callback);
     }
 } 
 
@@ -62,8 +58,8 @@ class Layout extends React.Component {
     }
 
     componentDidMount() {
-        modalMountController.onModalsChange(this.onModalsChange);
-        Screen.onScreenChange(this.onScreenChange);
+        this.modalsMountListener = modalMountController.onModalsChange(this.onModalsChange);
+        this.screenChangelistener = Screen.onScreenChange(this.onScreenChange);
     }
 
     onScreenChange(screen) {
@@ -73,8 +69,8 @@ class Layout extends React.Component {
     }
 
     componentWillUnmount() {
-        modalMountController.offModalsChange(this.onModalsChange);
-        Screen.offScreenChange(this.onScreenChange);
+        this.modalsMountListener.remove();
+        this.screenChangelistener.remove();
     }
 
     onModalsChange() {

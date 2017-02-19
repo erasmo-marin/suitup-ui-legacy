@@ -71,11 +71,11 @@ class Box extends React.Component {
     }
 
     componentDidMount() {
-        Screen.onScreenChange(this.onScreenChange);
+        this.screenListener = Screen.onScreenChange(this.onScreenChange);
     }
 
     componentWillUnmount() {
-        Screen.offScreenChange(this.onScreenChange);
+        this.screenListener.remove();
     }
 
     render() {
@@ -98,13 +98,13 @@ class Box extends React.Component {
         }
 
         let classes = classnames({
-            box: true,
-            horizontal: vertical == null ? true : false,
-            vertical: vertical,
+            "box": true,
+            "horizontal": vertical == null ? true : false,
+            "vertical": vertical,
             "fill-space": autoFill,
-            centered: justify == "center",
-            left: justify == "left",
-            right: justify == "right",
+            "centered": justify == "center",
+            "left": justify == "left",
+            "right": justify == "right",
             "align-start": align == "start",
             "align-end": align == "end",
             "align-center": align == "center",

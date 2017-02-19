@@ -44,7 +44,7 @@ class Image extends React.Component {
             () => {
                 this.recalculeSize();
             },
-            200
+            1
         );
         window.addEventListener("resize", this.recalculeSize);
     }

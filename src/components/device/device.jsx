@@ -13,11 +13,11 @@ class Device extends React.Component {
     }
 
     componentDidMount() {
-        Screen.onScreenChange(this.onScreenChange);
+        this.screenListener = Screen.onScreenChange(this.onScreenChange);
     }
 
     componentWillUnmount() {
-        Screen.offScreenChange(this.onScreenChange);
+        this.screenListener.remove();
     }
 
     onScreenChange(screen) {

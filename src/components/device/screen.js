@@ -1,5 +1,5 @@
 import { map } from "lodash";
-import { EventEmitter } from "events";
+import { EventEmitter } from "fbemitter";
 import Settings from "../settings";
 
 let breakpoints = Settings.getSettings().Device.Breakpoints;
@@ -8,7 +8,6 @@ class ScreenClass extends EventEmitter {
     constructor(args) {
         super(args);
         this.screen = this.getScreen();
-        this.setMaxListeners(100);
 
         window.addEventListener("resize", () => {
             let newScreen = this.getScreen();
@@ -39,11 +38,7 @@ class ScreenClass extends EventEmitter {
     }
 
     onScreenChange(callback) {
-        this.on("screenChange", callback);
-    }
-
-    offScreenChange(callback) {
-        this.removeListener("screenChange", callback);
+        return this.addListener("screenChange", callback);
     }
 }
 

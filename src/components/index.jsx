@@ -14,8 +14,6 @@ import Container from "./container";
 import { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
 import Tabs from "./tabs";
 
-window.settings = Settings;
-
 export {
     Container,
     Header,

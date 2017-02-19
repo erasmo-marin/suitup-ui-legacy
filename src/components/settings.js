@@ -1,4 +1,4 @@
-import { EventEmitter } from "events";
+import { EventEmitter } from "fbemitter";
 
 const defaultSettings = {
     Image: {
@@ -65,11 +65,7 @@ class S extends EventEmitter {
     }
 
     onSettingsChange(callback) {
-        this.on("settingsChange", callback);
-    }
-
-    offSettingsChange(callback) {
-        this.removeListener("settingsChange", callback);
+        return this.addListener("settingsChange", callback);
     }
 
     setSettings(userSettings) {
