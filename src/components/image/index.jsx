@@ -115,9 +115,9 @@ class Image extends React.Component {
 
         if (isPercent) {
             if (axis == "x") {
-                size = size * width / 100;
+                size = width;
             } else if (axis == "y") {
-                size = size * height / 100;
+                size = height;
             }
         }
         return size;
@@ -158,6 +158,8 @@ class Image extends React.Component {
         };
 
         if (style) {
+            delete style.width;
+            delete style.height;
             rstyle = { ...rstyle, ...style };
         }
 

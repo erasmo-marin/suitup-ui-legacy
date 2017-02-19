@@ -90,7 +90,7 @@ class Landing extends React.Component {
                                     <h3>
                                         It suits to your needs like a custom made suit
                                     </h3>
-                                    <Button flat>Get Started</Button>
+                                    <Button inverted accent>Get Started</Button>
                                 </Box.Child>
                             </Box>
                         </Container>

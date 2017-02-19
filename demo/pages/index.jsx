@@ -91,10 +91,8 @@ class Index extends React.Component {
                     />
                     <Modal.Content>
                         <p>
-                            Hola, soy un modal, y me usan mucho para mostrar contenido
-
-
-                            bloqueando la interacción con la vista principal de la web app.
+                            {`Hi, I'm a modal, and you should use me to show content and
+                           the same time block the interaction with your app main view`}
                         </p>
                     </Modal.Content>
                     <Modal.Footer>
@@ -125,9 +123,9 @@ class Index extends React.Component {
                     </p>
                 </Container>
                 <Container>
-                    <h3>Grilla</h3>
+                    <h3>Grid (Box component)</h3>
                     <p>
-                        La grilla de Suitup UI es dinámica, puedes cambiar el número de columnas y el gutter a gusto. El gutter por default es de 1rem.
+                        {`The grid is dynamic, you can change the columns number and the gutter. Default gutter is 1rem.`}
                     </p>
                 </Container>
                 <Container>
@@ -222,13 +220,9 @@ class Index extends React.Component {
                 <Container>
                     <h3>Slider</h3>
                     <p>
-                        El componente de Slider te permite mostrar mucha información de forma segmentada
-
-
-                        y visualmente agradable al usuario. Puedes agregar cualquier cosa que se te ocurra
-
-
-                        dentro. ¿Una foto? ¿Un action call?
+                        { `The Slider component allows you to show information in a segmented way
+                        like a presentation. You can add any children inside a Slide.
+                        A photo? An action call? you choose.`}
                     </p>
                     <p>
                         El slider de Suitup UI implementa lazyload, que renderiza tus slides en el momento de
@@ -697,7 +691,80 @@ class Index extends React.Component {
                         </p>
                     </Widescreen>
                 </Container>
-
+                <Container>
+                    <h3>Buttons</h3>
+                    <Box columns={5} centered justify="center" align="center">
+                        <Box.Child wide="5" key={1}>
+                            <b>Raised</b>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={2}>
+                            <Button raised primary>primary</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={3}>
+                            <Button raised primaryDark>primary dark</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={4}>
+                            <Button raised primaryLight>primary light</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={5}>
+                            <Button raised accent>accent</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={6}>
+                            <Button raised disabled>disabled</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={7}>
+                            <b>Inverted</b>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={8}>
+                            <Button inverted primary>primary</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={9}>
+                            <Button inverted primaryDark>primary dark</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={10}>
+                            <Button inverted primaryLight>primary light</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={11}>
+                            <Button inverted accent>accent</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={12}>
+                            <Button inverted disabled>disabled</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={13}>
+                            <b>Flat</b>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={14}>
+                            <Button flat primary>primary</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={15}>
+                            <Button flat primaryDark>primary dark</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={16}>
+                            <Button flat primaryLight>primary light</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={17}>
+                            <Button flat accent>accent</Button>
+                        </Box.Child>
+                        <Box.Child wide="1" wides={{mobile:2}} key={18}>
+                            <Button flat disabled>disabled</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={19}>
+                            <b>Full Width</b>
+                        </Box.Child>
+                        <Box.Child wide="5" key={20}>
+                            <Button fullWidth primary>full width primary</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={21}>
+                            <Button fullWidth accent>full width accent</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={22}>
+                            <Button fullWidth primary inverted>full width inverted</Button>
+                        </Box.Child>
+                        <Box.Child wide="5" key={23}>
+                            <Button fullWidth disabled>full width disabled</Button>
+                        </Box.Child>
+                    </Box>
+                </Container>
             </div>
         );
     }

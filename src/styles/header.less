@@ -21,9 +21,17 @@ header {
     }
 
     button.menu-button {
-        height: @height;
         background: @backgroundColor;
-        padding: 0 2rem;
+        box-shadow: none;
+        margin: 0;
+        padding: 0;
+
+        .light-frame {
+            padding: 0 2rem;
+            height: @height;
+            line-height: @height;
+        }
+
         i {
             line-height: @height;
             text-align: center;
@@ -37,11 +45,14 @@ header {
     &.is-mobile {
         height: @heightMobile;
         button.menu-button {
-            height: @heightMobile;
-            padding: 0 2rem;
-            i {
+            .light-frame {
+                padding: 0 1.5rem;
+                height: @heightMobile;
                 line-height: @heightMobile;
-                text-align: center;
+                i {
+                    line-height: @heightMobile;
+                    text-align: center;
+                }                
             }
         }
     }

@@ -43,7 +43,7 @@
     "css-loader": "^0.26.1",
     "debug": "^2.6.1",
     "enzyme": "^2.7.1",
-    "express": "~4.13.4",
+    "express": "~4.14.1",
     "express-session": "^1.14.0",
     "hbs": "~4.0.0",
     "jsome": "^2.3.25",

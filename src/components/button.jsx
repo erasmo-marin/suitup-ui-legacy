@@ -38,7 +38,16 @@ class Button extends React.Component {
 
     render() {
         let {
+            primary,
+            primaryDark,
+            primaryLight,
+            accent,
+            flat,
+            raised,
+            inverted,
             text,
+            disabled,
+            fullWidth,
             children,
             transparent,
             circular,
@@ -49,19 +58,27 @@ class Button extends React.Component {
             onClick,
             onMouseUp,
             onMouseDown,
-            flat,
-            raised,
             floating,
             icon,
             ...rest
         } = this.props;
 
         let classes = {
-            transparent: this.props.transparent,
-            circular: this.props.circular,
-            rounded: this.props.rounded,
-            "menu-button": this.props.menu,
-            pressed: this.state.pressed
+            "transparent": transparent,
+            "circular": circular,
+            "rounded": rounded,
+            "menu-button": menu,
+            "pressed": this.state.pressed,
+            "colored": (primary || primaryDark || primaryLight || accent),
+            "primary": primary,
+            "primary-dark": primaryDark,
+            "primary-light": primaryLight,
+            "accent": accent,
+            "flat": flat,
+            "raised": raised,
+            "inverted": inverted,
+            "disabled": disabled,
+            "full-width": fullWidth
         };
 
         classes = classnames(classes);
@@ -75,10 +92,12 @@ class Button extends React.Component {
                 onMouseDown={this.onMouseDown}
                 onMouseUp={this.onMouseUp}
             >
-                {children}
-                <If condition={text}>
-                    <span>{text}</span>
-                </If>
+                <div className="light-frame">
+                    {children}
+                    <If condition={text}>
+                        <span>{text}</span>
+                    </If>
+                </div>
             </button>
         );
     }
