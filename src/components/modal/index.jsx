@@ -1,6 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import { NotifyResize } from "react-notify-resize";
+import { NotifyResize } from '@zippytech/react-notify-resize';
 import ModalAction from "./modalAction";
 import ModalContent from "./modalContent";
 import ModalFooter from "./modalFooter";
