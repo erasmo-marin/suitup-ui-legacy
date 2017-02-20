@@ -1,8 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
-import Screen from "./device/screen";
+import suitupable from "./component";
 
+@suitupable
 class MenuItem extends React.Component {
     constructor(props) {
         super(props);
@@ -19,7 +20,7 @@ class MenuItem extends React.Component {
     }
 
     render() {
-        let { href, text, ...rest } = this.props;
+        let { href, text, screen, ...rest } = this.props;
 
         let subItemsClasses = classnames({
             "menu-sub-items": true,
@@ -48,9 +49,10 @@ class MenuItem extends React.Component {
     }
 }
 
+@suitupable
 class MenuSubItem extends React.PureComponent {
     render() {
-        let { text, href, ...rest } = this.props;
+        let { text, href, screen, ...rest } = this.props;
         return (
             <div {...rest} className="menu-sub-item">
                 <Choose>
@@ -66,29 +68,14 @@ class MenuSubItem extends React.PureComponent {
     }
 }
 
+@suitupable
 class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.hide = ::this.hide;
-        this.onScreenChange = ::this.onScreenChange;
         this.state = {
-            visible: this.props.visible,
-            screen: Screen.getScreen()
+            visible: this.props.visible
         };
-    }
-
-    componentDidMount() {
-        Screen.onScreenChange(this.onScreenChange);
-    }
-
-    componentWillUnmount() {
-        Screen.offScreenChange(this.onScreenChange);
-    }
-
-    onScreenChange(screen) {
-        this.setState({
-            screen: screen
-        });
     }
 
     toggleItems() {
@@ -134,6 +121,7 @@ class Menu extends React.Component {
             onShow,
             onHide,
             style,
+            screen,
             ...rest
         } = this.props;
 
@@ -143,10 +131,10 @@ class Menu extends React.Component {
             left: left,
             right: right,
             visible: visible,
-            "is-mobile": this.state.screen == 'mobile',
-            "is-tablet": this.state.screen == 'tablet',
-            "is-desktop": this.state.screen == 'desktop',
-            "is-widescreen": this.state.screen == 'widescreen'
+            "is-mobile": screen == 'mobile',
+            "is-tablet": screen == 'tablet',
+            "is-desktop": screen == 'desktop',
+            "is-widescreen": screen == 'widescreen'
         });
 
         let veilClasses = classnames({
@@ -165,6 +153,7 @@ class Menu extends React.Component {
     }
 }
 
+@suitupable
 class MenuHeader extends React.Component {
     constructor(props) {
         super(props);
@@ -175,7 +164,7 @@ class MenuHeader extends React.Component {
             "menu-header": true
         });
 
-        let { icon, title, ...rest } = this.props;
+        let { icon, title, screen, ...rest } = this.props;
 
         return (
             <div {...rest} className={classes}>

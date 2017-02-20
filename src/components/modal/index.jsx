@@ -6,7 +6,9 @@ import ModalContent from "./modalContent";
 import ModalFooter from "./modalFooter";
 import { isEqual } from "lodash";
 import { requestModalMount, requestModalUnmount, requestModalUpdate } from "../layout";
+import suitupable from "../component";
 
+@suitupable
 class Modal extends React.Component {
     constructor(props) {
         super(props);
@@ -40,6 +42,7 @@ class Modal extends React.Component {
     }
 }
 
+@suitupable
 class ModalImplementation extends React.Component {
     constructor(props) {
         super(props);
@@ -115,7 +118,7 @@ class ModalImplementation extends React.Component {
     }
 
     render() {
-        let { visible, children, ...rest } = this.props;
+        let { visible, children, screen, ...rest } = this.props;
 
         return (
             <div

@@ -29,6 +29,7 @@ module.exports = {
                         "react"
                     ],
                     plugins: [
+                        "transform-decorators-legacy",
                         "react-hot-loader/babel",
                         "jsx-control-statements",
                         "transform-function-bind",

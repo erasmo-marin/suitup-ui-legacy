@@ -1,7 +1,9 @@
 import React from "react";
 import classnames from "classnames";
 import Button from "../button";
+import suitupable from "../component";
 
+@suitupable
 class CardAction extends React.Component {
     constructor(props) {
         super(props);

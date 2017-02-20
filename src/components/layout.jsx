@@ -1,8 +1,8 @@
 import React from "react";
-import { isArray, without, findIndex } from "lodash";
+import { isArray, isObject, without, findIndex } from "lodash";
 import { EventEmitter } from "fbemitter";
 import classnames from "classnames";
-import Screen from "./device/screen";
+import suitupable from "./component";
 
 class ModalMountController extends EventEmitter {
 
@@ -36,7 +36,7 @@ class ModalMountController extends EventEmitter {
     }
 
     onModalsChange(callback) {
-        this.addListener(this.changeEvent, callback);
+        return this.addListener(this.changeEvent, callback);
     }
 } 
 
@@ -45,32 +45,24 @@ const requestModalMount = modalMountController.requestModalMount;
 const requestModalUnmount = modalMountController.requestModalUnmount;
 const requestModalUpdate = modalMountController.requestModalUpdate;
 
+@suitupable
 class Layout extends React.Component {
     constructor(props) {
         super(props);
         this.onModalsChange = ::this.onModalsChange;
         this.modalsController = modalMountController;
-        this.onScreenChange = ::this.onScreenChange;
         this.state = {
-            modals: [],
-            screen: Screen.getScreen()
+            modals: []
         }
     }
 
     componentDidMount() {
+        this.findHeader(this);
         this.modalsMountListener = modalMountController.onModalsChange(this.onModalsChange);
-        this.screenChangelistener = Screen.onScreenChange(this.onScreenChange);
-    }
-
-    onScreenChange(screen) {
-        this.setState({
-            screen: screen
-        });
     }
 
     componentWillUnmount() {
         this.modalsMountListener.remove();
-        this.screenChangelistener.remove();
     }
 
     onModalsChange() {
@@ -79,31 +71,36 @@ class Layout extends React.Component {
         });
     }
 
-    findHeader(children) {
-        if (isArray(children)) {
-            for (let i in children) {
-                let child = children[i];
-                if (child.type.name == "Header") {
-                    return child;
-                }
+    findHeader(x) {
+        if (!x || !x.props) return;
+
+        if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
+            this.setState({
+                header: x
+            });
+            return;
+        }  
+
+        React.Children.forEach(x.props.children, (x) => {
+            if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
+                this.setState({
+                    header: x
+                });
+                return;
             }
-        } else if (isObject(children)) {
-            if (children.type.name == "Header") return children;
-        }
-        return null;
+            this.findHeader(x);
+        });
     }
 
     render() {
-        let { children, ...rest } = this.props;
-
-        let header = this.findHeader(children);
+        let { children, screen, ...rest } = this.props;
         let classes = classnames({
             layout: true,
-            "fixed-header": header && header.props.fixed ? true : false,
-            "is-mobile": this.state.screen == 'mobile',
-            "is-tablet": this.state.screen == 'tablet',
-            "is-desktop": this.state.screen == 'desktop',
-            "is-widescreen": this.state.screen == 'widescreen'
+            "fixed-header": this.state.header && this.state.header.props.fixed ? true : false,
+            "is-mobile": screen == 'mobile',
+            "is-tablet": screen == 'tablet',
+            "is-desktop": screen == 'desktop',
+            "is-widescreen": screen == 'widescreen'
         });
 
         return (

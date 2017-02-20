@@ -1,14 +1,16 @@
 import React from "react";
 import classnames from "classnames";
 import Button from "../button";
+import suitupable from "../component";
 
+@suitupable
 class ModalAction extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let { text, onClick, start, end, ...rest } = this.props;
+        let { text, onClick, start, end, screen, ...rest } = this.props;
 
         let classes = {
             "modal-action": true,

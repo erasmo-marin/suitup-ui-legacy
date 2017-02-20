@@ -78,6 +78,21 @@ class Index extends React.Component {
             widescreen: 6
         };
 
+        let responsiveStyles = {
+            mobile: {
+                color: 'red'
+            },
+            tablet: {
+                color: 'blue'
+            },
+            desktop: {
+                color: 'green'
+            },
+            widescreen: {
+                color: 'purple'
+            }
+        }
+
         return (
             <div>
                 <Modal
@@ -690,6 +705,11 @@ class Index extends React.Component {
                             {"Hi, I'm just visible on Widescreen!"}
                         </p>
                     </Widescreen>
+                    <Container style={responsiveStyles}>
+                        { `This text is red in mobile, blue in tablet, green in
+                           desktop and purple in widescreen. That's because this
+                           container is using responsive styles` }
+                    </Container>
                 </Container>
                 <Container>
                     <h3>Buttons</h3>

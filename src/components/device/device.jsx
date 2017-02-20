@@ -1,36 +1,21 @@
 import React from "react";
 import classnames from "classnames";
 import { isArray } from "lodash";
-import Screen from "./screen";
+import suitupable from "../component";
 
+@suitupable
 class Device extends React.Component {
     constructor(props) {
         super(props);
-        this.onScreenChange = ::this.onScreenChange;
-        this.state = {
-            screen: Screen.getScreen()
-        };
-    }
-
-    componentDidMount() {
-        this.screenListener = Screen.onScreenChange(this.onScreenChange);
-    }
-
-    componentWillUnmount() {
-        this.screenListener.remove();
-    }
-
-    onScreenChange(screen) {
-        this.setState({ screen });
     }
 
     render() {
-        let { device, devices, children } = this.props;
+        let { device, devices, children, screen } = this.props;
         if (!isArray(devices)) {
             devices = [device];
         }
 
-        if (devices.indexOf(this.state.screen) < 0) {
+        if (devices.indexOf(screen) < 0) {
             return null;
         }
 

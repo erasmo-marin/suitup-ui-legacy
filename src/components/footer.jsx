@@ -1,12 +1,14 @@
 import React from "react";
+import suitupable from "./component";
 
+@suitupable
 class Footer extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let { children, ...rest } = this.props;
+        let { children, screen, ...rest } = this.props;
 
         return (
             <footer {...rest}>

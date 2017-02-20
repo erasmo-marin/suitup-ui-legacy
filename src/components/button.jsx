@@ -1,6 +1,8 @@
 import React from "react";
 import classnames from "classnames";
+import suitupable from "./component";
 
+@suitupable
 class Button extends React.Component {
     constructor(props) {
         super(props);
@@ -13,7 +15,7 @@ class Button extends React.Component {
     }
 
     onClick(e) {
-        if (this.props.onClick) {
+        if (this.props.onClick && !this.props.disabled) {
             this.props.onClick(e);
         }
     }
@@ -60,6 +62,7 @@ class Button extends React.Component {
             onMouseDown,
             floating,
             icon,
+            screen,
             ...rest
         } = this.props;
 

@@ -1,10 +1,11 @@
 import React from "react";
 import Tab from "./tab";
 import Box from "../box/box";
-import classnames from 'classnames';
+import classnames from "classnames";
 import { isObject } from "lodash";
+import suitupable from "../component";
 
-class Tabs extends React.Component {
+@suitupable class Tabs extends React.Component {
     constructor(props) {
         super(props);
         this.onTabClick = ::this.onTabClick;
@@ -19,9 +20,8 @@ class Tabs extends React.Component {
 
         this.state = {
             activeTab: children[activeTab - 1],
-            activeTabIndicatorOffset: (
-                (activeTab - 1) * 100 / children.length + "%"
-            ),
+            activeTabIndicatorOffset: (activeTab - 1) * 100 / children.length +
+                "%",
             activeTabIndicatorWidth: 100 / children.length + "%"
         };
     }
@@ -54,7 +54,7 @@ class Tabs extends React.Component {
      * to the root container.
      */
     render() {
-        let { children, style, indicatorColor, ...rest } = this.props;
+        let { children, style, indicatorColor, screen, ...rest } = this.props;
         let {
             activeTab,
             activeTabIndicatorOffset,
@@ -88,7 +88,11 @@ class Tabs extends React.Component {
                             return (
                                 <Box.Child key={index} wide={1}>
                                     <div
-                                        style={child.props ? child.props.style : null}
+                                        style={
+                                            child.props
+                                                ? child.props.style
+                                                : null
+                                        }
                                         className={classes}
                                         onClick={() => {
                                             this.onTabClick(child, index);

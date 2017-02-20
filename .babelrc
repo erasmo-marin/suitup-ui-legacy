@@ -1,4 +1,4 @@
 {
     presets: ["es2015", "stage-3", "react"],
-    plugins: ["react-hot-loader/babel", "jsx-control-statements", "transform-function-bind", "lodash"]
+    plugins: ["transform-decorators-legacy", "react-hot-loader/babel", "jsx-control-statements", "transform-function-bind", "lodash"]
 }

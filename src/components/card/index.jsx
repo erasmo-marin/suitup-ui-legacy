@@ -3,26 +3,30 @@ import classnames from "classnames";
 import CardContent from "./cardContent";
 import CardFooter from "./cardFooter";
 import CardAction from "./cardAction";
+import suitupable from "../component";
 
+@suitupable
 class Card extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
+        let {width, height, screen, ...rest} = this.props;
+
         let classes = classnames({
             card: true
         });
 
         let style = {
-            maxWidth: this.props.width ? this.props.width : undefined,
-            maxHeight: this.props.height ? this.props.height : undefined,
-            width: this.props.width ? this.props.width : undefined,
-            height: this.props.height ? this.props.height : undefined
+            maxWidth: width ? width : undefined,
+            maxHeight: height ? height : undefined,
+            width: width ? width : undefined,
+            height: height ? height : undefined
         };
 
         return (
-            <div className={classes} style={style}>
+            <div {...rest} className={classes} style={style}>
                 {this.props.children}
             </div>
         );

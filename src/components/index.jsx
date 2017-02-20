@@ -13,6 +13,7 @@ import Slider from "./slider";
 import Container from "./container";
 import { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
 import Tabs from "./tabs";
+import suitupable from "./component";
 
 export {
     Container,
@@ -34,5 +35,6 @@ export {
     Widescreen,
     Screen,
     Tabs,
-    Settings
+    Settings,
+    suitupable
 };

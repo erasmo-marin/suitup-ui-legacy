@@ -3,15 +3,12 @@ import classnames from "classnames";
 import cloneDeep from "lodash/cloneDeep";
 import isArray from "lodash/isArray";
 import Child from "./boxChild";
-import Screen from "../device/screen";
+import suitupable from "../component";
 
+@suitupable
 class Box extends React.Component {
     constructor(props) {
         super(props);
-        this.onScreenChange = ::this.onScreenChange;
-        this.state = {
-            screen: Screen.getScreen()
-        };
     }
 
     setupChildProps(props) {
@@ -28,8 +25,8 @@ class Box extends React.Component {
                         let wides = element.props.wides;
                         let wide;
 
-                        if (wides && wides[this.state.screen]) {
-                            wide = wides[this.state.screen];
+                        if (wides && wides[this.props.screen]) {
+                            wide = wides[this.props.screen];
                         } else {
                             wide = element.props.wide ? element.props.wide : 1;
                         }
@@ -64,20 +61,6 @@ class Box extends React.Component {
         };
     }
 
-    onScreenChange(screen) {
-        this.setState({
-            screen: screen
-        });
-    }
-
-    componentDidMount() {
-        this.screenListener = Screen.onScreenChange(this.onScreenChange);
-    }
-
-    componentWillUnmount() {
-        this.screenListener.remove();
-    }
-
     render() {
         let {
             verticalExpand,
@@ -90,6 +73,7 @@ class Box extends React.Component {
             children,
             columns,
             gutter,
+            screen,
             ...rest
         } = this.props;
 

@@ -6,7 +6,9 @@ import Icon from "../icon";
 import Box from "../box";
 import isArray from "lodash/isArray";
 import Draggable, { DraggableCore } from "react-draggable";
+import suitupable from "../component";
 
+@suitupable
 class Slider extends React.Component {
     constructor(props) {
         super(props);

@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import ImageVail from "./imageVail";
+import suitupable from "../component";
 
 const sizes = {
     square: {
@@ -29,6 +30,7 @@ const sizes = {
     }
 };
 
+@suitupable
 class Image extends React.Component {
     constructor(props) {
         super(props);
@@ -132,6 +134,7 @@ class Image extends React.Component {
             type,
             centered,
             children,
+            screen,
             ...rest
         } = this.props;
 

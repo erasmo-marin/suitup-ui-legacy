@@ -25,6 +25,7 @@ module.exports = {
                         "react"
                     ],
                     plugins: [
+                        "transform-decorators-legacy",
                         "jsx-control-statements",
                         "transform-function-bind",
                         "lodash"

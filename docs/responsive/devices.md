@@ -86,9 +86,7 @@ class MyComponent extends React.Component {
 
 ### Responsive inline styles
 
-<span style="color:red">*this section describes a feature that is still in development*</span>
-
-Suitup accepts responsive inline styles. You can write styles this way:
+Suitup components accepts responsive inline styles. You can write styles this way:
 
 ```jsx
 
@@ -105,5 +103,18 @@ let myStyle = {
 
 ```
 
+### Getting the screen type from a Suitup Component
+
+
+All Suitup components have the screen field in their states, it's because we use a props proxy to implement it. Adding it to your components is as easy as importing the `suitupable` decorator and using it, that way you will be able to listen screen breakpoints changes automagically.
+
+```jsx
+import { suitupable } from "suitup";
+
+@suitupable
+class myComponent extends React.Component {
+	...
+}
+```
 
 

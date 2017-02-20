@@ -1,13 +1,15 @@
 import React from "react";
 import classnames from "classnames";
+import suitupable from "../component";
 
+@suitupable
 class ModalFooter extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
-        let { children, ...rest } = this.props;
+        let { children, screen, ...rest } = this.props;
 
         let classes = {
             "modal-footer": true

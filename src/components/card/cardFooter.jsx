@@ -1,6 +1,8 @@
 import React from "react";
 import classnames from 'classnames';
+import suitupable from "../component";
 
+@suitupable
 class CardFooter extends React.Component {
   constructor(props) {
     super(props);
