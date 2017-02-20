@@ -1,3 +1,22 @@
+## 0.2.2
+
+A new props proxy was added to all Suitup components using decorators. It adds the capability to listen to screen size changes through the screen object and load responsive inline styles.
+
+Example:
+```jsx
+    let responsiveStyle = {
+        mobile: {
+             fontSize: '26px'
+        },
+        tablet: {
+            fontSize: '24px'
+        },
+        fontSize: '18px'
+    }
+```
+
+In this example, default fontSize will be overwritten when the screen is in the mobile and tablet screen size with the respective values.
+
 ## 0.2.1
 
 New props for `Button` component:
