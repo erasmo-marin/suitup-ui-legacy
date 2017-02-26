@@ -9,6 +9,12 @@
 
 Suitup UI Toolkit is a set of React components to build web apps faster. Themeable, minimalist and easy to use. It will fit to your needs like a custom made suit, so SuitUp! and get started.
 
+##Status of the project
+
+Before you start, take in consideration that Suitup is in development. The first stable version will be 1.0.0, and the release policy is "when it's ready", so don't expect the api to be stable, even in the patch relases before 1.0.0. This is a preview that includes an usable set of components, but not ready for production.
+
+Did you find a bug? Do you want a new feature? Suggestions? Feel free to open issues and make a pull request 😀
+
 ##Getting started
 
 Add it to your project:
@@ -16,12 +22,15 @@ Add it to your project:
 ```bash
 npm install suitup-ui --save
 ```
-And then just import the components you need. If you need to make a theme, you need to build your own Suit.
+And then just import the components you need and the css. If you need to make a theme, you need to build your own Suit.
 
+Example using style loader:
 ```javascript
 import "../node_modules/suitup-ui/dist/suitup.ui.min.css";
 import { Layout, Container, Box, Button } from 'suitup-ui';
 ``` 
+Also, you can import the less file directly to your project instead, it's in src/styles/index.less
+
 ##Components
 
 Suitup includes the following components:
