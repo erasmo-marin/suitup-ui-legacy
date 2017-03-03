@@ -29,6 +29,7 @@
     transition-delay: .1s;
     transition-duration: .2s;
     transition-timing-function: cubic-bezier(.4,0,.2,1);
+    overflow-y: scroll;
 
 
     &.left {
@@ -99,15 +100,7 @@
             padding-top: 0.5rem;
 
             .menu-sub-items-wrapper {
-                margin-top: ~'calc(-100% - 2rem)';
-                transition: margin 0.4s ease-in;
-            }
-
-            &.visible {
-                .menu-sub-items-wrapper {
-                    margin-top: 0;
-                    transition: margin 0.4s linear;
-                }
+                margin-top: 0px;
             }
 
             .menu-sub-item {

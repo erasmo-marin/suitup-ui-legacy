@@ -2,30 +2,68 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import suitupable from "./component";
+import cloneDeep from "lodash/cloneDeep";
 
-@suitupable
-class MenuItem extends React.Component {
+@suitupable class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.toggleItems = ::this.toggleItems;
         this.state = {
-            subItems: false,
+            subItemsVisible: false,
+            subItemsStyle: {},
+            shouldAnimate: false
         };
     }
 
     toggleItems() {
+        let style = cloneDeep(this.state.subItemsStyle);
+        if(this.props.children)
+            style.transition = `margin ${this.calculeAnimationTime(this.props.children.length)}ms ease-in`;
+
         this.setState({
-            subItems: !this.state.subItems
+            subItemsVisible: !this.state.subItemsVisible,
+            subItemsStyle: style
         });
+    }
+
+    /*
+     * Calcule animation time in miliseconds depending on children number
+     */
+    calculeAnimationTime(items) {
+        const base = 100;
+        const max = 600;
+        const min = 300;
+
+        if(!items)
+            return min;
+        if(base*items > max)
+            return max;
+        if(base*items < min)
+            return min;
+        return base*items;
+    }
+
+    componentDidMount() {
+        this.state.shouldAnimate = true;
     }
 
     render() {
         let { href, text, screen, ...rest } = this.props;
+        let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
-        let subItemsClasses = classnames({
-            "menu-sub-items": true,
-            visible: this.state.subItems
-        });
+        subItemsStyle.marginTop = "0px";
+        let height = 0;
+
+        if (this._subitems) {
+            height = this._subitems.offsetHeight;
+            if (this.state.subItemsVisible) {
+                subItemsStyle.marginTop = "0px";
+            } else {
+                subItemsStyle.marginTop = `-${height}px`;
+            }
+        }
+        this.state.subItemsStyle = cloneDeep(subItemsStyle);
+
 
         return (
             <div {...rest} className="menu-item">
@@ -38,8 +76,12 @@ class MenuItem extends React.Component {
                     </Otherwise>
                 </Choose>
                 <If condition={this.props.children}>
-                    <div className={subItemsClasses}>
-                        <div className="menu-sub-items-wrapper">
+                    <div className="menu-sub-items">
+                        <div
+                            className="menu-sub-items-wrapper"
+                            ref={c => this._subitems = c}
+                            style={subItemsStyle}
+                        >
                             {this.props.children}
                         </div>
                     </div>
@@ -49,8 +91,7 @@ class MenuItem extends React.Component {
     }
 }
 
-@suitupable
-class MenuSubItem extends React.PureComponent {
+@suitupable class MenuSubItem extends React.PureComponent {
     render() {
         let { text, href, screen, ...rest } = this.props;
         return (
@@ -68,25 +109,49 @@ class MenuSubItem extends React.PureComponent {
     }
 }
 
-@suitupable
-class Menu extends React.Component {
+@suitupable class MenuHeader extends React.Component {
+    constructor(props) {
+        super(props);
+    }
+
+    render() {
+        let classes = classnames({
+            "menu-header": true,
+        });
+
+        let { icon, title, screen, ...rest } = this.props;
+
+        return (
+            <div {...rest} className={classes}>
+                <If condition={this.props.icon}>
+                    <div className="menu-header-icon">
+                        {icon}
+                    </div>
+                </If>
+                <span className="menu-header-title">{title}</span>
+            </div>
+        );
+    }
+}
+
+@suitupable class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.hide = ::this.hide;
         this.state = {
-            visible: this.props.visible
+            visible: this.props.visible,
         };
     }
 
     toggleItems() {
         this.setState({
-            subItems: !this.state.subItems
+            subItems: !this.state.subItems,
         });
     }
 
     hide() {
         this.setState({
-            visible: false
+            visible: false,
         });
         if (this.props.onHide) {
             this.props.onHide();
@@ -95,7 +160,7 @@ class Menu extends React.Component {
 
     show() {
         this.setState({
-            visible: true
+            visible: true,
         });
         if (this.props.onShow) {
             this.props.onShow();
@@ -104,11 +169,9 @@ class Menu extends React.Component {
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            visible: (
-                nextProps.visible != null
-                    ? nextProps.visible
-                    : this.state.visible
-            )
+            visible: nextProps.visible != null
+                ? nextProps.visible
+                : this.state.visible,
         });
     }
 
@@ -131,15 +194,15 @@ class Menu extends React.Component {
             left: left,
             right: right,
             visible: visible,
-            "is-mobile": screen == 'mobile',
-            "is-tablet": screen == 'tablet',
-            "is-desktop": screen == 'desktop',
-            "is-widescreen": screen == 'widescreen'
+            "is-mobile": screen == "mobile",
+            "is-tablet": screen == "tablet",
+            "is-desktop": screen == "desktop",
+            "is-widescreen": screen == "widescreen",
         });
 
         let veilClasses = classnames({
             "menu-veil": true,
-            visible: this.state.visible
+            visible: this.state.visible,
         });
 
         return (
@@ -148,32 +211,6 @@ class Menu extends React.Component {
                 <nav className={classes}>
                     {children}
                 </nav>
-            </div>
-        );
-    }
-}
-
-@suitupable
-class MenuHeader extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        let classes = classnames({
-            "menu-header": true
-        });
-
-        let { icon, title, screen, ...rest } = this.props;
-
-        return (
-            <div {...rest} className={classes}>
-                <If condition={this.props.icon}>
-                    <div className="menu-header-icon">
-                        {icon}
-                    </div>
-                </If>
-                <span className="menu-header-title">{title}</span>
             </div>
         );
     }
