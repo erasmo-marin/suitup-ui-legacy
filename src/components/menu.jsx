@@ -11,18 +11,20 @@ import cloneDeep from "lodash/cloneDeep";
         this.state = {
             subItemsVisible: false,
             subItemsStyle: {},
-            shouldAnimate: false
+            shouldAnimate: false,
         };
     }
 
     toggleItems() {
         let style = cloneDeep(this.state.subItemsStyle);
-        if(this.props.children)
-            style.transition = `margin ${this.calculeAnimationTime(this.props.children.length)}ms ease-in`;
+        if (this.props.children)
+            style.transition = `margin ${this.calculeAnimationTime(
+                this.props.children.length,
+            )}ms ease-in`;
 
         this.setState({
             subItemsVisible: !this.state.subItemsVisible,
-            subItemsStyle: style
+            subItemsStyle: style,
         });
     }
 
@@ -34,13 +36,10 @@ import cloneDeep from "lodash/cloneDeep";
         const max = 600;
         const min = 300;
 
-        if(!items)
-            return min;
-        if(base*items > max)
-            return max;
-        if(base*items < min)
-            return min;
-        return base*items;
+        if (!items) return min;
+        if (base * items > max) return max;
+        if (base * items < min) return min;
+        return base * items;
     }
 
     componentDidMount() {
@@ -63,7 +62,6 @@ import cloneDeep from "lodash/cloneDeep";
             }
         }
         this.state.subItemsStyle = cloneDeep(subItemsStyle);
-
 
         return (
             <div {...rest} className="menu-item">
