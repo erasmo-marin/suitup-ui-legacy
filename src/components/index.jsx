@@ -1,40 +1,16 @@
-import Settings from "./settings";
-import Header from "./header";
-import Footer from "./footer";
-import Layout from "./layout";
-import Menu from "./menu";
-import Button from "./button";
-import Icon from "./icon";
-import Box from "./box";
-import Card from "./card";
-import Image from "./image";
-import Modal from "./modal";
-import Slider from "./slider";
-import Container from "./container";
-import { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
-import Tabs from "./tabs";
-import suitupable from "./component";
-
-export {
-    Container,
-    Header,
-    Footer,
-    Layout,
-    Menu,
-    Box,
-    Button,
-    Icon,
-    Card,
-    Image,
-    Modal,
-    Slider,
-    Device,
-    Mobile,
-    Tablet,
-    Desktop,
-    Widescreen,
-    Screen,
-    Tabs,
-    Settings,
-    suitupable
-};
+export { default as Settings } from "./settings";
+export { default as Header } from "./header";
+export { default as Footer } from "./footer";
+export { default as Layout } from "./layout";
+export { default as Menu } from "./menu";
+export { default as Button } from "./button";
+export { default as Icon } from "./icon";
+export { default as Box } from "./box";
+export { default as Card } from "./card";
+export { default as Image } from "./image";
+export { default as Modal } from "./modal";
+export { default as Slider } from "./slider";
+export { default as Container } from "./container";
+export { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
+export { default as Tabs } from "./tabs";
+export { default as suitupable } from "./component";

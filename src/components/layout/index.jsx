@@ -2,7 +2,7 @@ import React from "react";
 import { isArray, isObject, without, findIndex } from "lodash";
 import { EventEmitter } from "fbemitter";
 import classnames from "classnames";
-import suitupable from "./component";
+import suitupable from "../component";
 
 class ModalMountController extends EventEmitter {
 

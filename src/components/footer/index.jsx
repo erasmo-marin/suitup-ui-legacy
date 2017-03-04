@@ -1,5 +1,5 @@
 import React from "react";
-import suitupable from "./component";
+import suitupable from "../component";
 
 @suitupable
 class Footer extends React.Component {
