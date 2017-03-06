@@ -47,7 +47,7 @@ import cloneDeep from "lodash/cloneDeep";
     }
 
     render() {
-        let { href, text, screen, ...rest } = this.props;
+        let { href, text, screen, focused, ...rest } = this.props;
         let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
         subItemsStyle.marginTop = "0px";
@@ -63,16 +63,26 @@ import cloneDeep from "lodash/cloneDeep";
         }
         this.state.subItemsStyle = cloneDeep(subItemsStyle);
 
+        let buttonClasses = classnames({
+            "menu-button": true,
+            focus: focused,
+        });
+
         return (
             <div {...rest} className="menu-item">
                 <Choose>
                     <When condition={href}>
                         <Link to={href}>
-                            <div className="menu-button">{text}</div>
+                            <div className={buttonClasses}>{text}</div>
                         </Link>
                     </When>
                     <Otherwise>
-                        <div className="menu-button" onClick={this.toggleItems}>{text}</div>
+                        <div
+                            className={buttonClasses}
+                            onClick={this.toggleItems}
+                        >
+                            {text}
+                        </div>
                     </Otherwise>
                 </Choose>
                 <If condition={this.props.children}>

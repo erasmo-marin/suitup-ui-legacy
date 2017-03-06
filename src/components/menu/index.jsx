@@ -4,13 +4,16 @@ import suitupable from "../component";
 import MenuHeader from "./menuHeader";
 import MenuItem from "./menuItem";
 import MenuSubItem from "./menuSubItem";
+import isArray from "lodash/isArray";
 
 @suitupable class Menu extends React.Component {
     constructor(props) {
         super(props);
+        this.setActiveItem = ::this.setActiveItem;
         this.hide = ::this.hide;
         this.state = {
             visible: this.props.visible,
+            focusedItem: -1,
         };
     }
 
@@ -38,6 +41,12 @@ import MenuSubItem from "./menuSubItem";
         }
     }
 
+    setActiveItem(index) {
+        this.setState({
+            focusedItem: index,
+        });
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             visible: nextProps.visible != null
@@ -58,6 +67,10 @@ import MenuSubItem from "./menuSubItem";
             screen,
             ...rest
         } = this.props;
+
+        if (!isArray(children)) {
+            children = [children];
+        }
 
         let classes = classnames({
             menu: true,
@@ -80,7 +93,27 @@ import MenuSubItem from "./menuSubItem";
             <div {...rest}>
                 <div className={veilClasses} onClick={this.hide} />
                 <nav className={classes}>
-                    {children}
+                    {children.map((child, index) => {
+                        if (
+                            child.type.name == "MenuItem" ||
+                            child.type.name == "Component(MenuItem)"
+                        ) {
+                            let focused = index == this.state.focusedItem;
+
+                            return (
+                                <MenuItem
+                                    {...child.props}
+                                    onClick={() => {
+                                        this.setActiveItem(index);
+                                    }}
+                                    focused={focused}
+                                />
+                            );
+                        } else {
+                            return child;
+                        }
+                    })}
+
                 </nav>
             </div>
         );
