@@ -1,0 +1,48 @@
+table {
+    @color0: #dbdbdb;
+    @color1: #7d7d7d;
+    border-collapse: collapse;
+    text-align: left;
+    width: 100%;
+    border: 1px solid @color0;
+    background: #ffffff;
+    overflow: hidden;
+    td, th {
+        padding: 8px 10px;
+    }
+
+    thead {
+        border-bottom: 1px solid @color0;
+        th {
+            border-left: 1px solid @color0;
+        }
+    }
+
+    tbody {
+        td {
+            border-left: 1px solid @color0;
+            color: @color1;
+            font-size: 13px;
+            font-weight: normal;
+            border-bottom: 1px solid @color0;
+            &:first-child {
+                border-left: none;
+            }
+        }
+        tr {
+            &:last-child {
+                td {
+                    border-bottom: none;
+                }
+            }
+            &:nth-child(even) {
+                background: #fafafa;
+                color: @color1;
+            }
+
+            &:hover {
+                background: #fafafa;
+            }
+        }
+    }
+}
