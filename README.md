@@ -4,7 +4,6 @@
 [![optionalDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/optional-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=optionalDependencies)
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/erasmo-marin/suitup-ui)
 
-
 #Suitup UI Toolkit
 
 Suitup UI Toolkit is a set of React components to build web apps faster. Themeable, minimalist and easy to use. It will fit to your needs like a custom made suit, so SuitUp! and get started.
@@ -108,3 +107,8 @@ A cli is in development. It will allow you to build themes, customize settings, 
 ## Docs
 
 For the while, you can access to more documentation in the `/docs` folder. Docs are not linked here. A website is in development.
+
+## Donate
+
+Buy me a beer 
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7U8HXQCGN7KYE)
