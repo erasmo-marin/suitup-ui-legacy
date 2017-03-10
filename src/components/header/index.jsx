@@ -24,4 +24,5 @@ import suitupable from "../component";
     }
 }
 
+Header.displayName = "Header";
 export default Header;

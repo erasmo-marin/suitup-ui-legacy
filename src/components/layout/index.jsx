@@ -73,7 +73,6 @@ class Layout extends React.Component {
 
     findHeader(x) {
         if (!x || !x.props) return;
-
         if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
             this.setState({
                 header: x
@@ -82,7 +81,7 @@ class Layout extends React.Component {
         }  
 
         React.Children.forEach(x.props.children, (x) => {
-            if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
+            if (x.type && (x.type.displayName == "Header" || x.type.displayName == "Component(Header)")) {
                 this.setState({
                     header: x
                 });

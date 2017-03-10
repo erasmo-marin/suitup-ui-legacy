@@ -78,7 +78,7 @@ class Docs extends React.Component {
             file = "index";
         }
 
-        let source = docsMap[folder][file];
+        let source = docsMap[folder] ? docsMap[folder][file] : "";
 
         return (
                 <Container>

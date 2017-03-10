@@ -8,14 +8,16 @@ var hbs = require("hbs");
 var helpers = require("./views/helpers");
 var session = require("express-session");
 var webpack = require("webpack");
-var webpackConfig = require("./webpack.config.demo");
+var configFile = process.env.NODE_ENV == "production" ? "./webpack.config.site" : "./webpack.config.demo";
+var webpackConfig = require(configFile);
 var compiler = webpack(webpackConfig);
+var compression = require('compression');
 
 //routes
 var routes = require("./routes/index");
-
 var app = express();
 
+app.use(compression());
 app.use(
     require("webpack-dev-middleware")(compiler, {
         publicPath: webpackConfig.output.publicPath
