@@ -4,17 +4,17 @@
 [![optionalDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/optional-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=optionalDependencies)
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/erasmo-marin/suitup-ui)
 
-#Suitup UI Toolkit
+# Suitup UI Toolkit
 
 Suitup UI Toolkit is a set of React components to build web apps faster. Themeable, minimalist and easy to use. It will fit to your needs like a custom made suit, so SuitUp! and get started.
 
-##Status of the project
+## Status of the project
 
 Before you start, take in consideration that Suitup is in development. The first stable version will be 1.0.0, and the release policy is "when it's ready", so don't expect the api to be stable, even in the patch relases before 1.0.0. This is a preview that includes an usable set of components, but not ready for production.
 
 Did you find a bug? Do you want a new feature? Suggestions? Feel free to open issues and make a pull request 😀
 
-##Getting started
+## Getting started
 
 Add it to your project:
 
@@ -30,7 +30,7 @@ import { Layout, Container, Box, Button } from 'suitup-ui';
 ``` 
 Also, you can import the less file directly to your project instead, it's in src/styles/index.less
 
-##Components
+## Components
 
 Suitup includes the following components:
 
@@ -90,7 +90,7 @@ npm install -g less
 npm run start
 ```
 
-###building
+### building
 
 ```bash
 npm run build
