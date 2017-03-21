@@ -44,7 +44,7 @@
     "compression": "^1.6.2",
     "compression-webpack-plugin": "^0.3.2",
     "cookie-parser": "~1.4.3",
-    "css-loader": "^0.26.4",
+    "css-loader": "^0.27.3",
     "debug": "^2.6.1",
     "enzyme": "^2.7.1",
     "express": "^4.15.2",
@@ -69,7 +69,7 @@
     "react-prism": "^4.0.0",
     "request": "^2.72.0",
     "serve-favicon": "^2.4.1",
-    "style-loader": "^0.13.1",
+    "style-loader": "^0.14.1",
     "webpack": "^2.2.1",
     "webpack-dev-middleware": "^1.9.0",
     "webpack-hot-middleware": "^2.15.0"

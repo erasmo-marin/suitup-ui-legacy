@@ -82,6 +82,7 @@ class WebLayout extends React.Component {
                             <Menu.SubItem text="Menu" href="/components/menu" key={6}/>
                             <Menu.SubItem text="Modal" href="/components/modal" key={7}/>
                             <Menu.SubItem text="Slider" href="/components/slider" key={8}/>
+                            <Menu.SubItem text="Placeholders" href="/components/placeholders" key={9}/>
                         </Menu.Item>
                         <Menu.Item text="Responsive"  key={6}>
                             <Menu.SubItem text="Devices and breakpoints" href="/responsive/devices"/>

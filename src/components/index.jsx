@@ -14,3 +14,4 @@ export { default as Container } from "./container";
 export { Device, Mobile, Tablet, Desktop, Widescreen, Screen } from "./device";
 export { default as Tabs } from "./tabs";
 export { default as suitupable } from "./component";
+export { default as P } from "./paragraph";

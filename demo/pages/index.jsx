@@ -18,7 +18,8 @@ import {
     Tablet,
     Desktop,
     Widescreen,
-    Device
+    Device,
+    P
 } from "../../src/components";
 
 class Index extends React.Component {
@@ -784,6 +785,15 @@ class Index extends React.Component {
                             <Button fullWidth disabled>full width disabled</Button>
                         </Box.Child>
                     </Box>
+                </Container>
+                <Container>
+                    <h3>Paragraph</h3>
+                    <P loading placeholder={{rows: 5, animated: true}}>
+                        Hi, this text is not visible because the loading state is true
+                    </P>
+                    <P>
+                        Hi, this text is visible because the loading state is false
+                    </P>
                 </Container>
             </div>
         );

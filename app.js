@@ -6,7 +6,6 @@ var cookieParser = require("cookie-parser");
 var bodyParser = require("body-parser");
 var hbs = require("hbs");
 var helpers = require("./views/helpers");
-var session = require("express-session");
 var webpack = require("webpack");
 var configFile = process.env.NODE_ENV == "production" ? "./webpack.config.site" : "./webpack.config.demo";
 var webpackConfig = require(configFile);
@@ -38,14 +37,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-app.use(
-    session({
-        secret: "41A9E1792DE3F",
-        saveUninitialized: true,
-        resave: true
-    })
-);
-
 app.use("/", routes);
 
 // catch 404 and forward to error handler

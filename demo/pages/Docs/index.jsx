@@ -13,6 +13,7 @@ import components from '../../../docs/components/index';
 import menu from '../../../docs/components/menu';
 import modal from '../../../docs/components/modal';
 import slider from '../../../docs/components/slider';
+import placeholders from '../../../docs/components/placeholders';
 
 //containers
 import box from '../../../docs/containers/box';
@@ -43,7 +44,8 @@ const docsMap = {
         image: image,
         menu: menu,
         modal: modal,
-        slider: slider
+        slider: slider,
+        placeholders: placeholders
     },
     containers: {
         index: containers,
