@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import times from "lodash/times";
-import random from "lodash/random";
+import { times, random } from "lodash/fp";
 
 const Placeholder = ({ rows, animated, justify, lineSpacing, fontSize, color, rounded }) => {
     const classes = classnames({
@@ -14,8 +13,7 @@ const Placeholder = ({ rows, animated, justify, lineSpacing, fontSize, color, ro
     return (
         <div className={classes}>
             <div className="text-placeholder-animation-wrapper">
-                {times(rows ? rows : 1, () => {
-
+                {times(() => {
                     let style = {
                         width: justify ? "100%" : randomWidth(),
                         height: fontSize ? `${fontSize}px` : '16px',
@@ -23,11 +21,9 @@ const Placeholder = ({ rows, animated, justify, lineSpacing, fontSize, color, ro
                         marginBottom: lineSpacing ? `${lineSpaciing/2}px` : '15px',
                         borderRadius: rounded ? '5px' : '0px'
                     }
-
-                    style.color = color ? color : undefined;
-
+                    style.backgroundColor = color ? color : undefined;
                     return <div style={style} className="text-placeholder-row" />;
-                })}
+                }, rows ? rows : 1)}
             </div>
         </div>
     );

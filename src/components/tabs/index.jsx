@@ -2,7 +2,7 @@ import React from "react";
 import Tab from "./tab";
 import Box from "../box/box";
 import classnames from "classnames";
-import { isObject } from "lodash";
+import isObject from "lodash/fp/isObject";
 import suitupable from "../component";
 
 @suitupable class Tabs extends React.Component {

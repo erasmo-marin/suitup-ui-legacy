@@ -1,7 +1,7 @@
-import { map } from "lodash";
+import findKey from "lodash/fp/findKey";
 import { EventEmitter } from "fbemitter";
 import Settings from "../settings";
-
+import { between } from "../../utils";
 let breakpoints = Settings.getSettings().Device.Breakpoints;
 
 class ScreenClass extends EventEmitter {
@@ -19,18 +19,7 @@ class ScreenClass extends EventEmitter {
     }
 
     getScreen() {
-        let width = window.innerWidth;
-        let screen = window.screen;
-
-        //default breakpoint
-        let breakpoint = "desktop";
-
-        map(breakpoints, (size, type) => {
-            if (size.from <= width && size.to >= width) {
-                breakpoint = type;
-            }
-        });
-        return breakpoint;
+        return findKey(between(window.innerWidth), breakpoints);
     }
 
     emitChange(screen) {

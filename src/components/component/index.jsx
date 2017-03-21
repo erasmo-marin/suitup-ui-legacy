@@ -1,7 +1,8 @@
 import React from "react";
 import Screen from "../device/screen";
 import Settings from "../settings";
-import { map, cloneDeep } from "lodash";
+import map from "lodash/fp/map";
+import cloneDeep from "lodash/fp/cloneDeep";
 
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || 
@@ -38,28 +39,24 @@ function suitupable(Child) {
 
         render() {
             let breakpoints = this.state.settings.Device.Breakpoints;
-            let {style} = this.props;
+            let { style } = this.props;
             let originalStyle = cloneDeep(this.props.style);
-
+            let screenStyle = {};
             let responsiveStyles = {};
 
-            map(breakpoints, (breakpoint, breakpointName) => {
-                map(style, (property, propertyName) => {
+            map((breakpoint, breakpointName) => {
+                map((property, propertyName) => {
                     if(breakpointName == propertyName) {
                         responsiveStyles[breakpointName] = property;
                         delete originalStyle[propertyName];
                     }
-                });
-            });
-
-            let screenStyle = {};
+                }, style);
+            }, breakpoints);
 
             if(responsiveStyles[this.state.screen])
                 screenStyle = responsiveStyles[this.state.screen];
 
-            let newStyle = {...originalStyle, ...screenStyle};
-
-            return <Child {...this.props} style={newStyle} screen={this.state.screen}/>
+            return <Child {...this.props} style={{...originalStyle, ...screenStyle}} screen={this.state.screen}/>
         }
     }
 

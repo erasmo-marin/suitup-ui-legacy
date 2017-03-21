@@ -4,7 +4,7 @@ import suitupable from "../component";
 import MenuHeader from "./menuHeader";
 import MenuItem from "./menuItem";
 import MenuSubItem from "./menuSubItem";
-import isArray from "lodash/isArray";
+import isArray from "lodash/fp/isArray";
 
 @suitupable class Menu extends React.Component {
     constructor(props) {

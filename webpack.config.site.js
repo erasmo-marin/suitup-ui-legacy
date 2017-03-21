@@ -50,13 +50,8 @@ module.exports = {
                 },{
                     loader: "postcss-loader"
                 },
-                //less-loader@4.0.0 is broken, waiting for fix
                 {
-                    loader: "less-loader"/*, options: {
-                        plugins: [
-                            new CleanCSSPlugin({ advanced: true })
-                        ]
-                    }*/
+                    loader: "less-loader"
                 }]
             },
             {

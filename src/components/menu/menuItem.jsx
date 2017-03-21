@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import classnames from "classnames";
 import suitupable from "../component";
-import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash/fp/cloneDeep";
 
 @suitupable class MenuItem extends React.Component {
     constructor(props) {

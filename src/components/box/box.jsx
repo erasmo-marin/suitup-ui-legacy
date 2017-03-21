@@ -1,7 +1,6 @@
 import React from "react";
 import classnames from "classnames";
-import cloneDeep from "lodash/cloneDeep";
-import isArray from "lodash/isArray";
+import isArray from "lodash/fp/isArray";
 import Child from "./boxChild";
 import suitupable from "../component";
 

@@ -54,7 +54,7 @@
     "jsx-control-statements": "^3.1.5",
     "jsx-to-string": "^1.0.0",
     "less": "^2.7.2",
-    "less-loader": "^3.0.0",
+    "less-loader": "^4.0.1",
     "less-plugin-autoprefix": "^1.5.1",
     "less-plugin-clean-css": "^1.5.1",
     "markdown-to-jsx": "^5.0.0",

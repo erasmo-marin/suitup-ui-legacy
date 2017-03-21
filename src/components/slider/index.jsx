@@ -4,12 +4,11 @@ import classnames from "classnames";
 import Slide from "./slide";
 import Icon from "../icon";
 import Box from "../box";
-import isArray from "lodash/isArray";
+import isArray from "lodash/fp/isArray";
 import Draggable, { DraggableCore } from "react-draggable";
 import suitupable from "../component";
 
-@suitupable
-class Slider extends React.Component {
+@suitupable class Slider extends React.Component {
     constructor(props) {
         super(props);
         this.previous = ::this.previous;
@@ -39,7 +38,7 @@ class Slider extends React.Component {
             arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
             lazyLoad: false, //when true, the slider only loads the slides when needed
             minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
-            animation: "translate" //translate - fade - zoom
+            animation: "translate", //translate - fade - zoom
         };
         this.loadSettings(this.props);
     }
@@ -59,7 +58,6 @@ class Slider extends React.Component {
 
     loadSettings(settings) {
         if (!settings) return;
-
         this.state = { ...this.state, ...settings };
     }
 
@@ -99,29 +97,17 @@ class Slider extends React.Component {
         let x = sw * index * (-1);
 
         this.setState({
-            activeIndex: index
+            activeIndex: index,
         });
-
-        /*this.setState({
-      activeIndex: index,
-      position: {
-        x: x
-      },
-    });*/
-
-        //this is bad, but reduces delay
         this.draggableComponent.setState({
-            x: x
+            x: x,
         });
 
         setTimeout(
             () => {
-                /*this.setState({
-        position: null
-      });*/
                 this.draggableContent.style.transition = "";
             },
-            500
+            500,
         );
     }
 
@@ -133,14 +119,14 @@ class Slider extends React.Component {
                 res = props.children.map(
                     function(element) {
                         return React.cloneElement(element, {
-                            style: style
+                            style: style,
                         });
                     },
-                    this
+                    this,
                 );
             } else {
                 res = React.cloneElement(props.children, {
-                    style: style
+                    style: style,
                 });
             }
         }
@@ -155,7 +141,6 @@ class Slider extends React.Component {
         return;
     }
 
-    //TODO: Improve formula
     onEndDrag(event) {
         let x = (-1) * this.draggableComponent.state.x;
         let dw = this.draggableContent.offsetWidth;
@@ -180,7 +165,7 @@ class Slider extends React.Component {
 
     render() {
         let classes = {
-            slider: true
+            slider: true,
         };
 
         classes = classnames(classes);
@@ -190,14 +175,12 @@ class Slider extends React.Component {
             width: `calc(${100 / this.props.children.length}% - 4rem)`,
             display: "inline-block",
             margin: "1rem 2rem",
-            boxSizing: "border-box"
+            boxSizing: "border-box",
         };
 
         let style = {
             /*transform: `translateX(${translate}%)`,*/
-            width: (
-                `${this.props.children.length * 100}%`
-            )
+            width: `${this.props.children.length * 100}%`,
         };
 
         return (
@@ -282,11 +265,9 @@ class Slider extends React.Component {
                                 {this.props.children.map((child, index) => {
                                     let classes = classnames({
                                         dot: true,
-                                        active: (
-                                            index == this.state.activeIndex
-                                                ? true
-                                                : false
-                                        )
+                                        active: index == this.state.activeIndex
+                                            ? true
+                                            : false,
                                     });
 
                                     return (

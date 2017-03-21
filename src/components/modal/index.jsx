@@ -4,7 +4,7 @@ import { NotifyResize } from '@zippytech/react-notify-resize';
 import ModalAction from "./modalAction";
 import ModalContent from "./modalContent";
 import ModalFooter from "./modalFooter";
-import { isEqual } from "lodash";
+import isEqual from "lodash/fp/isEqual";
 import { requestModalMount, requestModalUnmount, requestModalUpdate } from "../layout";
 import suitupable from "../component";
 
@@ -27,7 +27,7 @@ class Modal extends React.Component {
 
     componentWillReceiveProps(nextProps) {
 
-        if(isEqual(this.props, nextProps)) return;
+        if(isEqual(nextProps, this.props)) return;
 
         this.modal = this.renderModal(nextProps);
         requestModalUpdate(this.modal);   

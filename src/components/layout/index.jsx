@@ -1,5 +1,5 @@
 import React from "react";
-import { isArray, isObject, without, findIndex } from "lodash";
+import { isArray, isObject, without, findIndex } from "lodash/fp";
 import { EventEmitter } from "fbemitter";
 import classnames from "classnames";
 import suitupable from "../component";
@@ -21,13 +21,12 @@ class ModalMountController extends EventEmitter {
     }
 
     requestModalUpdate(component) {
-        let modalIndex = findIndex(this.modals, {key: component.key});
-        this.modals[modalIndex] = component;
+        this.modals[findIndex({key: component.key}, this.modals)] = component;
         this.emitChange(this.modals);
     }
 
     requestModalUnmount(component) {
-        this.modals = without(this.modals, component);
+        this.modals = without(component, this.modals);
         this.emitChange(this.modals);
     }
 
