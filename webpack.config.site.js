@@ -2,6 +2,7 @@ var path = require("path");
 var webpack = require("webpack");
 var CompressionPlugin = require("compression-webpack-plugin");
 var chalk = require("chalk");
+var CleanCSSPlugin = require("less-plugin-clean-css");
 
 module.exports = {
     context: __dirname,
@@ -42,12 +43,21 @@ module.exports = {
             {
                 test: /\.less$/,
                 exclude: /(node_modules|bower_components)/,
-                use: [
-                    "style-loader",
-                    "css-loader",
-                    "postcss-loader",
-                    "less-loader"
-                ]
+                use: [{
+                    loader: "style-loader"
+                }, {
+                    loader: "css-loader"
+                },{
+                    loader: "postcss-loader"
+                },
+                //less-loader@4.0.0 is broken, waiting for fix
+                {
+                    loader: "less-loader"/*, options: {
+                        plugins: [
+                            new CleanCSSPlugin({ advanced: true })
+                        ]
+                    }*/
+                }]
             },
             {
                 test: /\.md$/,
@@ -56,7 +66,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".js", ".jsx", ".md", ".json"]
+        extensions: [".js", ".jsx", ".md", ".json", ".less"]
     },
     plugins: [
         new webpack.DefinePlugin({
