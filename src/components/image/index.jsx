@@ -167,11 +167,11 @@ class Image extends React.Component {
         return size;
     }
 
-    onLQLoad = () =>
+    onHQLoad = () =>
         this.setState({
             src: this.state.hqSrc ? this.state.hqSrc : this.state.lqSrc,
+            hqSrcLoaded: true,
         });
-    onHQLoad = () => this.setState({ hqSrcLoaded: true });
 
     render() {
         let {
@@ -244,7 +244,6 @@ class Image extends React.Component {
                     <img
                         style={{ display: "none" }}
                         src={lqSrc}
-                        onLoad={this.onLQLoad}
                     />
                     <img
                         style={{ display: "none" }}
