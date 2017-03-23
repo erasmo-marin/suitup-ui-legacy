@@ -105,6 +105,7 @@ class Index extends React.Component {
                             hq: "/img/stock-1-hq.jpg",
                             lq: "/img/stock-1-lq.jpg",
                         }}
+                        blurLowQuality
                         type="mediumh"
                         width="100%"
                     />
@@ -551,6 +552,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-4-hq.jpg",
                                                         lq: "/img/stock-4-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumv"
                                                     width="100%"
                                                 />
@@ -588,6 +590,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-5-hq.jpg",
                                                         lq: "/img/stock-5-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumv"
                                                     width="100%"
                                                 />
@@ -625,6 +628,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-6-hq.jpg",
                                                         lq: "/img/stock-6-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumv"
                                                     width="100%"
                                                 />
@@ -662,6 +666,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-1-hq.jpg",
                                                         lq: "/img/stock-1-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumv"
                                                     width="100%"
                                                 />
