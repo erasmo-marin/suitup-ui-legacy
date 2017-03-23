@@ -5,36 +5,39 @@ import map from "lodash/fp/map";
 import cloneDeep from "lodash/fp/cloneDeep";
 
 function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || 
-         WrappedComponent.name || 
-         'Component'
+    return WrappedComponent.displayName || WrappedComponent.name || "Component";
 }
 
-function suitupable(Child) {
+const suitupable = (listenScreen = true, listenSettings = true) => Child => {
     class Component extends React.Component {
         constructor(props) {
             super(props);
             this.onScreenChange = ::this.onScreenChange;
+            this.onSettingsChange = ::this.onSettingsChange;
             this.state = {
-                screen: Screen.getScreen(),
-                settings: Settings.getSettings()
-            }
+                screen: listenScreen ? Screen.getScreen() : undefined,
+                settings: listenSettings ? Settings.getSettings() : undefined,
+            };
         }
 
         componentDidMount() {
-            this.screenListener = Screen.onScreenChange(this.onScreenChange);
+            if (listenScreen)
+                this.screenListener = Screen.onScreenChange(this.onScreenChange);
+            if (listenSettings)
+                this.settingsListener = Settings.onSettingsChange(this.onSettingsChange);
         }
 
         componentWillUnmount() {
-            this.screenListener.remove();   
+            if (this.screenListener) this.screenListener.remove();
+            if (this.settingsListener) this.settingsListener.remove();
         }
 
         onScreenChange(screen) {
-            this.setState({screen})
+            this.setState({ screen });
         }
 
         onSettingsChange(settings) {
-            this.setState({settings});
+            this.setState({ settings });
         }
 
         render() {
@@ -44,24 +47,36 @@ function suitupable(Child) {
             let screenStyle = {};
             let responsiveStyles = {};
 
-            map((breakpoint, breakpointName) => {
-                map((property, propertyName) => {
-                    if(breakpointName == propertyName) {
-                        responsiveStyles[breakpointName] = property;
-                        delete originalStyle[propertyName];
-                    }
-                }, style);
-            }, breakpoints);
+            map(
+                (breakpoint, breakpointName) => {
+                    map(
+                        (property, propertyName) => {
+                            if (breakpointName == propertyName) {
+                                responsiveStyles[breakpointName] = property;
+                                delete originalStyle[propertyName];
+                            }
+                        },
+                        style,
+                    );
+                },
+                breakpoints,
+            );
 
-            if(responsiveStyles[this.state.screen])
+            if (responsiveStyles[this.state.screen])
                 screenStyle = responsiveStyles[this.state.screen];
 
-            return <Child {...this.props} style={{...originalStyle, ...screenStyle}} screen={this.state.screen}/>
+            return (
+                <Child
+                    {...this.props}
+                    style={{ ...originalStyle, ...screenStyle }}
+                    screen={this.state.screen}
+                />
+            );
         }
     }
 
     Component.displayName = `Component(${getDisplayName(Child)})`;
     return Component;
-}
+};
 
 export default suitupable;

@@ -3,7 +3,7 @@ import classnames from "classnames";
 import Button from "../button";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class ModalAction extends React.Component {
     constructor(props) {
         super(props);

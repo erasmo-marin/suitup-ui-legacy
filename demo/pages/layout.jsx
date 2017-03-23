@@ -66,7 +66,7 @@ class WebLayout extends React.Component {
                         </Box>
                     </Header>
                     <Menu left visible={this.state.menuVisible} onHide={this.onMenuHide}>
-                        <Menu.Header title="Suitup UI" icon={logo} style={{/*backgroundColor: '#373D49', color: '#35D7BB', border: 'none'*/}}  key={1}/>
+                        <Menu.Header title="Suitup UI" icon={logo} key={1}/>
                         <Menu.Item href="/" text="Inicio" key={2}/>
                         <Menu.Item text="Containers"  key={3}>
                             <Menu.SubItem text="Layout" href="/containers/layout" key={1}/>
@@ -84,11 +84,11 @@ class WebLayout extends React.Component {
                             <Menu.SubItem text="Slider" href="/components/slider" key={8}/>
                             <Menu.SubItem text="Placeholders" href="/components/placeholders" key={9}/>
                         </Menu.Item>
-                        <Menu.Item text="Responsive"  key={6}>
+                        <Menu.Item text="Responsive" key={5}>
                             <Menu.SubItem text="Devices and breakpoints" href="/responsive/devices"/>
                         </Menu.Item>
-                        <Menu.Item text="Theming" href="/theming"  key={7}/>
-                        <Menu.Item href="/fulldemo" text="Full demo"  key={8}/>
+                        <Menu.Item text="Theming" href="/theming"  key={6}/>
+                        <Menu.Item href="/fulldemo" text="Full demo"  key={7}/>
                     </Menu>
                     <div className="content" style={contentStyle}>
                         {this.props.children}

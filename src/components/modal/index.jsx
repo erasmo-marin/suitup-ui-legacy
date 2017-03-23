@@ -8,7 +8,7 @@ import isEqual from "lodash/fp/isEqual";
 import { requestModalMount, requestModalUnmount, requestModalUpdate } from "../layout";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class Modal extends React.Component {
     constructor(props) {
         super(props);
@@ -42,7 +42,7 @@ class Modal extends React.Component {
     }
 }
 
-@suitupable
+@suitupable(true, true)
 class ModalImplementation extends React.Component {
     constructor(props) {
         super(props);

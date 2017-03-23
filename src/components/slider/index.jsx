@@ -8,7 +8,8 @@ import isArray from "lodash/fp/isArray";
 import Draggable, { DraggableCore } from "react-draggable";
 import suitupable from "../component";
 
-@suitupable class Slider extends React.Component {
+@suitupable(true, true)
+class Slider extends React.Component {
     constructor(props) {
         super(props);
         this.previous = ::this.previous;

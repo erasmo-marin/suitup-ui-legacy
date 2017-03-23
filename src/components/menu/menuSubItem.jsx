@@ -2,7 +2,8 @@ import React from "react";
 import suitupable from "../component";
 import { Link } from "react-router-dom";
 
-@suitupable class MenuSubItem extends React.PureComponent {
+@suitupable(true, true)
+class MenuSubItem extends React.PureComponent {
     render() {
         let { text, href, screen, ...rest } = this.props;
         return (

@@ -5,7 +5,8 @@ import classnames from "classnames";
 import isObject from "lodash/fp/isObject";
 import suitupable from "../component";
 
-@suitupable class Tabs extends React.Component {
+@suitupable(true, true)
+class Tabs extends React.Component {
     constructor(props) {
         super(props);
         this.onTabClick = ::this.onTabClick;

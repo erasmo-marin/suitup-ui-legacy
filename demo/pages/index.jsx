@@ -19,7 +19,7 @@ import {
     Desktop,
     Widescreen,
     Device,
-    P
+    P,
 } from "../../src/components";
 
 class Index extends React.Component {
@@ -42,27 +42,27 @@ class Index extends React.Component {
                 displayItems: 1, //the number of items to display
                 arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
                 lazyLoad: true, //when true, the slider only loads the slides when needed
-                minimalRender: false //when true, the unused slides are not rendered, can cause some lag
-            }
+                minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
+            },
         };
     }
 
     toggleMenu() {
         this.setState({
-            menuVisible: !this.state.menuVisible
+            menuVisible: !this.state.menuVisible,
         });
     }
 
     openModal() {
         this.setState({
             modalVisible: true,
-            modalText: "Hola"
+            modalText: "Hola",
         });
     }
 
     onMenuHide() {
         this.setState({
-            menuVisible: false
+            menuVisible: false,
         });
     }
 
@@ -76,23 +76,23 @@ class Index extends React.Component {
             mobile: 12,
             tablet: 6,
             desktop: 6,
-            widescreen: 6
+            widescreen: 6,
         };
 
         let responsiveStyles = {
             mobile: {
-                color: 'red'
+                color: "red",
             },
             tablet: {
-                color: 'blue'
+                color: "blue",
             },
             desktop: {
-                color: 'green'
+                color: "green",
             },
             widescreen: {
-                color: 'purple'
-            }
-        }
+                color: "purple",
+            },
+        };
 
         return (
             <div>
@@ -101,14 +101,19 @@ class Index extends React.Component {
                     onChange={this.onModalChange}
                 >
                     <Image
-                        src="http://materializecss.com/images/sample-1.jpg"
+                        src={{
+                            hq: "/img/stock-1-hq.jpg",
+                            lq: "/img/stock-1-lq.jpg",
+                        }}
                         type="mediumh"
                         width="100%"
                     />
                     <Modal.Content>
                         <p>
-                            {`Hi, I'm a modal, and you should use me to show content and
-                           the same time block the interaction with your app main view`}
+                            {
+                                `Hi, I'm a modal, and you should use me to show content and
+                           the same time block the interaction with your app main view`
+                            }
                         </p>
                     </Modal.Content>
                     <Modal.Footer>
@@ -141,7 +146,9 @@ class Index extends React.Component {
                 <Container>
                     <h3>Grid (Box component)</h3>
                     <p>
-                        {`The grid is dynamic, you can change the columns number and the gutter. Default gutter is 1rem.`}
+                        {
+                            `The grid is dynamic, you can change the columns number and the gutter. Default gutter is 1rem.`
+                        }
                     </p>
                 </Container>
                 <Container>
@@ -154,7 +161,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 Hola
@@ -168,7 +175,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 Soy
@@ -182,7 +189,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 una
@@ -196,7 +203,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 grilla
@@ -210,7 +217,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 con 6 columnas
@@ -224,7 +231,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px"
+                                    borderRadius: "4px",
                                 }}
                             >
                                 y 6 Box.Child
@@ -232,27 +239,29 @@ class Index extends React.Component {
                         </Box.Child>
                     </Box>
                 </Container>
-
                 <Container>
                     <h3>Slider</h3>
                     <p>
-                        { `The Slider component allows you to show information in a segmented way
+                        {
+                            `The Slider component allows you to show information in a segmented way
                         like a presentation. You can add any children inside a Slide.
-                        A photo? An action call? you choose.`}
+                        A photo? An action call? you choose.`
+                        }
                     </p>
                     <p>
                         El slider de Suitup UI implementa lazyload, que renderiza tus slides en el momento de
 
-
                         necesitarse, y minimalRender, que sólo renderiza los slides que se están ocupando, para casos
-
 
                         donde la cantidad de slides es muy grande.
                     </p>
                     <Slider settings={this.state.sliderSettings}>
                         <Slider.Slide key={1}>
                             <Image
-                                src="http://materializecss.com/images/sample-1.jpg"
+                                src={{
+                                    hq: "/img/stock-1-hq.jpg",
+                                    lq: "/img/stock-1-lq.jpg",
+                                }}
                                 type="backdrop"
                                 width="100%"
                             >
@@ -275,7 +284,10 @@ class Index extends React.Component {
                         </Slider.Slide>
                         <Slider.Slide key={2}>
                             <Image
-                                src="http://f.fwallpapers.com/images/forest-canada.png"
+                                src={{
+                                    hq: "/img/stock-2-hq.jpg",
+                                    lq: "/img/stock-2-lq.jpg",
+                                }}
                                 type="backdrop"
                                 width="100%"
                             >
@@ -286,7 +298,6 @@ class Index extends React.Component {
                                         </h3>
                                         <h5 style={{ color: "#fff" }}>
                                             El componente de Slider incluye la opción de
-
 
                                             Lazyload. En este modo, los slides se renderizan
 
@@ -304,7 +315,10 @@ class Index extends React.Component {
                         </Slider.Slide>
                         <Slider.Slide key={3}>
                             <Image
-                                src="https://c1.staticflickr.com/4/3081/2916344739_917dbbe51e_b.jpg"
+                                src={{
+                                    hq: "/img/stock-3-hq.jpg",
+                                    lq: "/img/stock-3-lq.jpg",
+                                }}
                                 type="backdrop"
                                 width="100%"
                             >
@@ -316,7 +330,6 @@ class Index extends React.Component {
                                         <h5 style={{ color: "#fff" }}>
                                             El slider te permite mostrar o esconder los puntos,
 
-
                                             las flechas y cambiar el padding.
                                         </h5>
                                     </Container>
@@ -325,7 +338,10 @@ class Index extends React.Component {
                         </Slider.Slide>
                         <Slider.Slide key={4}>
                             <Image
-                                src="https://s-media-cache-ak0.pinimg.com/originals/5f/0c/66/5f0c66ebcfa9639e92e646ce6f8660a7.jpg"
+                                src={{
+                                    hq: "/img/stock-4-hq.jpg",
+                                    lq: "/img/stock-4-lq.jpg",
+                                }}
                                 type="backdrop"
                                 width="100%"
                             >
@@ -343,7 +359,10 @@ class Index extends React.Component {
                         </Slider.Slide>
                         <Slider.Slide key={5}>
                             <Image
-                                src="http://www.beautiful-views.net/views/banff-canada-mountains-river-forest.jpg"
+                                src={{
+                                    hq: "/img/stock-5-hq.jpg",
+                                    lq: "/img/stock-5-lq.jpg",
+                                }}
                                 type="backdrop"
                                 width="100%"
                             >
@@ -372,9 +391,7 @@ class Index extends React.Component {
                                                 <h5 style={{ color: "#fff" }}>
                                                     No es necesario como opción, la flexibilidad de Box
 
-
                                                     te permite construir este tipo de layouts con el mínimo
-
 
                                                     esfuerzo.
                                                 </h5>
@@ -390,7 +407,10 @@ class Index extends React.Component {
                                                     <Container>
                                                         <Image
                                                             centered
-                                                            src="https://aos.iacpublishinglabs.com/question/aq/700px-394px/names-forests-canada_dac556c221c80d83.jpg?domain=cx.aos.ask.com"
+                                                            src={{
+                                                                hq: "/img/stock-6-hq.jpg",
+                                                                lq: "/img/stock-6-lq.jpg",
+                                                            }}
                                                             type="mediumh"
                                                             width="80%"
                                                         />
@@ -400,7 +420,10 @@ class Index extends React.Component {
                                                     <Container>
                                                         <Image
                                                             centered
-                                                            src="http://materializecss.com/images/sample-1.jpg"
+                                                            src={{
+                                                                hq: "/img/stock-1-hq.jpg",
+                                                                lq: "/img/stock-1-lq.jpg",
+                                                            }}
                                                             type="mediumh"
                                                             width="80%"
                                                         />
@@ -438,14 +461,18 @@ class Index extends React.Component {
                                 <Box.Child key={1} wide={1}>
                                     <Card>
                                         <Image
-                                            src="http://materializecss.com/images/sample-1.jpg"
+                                            src={{
+                                                hq: "/img/stock-1-hq.jpg",
+                                                lq: "/img/stock-1-lq.jpg",
+                                            }}
                                             type="mediumh"
                                             width="100%"
                                         />
                                         <Card.Content>
-                                            <p>
-                                                Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.
-                                            </p>
+                                            <P
+                                                loading
+                                                placeholder={{ rows: 2 }}
+                                            />
                                         </Card.Content>
                                         <Card.Footer>
                                             <Card.Action
@@ -470,7 +497,10 @@ class Index extends React.Component {
                                         <Box vertical>
                                             <Box.Child>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-2-hq.jpg",
+                                                        lq: "/img/stock-2-lq.jpg",
+                                                    }}
                                                     type="mediumh"
                                                     width="100%"
                                                 />
@@ -483,7 +513,10 @@ class Index extends React.Component {
                                         <Box vertical>
                                             <Box.Child>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-3-hq.jpg",
+                                                        lq: "/img/stock-3-lq.jpg",
+                                                    }}
                                                     type="mediumh"
                                                     width="100%"
                                                 />
@@ -498,9 +531,7 @@ class Index extends React.Component {
                     <p>
                         Puedes construir tu tarjeta de la manera que se te de la gana. Utiliza el componente
 
-
                         Box para mostrar el contenido con distintas orientaciones y proporciones. No te imponemos
-
 
                         una forma única de hacer las cosas.
                     </p>
@@ -516,16 +547,29 @@ class Index extends React.Component {
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-4-hq.jpg",
+                                                        lq: "/img/stock-4-lq.jpg",
+                                                    }}
                                                     type="mediumv"
                                                     width="100%"
                                                 />
                                             </Box.Child>
                                             <Box.Child wide={2} key={2}>
                                                 <Card.Content>
-                                                    <p>
-                                                        Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.
-                                                    </p>
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 1,
+                                                            color: "rgba(0,0,0,0.5)",
+                                                        }}
+                                                    />
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 4,
+                                                        }}
+                                                    />
                                                 </Card.Content>
                                             </Box.Child>
                                         </Box>
@@ -540,16 +584,29 @@ class Index extends React.Component {
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-5-hq.jpg",
+                                                        lq: "/img/stock-5-lq.jpg",
+                                                    }}
                                                     type="mediumv"
                                                     width="100%"
                                                 />
                                             </Box.Child>
                                             <Box.Child wide={2} key={2}>
                                                 <Card.Content>
-                                                    <p>
-                                                        Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.
-                                                    </p>
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 1,
+                                                            color: "rgba(0,0,0,0.5)",
+                                                        }}
+                                                    />
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 4,
+                                                        }}
+                                                    />
                                                 </Card.Content>
                                             </Box.Child>
                                         </Box>
@@ -564,16 +621,29 @@ class Index extends React.Component {
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-6-hq.jpg",
+                                                        lq: "/img/stock-6-lq.jpg",
+                                                    }}
                                                     type="mediumv"
                                                     width="100%"
                                                 />
                                             </Box.Child>
                                             <Box.Child wide={2} key={2}>
                                                 <Card.Content>
-                                                    <p>
-                                                        Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.
-                                                    </p>
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 1,
+                                                            color: "rgba(0,0,0,0.5)",
+                                                        }}
+                                                    />
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 4,
+                                                        }}
+                                                    />
                                                 </Card.Content>
                                             </Box.Child>
                                         </Box>
@@ -588,16 +658,29 @@ class Index extends React.Component {
                                         <Box horizontal columns={3} gutter="0">
                                             <Box.Child wide={1} key={1}>
                                                 <Image
-                                                    src="http://materializecss.com/images/sample-1.jpg"
+                                                    src={{
+                                                        hq: "/img/stock-1-hq.jpg",
+                                                        lq: "/img/stock-1-lq.jpg",
+                                                    }}
                                                     type="mediumv"
                                                     width="100%"
                                                 />
                                             </Box.Child>
                                             <Box.Child wide={2} key={2}>
                                                 <Card.Content>
-                                                    <p>
-                                                        Soy una tarjeta muy simple. Soy buena mostrando pequeños trozos de información. Soy conveniente porque requiero pocas etiquetas para usarme efectivamente.
-                                                    </p>
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 1,
+                                                            color: "rgba(0,0,0,0.5)",
+                                                        }}
+                                                    />
+                                                    <P
+                                                        loading
+                                                        placeholder={{
+                                                            rows: 4,
+                                                        }}
+                                                    />
                                                 </Card.Content>
                                             </Box.Child>
                                         </Box>
@@ -618,12 +701,10 @@ class Index extends React.Component {
 
                         que mantenga el aspect ratio, puedes usar el componente de imagen junto a
 
-
                         el prop src='none'.
                     </p>
                     <p>
                         Suitup incluye un conjunto de aspect ratio por defecto recomendados los cuales
-
 
                         pueden cambiarse desde el archivo de configuración, estos son:
                     </p>
@@ -637,24 +718,37 @@ class Index extends React.Component {
                         <li>Banner (5:1)</li>
                     </ul>
                     <Container>
+                        <h3>mala</h3>
                         <Box horizontal columns={3}>
                             <Box.Child key={1} wide={1}>
                                 <Image
-                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
+                                    src={{
+                                        lq: "/img/cat-lq.jpg",
+                                        hq: "/img/cat-hq.jpg",
+                                    }}
+                                    blurLowQuality
                                     type="square"
                                     width="100%"
                                 />
                             </Box.Child>
                             <Box.Child key={2} wide={1}>
                                 <Image
-                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
+                                    src={{
+                                        lq: "/img/cat-lq.jpg",
+                                        hq: "/img/cat-hq.jpg",
+                                    }}
+                                    blurLowQuality
                                     type="square"
                                     width="100%"
                                 />
                             </Box.Child>
                             <Box.Child key={3} wide={1}>
                                 <Image
-                                    src="https://www.aspcapetinsurance.com/media/1034/31.jpg"
+                                    src={{
+                                        lq: "/img/cat-lq.jpg",
+                                        hq: "/img/cat-hq.jpg",
+                                    }}
+                                    blurLowQuality
                                     type="square"
                                     width="100%"
                                 />
@@ -685,7 +779,9 @@ class Index extends React.Component {
 
                 <Container>
                     <h3>Responsive</h3>
-                    <p>Resize the browser to see the changes!!. The Device component only accepts one children. Wrap your components in a div.</p>
+                    <p>
+                        Resize the browser to see the changes!!. The Device component only accepts one children. Wrap your components in a div.
+                    </p>
                     <Mobile>
                         <p style={{ textAlign: "center", color: "red" }}>
                             {"Hi, I'm just visible on Mobile!"}
@@ -707,9 +803,11 @@ class Index extends React.Component {
                         </p>
                     </Widescreen>
                     <Container style={responsiveStyles}>
-                        { `This text is red in mobile, blue in tablet, green in
+                        {
+                            `This text is red in mobile, blue in tablet, green in
                            desktop and purple in widescreen. That's because this
-                           container is using responsive styles` }
+                           container is using responsive styles`
+                        }
                     </Container>
                 </Container>
                 <Container>
@@ -718,77 +816,83 @@ class Index extends React.Component {
                         <Box.Child wide="5" key={1}>
                             <b>Raised</b>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={2}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={2}>
                             <Button raised primary>primary</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={3}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={3}>
                             <Button raised primaryDark>primary dark</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={4}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={4}>
                             <Button raised primaryLight>primary light</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={5}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={5}>
                             <Button raised accent>accent</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={6}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={6}>
                             <Button raised disabled>disabled</Button>
                         </Box.Child>
                         <Box.Child wide="5" key={7}>
                             <b>Inverted</b>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={8}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={8}>
                             <Button inverted primary>primary</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={9}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={9}>
                             <Button inverted primaryDark>primary dark</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={10}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={10}>
                             <Button inverted primaryLight>primary light</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={11}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={11}>
                             <Button inverted accent>accent</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={12}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={12}>
                             <Button inverted disabled>disabled</Button>
                         </Box.Child>
                         <Box.Child wide="5" key={13}>
                             <b>Flat</b>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={14}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={14}>
                             <Button flat primary>primary</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={15}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={15}>
                             <Button flat primaryDark>primary dark</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={16}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={16}>
                             <Button flat primaryLight>primary light</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={17}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={17}>
                             <Button flat accent>accent</Button>
                         </Box.Child>
-                        <Box.Child wide="1" wides={{mobile:2}} key={18}>
+                        <Box.Child wide="1" wides={{ mobile: 2 }} key={18}>
                             <Button flat disabled>disabled</Button>
                         </Box.Child>
                         <Box.Child wide="5" key={19}>
                             <b>Full Width</b>
                         </Box.Child>
                         <Box.Child wide="5" key={20}>
-                            <Button fullWidth primary>full width primary</Button>
+                            <Button fullWidth primary>
+                                full width primary
+                            </Button>
                         </Box.Child>
                         <Box.Child wide="5" key={21}>
                             <Button fullWidth accent>full width accent</Button>
                         </Box.Child>
                         <Box.Child wide="5" key={22}>
-                            <Button fullWidth primary inverted>full width inverted</Button>
+                            <Button fullWidth primary inverted>
+                                full width inverted
+                            </Button>
                         </Box.Child>
                         <Box.Child wide="5" key={23}>
-                            <Button fullWidth disabled>full width disabled</Button>
+                            <Button fullWidth disabled>
+                                full width disabled
+                            </Button>
                         </Box.Child>
                     </Box>
                 </Container>
                 <Container>
                     <h3>Paragraph</h3>
-                    <P loading placeholder={{rows: 5, animated: true}}>
+                    <P loading placeholder={{ rows: 5, animated: true }}>
                         Hi, this text is not visible because the loading state is true
                     </P>
                     <P>

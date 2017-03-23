@@ -5,7 +5,7 @@ import CardFooter from "./cardFooter";
 import CardAction from "./cardAction";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class Card extends React.Component {
     constructor(props) {
         super(props);

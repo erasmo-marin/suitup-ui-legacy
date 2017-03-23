@@ -3,7 +3,7 @@ import classnames from "classnames";
 import isArray from "lodash/fp/isArray";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class Device extends React.Component {
     render() {
         let { device, devices, children, screen } = this.props;

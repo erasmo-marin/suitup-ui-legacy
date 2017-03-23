@@ -1,7 +1,7 @@
 import React from "react";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class Footer extends React.Component {
     constructor(props) {
         super(props);

@@ -4,7 +4,8 @@ import classnames from "classnames";
 import suitupable from "../component";
 import cloneDeep from "lodash/fp/cloneDeep";
 
-@suitupable class MenuItem extends React.Component {
+@suitupable(true, true)
+class MenuItem extends React.Component {
     constructor(props) {
         super(props);
         this.toggleItems = ::this.toggleItems;

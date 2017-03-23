@@ -44,7 +44,7 @@ const requestModalMount = modalMountController.requestModalMount;
 const requestModalUnmount = modalMountController.requestModalUnmount;
 const requestModalUpdate = modalMountController.requestModalUpdate;
 
-@suitupable
+@suitupable(true, true)
 class Layout extends React.Component {
     constructor(props) {
         super(props);

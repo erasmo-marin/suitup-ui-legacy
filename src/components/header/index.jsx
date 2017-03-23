@@ -2,7 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import suitupable from "../component";
 
-@suitupable class Header extends React.Component {
+@suitupable (true, true)
+class Header extends React.Component {
     render() {
         let { fixed, top, bottom, children, screen, ...rest } = this.props;
 

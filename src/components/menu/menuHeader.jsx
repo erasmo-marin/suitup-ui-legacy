@@ -2,7 +2,8 @@ import React from "react";
 import classnames from "classnames";
 import suitupable from "../component";
 
-@suitupable class MenuHeader extends React.Component {
+@suitupable(true, true)
+class MenuHeader extends React.Component {
     render() {
         let classes = classnames({
             "menu-header": true,

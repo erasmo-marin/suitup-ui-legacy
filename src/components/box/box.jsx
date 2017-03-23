@@ -4,7 +4,7 @@ import isArray from "lodash/fp/isArray";
 import Child from "./boxChild";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class Box extends React.Component {
     constructor(props) {
         super(props);

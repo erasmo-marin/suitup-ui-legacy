@@ -6,7 +6,8 @@ import MenuItem from "./menuItem";
 import MenuSubItem from "./menuSubItem";
 import isArray from "lodash/fp/isArray";
 
-@suitupable class Menu extends React.Component {
+@suitupable(true, true)
+class Menu extends React.Component {
     constructor(props) {
         super(props);
         this.setActiveItem = ::this.setActiveItem;
@@ -102,6 +103,7 @@ import isArray from "lodash/fp/isArray";
 
                             return (
                                 <MenuItem
+                                    key={child.key}
                                     {...child.props}
                                     onClick={() => {
                                         this.setActiveItem(index);

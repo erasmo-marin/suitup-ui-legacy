@@ -2,42 +2,58 @@ import React from "react";
 import classnames from "classnames";
 import ImageVail from "./imageVail";
 import suitupable from "../component";
+import { isObject, isString } from "lodash/fp";
 
 const sizes = {
     square: {
         width: 600,
-        height: 600
+        height: 600,
     },
     mediumv: {
         width: 600,
-        height: 800
+        height: 800,
     },
     mediumh: {
         width: 800,
-        height: 600
+        height: 600,
     },
     poster: {
         width: 600,
-        height: 900
+        height: 900,
     },
     backdrop: {
         width: 1600,
-        height: 900
+        height: 900,
     },
     banner: {
         width: 2000,
-        height: 400
-    }
+        height: 400,
+    },
 };
 
-@suitupable
+@suitupable(true, true)
 class Image extends React.Component {
     constructor(props) {
         super(props);
         this.recalculeSize = ::this.recalculeSize;
+
+        let { src } = props;
+
+        let lqSrc, hqSrc;
+
+        if (isObject(src)) {
+            lqSrc = src.lq;
+            hqSrc = src.hq;
+            src = lqSrc;
+        }
+
         this.state = {
             width: this.props.width ? this.props.width : 0,
-            height: this.props.height ? this.props.height : 0
+            height: this.props.height ? this.props.height : 0,
+            lqSrc: lqSrc,
+            hqSrc: hqSrc,
+            src: src,
+            hqSrcLoaded: false,
         };
     }
 
@@ -46,13 +62,39 @@ class Image extends React.Component {
             () => {
                 this.recalculeSize();
             },
-            1
+            1,
         );
         window.addEventListener("resize", this.recalculeSize);
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.recalculeSize);
+    }
+
+    componentWillReceiveProps(props) {
+        let { src } = props;
+
+        if (src == this.state.src) return;
+
+        const { hqSrcLoaded } = this.state;
+        let lqSrc, hqSrc;
+
+        if (isObject(src)) {
+            if (this.state.lqSrc == src.lq && this.state.hqSrc == src.hq)
+                return;
+
+            if (hqSrcLoaded && this.state.hqSrc == src.hq) return;
+            lqSrc = src.lq;
+            hqSrc = src.hq;
+            src = lqSrc;
+        }
+
+        this.setState({
+            lqSrc: lqSrc,
+            hqSrc: hqSrc,
+            src: src,
+            hqSrcLoaded: false,
+        });
     }
 
     recalculeSize() {
@@ -76,7 +118,7 @@ class Image extends React.Component {
 
         this.setState({
             width: `${width}px`,
-            height: `${height}px`
+            height: `${height}px`,
         });
     }
 
@@ -125,6 +167,12 @@ class Image extends React.Component {
         return size;
     }
 
+    onLQLoad = () =>
+        this.setState({
+            src: this.state.hqSrc ? this.state.hqSrc : this.state.lqSrc,
+        });
+    onHQLoad = () => this.setState({ hqSrcLoaded: true });
+
     render() {
         let {
             width,
@@ -135,8 +183,11 @@ class Image extends React.Component {
             centered,
             children,
             screen,
+            blurLowQuality,
             ...rest
         } = this.props;
+
+        let { lqSrc, hqSrc } = this.state;
 
         let rwidth, rheight;
 
@@ -153,12 +204,19 @@ class Image extends React.Component {
         }
 
         let rstyle = {
-            backgroundImage: src != "none" ? `url(${src})` : "none",
+            backgroundImage: src != "none" ? `url(${this.state.src})` : "none",
             width: `${rwidth}`,
             height: `${rheight}`,
             backgroundSize: "cover",
-            backgroundPositon: "center"
+            backgroundPositon: "center",
+            transition: "all 0.5s ease-in-out",
+            transitionProperty: "filter, background-image",
         };
+
+        if (this.state.src == this.state.lqSrc && blurLowQuality) {
+            rstyle.filter = "blur(5px)";
+            rstyle.overflow = "hidden";
+        }
 
         if (style) {
             delete style.width;
@@ -168,7 +226,7 @@ class Image extends React.Component {
 
         let classes = {
             image: true,
-            centered: centered
+            centered: centered,
         };
 
         classes = classnames(classes);
@@ -182,6 +240,18 @@ class Image extends React.Component {
                     this.image = c;
                 }}
             >
+                <If condition={lqSrc && hqSrc}>
+                    <img
+                        style={{ display: "none" }}
+                        src={lqSrc}
+                        onLoad={this.onLQLoad}
+                    />
+                    <img
+                        style={{ display: "none" }}
+                        src={hqSrc}
+                        onLoad={this.onHQLoad}
+                    />
+                </If>
                 {children}
             </div>
         );

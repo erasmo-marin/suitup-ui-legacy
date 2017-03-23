@@ -4,11 +4,11 @@ var path = require("path");
 var chalk = require("chalk");
 
 module.exports = {
-    context: __dirname,
+    context: path.resolve(__dirname),
     cache: true,
     entry: ["./src/components/index.jsx"],
     output: {
-        path: "./dist",
+        path: path.resolve(__dirname, 'dist'),
         filename: "suitup.ui.min.js"
     },
     module: {
@@ -25,6 +25,7 @@ module.exports = {
                         "react"
                     ],
                     plugins: [
+                        "transform-class-properties",
                         "transform-decorators-legacy",
                         "jsx-control-statements",
                         "transform-function-bind",

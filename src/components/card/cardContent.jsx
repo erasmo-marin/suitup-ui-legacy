@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import suitupable from "../component";
 
-@suitupable
+@suitupable(true, true)
 class CardContent extends React.Component {
     constructor(props) {
         super(props);

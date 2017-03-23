@@ -253,7 +253,7 @@ class Landing extends React.Component {
                         </Device>
                         <Device devices={["widescreen"]}>
                             <Box columns={12} gutter="4rem">
-                                <Box.Child wide={6}>
+                                <Box.Child wide={6} key={1}>
                                     <h4 style={{ textAlign: "center" }}>
                                         Adding it to your project
                                     </h4>
@@ -274,7 +274,7 @@ class Landing extends React.Component {
                                         </PrismCode>
                                     </pre>
                                 </Box.Child>
-                                <Box.Child wide={6}>
+                                <Box.Child wide={6} key={2}>
                                     <h4 style={{ textAlign: "center" }}>
                                         Running the included demo
                                     </h4>
