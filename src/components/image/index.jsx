@@ -211,11 +211,11 @@ class Image extends React.Component {
             backgroundPositon: "center",
             transition: "all 0.5s ease-in-out",
             transitionProperty: "filter, background-image",
+            overflow: "hidden"
         };
 
         if (this.state.src == this.state.lqSrc && blurLowQuality) {
             rstyle.filter = "blur(5px)";
-            rstyle.overflow = "hidden";
         }
 
         if (style) {

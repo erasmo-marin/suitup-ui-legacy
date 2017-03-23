@@ -466,6 +466,7 @@ class Index extends React.Component {
                                                 hq: "/img/stock-1-hq.jpg",
                                                 lq: "/img/stock-1-lq.jpg",
                                             }}
+                                            blurLowQuality
                                             type="mediumh"
                                             width="100%"
                                         />
@@ -502,6 +503,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-2-hq.jpg",
                                                         lq: "/img/stock-2-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumh"
                                                     width="100%"
                                                 />
@@ -518,6 +520,7 @@ class Index extends React.Component {
                                                         hq: "/img/stock-3-hq.jpg",
                                                         lq: "/img/stock-3-lq.jpg",
                                                     }}
+                                                    blurLowQuality
                                                     type="mediumh"
                                                     width="100%"
                                                 />
