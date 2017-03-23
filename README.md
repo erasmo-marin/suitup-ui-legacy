@@ -107,8 +107,3 @@ A cli is in development. It will allow you to build themes, customize settings, 
 ## Docs
 
 For the while, you can access to more documentation in the `/docs` folder. Docs are not linked here. A website is in development.
-
-## Donate
-
-Buy me a beer 
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7U8HXQCGN7KYE)
