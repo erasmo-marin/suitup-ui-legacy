@@ -1,7 +1,7 @@
 import findKey from "lodash/fp/findKey";
 import { EventEmitter } from "fbemitter";
 import Settings from "../settings";
-import { between } from "../../utils";
+
 let breakpoints = Settings.getSettings().Device.Breakpoints;
 
 class ScreenClass extends EventEmitter {
@@ -18,17 +18,13 @@ class ScreenClass extends EventEmitter {
         });
     }
 
-    getScreen() {
-        return findKey(between(window.innerWidth), breakpoints);
-    }
+    between = val => interval => interval.from <= val && interval.to >= val;
 
-    emitChange(screen) {
-        this.emit("screenChange", screen);
-    }
+    getScreen = () => findKey(this.between(window.innerWidth), breakpoints);
 
-    onScreenChange(callback) {
-        return this.addListener("screenChange", callback);
-    }
+    emitChange = screen => this.emit("screenChange", screen);
+
+    onScreenChange = callback => this.addListener("screenChange", callback);
 }
 
 const Screen = new ScreenClass();

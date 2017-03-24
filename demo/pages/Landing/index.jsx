@@ -14,7 +14,8 @@ import {
     Modal,
     Image,
     Slider,
-    Tabs
+    Tabs,
+    Scroll,
 } from "../../../src/components";
 import { PrismCode } from "react-prism";
 
@@ -23,39 +24,42 @@ class Landing extends React.Component {
         super(props);
     }
 
+    scrollToGettingStarted = () =>
+        Scroll.to(this._gettingStarted, 1000);
+
     render() {
         let heroStyle = {
             background: "linear-gradient(161deg, rgba(53,215,187,1) 0%, rgba(0,128,128,1) 100%)",
             color: "#fff",
             height: "80vh",
-            minHeight: "600px"
+            minHeight: "600px",
         };
 
         let heroChildStyle = {
             backgroundImage: "url(/img/noise.png)",
             backgroundRepeat: "repeat",
             width: "100%",
-            height: "100%"
+            height: "100%",
         };
 
         let featuresSection = {
-            background: "#f7f7f7"
+            background: "#f7f7f7",
         };
 
         let gettingStartedSection = {
             borderTop: "1px solid #dedede",
-            background: "#fdfdfd"
+            background: "#fdfdfd",
         };
 
         let icons = {
             background: "#d23778",
             color: "#fff",
-            textAlign: "center"
+            textAlign: "center",
         };
 
         let iconWides = {
             tablet: 3,
-            mobile: 6
+            mobile: 6,
         };
 
         return (
@@ -69,7 +73,11 @@ class Landing extends React.Component {
                                 align="center"
                                 verticalExpand
                             >
-                                <Box.Child wide={4} wides={{"tablet": 12, "mobile": 12}} key={1}>
+                                <Box.Child
+                                    wide={4}
+                                    wides={{ tablet: 12, mobile: 12 }}
+                                    key={1}
+                                >
                                     <Device devices={["mobile", "tablet"]}>
                                         <Image
                                             width="30%"
@@ -85,12 +93,23 @@ class Landing extends React.Component {
                                         />
                                     </Device>
                                 </Box.Child>
-                                <Box.Child wide={8} wides={{"tablet": 12, "mobile": 12}} key={2}>
-                                    <h1>SuitUp UI</h1>
+                                <Box.Child
+                                    wide={8}
+                                    wides={{ tablet: 12, mobile: 12 }}
+                                    key={2}
+                                >
+                                    <h1>SuitUp UI React UI Toolkit</h1>
                                     <h3>
                                         It suits to your needs like a custom made suit
                                     </h3>
-                                    <Button inverted accent>Get Started</Button>
+                                    <Button
+                                        inverted
+                                        accent
+                                        ref={c => this._scrollBtn = c}
+                                        onClick={this.scrollToGettingStarted}
+                                    >
+                                        Get Started
+                                    </Button>
                                 </Box.Child>
                             </Box>
                         </Container>
@@ -204,17 +223,28 @@ class Landing extends React.Component {
                         </Box>
                     </Container>
                 </section>
-                <section style={gettingStartedSection}>
+                <section
+                    style={gettingStartedSection}
+                    ref={c => this._gettingStarted = c}
+                >
                     <Container>
                         <h2 style={{ textAlign: "center" }}>Getting started</h2>
                         <Device devices={["mobile", "tablet", "desktop"]}>
-                            <Tabs indicatorColor="#35D7BB" style={{background: 'transparent'}}>
-                                <Tabs.Tab title="Install from npm" style={{color: '#444'}}>
+                            <Tabs
+                                indicatorColor="#35D7BB"
+                                style={{ background: "transparent" }}
+                            >
+                                <Tabs.Tab
+                                    title="Install from npm"
+                                    style={{ color: "#444" }}
+                                >
                                     <Container>
                                         <p>Install Suitup UI from npm:</p>
                                         <pre className="lang-bash">
                                             <PrismCode className="lang-bash">
-                                                {"$ npm install --save suitup-ui\n"}
+                                                {
+                                                    "$ npm install --save suitup-ui\n"
+                                                }
                                             </PrismCode>
                                         </pre>
                                         <p>
@@ -229,12 +259,17 @@ class Landing extends React.Component {
                                         </pre>
                                     </Container>
                                 </Tabs.Tab>
-                                <Tabs.Tab title="Running demo" style={{color: '#444'}}>
+                                <Tabs.Tab
+                                    title="Running demo"
+                                    style={{ color: "#444" }}
+                                >
                                     <Container>
                                         <p>Clone Suitup UI repo:</p>
                                         <pre className="lang-bash">
                                             <PrismCode className="lang-bash">
-                                                {"$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"}
+                                                {
+                                                    "$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"
+                                                }
                                             </PrismCode>
                                         </pre>
                                         <p>
@@ -281,7 +316,9 @@ class Landing extends React.Component {
                                     <p>Clone Suitup UI repo:</p>
                                     <pre className="lang-bash">
                                         <PrismCode className="lang-bash">
-                                            {"$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"}
+                                            {
+                                                "$ git clone https://github.com/erasmo-marin/suitup-ui.git\n$ cd suitup-ui"
+                                            }
                                         </PrismCode>
                                     </pre>
                                     <p>

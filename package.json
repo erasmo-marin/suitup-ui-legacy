@@ -4,7 +4,7 @@
   "description": "Suitup UI Toolkit is a set of React components to build web apps faster",
   "main": "lib/index.js",
   "scripts": {
-    "demo": "nodemon ./bin/www",
+    "demo": "node ./bin/www",
     "start": "NODE_ENV=production pm2 start bin/www -i 0",
     "less": "lessc --clean-css --autoprefix='last 2 versions' src/styles/index.less dist/suitup.ui.min.css",
     "babel": "babel src/components/ -d lib/",
@@ -16,6 +16,7 @@
   "dependencies": {
     "@zippytech/react-notify-resize": "^2.1.2",
     "classnames": "^2.2.5",
+    "document-offset": "^1.0.4",
     "fbemitter": "^2.1.1",
     "lodash": "^4.17.4",
     "moment": "^2.14.1",
