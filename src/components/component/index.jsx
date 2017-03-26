@@ -1,7 +1,7 @@
 import React from "react";
 import Screen from "../device/screen";
 import Settings from "../settings";
-import map from "lodash/fp/map";
+import mapKeys from "lodash/mapKeys";
 import cloneDeep from "lodash/fp/cloneDeep";
 
 function getDisplayName(WrappedComponent) {
@@ -22,9 +22,13 @@ const suitupable = (listenScreen = true, listenSettings = true) => Child => {
 
         componentDidMount() {
             if (listenScreen)
-                this.screenListener = Screen.onScreenChange(this.onScreenChange);
+                this.screenListener = Screen.onScreenChange(
+                    this.onScreenChange,
+                );
             if (listenSettings)
-                this.settingsListener = Settings.onSettingsChange(this.onSettingsChange);
+                this.settingsListener = Settings.onSettingsChange(
+                    this.onSettingsChange,
+                );
         }
 
         componentWillUnmount() {
@@ -47,20 +51,14 @@ const suitupable = (listenScreen = true, listenSettings = true) => Child => {
             let screenStyle = {};
             let responsiveStyles = {};
 
-            map(
-                (breakpoint, breakpointName) => {
-                    map(
-                        (property, propertyName) => {
-                            if (breakpointName == propertyName) {
-                                responsiveStyles[breakpointName] = property;
-                                delete originalStyle[propertyName];
-                            }
-                        },
-                        style,
-                    );
-                },
-                breakpoints,
-            );
+            mapKeys(breakpoints, (breakpoint, breakpointName) => {
+                mapKeys(style, (property, propertyName) => {
+                    if (breakpointName == propertyName) {
+                        responsiveStyles[breakpointName] = property;
+                        delete originalStyle[propertyName];
+                    }
+                });
+            });
 
             if (responsiveStyles[this.state.screen])
                 screenStyle = responsiveStyles[this.state.screen];
