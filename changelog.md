@@ -1,3 +1,15 @@
+# 0.3.9
+
+Optimizations made. Bug fixes. Image component now supports progressive loading.
+
+New components:
+
+* Paragraph
+
+Utils
+
+* Scroll 
+
 ## 0.2.2
 
 A new props proxy was added to all Suitup components using decorators. It adds the capability to listen to screen size changes through the screen object and load responsive inline styles.

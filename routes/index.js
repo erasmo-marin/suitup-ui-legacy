@@ -5,9 +5,7 @@ var router = express.Router();
 router.get('*', function(req, res, next) {
     res.render('index', {
         title: 'Suitup UI Toolkit',
-        content: {
-
-        }
+        isProduction: (process.env.NODE_ENV == "production")
     });
 });
 

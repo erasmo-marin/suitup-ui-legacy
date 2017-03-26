@@ -8,7 +8,7 @@ module.exports = {
     entry: [
         "webpack-hot-middleware/client",
         "react-hot-loader/patch",
-        "./demo/index.jsx"
+        "./demo/devEntry.jsx"
     ],
     output: {
         publicPath: "/",

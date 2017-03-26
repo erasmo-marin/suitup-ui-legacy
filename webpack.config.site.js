@@ -9,13 +9,10 @@ module.exports = {
     cache: true,
     devtool: false,
     entry: [
-        "webpack-hot-middleware/client",
-        "react-hot-loader/patch",
-        "./demo/index.jsx"
+        "./demo/entry.jsx"
     ],
     output: {
-        publicPath: "/",
-        path: __dirname,
+        path: path.resolve(__dirname, 'public/bundle'),
         filename: "main.js"
     },
     module: {
@@ -33,7 +30,6 @@ module.exports = {
                     ],
                     plugins: [
                         "transform-decorators-legacy",
-                        "react-hot-loader/babel",
                         "jsx-control-statements",
                         "transform-function-bind",
                         "transform-class-properties",
@@ -96,7 +92,6 @@ module.exports = {
             }
         }),
         new webpack.optimize.AggressiveMergingPlugin(),
-        new webpack.NoEmitOnErrorsPlugin(),
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.NoEmitOnErrorsPlugin()
     ]
 };

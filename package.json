@@ -1,11 +1,12 @@
 {
   "name": "suitup-ui",
-  "version": "0.3.4",
+  "version": "0.3.9",
   "description": "Suitup UI Toolkit is a set of React components to build web apps faster",
   "main": "lib/index.js",
   "scripts": {
     "demo": "node ./bin/www",
-    "start": "NODE_ENV=production pm2 start bin/www -i 0",
+    "start": "yarn run build-site && NODE_ENV=production pm2 start bin/www -i max",
+    "restart": "pm2 kill && yarn run start",
     "less": "lessc --clean-css --autoprefix='last 2 versions' src/styles/index.less dist/suitup.ui.min.css",
     "babel": "babel src/components/ -d lib/",
     "webpack": "webpack --progress --colors",
@@ -51,6 +52,7 @@
     "express": "^4.15.2",
     "express-session": "^1.14.0",
     "hbs": "~4.0.0",
+    "helmet": "^3.5.0",
     "jsome": "^2.3.25",
     "jsx-control-statements": "^3.1.5",
     "jsx-to-string": "^1.0.0",
@@ -82,7 +84,8 @@
   },
   "files": [
     "dist",
-    "lib"
+    "lib",
+    "src"
   ],
   "keywords": [
     "suitup",
