@@ -15,7 +15,7 @@ import {
     Image,
     Slider,
     Tabs,
-    Scroll,
+    Scroll
 } from "../../../src/components";
 import { PrismCode } from "react-prism";
 
@@ -24,42 +24,41 @@ class Landing extends React.Component {
         super(props);
     }
 
-    scrollToGettingStarted = () =>
-        Scroll.to(this._gettingStarted, 1000);
+    scrollToGettingStarted = () => Scroll.to(this._gettingStarted, 1000);
 
     render() {
         let heroStyle = {
             background: "linear-gradient(161deg, rgba(53,215,187,1) 0%, rgba(0,128,128,1) 100%)",
             color: "#fff",
             height: "80vh",
-            minHeight: "600px",
+            minHeight: "600px"
         };
 
         let heroChildStyle = {
             backgroundImage: "url(/img/noise.png)",
             backgroundRepeat: "repeat",
             width: "100%",
-            height: "100%",
+            height: "100%"
         };
 
         let featuresSection = {
-            background: "#f7f7f7",
+            background: "#f7f7f7"
         };
 
         let gettingStartedSection = {
             borderTop: "1px solid #dedede",
-            background: "#fdfdfd",
+            background: "#fdfdfd"
         };
 
         let icons = {
             background: "#d23778",
             color: "#fff",
-            textAlign: "center",
+            textAlign: "center"
         };
 
         let iconWides = {
             tablet: 3,
-            mobile: 6,
+            mobile: 6
         };
 
         return (
@@ -75,17 +74,24 @@ class Landing extends React.Component {
                             >
                                 <Box.Child
                                     wide={4}
-                                    wides={{ tablet: 12, mobile: 12 }}
+                                    wides={{ mobile: 12 }}
                                     key={1}
                                 >
-                                    <Device devices={["mobile", "tablet"]}>
+                                    <Device devices={["mobile"]}>
                                         <Image
-                                            width="30%"
+                                            style={{ margin: "0 auto" }}
+                                            width="50%"
                                             type="square"
                                             src="/img/logo-big.png"
                                         />
                                     </Device>
-                                    <Device devices={["desktop", "widescreen"]}>
+                                    <Device
+                                        devices={[
+                                            "tablet",
+                                            "desktop",
+                                            "widescreen"
+                                        ]}
+                                    >
                                         <Image
                                             width="100%"
                                             type="square"
@@ -95,18 +101,41 @@ class Landing extends React.Component {
                                 </Box.Child>
                                 <Box.Child
                                     wide={8}
-                                    wides={{ tablet: 12, mobile: 12 }}
+                                    wides={{ mobile: 12 }}
                                     key={2}
                                 >
-                                    <h1>SuitUp UI React UI Toolkit</h1>
-                                    <h3>
-                                        It suits to your needs like a custom made suit
-                                    </h3>
+                                    <Device devices={["mobile"]}>
+                                        <div>
+                                            <h1 style={{ textAlign: "center" }}>
+                                                SuitUp UI React UI toolkit
+                                            </h1>
+                                            <h3 style={{ textAlign: "center" }}>
+                                                It suits to your needs like a custom made suit
+                                            </h3>
+                                        </div>
+                                    </Device>
+                                    <Device
+                                        devices={[
+                                            "desktop",
+                                            "tablet",
+                                            "widescreen"
+                                        ]}
+                                    >
+                                        <div>
+                                            <h1>SuitUp UI React UI toolkit</h1>
+                                            <h3>
+                                                It suits to your needs like a custom made suit
+                                            </h3>
+                                        </div>
+                                    </Device>
                                     <Button
                                         inverted
                                         accent
                                         ref={c => this._scrollBtn = c}
                                         onClick={this.scrollToGettingStarted}
+                                        style={{
+                                            mobile: { margin: "0 auto", display: "block" }
+                                        }}
                                     >
                                         Get Started
                                     </Button>
@@ -239,11 +268,13 @@ class Landing extends React.Component {
                                     style={{ color: "#444" }}
                                 >
                                     <Container>
-                                        <p>Install Suitup UI from npm:</p>
+                                        <p>
+                                            Install Suitup UI and peer dependencies:
+                                        </p>
                                         <pre className="lang-bash">
                                             <PrismCode className="lang-bash">
                                                 {
-                                                    "$ npm install --save suitup-ui\n"
+                                                    "$ npm install --save react react-dom suitup-ui\n"
                                                 }
                                             </PrismCode>
                                         </pre>
@@ -278,7 +309,7 @@ class Landing extends React.Component {
                                         <pre className="lang-jsx">
                                             <PrismCode className="lang-jsx">
                                                 {
-                                                    "$ npm install\n$ npm install -g less\n$ npm run start"
+                                                    "$ npm install\n# npm install -g less\n$ npm run demo"
                                                 }
                                             </PrismCode>
                                         </pre>
@@ -292,10 +323,14 @@ class Landing extends React.Component {
                                     <h4 style={{ textAlign: "center" }}>
                                         Adding it to your project
                                     </h4>
-                                    <p>Install Suitup UI from npm:</p>
+                                    <p>
+                                        Install Suitup UI and peer dependencies:
+                                    </p>
                                     <pre className="lang-jsx">
                                         <PrismCode className="lang-jsx">
-                                            {"$ npm install --save suitup-ui\n"}
+                                            {
+                                                "$ npm install --save react react-dom suitup-ui\n"
+                                            }
                                         </PrismCode>
                                     </pre>
                                     <p>
@@ -327,7 +362,7 @@ class Landing extends React.Component {
                                     <pre className="lang-jsx">
                                         <PrismCode className="lang-jsx">
                                             {
-                                                "$ npm install\n$ npm install -g less\n$ npm run start"
+                                                "$ npm install\n# npm install -g less\n$ npm run demo"
                                             }
                                         </PrismCode>
                                     </pre>

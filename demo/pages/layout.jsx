@@ -100,7 +100,7 @@ class WebLayout extends React.Component {
                     onHide={this.onMenuHide}
                 >
                     <Menu.Header title="Suitup UI" icon={logo} key={1} />
-                    <Menu.Item href="/" text="Inicio" key={2} />
+                    <Menu.Item href="/" text="Home" key={2} />
                     <Menu.Item text="Containers" key={3}>
                         <Menu.SubItem
                             text="Layout"
