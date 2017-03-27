@@ -4,6 +4,7 @@ import Layout from './pages/layout';
 import Landing from './pages/Landing';
 import Docs from './pages/Docs';
 import FullDemo from './pages'
+import "./style/main";
 
 const Routes = () => (
     <Router>
