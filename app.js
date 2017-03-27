@@ -19,7 +19,7 @@ app.use(helmet({
     noCache: false
 }));
 app.use(compression());
-app.use(express.static(path.join(__dirname, "public"), { maxAge: oneDay/2 }));
+app.use(express.static(path.join(__dirname, "public"), { maxAge: oneDay/2, lastModified: true }));
 
 
 if(process.env.NODE_ENV != "production") {
