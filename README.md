@@ -1,7 +1,8 @@
 [![npm version](https://badge.fury.io/js/suitup-ui.svg)](https://badge.fury.io/js/suitup-ui)
-[![npm version](https://david-dm.org/erasmo-marin/suitup-ui.svg)](https://david-dm.org/erasmo-marin/suitup-ui.svg)
-[![devDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/dev-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=devDependencies)
-[![optionalDependency Status](https://david-dm.org/erasmo-marin/suitup-ui/optional-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui#info=optionalDependencies)
+[![dependencies Status](https://david-dm.org/erasmo-marin/suitup-ui/status.svg)](https://david-dm.org/erasmo-marin/suitup-ui)
+[![devDependencies Status](https://david-dm.org/erasmo-marin/suitup-ui/dev-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui?type=dev)
+[![peerDependencies Status](https://david-dm.org/erasmo-marin/suitup-ui/peer-status.svg)](https://david-dm.org/erasmo-marin/suitup-ui?type=peer)
+[![npm ownloads](https://img.shields.io/npm/dt/suitup-ui.svg)](https://www.npmjs.com/package/suitup-ui)
 [![license](https://img.shields.io/badge/License-MIT-blue.svg)](https://github.com/erasmo-marin/suitup-ui)
 
 # Suitup UI Toolkit
