@@ -23,6 +23,7 @@
     "moment": "^2.14.1",
     "react-addons-shallow-compare": "^15.4.0",
     "react-draggable": "^2.2.3",
+    "react-inview-js": "^1.2.7",
     "react-router-dom": "^4.0.0"
   },
   "peerDependencies": {

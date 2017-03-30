@@ -42,6 +42,10 @@ You can use the provided device helpers to write more declarative and clear code
 	</Widescreen>
 ```
 
+<u>IMPORTANT:</u> The Device component and device helpers only accepts one child, this is to avoid rendering your children inside a container and mess with the styles. If you have more than one child that needs to be rendered inside a Device component, wrap them inside a div.
+
+This will change in Rect 16.0.0 where arrays can be rendered directly.
+
 ## Responsiveness
 
 Suitup components and Contianers can receive styles and props to target specific breakpoints.

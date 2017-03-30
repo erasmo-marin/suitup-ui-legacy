@@ -3,6 +3,7 @@ import classnames from "classnames";
 import ImageVail from "./imageVail";
 import suitupable from "../component";
 import { isObject, isString } from "lodash/fp";
+import ReactInview from 'react-inview-js';
 
 const sizes = {
     square: {
@@ -31,6 +32,7 @@ const sizes = {
     },
 };
 
+@ReactInview({fullElementInView: false})
 @suitupable(true, true)
 class Image extends React.Component {
     constructor(props) {
@@ -174,7 +176,14 @@ class Image extends React.Component {
         });
 
     render() {
+
         let {
+            elementIsInView,
+            elementHasBeenInView,
+            boundingBox,
+            viewPortBox,
+            elementIsHasBeenInView,
+            update,
             width,
             height,
             src,
@@ -245,11 +254,13 @@ class Image extends React.Component {
                         style={{ display: "none" }}
                         src={lqSrc}
                     />
-                    <img
-                        style={{ display: "none" }}
-                        src={hqSrc}
-                        onLoad={this.onHQLoad}
-                    />
+                    <If condition={elementIsInView || elementHasBeenInView}>
+                        <img
+                            style={{ display: "none" }}
+                            src={hqSrc}
+                            onLoad={this.onHQLoad}
+                        />
+                    </If>
                 </If>
                 {children}
             </div>
