@@ -101,11 +101,7 @@ class Index extends React.Component {
                     onChange={this.onModalChange}
                 >
                     <Image
-                        src={{
-                            hq: "/img/stock-1-hq.jpg",
-                            lq: "/img/stock-1-lq.jpg",
-                        }}
-                        blurLowQuality
+                        src="/img/stock-1-hq.jpg"
                         type="mediumh"
                         width="100%"
                     />
@@ -141,7 +137,7 @@ class Index extends React.Component {
                         This is Suitup UI full demo
                     </h1>
                     <p>
-                        This site has no uglify, so please, use the React chrome extension to check how it works
+                        Clone the github repo to see the source code at demo/pages/index.jsx
                     </p>
                 </Container>
                 <Container>
