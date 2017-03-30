@@ -19,7 +19,7 @@ import {
     Desktop,
     Widescreen,
     Device,
-    P,
+    P
 } from "../../src/components";
 
 class Index extends React.Component {
@@ -42,27 +42,27 @@ class Index extends React.Component {
                 displayItems: 1, //the number of items to display
                 arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
                 lazyLoad: true, //when true, the slider only loads the slides when needed
-                minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
-            },
+                minimalRender: false //when true, the unused slides are not rendered, can cause some lag
+            }
         };
     }
 
     toggleMenu() {
         this.setState({
-            menuVisible: !this.state.menuVisible,
+            menuVisible: !this.state.menuVisible
         });
     }
 
     openModal() {
         this.setState({
             modalVisible: true,
-            modalText: "Hola",
+            modalText: "Hola"
         });
     }
 
     onMenuHide() {
         this.setState({
-            menuVisible: false,
+            menuVisible: false
         });
     }
 
@@ -76,22 +76,22 @@ class Index extends React.Component {
             mobile: 12,
             tablet: 6,
             desktop: 6,
-            widescreen: 6,
+            widescreen: 6
         };
 
         let responsiveStyles = {
             mobile: {
-                color: "red",
+                color: "red"
             },
             tablet: {
-                color: "blue",
+                color: "blue"
             },
             desktop: {
-                color: "green",
+                color: "green"
             },
             widescreen: {
-                color: "purple",
-            },
+                color: "purple"
+            }
         };
 
         return (
@@ -99,6 +99,11 @@ class Index extends React.Component {
                 <Modal
                     visible={this.state.modalVisible}
                     onChange={this.onModalChange}
+                    style={{
+                        width: "50%",
+                        tablet: { width: "80%" },
+                        mobile: { width: "95%" }
+                    }}
                 >
                     <Image
                         src="/img/stock-1-hq.jpg"
@@ -158,7 +163,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 Hola
@@ -172,7 +177,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 Soy
@@ -186,7 +191,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 una
@@ -200,7 +205,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 grilla
@@ -214,7 +219,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 con 6 columnas
@@ -228,7 +233,7 @@ class Index extends React.Component {
                                     textAlign: "center",
                                     minHeight: "5rem",
                                     lineHeight: "5rem",
-                                    borderRadius: "4px",
+                                    borderRadius: "4px"
                                 }}
                             >
                                 y 6 Box.Child
@@ -257,7 +262,7 @@ class Index extends React.Component {
                             <Image
                                 src={{
                                     hq: "/img/stock-1-hq.jpg",
-                                    lq: "/img/stock-1-lq.jpg",
+                                    lq: "/img/stock-1-lq.jpg"
                                 }}
                                 type="backdrop"
                                 width="100%"
@@ -283,7 +288,7 @@ class Index extends React.Component {
                             <Image
                                 src={{
                                     hq: "/img/stock-2-hq.jpg",
-                                    lq: "/img/stock-2-lq.jpg",
+                                    lq: "/img/stock-2-lq.jpg"
                                 }}
                                 type="backdrop"
                                 width="100%"
@@ -314,7 +319,7 @@ class Index extends React.Component {
                             <Image
                                 src={{
                                     hq: "/img/stock-3-hq.jpg",
-                                    lq: "/img/stock-3-lq.jpg",
+                                    lq: "/img/stock-3-lq.jpg"
                                 }}
                                 type="backdrop"
                                 width="100%"
@@ -337,7 +342,7 @@ class Index extends React.Component {
                             <Image
                                 src={{
                                     hq: "/img/stock-4-hq.jpg",
-                                    lq: "/img/stock-4-lq.jpg",
+                                    lq: "/img/stock-4-lq.jpg"
                                 }}
                                 type="backdrop"
                                 width="100%"
@@ -358,7 +363,7 @@ class Index extends React.Component {
                             <Image
                                 src={{
                                     hq: "/img/stock-5-hq.jpg",
-                                    lq: "/img/stock-5-lq.jpg",
+                                    lq: "/img/stock-5-lq.jpg"
                                 }}
                                 type="backdrop"
                                 width="100%"
@@ -406,7 +411,7 @@ class Index extends React.Component {
                                                             centered
                                                             src={{
                                                                 hq: "/img/stock-6-hq.jpg",
-                                                                lq: "/img/stock-6-lq.jpg",
+                                                                lq: "/img/stock-6-lq.jpg"
                                                             }}
                                                             type="mediumh"
                                                             width="80%"
@@ -419,7 +424,7 @@ class Index extends React.Component {
                                                             centered
                                                             src={{
                                                                 hq: "/img/stock-1-hq.jpg",
-                                                                lq: "/img/stock-1-lq.jpg",
+                                                                lq: "/img/stock-1-lq.jpg"
                                                             }}
                                                             type="mediumh"
                                                             width="80%"
@@ -460,7 +465,7 @@ class Index extends React.Component {
                                         <Image
                                             src={{
                                                 hq: "/img/stock-1-hq.jpg",
-                                                lq: "/img/stock-1-lq.jpg",
+                                                lq: "/img/stock-1-lq.jpg"
                                             }}
                                             blurLowQuality
                                             type="mediumh"
@@ -497,7 +502,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-2-hq.jpg",
-                                                        lq: "/img/stock-2-lq.jpg",
+                                                        lq: "/img/stock-2-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumh"
@@ -514,7 +519,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-3-hq.jpg",
-                                                        lq: "/img/stock-3-lq.jpg",
+                                                        lq: "/img/stock-3-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumh"
@@ -549,7 +554,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-4-hq.jpg",
-                                                        lq: "/img/stock-4-lq.jpg",
+                                                        lq: "/img/stock-4-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumv"
@@ -562,13 +567,13 @@ class Index extends React.Component {
                                                         loading
                                                         placeholder={{
                                                             rows: 1,
-                                                            color: "rgba(0,0,0,0.5)",
+                                                            color: "rgba(0,0,0,0.5)"
                                                         }}
                                                     />
                                                     <P
                                                         loading
                                                         placeholder={{
-                                                            rows: 4,
+                                                            rows: 4
                                                         }}
                                                     />
                                                 </Card.Content>
@@ -587,7 +592,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-5-hq.jpg",
-                                                        lq: "/img/stock-5-lq.jpg",
+                                                        lq: "/img/stock-5-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumv"
@@ -600,13 +605,13 @@ class Index extends React.Component {
                                                         loading
                                                         placeholder={{
                                                             rows: 1,
-                                                            color: "rgba(0,0,0,0.5)",
+                                                            color: "rgba(0,0,0,0.5)"
                                                         }}
                                                     />
                                                     <P
                                                         loading
                                                         placeholder={{
-                                                            rows: 4,
+                                                            rows: 4
                                                         }}
                                                     />
                                                 </Card.Content>
@@ -625,7 +630,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-6-hq.jpg",
-                                                        lq: "/img/stock-6-lq.jpg",
+                                                        lq: "/img/stock-6-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumv"
@@ -638,13 +643,13 @@ class Index extends React.Component {
                                                         loading
                                                         placeholder={{
                                                             rows: 1,
-                                                            color: "rgba(0,0,0,0.5)",
+                                                            color: "rgba(0,0,0,0.5)"
                                                         }}
                                                     />
                                                     <P
                                                         loading
                                                         placeholder={{
-                                                            rows: 4,
+                                                            rows: 4
                                                         }}
                                                     />
                                                 </Card.Content>
@@ -663,7 +668,7 @@ class Index extends React.Component {
                                                 <Image
                                                     src={{
                                                         hq: "/img/stock-1-hq.jpg",
-                                                        lq: "/img/stock-1-lq.jpg",
+                                                        lq: "/img/stock-1-lq.jpg"
                                                     }}
                                                     blurLowQuality
                                                     type="mediumv"
@@ -676,13 +681,13 @@ class Index extends React.Component {
                                                         loading
                                                         placeholder={{
                                                             rows: 1,
-                                                            color: "rgba(0,0,0,0.5)",
+                                                            color: "rgba(0,0,0,0.5)"
                                                         }}
                                                     />
                                                     <P
                                                         loading
                                                         placeholder={{
-                                                            rows: 4,
+                                                            rows: 4
                                                         }}
                                                     />
                                                 </Card.Content>
@@ -728,7 +733,7 @@ class Index extends React.Component {
                                 <Image
                                     src={{
                                         lq: "/img/cat-lq.jpg",
-                                        hq: "/img/cat-hq.jpg",
+                                        hq: "/img/cat-hq.jpg"
                                     }}
                                     blurLowQuality
                                     type="square"
@@ -739,7 +744,7 @@ class Index extends React.Component {
                                 <Image
                                     src={{
                                         lq: "/img/cat-lq.jpg",
-                                        hq: "/img/cat-hq.jpg",
+                                        hq: "/img/cat-hq.jpg"
                                     }}
                                     blurLowQuality
                                     type="square"
@@ -750,7 +755,7 @@ class Index extends React.Component {
                                 <Image
                                     src={{
                                         lq: "/img/cat-lq.jpg",
-                                        hq: "/img/cat-hq.jpg",
+                                        hq: "/img/cat-hq.jpg"
                                     }}
                                     blurLowQuality
                                     type="square"

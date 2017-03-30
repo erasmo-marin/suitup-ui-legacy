@@ -118,8 +118,9 @@ class ModalImplementation extends React.Component {
     }
 
     render() {
-        let { visible, children, screen, ...rest } = this.props;
-
+        let { visible, children, screen, style, ...rest } = this.props;
+        let modalStyle = { ...{ position: "relative" }, ...style };
+        
         return (
             <div
                 {...rest}
@@ -130,7 +131,7 @@ class ModalImplementation extends React.Component {
                 <div
                     className="modal"
                     ref={c => this.modalInner = c}
-                    style={{ position: "relative" }}
+                    style={modalStyle}
                     onClick={this.preventPropagation}
                 >
                     <NotifyResize onResize={this.centerVertically} />
