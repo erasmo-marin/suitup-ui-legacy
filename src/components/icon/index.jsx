@@ -13,10 +13,7 @@ class Icon extends React.PureComponent {
 
         let classes = {
             "material-icons": true,
-            "md-18": size == 18,
-            "md-24": size == 24,
-            "md-36": size == 36,
-            "md-48": size == 48,
+            [`md-${size}`]: true,
             circle: circle
         };
 

@@ -3,36 +3,10 @@ import classnames from "classnames";
 import ImageVail from "./imageVail";
 import suitupable from "../component";
 import { isObject, isString } from "lodash/fp";
-import ReactInview from 'react-inview-js';
+import ReactInview from "react-inview-js";
+import get from "lodash/get";
 
-const sizes = {
-    square: {
-        width: 600,
-        height: 600,
-    },
-    mediumv: {
-        width: 600,
-        height: 800,
-    },
-    mediumh: {
-        width: 800,
-        height: 600,
-    },
-    poster: {
-        width: 600,
-        height: 900,
-    },
-    backdrop: {
-        width: 1600,
-        height: 900,
-    },
-    banner: {
-        width: 2000,
-        height: 400,
-    },
-};
-
-@ReactInview({fullElementInView: false})
+@ReactInview({ fullElementInView: false })
 @suitupable(true, true)
 class Image extends React.Component {
     constructor(props) {
@@ -55,7 +29,7 @@ class Image extends React.Component {
             lqSrc: lqSrc,
             hqSrc: hqSrc,
             src: src,
-            hqSrcLoaded: false,
+            hqSrcLoaded: false
         };
     }
 
@@ -64,7 +38,7 @@ class Image extends React.Component {
             () => {
                 this.recalculeSize();
             },
-            1,
+            1
         );
         window.addEventListener("resize", this.recalculeSize);
     }
@@ -95,16 +69,17 @@ class Image extends React.Component {
             lqSrc: lqSrc,
             hqSrc: hqSrc,
             src: src,
-            hqSrcLoaded: false,
+            hqSrcLoaded: false
         });
     }
 
     recalculeSize() {
         let width, height = 0;
         let dimensions;
+        const sizes = get(this, "props.settings.Image.aspectRatios");
 
         if (this.props.type) {
-            dimensions = sizes[this.props.type];
+            dimensions = get(sizes, this.props.type);
         }
 
         if (this.props.width && !this.props.height) {
@@ -120,7 +95,7 @@ class Image extends React.Component {
 
         this.setState({
             width: `${width}px`,
-            height: `${height}px`,
+            height: `${height}px`
         });
     }
 
@@ -172,11 +147,10 @@ class Image extends React.Component {
     onHQLoad = () =>
         this.setState({
             src: this.state.hqSrc ? this.state.hqSrc : this.state.lqSrc,
-            hqSrcLoaded: true,
+            hqSrcLoaded: true
         });
 
     render() {
-
         let {
             elementIsInView,
             elementHasBeenInView,
@@ -220,7 +194,8 @@ class Image extends React.Component {
             backgroundPositon: "center",
             transition: "all 0.5s ease-in-out",
             transitionProperty: "filter, background-image",
-            overflow: "hidden"
+            overflow: "hidden",
+            [screen]: true
         };
 
         if (this.state.src == this.state.lqSrc && blurLowQuality) {
@@ -235,7 +210,7 @@ class Image extends React.Component {
 
         let classes = {
             image: true,
-            centered: centered,
+            centered: centered
         };
 
         classes = classnames(classes);
@@ -250,10 +225,7 @@ class Image extends React.Component {
                 }}
             >
                 <If condition={lqSrc && hqSrc}>
-                    <img
-                        style={{ display: "none" }}
-                        src={lqSrc}
-                    />
+                    <img style={{ display: "none" }} src={lqSrc} />
                     <If condition={elementIsInView || elementHasBeenInView}>
                         <img
                             style={{ display: "none" }}

@@ -82,6 +82,7 @@ const suitupable = (
                         {...this.props}
                         style={{ ...originalStyle, ...screenStyle }}
                         screen={this.state.screen}
+                        settings={this.state.settings}
                     />
                 );
             }

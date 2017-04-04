@@ -1,9 +1,3 @@
-import Desktop from "./desktop";
-import Device from "./device";
-import Mobile from "./mobile";
-import Tablet from "./tablet";
-import Widescreen from "./widescreen";
-import Screen from "./screen";
-
-export default Device;
-export { Desktop, Device, Mobile, Tablet, Widescreen, Screen };
+export { default, default as Device } from "./device";
+export { Screen } from "./screen";
+export { Desktop, Mobile, Tablet, Widescreen } from "./helpers";

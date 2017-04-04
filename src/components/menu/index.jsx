@@ -14,19 +14,19 @@ class Menu extends React.Component {
         this.hide = ::this.hide;
         this.state = {
             visible: this.props.visible,
-            focusedItem: -1,
+            focusedItem: -1
         };
     }
 
     toggleItems() {
         this.setState({
-            subItems: !this.state.subItems,
+            subItems: !this.state.subItems
         });
     }
 
     hide() {
         this.setState({
-            visible: false,
+            visible: false
         });
         if (this.props.onHide) {
             this.props.onHide();
@@ -35,7 +35,7 @@ class Menu extends React.Component {
 
     show() {
         this.setState({
-            visible: true,
+            visible: true
         });
         if (this.props.onShow) {
             this.props.onShow();
@@ -44,7 +44,7 @@ class Menu extends React.Component {
 
     setActiveItem(index) {
         this.setState({
-            focusedItem: index,
+            focusedItem: index
         });
     }
 
@@ -52,7 +52,7 @@ class Menu extends React.Component {
         this.setState({
             visible: nextProps.visible != null
                 ? nextProps.visible
-                : this.state.visible,
+                : this.state.visible
         });
     }
 
@@ -79,43 +79,19 @@ class Menu extends React.Component {
             left: left,
             right: right,
             visible: visible,
-            "is-mobile": screen == "mobile",
-            "is-tablet": screen == "tablet",
-            "is-desktop": screen == "desktop",
-            "is-widescreen": screen == "widescreen",
+            [`is-${screen}`]: true
         });
 
         let veilClasses = classnames({
             "menu-veil": true,
-            visible: this.state.visible,
+            visible: this.state.visible
         });
 
         return (
             <div {...rest}>
                 <div className={veilClasses} onClick={this.hide} />
                 <nav className={classes}>
-                    {children.map((child, index) => {
-                        if (
-                            child.type.name == "MenuItem" ||
-                            child.type.name == "Component(MenuItem)"
-                        ) {
-                            let focused = index == this.state.focusedItem;
-
-                            return (
-                                <MenuItem
-                                    key={child.key}
-                                    {...child.props}
-                                    onClick={() => {
-                                        this.setActiveItem(index);
-                                    }}
-                                    focused={focused}
-                                />
-                            );
-                        } else {
-                            return child;
-                        }
-                    })}
-
+                    {children}
                 </nav>
             </div>
         );

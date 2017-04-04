@@ -74,7 +74,7 @@
         border-left: 2px solid transparent;
         background-color: #fff;
 
-        .active {
+        &.active {
             background-color: #eee;
         }
 
@@ -94,14 +94,20 @@
                 background-color: #eee;
             }
         }
+    }
 
-        .menu-sub-items {
-            overflow: hidden;
+    a.active .menu-item {
+        background-color: #eee;
+    }
 
-            .menu-sub-items-wrapper {
-                margin-top: 0px;
-            }
+    .menu-sub-items {
+        overflow: hidden;
 
+        .menu-sub-items-wrapper {
+            margin-top: 0px;
+        }
+
+        a {
             .menu-sub-item {
                 border-left: 2px solid transparent;
                 color: #212121;
@@ -110,7 +116,7 @@
                 letter-spacing: .1px;
                 padding: 3px 10px 3px 25px;
                 text-overflow: ellipsis;
-                a {
+                span {
                     padding-left: 22px;
                     text-decoration: none;
                     color: #212121;
@@ -119,8 +125,11 @@
                     box-sizing: border-box;
                 }
             }
-        }
 
+            &.active .menu-sub-item span {
+                color: @AccentColor;
+            }
+        }
     }
 
     &.is-mobile {

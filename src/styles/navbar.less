@@ -1,0 +1,77 @@
+.navbar {
+    @import 'theme/navbar';
+    height: 100%;
+    ul {
+        padding-left: 0;
+        list-style-type: none;
+        margin: 0;
+
+        li {
+            list-style-type: none;
+            float: left;
+            padding: 0;
+        }
+
+        .navbar-menu {
+            position: relative;
+            cursor: pointer;
+            height: 100%;
+            display: inline-block;
+            transition: @hoverTransition;
+
+            &:hover {
+                background: @hoverBackground;
+            }
+
+            &.active {
+                background: @activeBackground;
+            }
+
+            > span {
+                padding: @padding;
+                color: @color;
+                font-size: @fontSize;
+                line-height: @height;
+            }
+
+            > .navbar-submenu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: @vm_backgroundColor;
+                min-width: @vm_minWidth;
+                box-shadow: @vm_boxShadow;
+
+                > .navbar-submenu-item {
+                    display: block;
+                    width: 100%;
+                    line-height: @vm_itemPadding;
+                    padding: @vm_lineHeight;
+                    box-sizing: border-box;
+                    cursor: pointer;
+
+                    &:hover {
+                        background: @vm_hoverBackground;
+                    }
+
+                    &.active {
+                        background: @vm_activeBackground;
+                    }
+
+                    > span {
+                        font-size: @vm_fontSize;
+                        color: @vm_color;
+                    }
+                }
+            }
+        }
+    }
+
+    &.mobile {
+        ul li .navbar-menu span {
+            line-height: @heightMobile;
+            font-size: @fontSizeMobile;
+        }
+    }
+
+}

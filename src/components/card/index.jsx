@@ -15,7 +15,8 @@ class Card extends React.Component {
         let {width, height, screen, ...rest} = this.props;
 
         let classes = classnames({
-            card: true
+            card: true,
+            [screen]: true
         });
 
         let style = {

@@ -1,11 +1,15 @@
 import React from "react";
 import classnames from "classnames";
-import { NotifyResize } from '@zippytech/react-notify-resize';
+import { NotifyResize } from "@zippytech/react-notify-resize";
 import ModalAction from "./modalAction";
 import ModalContent from "./modalContent";
 import ModalFooter from "./modalFooter";
 import isEqual from "lodash/fp/isEqual";
-import { requestModalMount, requestModalUnmount, requestModalUpdate } from "../layout";
+import {
+    requestModalMount,
+    requestModalUnmount,
+    requestModalUpdate
+} from "../layout";
 import suitupable from "../component";
 
 @suitupable(true, true)
@@ -26,11 +30,10 @@ class Modal extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-
-        if(isEqual(nextProps, this.props)) return;
+        if (isEqual(nextProps, this.props)) return;
 
         this.modal = this.renderModal(nextProps);
-        requestModalUpdate(this.modal);   
+        requestModalUpdate(this.modal);
     }
 
     renderModal(props) {
@@ -61,9 +64,12 @@ class ModalImplementation extends React.Component {
 
     componentDidMount() {
         if (this.props.visible) {
-            setTimeout(() => {
-                this.show();
-            }, 500);
+            setTimeout(
+                () => {
+                    this.show();
+                },
+                500
+            );
         }
         window.addEventListener("resize", this.centerVertically);
     }
@@ -120,7 +126,7 @@ class ModalImplementation extends React.Component {
     render() {
         let { visible, children, screen, style, ...rest } = this.props;
         let modalStyle = { ...{ position: "relative" }, ...style };
-        
+
         return (
             <div
                 {...rest}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
 import classnames from "classnames";
 import suitupable from "../component";
 import cloneDeep from "lodash/fp/cloneDeep";
@@ -12,20 +12,18 @@ class MenuItem extends React.Component {
         this.state = {
             subItemsVisible: false,
             subItemsStyle: {},
-            shouldAnimate: false,
+            shouldAnimate: false
         };
     }
 
     toggleItems() {
         let style = cloneDeep(this.state.subItemsStyle);
         if (this.props.children)
-            style.transition = `margin ${this.calculeAnimationTime(
-                this.props.children.length,
-            )}ms ease-in`;
+            style.transition = `margin ${this.calculeAnimationTime(this.props.children.length)}ms ease-in`;
 
         this.setState({
             subItemsVisible: !this.state.subItemsVisible,
-            subItemsStyle: style,
+            subItemsStyle: style
         });
     }
 
@@ -56,7 +54,7 @@ class MenuItem extends React.Component {
 
         if (this._subitems) {
             height = this._subitems.offsetHeight;
-            if (this.state.subItemsVisible) {
+            if (subItemsVisible) {
                 subItemsStyle.marginTop = "0px";
             } else {
                 subItemsStyle.marginTop = `-${height}px`;
@@ -64,25 +62,34 @@ class MenuItem extends React.Component {
         }
         this.state.subItemsStyle = cloneDeep(subItemsStyle);
 
-        let buttonClasses = classnames({
+        const buttonClasses = classnames({
             "menu-button": true,
-            focus: focused,
+            "focus": focused
         });
 
+        const itemClasses = classnames({
+            "menu-item": true,
+            "active": subItemsVisible
+        })
+
         return (
-            <div {...rest} className="menu-item">
+            <div>
                 <Choose>
                     <When condition={href}>
-                        <Link to={href}>
-                            <div className={buttonClasses}>{text}</div>
+                        <Link exact to={href} activeClassName="active">
+                            <div {...rest} className={itemClasses}>
+                                <div className={buttonClasses}><span>{text}</span></div>
+                            </div>
                         </Link>
                     </When>
                     <Otherwise>
-                        <div
-                            className={buttonClasses}
-                            onClick={this.toggleItems}
-                        >
-                            {text}
+                        <div {...rest} className={itemClasses}>
+                            <div
+                                className={buttonClasses}
+                                onClick={this.toggleItems}
+                            >
+                                <span>{text}</span>
+                            </div>
                         </div>
                     </Otherwise>
                 </Choose>

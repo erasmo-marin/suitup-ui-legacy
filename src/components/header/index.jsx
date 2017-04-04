@@ -11,10 +11,7 @@ class Header extends React.Component {
             fixed: fixed,
             top: top,
             bottom: bottom,
-            "is-mobile": screen == "mobile",
-            "is-tablet": screen == "tablet",
-            "is-desktop": screen == "desktop",
-            "is-widescreen": screen == "widescreen"
+            [`is-${screen}`]: true
         });
 
         return (

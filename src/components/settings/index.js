@@ -81,7 +81,7 @@ class S extends EventEmitter {
         return defaultSettings;
     }
 
-    resetToDefault() {
+    restoreToDefaults() {
         settings = defaultSettings;
         this.emitChange(settings);
     }

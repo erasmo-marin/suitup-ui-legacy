@@ -80,7 +80,8 @@ class Button extends React.Component {
             "raised": raised,
             "inverted": inverted,
             "disabled": disabled,
-            "full-width": fullWidth
+            "full-width": fullWidth,
+            [screen]: true
         };
 
         classes = classnames(classes);

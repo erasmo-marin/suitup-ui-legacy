@@ -95,10 +95,7 @@ class Layout extends React.Component {
         let classes = classnames({
             layout: true,
             "fixed-header": this.state.header && this.state.header.props.fixed ? true : false,
-            "is-mobile": screen == 'mobile',
-            "is-tablet": screen == 'tablet',
-            "is-desktop": screen == 'desktop',
-            "is-widescreen": screen == 'widescreen'
+            [`is-${screen}`]: true
         });
 
         return (

@@ -11,10 +11,7 @@ class Container extends React.Component {
         let classes = {
             container: true,
             "full-height": verticalExpand,
-            "mobile-wide": screen == 'mobile',
-            "tablet-wide": screen == 'tablet',
-            "desktop-wide": screen == 'desktop',
-            "widescreen-wide": screen == 'widescreen'
+            [`${screen}-wide`]: true
         };
 
         classes = classnames(classes);

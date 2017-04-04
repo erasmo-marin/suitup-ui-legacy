@@ -12,7 +12,6 @@ class Box extends React.Component {
 
     setupChildProps(props) {
         if (props.children && props.columns) {
-
             let gutter = this.parseGutter(props.gutter);
             if (gutter && gutter.number) {
                 gutter = gutter.number / 2 + gutter.measure;
@@ -81,25 +80,26 @@ class Box extends React.Component {
         }
 
         let classes = classnames({
-            "box": true,
-            "horizontal": vertical == null ? true : false,
-            "vertical": vertical,
+            box: true,
+            horizontal: vertical == null ? true : false,
+            vertical: vertical,
             "fill-space": autoFill,
-            "centered": justify == "center",
-            "left": justify == "left",
-            "right": justify == "right",
+            centered: justify == "center",
+            left: justify == "left",
+            right: justify == "right",
             "align-start": align == "start",
             "align-end": align == "end",
             "align-center": align == "center",
             "align-stretch": align == "stretch",
             "align-baseline": align == "baseline",
-            "full-height": verticalExpand
+            "full-height": verticalExpand,
+            [screen]: true
         });
 
         gutter = this.parseGutter(gutter);
 
         if (gutter && gutter.number) {
-            gutter = gutter.number / 2 * (-1) + gutter.measure;
+            gutter = gutter.number / 2 * -1 + gutter.measure;
         }
 
         let cstyle = {
