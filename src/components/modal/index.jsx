@@ -124,7 +124,7 @@ class ModalImplementation extends React.Component {
     }
 
     render() {
-        let { visible, children, screen, style, ...rest } = this.props;
+        let { visible, children, screen, settings, style, ...rest } = this.props;
         let modalStyle = { ...{ position: "relative" }, ...style };
 
         return (

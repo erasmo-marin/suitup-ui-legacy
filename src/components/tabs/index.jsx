@@ -55,7 +55,7 @@ class Tabs extends React.Component {
      * to the root container.
      */
     render() {
-        let { children, style, indicatorColor, screen, ...rest } = this.props;
+        let { children, style, indicatorColor, screen, settings, ...rest } = this.props;
         let {
             activeTab,
             activeTabIndicatorOffset,

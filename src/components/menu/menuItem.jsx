@@ -46,7 +46,7 @@ class MenuItem extends React.Component {
     }
 
     render() {
-        let { href, text, screen, focused, ...rest } = this.props;
+        let { href, text, screen, settings, focused, ...rest } = this.props;
         let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
         subItemsStyle.marginTop = "0px";

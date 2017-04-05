@@ -5,7 +5,7 @@ import suitupable from "../component";
 @suitupable (true, true)
 class Header extends React.Component {
     render() {
-        let { fixed, top, bottom, children, screen, ...rest } = this.props;
+        let { fixed, top, bottom, children, screen, settings, ...rest } = this.props;
 
         let classes = classnames({
             fixed: fixed,

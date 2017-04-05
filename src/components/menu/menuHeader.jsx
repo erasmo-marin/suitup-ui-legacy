@@ -9,7 +9,7 @@ class MenuHeader extends React.Component {
             "menu-header": true,
         });
 
-        let { icon, title, screen, ...rest } = this.props;
+        let { icon, title, screen, settings, ...rest } = this.props;
 
         return (
             <div {...rest} className={classes}>

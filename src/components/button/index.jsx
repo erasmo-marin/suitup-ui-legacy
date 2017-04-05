@@ -62,6 +62,7 @@ class Button extends React.Component {
             onMouseDown,
             floating,
             screen,
+            settings,
             ...rest
         } = this.props;
 

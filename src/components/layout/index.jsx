@@ -91,7 +91,7 @@ class Layout extends React.Component {
     }
 
     render() {
-        let { children, screen, ...rest } = this.props;
+        let { children, screen, settings, ...rest } = this.props;
         let classes = classnames({
             layout: true,
             "fixed-header": this.state.header && this.state.header.props.fixed ? true : false,

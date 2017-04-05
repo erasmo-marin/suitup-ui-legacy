@@ -66,6 +66,7 @@ class Menu extends React.Component {
             onHide,
             style,
             screen,
+            settings,
             ...rest
         } = this.props;
 

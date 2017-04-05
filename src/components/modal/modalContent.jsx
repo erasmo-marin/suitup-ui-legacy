@@ -9,7 +9,7 @@ class ModalContent extends React.Component {
     }
 
     render() {
-        let { children, screen, ...rest } = this.props;
+        let { children, screen, settings, ...rest } = this.props;
 
         let classes = {
             "modal-content": true

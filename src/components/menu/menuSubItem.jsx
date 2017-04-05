@@ -5,7 +5,7 @@ import { NavLink as Link } from "react-router-dom";
 @suitupable(true, true)
 class MenuSubItem extends React.PureComponent {
     render() {
-        let { text, href, screen, ...rest } = this.props;
+        let { text, href, screen, settings, ...rest } = this.props;
 
         const content = (
             <div {...rest} className="menu-sub-item">

@@ -166,6 +166,7 @@ class Image extends React.Component {
             centered,
             children,
             screen,
+            settings,
             blurLowQuality,
             ...rest
         } = this.props;

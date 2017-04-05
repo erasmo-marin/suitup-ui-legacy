@@ -9,7 +9,7 @@ class Icon extends React.PureComponent {
     }
 
     render() {
-        let { size, circle, name, screen, ...rest } = this.props;
+        let { size, circle, name, screen, settings, ...rest } = this.props;
 
         let classes = {
             "material-icons": true,

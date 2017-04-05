@@ -12,7 +12,7 @@ class Card extends React.Component {
     }
 
     render() {
-        let {width, height, screen, ...rest} = this.props;
+        let {width, height, screen, settings, ...rest} = this.props;
 
         let classes = classnames({
             card: true,

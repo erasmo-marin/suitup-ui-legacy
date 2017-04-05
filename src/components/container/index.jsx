@@ -6,7 +6,7 @@ import suitupable from "../component";
 class Container extends React.Component {
 
     render() {
-        let { verticalExpand, children, screen, ...rest } = this.props;
+        let { verticalExpand, children, screen, settings, ...rest } = this.props;
 
         let classes = {
             container: true,

@@ -8,7 +8,7 @@ import NavbarSubmenu from "./navbarSubmenu";
 @suitupable(true, true)
 class Navbar extends React.Component {
     render() {
-        let { screen, ...rest } = this.props;
+        let { screen, settings, ...rest } = this.props;
 
         let classes = classnames({
             navbar: true,

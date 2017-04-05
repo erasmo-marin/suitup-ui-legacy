@@ -6,7 +6,7 @@ import suitupable from "../component";
 @suitupable(true, true)
 class Device extends React.Component {
     render() {
-        let { device, devices, children, screen } = this.props;
+        let { device, devices, children, screen, settings } = this.props;
 
         if (!isArray(devices))
             devices = [device];

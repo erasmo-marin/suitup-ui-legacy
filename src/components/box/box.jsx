@@ -72,6 +72,7 @@ class Box extends React.Component {
             columns,
             gutter,
             screen,
+            settings,
             ...rest
         } = this.props;
 

@@ -8,7 +8,7 @@ class Footer extends React.Component {
     }
 
     render() {
-        let { children, screen, ...rest } = this.props;
+        let { children, screen, settings, ...rest } = this.props;
 
         return (
             <footer {...rest}>
