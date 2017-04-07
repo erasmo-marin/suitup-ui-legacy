@@ -6,6 +6,7 @@ header {
     background-color: @backgroundColor;
     opacity: @opacity;
     box-shadow: 0 2px 5px rgba(0,0,0,.26);
+    overflow: hidden;
     z-index: 99;
     
     &.fixed {
@@ -21,7 +22,6 @@ header {
     }
 
     button.menu-button {
-        background: @backgroundColor;
         box-shadow: none;
         margin: 0;
         padding: 0;
@@ -49,7 +49,7 @@ header {
     &.is-mobile {
         height: @heightMobile;
         button.menu-button {
-            height: @height;
+            height: @heightMobile;
             .light-frame {
                 padding: 0 1.5rem;
                 height: @heightMobile;
