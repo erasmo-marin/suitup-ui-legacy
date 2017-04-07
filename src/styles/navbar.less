@@ -28,6 +28,7 @@
             }
 
             > span {
+                font-weight: @fontWeight;
                 padding: @padding;
                 color: @color;
                 font-size: @fontSize;
@@ -60,6 +61,7 @@
 
                     > span {
                         font-size: @vm_fontSize;
+                        font-weight: @vm_fontWeight;
                         color: @vm_color;
                     }
                 }
@@ -70,6 +72,7 @@
     &.mobile {
         ul li .navbar-menu span {
             line-height: @heightMobile;
+            font-weight: @fontWeightMobile;
             font-size: @fontSizeMobile;
         }
     }

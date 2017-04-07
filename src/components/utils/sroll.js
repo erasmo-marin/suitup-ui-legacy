@@ -2,15 +2,19 @@ import offset from 'document-offset';
 
 class ScrollerClass {
     to = (to, duration = 1000) => {
+        console.log(1);
         if (!to) return;
-        const start = document.body.scrollTop;
+        console.log(2);
+        const start = document.scrollingElement.scrollTop;
         const change = offset(to).top - start - 64;
         const interval = 16; //close to 60fps
         const positionIncrement = change*(interval/duration);
         const iterations = duration/interval;
+        console.log(3, start, change, interval, positionIncrement, iterations);
         const animateScroll = i => {
             if (i >= iterations) return;
-            document.body.scrollTop = this.easeInOut(2)(i/iterations)*change + start;
+            const dy = this.easeInOut(2)(i/iterations)*change + start;
+            document.scrollingElement.scrollTop = dy;
             setTimeout(() => animateScroll(++i), interval);
         };
         animateScroll(1);
