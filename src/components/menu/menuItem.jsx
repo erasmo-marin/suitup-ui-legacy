@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import { NavLink as Link } from "react-router-dom";
 import classnames from "classnames";
 import suitupable from "../component";
@@ -14,6 +14,10 @@ class MenuItem extends React.Component {
             subItemsStyle: {},
             shouldAnimate: false
         };
+    }
+
+    static contextTypes = {
+        hide: PropTypes.func
     }
 
     toggleItems() {
@@ -45,8 +49,14 @@ class MenuItem extends React.Component {
         this.state.shouldAnimate = true;
     }
 
+    shouldHide = () => {
+        if(this.props.hideOnRedirect && this.context.hide) {
+            this.context.hide();
+        }
+    }
+
     render() {
-        let { href, text, screen, settings, focused, ...rest } = this.props;
+        let { hideOnRedirect, children, href, text, screen, settings, focused, ...rest } = this.props;
         let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
         subItemsStyle.marginTop = "0px";
@@ -76,7 +86,7 @@ class MenuItem extends React.Component {
             <div>
                 <Choose>
                     <When condition={href}>
-                        <Link exact to={href} activeClassName="active">
+                        <Link exact to={href} activeClassName="active" onClick={this.shouldHide}>
                             <div {...rest} className={itemClasses}>
                                 <div className={buttonClasses}><span>{text}</span></div>
                             </div>
@@ -100,7 +110,7 @@ class MenuItem extends React.Component {
                             ref={c => this._subitems = c}
                             style={subItemsStyle}
                         >
-                            {this.props.children}
+                            {children}
                         </div>
                     </div>
                 </If>

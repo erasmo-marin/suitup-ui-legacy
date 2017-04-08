@@ -1,4 +1,5 @@
 import React from "react";
+//import ReactElement from "react/lib/Element";
 import classnames from "classnames";
 import Slide from "./slide";
 import Icon from "../icon";
@@ -6,8 +7,6 @@ import Box from "../box";
 import isArray from "lodash/fp/isArray";
 import Draggable, { DraggableCore } from "react-draggable";
 import suitupable from "../component";
-
-const Element = React.Element;
 
 @suitupable(true, true)
 class Slider extends React.Component {

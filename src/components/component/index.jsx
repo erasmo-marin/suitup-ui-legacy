@@ -87,7 +87,6 @@ const suitupable = (
                 );
             }
         }
-
         Component.displayName = `Component(${getDisplayName(Child)})`;
         return Component;
     };

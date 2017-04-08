@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 import classnames from "classnames";
 import suitupable from "../component";
 import MenuHeader from "./menuHeader";
@@ -10,43 +10,45 @@ import isArray from "lodash/fp/isArray";
 class Menu extends React.Component {
     constructor(props) {
         super(props);
-        this.setActiveItem = ::this.setActiveItem;
-        this.hide = ::this.hide;
         this.state = {
             visible: this.props.visible,
             focusedItem: -1
         };
     }
 
-    toggleItems() {
+    static childContextTypes = {
+        hide: PropTypes.func
+    }
+
+    getChildContext() {
+        return {
+            hide: this.hide
+        }
+    }
+
+    toggleItems = () =>
         this.setState({
             subItems: !this.state.subItems
         });
-    }
 
-    hide() {
+    hide = () => {
         this.setState({
             visible: false
         });
-        if (this.props.onHide) {
-            this.props.onHide();
-        }
-    }
+        this.props.onHide && this.props.onHide();
+    };
 
-    show() {
+    show = () => {
         this.setState({
             visible: true
         });
-        if (this.props.onShow) {
-            this.props.onShow();
-        }
-    }
+        this.props.onShow && this.props.onShow();
+    };
 
-    setActiveItem(index) {
+    setActiveItem = index =>
         this.setState({
             focusedItem: index
         });
-    }
 
     componentWillReceiveProps(nextProps) {
         this.setState({
@@ -102,4 +104,5 @@ class Menu extends React.Component {
 Menu.Header = MenuHeader;
 Menu.Item = MenuItem;
 Menu.SubItem = MenuSubItem;
+
 export default Menu;
