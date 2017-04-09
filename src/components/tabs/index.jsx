@@ -118,23 +118,4 @@ class Tabs extends React.Component {
 
 Tabs.Tab = Tab;
 
-Tabs.propTypes = {
-    children: function(props, propName, componentName) {
-        const prop = props[propName];
-
-        let error = null;
-        React.Children.forEach(prop, function(child) {
-            if (child.type.name != "Tabs.Tab" && child.type.name != "Tab") {
-                error = new Error(
-                    "`" +
-                        componentName +
-                        "` children should be of type `Tabs.Tab`, instead it was of type " +
-                        child.type.name
-                );
-            }
-        });
-        return error;
-    }
-};
-
 export default Tabs;

@@ -28,26 +28,4 @@ class Navbar extends React.Component {
 Navbar.Menu = NavbarMenu;
 Navbar.Submenu = NavbarSubmenu;
 
-Navbar.propTypes = {
-    children: function(props, propName, componentName) {
-        const prop = props[propName];
-
-        let error = null;
-        React.Children.forEach(prop, function(child) {
-            if (
-                child.type.name != "Navbar.Menu" &&
-                child.type.name != "NavbarMenu"
-            ) {
-                error = new Error(
-                    "`" +
-                        componentName +
-                        "` children should be of type `Navbar.Menu`, instead it was of type " +
-                        child.type.name
-                );
-            }
-        });
-        return error;
-    }
-};
-
 export default Navbar;
