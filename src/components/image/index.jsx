@@ -5,6 +5,7 @@ import suitupable from "../component";
 import { isObject, isString } from "lodash/fp";
 import ReactInview from "react-inview-js";
 import get from "lodash/get";
+import Screen from "../device/screen";
 
 @ReactInview({ fullElementInView: false })
 @suitupable(true, true)
@@ -23,9 +24,15 @@ class Image extends React.Component {
             src = lqSrc;
         }
 
+        let screen = Screen.getScreen();
+        let { width, height } = props;
+
+        width = isObject(width) ? width[screen] : width;
+        height = isObject(height) ? height[screen] : height;
+
         this.state = {
-            width: this.props.width ? this.props.width : 0,
-            height: this.props.height ? this.props.height : 0,
+            width: width ? width : 0,
+            height: height ? height : 0,
             lqSrc: lqSrc,
             hqSrc: hqSrc,
             src: src,
@@ -82,15 +89,20 @@ class Image extends React.Component {
             dimensions = get(sizes, this.props.type);
         }
 
-        if (this.props.width && !this.props.height) {
-            width = this.computeSizeInPixels(this.props.width, "x");
+        let screen = Screen.getScreen();
+
+        let pwidth = isObject(this.props.width) ? this.props.width[screen] : this.props.width;
+        let pheight = isObject(this.props.height) ? this.props.height[screen] : this.props.height;
+
+        if (pwidth && !pheight) {
+            width = this.computeSizeInPixels(pwidth, "x");
             height = this.getHeightFromWidth(dimensions, width);
-        } else if (this.props.height && !this.props.width) {
-            height = this.computeSizeInPixels(this.props.height, "y");
+        } else if (pheight && !pwidth) {
+            height = this.computeSizeInPixels(pheight, "y");
             width = this.getWidthFromHeight(dimensions, height);
         } else {
-            width = this.computeSizeInPixels(this.props.width, "x");
-            height = this.computeSizeInPixels(this.props.height, "y");
+            width = this.computeSizeInPixels(pwidth, "x");
+            height = this.computeSizeInPixels(pheight, "y");
         }
 
         this.setState({
@@ -174,6 +186,9 @@ class Image extends React.Component {
         let { lqSrc, hqSrc } = this.state;
 
         let rwidth, rheight;
+
+        width = isObject(width) ? width[screen] : width;
+        height = isObject(height) ? height[screen] : height;
 
         if (width && (this.isPercent(width) || this.isPixel(width))) {
             rwidth = width;
