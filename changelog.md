@@ -1,3 +1,7 @@
+# 0.5.0
+
+Upgrade to react 0.15.3 and react-dom 0.15.3, please upgrade your project since it contains some breaking changes.
+
 # 0.3.9
 
 Optimizations made. Bug fixes. Image component now supports progressive loading.

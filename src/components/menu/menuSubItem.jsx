@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from 'prop-types';
+import classnames from "classnames";
 import suitupable from "../component";
 import { NavLink as Link } from "react-router-dom";
 
@@ -17,7 +18,7 @@ class MenuSubItem extends React.PureComponent {
     }
 
     render() {
-        let { hideOnRedirect, text, href, screen, settings, ...rest } = this.props;
+        let { active, hideOnRedirect, text, href, screen, settings, ...rest } = this.props;
 
         const content = (
             <div {...rest} className="menu-sub-item">
@@ -25,15 +26,17 @@ class MenuSubItem extends React.PureComponent {
             </div>
         );
 
+        const subItemClasses = classnames({active});
+
         return (
             <Choose>
                 <When condition={href}>
-                    <Link exact to={href} activeClassName="active" onClick={this.shouldHide}>
+                    <Link exact to={href} activeClassName="active" className={subItemClasses} onClick={this.shouldHide}>
                         {content}
                     </Link>
                 </When>
                 <Otherwise>
-                    <div>
+                    <div className={subItemClasses}>
                         {content}
                     </div>
                 </Otherwise>

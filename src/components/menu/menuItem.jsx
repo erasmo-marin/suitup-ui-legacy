@@ -57,7 +57,7 @@ class MenuItem extends React.Component {
     }
 
     render() {
-        let { hideOnRedirect, children, href, text, screen, settings, focused, ...rest } = this.props;
+        let { active, hideOnRedirect, children, href, text, screen, settings, focused, ...rest } = this.props;
         let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
         subItemsStyle.marginTop = "0px";
@@ -80,7 +80,7 @@ class MenuItem extends React.Component {
 
         const itemClasses = classnames({
             "menu-item": true,
-            "active": subItemsVisible
+            "active": subItemsVisible || active
         })
 
         return (
