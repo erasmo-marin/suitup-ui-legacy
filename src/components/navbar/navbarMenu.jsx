@@ -14,8 +14,14 @@ class NavbarMenu extends React.Component {
     onMouseLeave = () => this.setState({ hover: false });
 
     render() {
-        let { href, children, text, ...rest } = this.props;
+        let { active, href, children, text, ...rest } = this.props;
         let { hover } = this.state;
+
+        let menuClasses = classnames({
+            "active": active,
+            "navbar-menu": true
+        });
+
         return (
             <Choose>
                 <When condition={href}>
@@ -24,7 +30,7 @@ class NavbarMenu extends React.Component {
                             {...rest}
                             to={href}
                             exact
-                            className="navbar-menu"
+                            className={menuClasses}
                             activeClassName="active"
                             onMouseEnter={this.onMouseEnter}
                             onMouseLeave={this.onMouseLeave}
@@ -37,7 +43,7 @@ class NavbarMenu extends React.Component {
                     <li>
                         <div
                             {...rest}
-                            className="navbar-menu"
+                            className={menuClasses}
                             onMouseEnter={this.onMouseEnter}
                             onMouseLeave={this.onMouseLeave}
                         >

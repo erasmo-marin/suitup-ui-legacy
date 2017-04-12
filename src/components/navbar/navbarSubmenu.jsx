@@ -15,8 +15,14 @@ class NavbarSubmenu extends React.Component {
     onMouseLeave = () => this.setState({ hover: false });
 
     render() {
-        let { href, children, text, ...rest } = this.props;
+        let { active, href, children, text, ...rest } = this.props;
         let { hover } = this.state;
+
+        let menuClasses = classnames({
+            "active": active,
+            "navbar-submenu-item": true
+        });
+
         return (
             <Choose>
                 <When condition={href}>
@@ -24,7 +30,7 @@ class NavbarSubmenu extends React.Component {
                         {...rest}
                         to={href}
                         exact
-                        className="navbar-submenu-item"
+                        className={menuClasses}
                         activeClassName="active"
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
@@ -38,7 +44,7 @@ class NavbarSubmenu extends React.Component {
                 <Otherwise>
                     <div
                         {...rest}
-                        className="navbar-submenu-item"
+                        className={menuClasses}
                         onMouseEnter={this.onMouseEnter}
                         onMouseLeave={this.onMouseLeave}
                     >
