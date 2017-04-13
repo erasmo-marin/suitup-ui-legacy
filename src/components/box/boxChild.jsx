@@ -44,7 +44,7 @@ class BoxChild extends React.Component {
         classes = classnames(classes);
 
         return (
-            <div {...rest} className={classes} style={{ ...style, ...cstyle }}>
+            <div {...rest} className={classes} style={{...cstyle, ...style}}>
                 {children}
             </div>
         );
