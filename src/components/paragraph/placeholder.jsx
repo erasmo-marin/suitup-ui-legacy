@@ -3,7 +3,7 @@ import classnames from "classnames";
 import { times, random } from "lodash/fp";
 
 const Placeholder = (
-    { rows, animated, justify, lineSpacing, fontSize, color, rounded },
+    { rows, animated, justify, lineSpacing, fontSize, color, rounded, ...rest },
 ) => {
     const classes = classnames({
         "text-placeholder": true,
@@ -15,7 +15,7 @@ const Placeholder = (
     };
 
     return (
-        <div className={classes}>
+        <div {...rest} className={classes}>
             <div className="text-placeholder-animation-wrapper">
                 {times(
                     index => {

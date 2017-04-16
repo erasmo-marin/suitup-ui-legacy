@@ -2,7 +2,7 @@ import React from "react";
 import classnames from "classnames";
 import Placeholder from "./placeholder";
 
-const Paragraph = ({text, loading, placeholder, children}) => {
+const Paragraph = ({text, loading, placeholder, children, ...rest}) => {
 
     const classes = classnames({
         "paragraph-holder": true,
@@ -10,7 +10,7 @@ const Paragraph = ({text, loading, placeholder, children}) => {
     });
 
     return (
-        <div className={classes}>
+        <div {...rest} className={classes}>
             <Choose>
                 <When condition={loading}>
                     <Placeholder {...placeholder}/>

@@ -15,9 +15,11 @@ class CardFooter extends React.Component {
 
     classes = classnames(classes);
 
+    let { children, ...rest } = this.props;
+
     return (
-      <div className={classes}>
-        {this.props.children}
+      <div {...rest} className={classes}>
+        {children}
       </div>
     );
   }

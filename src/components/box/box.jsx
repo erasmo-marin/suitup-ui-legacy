@@ -72,6 +72,7 @@ class Box extends React.Component {
             columns,
             gutter,
             screen,
+            style,
             settings,
             ...rest
         } = this.props;
@@ -81,13 +82,13 @@ class Box extends React.Component {
         }
 
         let classes = classnames({
-            box: true,
-            horizontal: vertical == null ? true : false,
-            vertical: vertical,
+            "box": true,
+            "horizontal": vertical == null ? true : false,
+            "vertical": vertical,
             "fill-space": autoFill,
-            centered: justify == "center",
-            left: justify == "left",
-            right: justify == "right",
+            "centered": justify == "center",
+            "left": justify == "left",
+            "right": justify == "right",
             "align-start": align == "start",
             "align-end": align == "end",
             "align-center": align == "center",
@@ -109,7 +110,7 @@ class Box extends React.Component {
         };
 
         return (
-            <div {...rest} style={cstyle} className={classes}>
+            <div {...rest} style={{ ...cstyle, style }} className={classes}>
                 {this.setupChildProps(this.props)}
             </div>
         );

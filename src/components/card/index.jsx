@@ -12,23 +12,24 @@ class Card extends React.Component {
     }
 
     render() {
-        let {width, height, screen, settings, ...rest} = this.props;
+        let {width, height, screen, settings, style, children, ...rest} = this.props;
 
         let classes = classnames({
             card: true,
             [screen]: true
         });
 
-        let style = {
+        let cstyle = {
             maxWidth: width ? width : undefined,
             maxHeight: height ? height : undefined,
             width: width ? width : undefined,
             height: height ? height : undefined
         };
 
+
         return (
-            <div {...rest} className={classes} style={style}>
-                {this.props.children}
+            <div {...rest} className={classes} style={{...cstyle, ...style}}>
+                {children}
             </div>
         );
     }
