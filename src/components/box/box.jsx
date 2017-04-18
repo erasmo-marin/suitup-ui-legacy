@@ -110,7 +110,7 @@ class Box extends React.Component {
         };
 
         return (
-            <div {...rest} style={{ ...cstyle, style }} className={classes}>
+            <div {...rest} style={{ ...cstyle, ...style }} className={classes}>
                 {this.setupChildProps(this.props)}
             </div>
         );

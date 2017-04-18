@@ -11,7 +11,7 @@ class CardAction extends React.Component {
 
     render() {
 
-        let { text, onClick, start, end, ...rest } = this.props;
+        let { text, onClick, start, end, screen, settings, ...rest } = this.props;
 
         let classes = {
             "card-action": true,

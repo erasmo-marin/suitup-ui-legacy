@@ -47,12 +47,6 @@ class Modal extends React.Component {
 
 @suitupable(true, true)
 class ModalImplementation extends React.Component {
-    constructor(props) {
-        super(props);
-        this.show = ::this.show;
-        this.hide = ::this.hide;
-        this.centerVertically = ::this.centerVertically;
-    }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps.visible) {
@@ -78,20 +72,20 @@ class ModalImplementation extends React.Component {
         window.removeEventListener("resize", this.centerVertically);
     }
 
-    preventPropagation(e) {
+    preventPropagation = (e) => {
         if (!e) return;
         e.preventDefault();
         e.stopPropagation();
     }
 
-    centerVertically() {
+    centerVertically = () => {
         let diff = window.innerHeight - this.modalInner.offsetHeight;
         if (diff > 0) {
             this.modalInner.style.marginTop = diff / 2 + "px";
         }
     }
 
-    show() {
+    show = () => {
         var scrollBarWidth = window.innerWidth - document.body.offsetWidth;
         document.body.style.margin = "0px " + scrollBarWidth + "px 0px 0px";
         document.body.style.overflow = "hidden";
@@ -108,7 +102,9 @@ class ModalImplementation extends React.Component {
         }
     }
 
-    hide() {
+    onBlur = () => (this.props.hideOnBlur && this.hide());
+
+    hide = () => {
         this.modal.classList.remove("visible");
         document.body.style.margin = "";
         document.body.style.overflow = "";
@@ -124,7 +120,7 @@ class ModalImplementation extends React.Component {
     }
 
     render() {
-        let { visible, children, screen, settings, style, ...rest } = this.props;
+        let { visible, children, screen, settings, style, hideOnBlur, ...rest } = this.props;
         let modalStyle = { ...{ position: "relative" }, ...style };
 
         return (
@@ -132,7 +128,7 @@ class ModalImplementation extends React.Component {
                 {...rest}
                 className="modal-container"
                 ref={c => this.modal = c}
-                onClick={this.hide}
+                onClick={this.onBlur}
             >
                 <div
                     className="modal"
