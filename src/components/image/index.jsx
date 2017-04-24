@@ -5,6 +5,7 @@ import suitupable from "../component";
 import { isObject, isString } from "lodash/fp";
 import ReactInview from "react-inview-js";
 import get from "lodash/get";
+import isFunction from "lodash/isFunction";
 import Screen from "../device/screen";
 
 @ReactInview({ fullElementInView: false })
@@ -38,6 +39,9 @@ class Image extends React.Component {
             src: src,
             hqSrcLoaded: false
         };
+
+        if (isFunction(get(this, "props.instance")))
+            this.props.instance(this);
     }
 
     componentDidMount() {
@@ -180,6 +184,7 @@ class Image extends React.Component {
             screen,
             settings,
             blurLowQuality,
+            instance,
             ...rest
         } = this.props;
 
