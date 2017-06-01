@@ -138,6 +138,7 @@ class Image extends React.Component {
     }
 
     computeSizeInPixels(size, axis) {
+
         let isPercent = false;
 
         if (this.isPercent(size)) {
@@ -147,8 +148,8 @@ class Image extends React.Component {
             size = parseFloat(size.replace("px", ""));
         }
 
-        let width = this.image.offsetWidth;
-        let height = this.image.offsetHeight;
+        let width = get(this.image, "offsetWidth") || 0;
+        let height = get(this.image, "offsetHeight") || 0;
 
         if (isPercent) {
             if (axis == "x") {
