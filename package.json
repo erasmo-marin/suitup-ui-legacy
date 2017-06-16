@@ -18,7 +18,6 @@
     "fbemitter": "^2.1.1",
     "lodash": "^4.17.4",
     "moment": "^2.14.1",
-    "react-addons-shallow-compare": "^15.5.2",
     "react-draggable": "^2.2.3",
     "react-inview-js": "^1.2.7"
   },
