@@ -20,10 +20,17 @@ class MenuSubItem extends React.PureComponent {
     render() {
         let { active, hideOnRedirect, text, href, screen, settings, ...rest } = this.props;
         const subItemClasses = classnames({active});
-        
+
         const content = (
             <div {...rest} className="menu-sub-item">
-                <span>{text}</span>
+                <Choose>
+                    <When condition={text}>
+                        <span>{text}</span>
+                    </When>
+                    <Otherwise>
+                        {children}
+                    </Otherwise>
+                </Choose>
             </div>
         );
 
