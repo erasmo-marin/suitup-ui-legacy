@@ -18,7 +18,7 @@ class MenuSubItem extends React.PureComponent {
     }
 
     render() {
-        let { active, hideOnRedirect, text, href, screen, settings, ...rest } = this.props;
+        let { children, active, hideOnRedirect, text, href, screen, settings, ...rest } = this.props;
         const subItemClasses = classnames({active});
 
         const content = (
