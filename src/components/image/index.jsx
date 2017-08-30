@@ -14,6 +14,7 @@ class Image extends React.Component {
     constructor(props) {
         super(props);
         this.recalculeSize = ::this.recalculeSize;
+        this.mounted = false;
 
         let { src } = props;
 
@@ -88,7 +89,7 @@ class Image extends React.Component {
     }
 
     recalculeSize() {
-
+        
         if (!this.mounted)
             return;
 
