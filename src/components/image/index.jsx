@@ -43,6 +43,7 @@ class Image extends React.Component {
 
         if (isFunction(get(this, "props.instance")))
             this.props.instance(this);
+        this.mounted = false;
     }
 
     componentDidMount() {
@@ -88,8 +89,10 @@ class Image extends React.Component {
     }
 
     recalculeSize() {
-        if(!this.mounted)
+        
+        if (!this.mounted)
             return;
+
         let width, height = 0;
         let dimensions;
         const sizes = get(this, "props.settings.Image.aspectRatios");
