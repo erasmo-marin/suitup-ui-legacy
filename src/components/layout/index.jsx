@@ -71,7 +71,7 @@ class Layout extends React.Component {
     }
 
     findHeader(x) {
-        if (!x || !x.props) return;
+        if (!x || !x.props || !x.type) return;
         if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
             this.setState({
                 header: x
