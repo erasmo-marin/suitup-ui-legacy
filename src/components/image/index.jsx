@@ -175,6 +175,8 @@ class Image extends React.Component {
             hqSrcLoaded: true
         });
 
+    firstLoadVisible = () => (this.image && this.image.offsetTop <= window.innerHeight);
+
     render() {
         let {
             elementIsInView,
@@ -256,7 +258,7 @@ class Image extends React.Component {
             >
                 <If condition={lqSrc && hqSrc}>
                     <img style={{ display: "none" }} src={lqSrc} />
-                    <If condition={elementIsInView || elementHasBeenInView}>
+                    <If condition={elementIsInView || elementHasBeenInView || this.firstLoadVisible()}>
                         <img
                             style={{ display: "none" }}
                             src={hqSrc}
