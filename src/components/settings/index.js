@@ -37,14 +37,18 @@ const defaultSettings = {
             },
             tablet: {
                 from: 769,
-                to: 999
+                to: 1007
             },
             desktop: {
-                from: 1000,
-                to: 1191
+                from: 1008,
+                to: 1199
             },
             widescreen: {
-                from: 1192,
+                from: 1200,
+                to: 1391
+            },
+            fullhd: {
+                from: 1392,
                 to: Number.MAX_SAFE_INTEGER
             }
         }
