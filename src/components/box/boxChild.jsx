@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import forEach from "lodash/forEach";
 
 class BoxChild extends React.Component {
     constructor(props) {
