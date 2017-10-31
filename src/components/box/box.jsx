@@ -1,6 +1,7 @@
 import React from "react";
 import classnames from "classnames";
 import isArray from "lodash/fp/isArray";
+import forEach from "lodash/forEach";
 import Child from "./boxChild";
 import suitupable from "../component";
 
@@ -74,6 +75,7 @@ class Box extends React.Component {
             screen,
             style,
             settings,
+            className,
             ...rest
         } = this.props;
 
@@ -81,7 +83,8 @@ class Box extends React.Component {
             gutter = "0.5rem";
         }
 
-        let classes = classnames({
+
+        let classesObj = {
             "box": true,
             "horizontal": vertical == null ? true : false,
             "vertical": vertical,
@@ -96,7 +99,17 @@ class Box extends React.Component {
             "align-baseline": align == "baseline",
             "full-height": verticalExpand,
             [screen]: true
-        });
+        }
+
+
+        if(className) {
+            let propClasses = className.split(" ");
+            forEach(propClasses, theClass => {
+                classesObj[theClass] = true;
+            });
+        }
+
+        let classes = classnames(classesObj);
 
         gutter = this.parseGutter(gutter);
 

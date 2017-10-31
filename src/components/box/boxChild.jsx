@@ -28,6 +28,7 @@ class BoxChild extends React.Component {
             children,
             style,
             gutter,
+            className,
             ...rest
         } = this.props;
 
@@ -39,6 +40,14 @@ class BoxChild extends React.Component {
         if (wide && columns) {
             cstyle.width = `${100 / columns * wide}%`;
             cstyle.padding = gutter;
+        }
+
+
+        if(className) {
+            let propClasses = className.split(" ");
+            forEach(propClasses, theClass => {
+                classes[theClass] = true;
+            });
         }
 
         classes = classnames(classes);
