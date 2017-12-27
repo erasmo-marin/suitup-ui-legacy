@@ -14,7 +14,7 @@ class Tabs extends React.Component {
         let { children } = this.props;
         if (!children.map) children = [children];
 
-        let activeTab = 1;
+        let activeTab = 0;
         if (this.props.active) {
             activeTab = this.props.active;
         }
