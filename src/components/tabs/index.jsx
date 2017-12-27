@@ -21,6 +21,7 @@ class Tabs extends React.Component {
 
         this.state = {
             activeTab: children[activeTab - 1],
+            activeTabIndex: activeTab || 0,
             activeTabIndicatorOffset: (activeTab - 1) * 100 / children.length +
                 "%",
             activeTabIndicatorWidth: 100 / children.length + "%"
@@ -83,7 +84,7 @@ class Tabs extends React.Component {
                         {children.map((child, index) => {
                             let classes = classnames({
                                 tab: true,
-                                active: this.state.activeTab == child
+                                active: this.state.activeTabIndex == index
                             });
 
                             return (
