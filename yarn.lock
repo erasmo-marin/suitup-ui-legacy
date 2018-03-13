@@ -6,9 +6,9 @@
   version "4.0.4"
   resolved "https://registry.yarnpkg.com/@zippytech/react-class/-/react-class-4.0.4.tgz#0faf7cd670a4d4f12b8102ca619e622e0e00b109"
 
-"@zippytech/react-notify-resize@^3.0.0":
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/@zippytech/react-notify-resize/-/react-notify-resize-3.0.0.tgz#303307bdf573f8c1bf4b20bbb4354a383a725297"
+"@zippytech/react-notify-resize@https://github.com/zippytech/react-notify-resize.git#v3.0.1":
+  version "3.0.1"
+  resolved "https://github.com/zippytech/react-notify-resize.git#9c075bbf0f93430752d9c493e99e08017d777fd7"
   dependencies:
     "@zippytech/react-class" "^4.0.4"
     "@zippytech/uglified" "^2.0.0"
