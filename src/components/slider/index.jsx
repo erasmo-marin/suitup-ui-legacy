@@ -43,6 +43,7 @@ class Slider extends React.Component {
             lazyLoad: false, //when true, the slider only loads the slides when needed
             minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
             animation: "translate", //translate - fade - zoom
+            centerModePadding: 100
         };
 
         this.autoPlayInterval = false;
@@ -54,7 +55,7 @@ class Slider extends React.Component {
         this.loadSettings(nextProps.settings);
         const { autoPlay, ...rest } = this.props;
         this.setState(rest);
-        if(this.props.autoPlay != nextProps.autoPlay) {
+        if (this.props.autoPlay != nextProps.autoPlay) {
             this.autoPlayJob();
         }
     }
@@ -66,19 +67,16 @@ class Slider extends React.Component {
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.onResize);
-        if(this.autoPlayInterval)
-            clearInterval(this.autoPlayInterval);
+        if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
     }
 
     autoPlayJob() {
         const { autoPlayDuration = 5000 } = this.state;
 
-        if(this.autoPlayInterval)
-            clearInterval(this.autoPlayInterval);
+        if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
 
         this.autoPlayInterval = setInterval(() => {
-            if(this.state.autoPlay)
-                this.next();
+            if (this.state.autoPlay) this.next();
         }, autoPlayDuration);
     }
 
@@ -120,21 +118,18 @@ class Slider extends React.Component {
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / this.props.children.length;
 
-        let x = sw * index * (-1);
+        let x = sw * index * -1;
 
         this.setState({
-            activeIndex: index,
+            activeIndex: index
         });
         this.draggableComponent.setState({
-            x: x,
+            x: x
         });
 
-        setTimeout(
-            () => {
-                this.draggableContent.style.transition = "";
-            },
-            500,
-        );
+        setTimeout(() => {
+            this.draggableContent.style.transition = "";
+        }, 500);
     }
 
     setupChildStyle(props, style) {
@@ -142,17 +137,14 @@ class Slider extends React.Component {
 
         if (props.children) {
             if (isArray(props.children)) {
-                res = props.children.map(
-                    function(element) {
-                        return React.cloneElement(element, {
-                            style: style,
-                        });
-                    },
-                    this,
-                );
+                res = props.children.map(function(element) {
+                    return React.cloneElement(element, {
+                        style: style
+                    });
+                }, this);
             } else {
                 res = React.cloneElement(props.children, {
-                    style: style,
+                    style: style
                 });
             }
         }
@@ -169,7 +161,7 @@ class Slider extends React.Component {
     }
 
     onEndDrag(event) {
-        let x = (-1) * this.draggableComponent.state.x;
+        let x = -1 * this.draggableComponent.state.x;
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / this.props.children.length;
 
@@ -178,12 +170,12 @@ class Slider extends React.Component {
         //percent of minimal drag is 30% of a slide width
         let minimumDrag = sw * 0.3;
 
-        if (Math.abs(this.state.positionTrack - x * (-1)) < minimumDrag) {
+        if (Math.abs(this.state.positionTrack - x * -1) < minimumDrag) {
             this.goTo(this.state.activeIndex);
             return;
         }
 
-        if (x * (-1) < this.state.positionTrack) {
+        if (x * -1 < this.state.positionTrack) {
             index++;
         }
 
@@ -191,7 +183,7 @@ class Slider extends React.Component {
     }
 
     stopAutoPlay() {
-        if(this.autoPlayInterval) {
+        if (this.autoPlayInterval) {
             clearInterval(this.autoPlayInterval);
         }
     }
@@ -208,26 +200,32 @@ class Slider extends React.Component {
 
     render() {
         let classes = {
-            slider: true,
+            slider: true
         };
 
         classes = classnames(classes);
         //let translate = this.state.activeIndex * (100/this.props.children.length) * -1;
 
-        let slideStyle = {
+        const slideStyle = {
             width: `calc(${100 / this.props.children.length}% - 4rem)`,
             display: "inline-block",
             margin: "1rem 2rem",
-            boxSizing: "border-box",
+            boxSizing: "border-box"
         };
 
-        let style = {
+        const style = {
             /*transform: `translateX(${translate}%)`,*/
-            width: `${this.props.children.length * 100}%`,
+            width: `${this.props.children.length * 100}%`
         };
+
+        const sliderStyle = {
+            paddingLeft: this.state.centerMode ? `${this.state.centerModePadding}px` : "0px",
+            paddingRight: this.state.centerMode ? `${this.state.centerModePadding}px` : "0px",
+            boxSizing: "border-box"
+        }
 
         return (
-            <div className={classes}>
+            <div className={classes} style={sliderStyle}>
                 <If condition={this.state.showArrows}>
                     <div
                         className="slider-arrow slider-arrow-left"
@@ -264,13 +262,15 @@ class Slider extends React.Component {
                     >
                         {this.props.children.map((child, index) => {
                             //we render the component after and before the current one and the components that was loaded before
-                            let shouldRenderChild = !this.state.lazyLoad ||
-                                this.state.lazyLoad &&
+                            let shouldRenderChild =
+                                !this.state.lazyLoad ||
+                                (this.state.lazyLoad &&
                                     Math.abs(this.state.activeIndex - index) <
-                                        2;
+                                        2);
 
                             if (
-                                shouldRenderChild && !this.state.minimalRender
+                                shouldRenderChild &&
+                                !this.state.minimalRender
                             ) {
                                 this.state.alreadyLoaded[index] = true;
                             }
@@ -286,7 +286,7 @@ class Slider extends React.Component {
                                     <If
                                         condition={
                                             shouldRenderChild ||
-                                                this.state.alreadyLoaded[index]
+                                            this.state.alreadyLoaded[index]
                                         }
                                     >
                                         {child}
@@ -308,9 +308,10 @@ class Slider extends React.Component {
                                 {this.props.children.map((child, index) => {
                                     let classes = classnames({
                                         dot: true,
-                                        active: index == this.state.activeIndex
-                                            ? true
-                                            : false,
+                                        active:
+                                            index == this.state.activeIndex
+                                                ? true
+                                                : false
                                     });
 
                                     return (
