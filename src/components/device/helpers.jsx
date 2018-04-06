@@ -24,3 +24,9 @@ export const Widescreen = ({children}) => (
             {children}
         </Device>
 );
+
+export const Fullhd = ({children}) => (
+        <Device device="fullhd">
+            {children}
+        </Device>
+);

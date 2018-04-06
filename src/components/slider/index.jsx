@@ -15,11 +15,14 @@ class Slider extends React.Component {
         this.previous = ::this.previous;
         this.next = ::this.next;
         this.goTo = ::this.goTo;
+        this.onUserNext = ::this.onUserNext;
+        this.onUserPrevious = ::this.onUserPrevious;
 
         this.onStartDrag = ::this.onStartDrag;
         this.onEndDrag = ::this.onEndDrag;
         this.onDrag = ::this.onDrag;
         this.onResize = ::this.onResize;
+        this.autoPlayJob = ::this.autoPlayJob;
 
         this.slides = [];
 
@@ -29,7 +32,7 @@ class Slider extends React.Component {
             position: null, //the position object for the slider
             positionTrack: null, //the position used to track the drag event
             autoPlay: false,
-            autoPlayDuration: 0,
+            autoPlayDuration: 5000,
             activeSlideWidth: 100,
             dragging: false,
             showArrows: true,
@@ -41,20 +44,42 @@ class Slider extends React.Component {
             minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
             animation: "translate", //translate - fade - zoom
         };
+
+        this.autoPlayInterval = false;
+
         this.loadSettings(this.props);
     }
 
     componentWillReceiveProps(nextProps) {
         this.loadSettings(nextProps.settings);
-        this.setState(this.state);
+        const { autoPlay, ...rest } = this.props;
+        this.setState(rest);
+        if(this.props.autoPlay != nextProps.autoPlay) {
+            this.autoPlayJob();
+        }
     }
 
     componentDidMount() {
         window.addEventListener("resize", this.onResize);
+        this.autoPlayJob();
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.onResize);
+        if(this.autoPlayInterval)
+            clearInterval(this.autoPlayInterval);
+    }
+
+    autoPlayJob() {
+        const { autoPlayDuration = 5000 } = this.state;
+
+        if(this.autoPlayInterval)
+            clearInterval(this.autoPlayInterval);
+
+        this.autoPlayInterval = setInterval(() => {
+            if(this.state.autoPlay)
+                this.next();
+        }, autoPlayDuration);
     }
 
     loadSettings(settings) {
@@ -135,6 +160,7 @@ class Slider extends React.Component {
     }
 
     onStartDrag(event) {
+        this.stopAutoPlay();
         this.state.positionTrack = this.draggableComponent.state.x;
     }
 
@@ -164,6 +190,22 @@ class Slider extends React.Component {
         this.goTo(index);
     }
 
+    stopAutoPlay() {
+        if(this.autoPlayInterval) {
+            clearInterval(this.autoPlayInterval);
+        }
+    }
+
+    onUserNext() {
+        this.stopAutoPlay();
+        this.next();
+    }
+
+    onUserPrevious() {
+        this.stopAutoPlay();
+        this.previous();
+    }
+
     render() {
         let classes = {
             slider: true,
@@ -189,13 +231,13 @@ class Slider extends React.Component {
                 <If condition={this.state.showArrows}>
                     <div
                         className="slider-arrow slider-arrow-left"
-                        onClick={this.previous}
+                        onClick={this.onUserPrevious}
                     >
                         <Icon name="chevron_left" size={this.state.arrowSize} />
                     </div>
                     <div
                         className="slider-arrow slider-arrow-right"
-                        onClick={this.next}
+                        onClick={this.onUserNext}
                     >
                         <Icon
                             name="chevron_right"
