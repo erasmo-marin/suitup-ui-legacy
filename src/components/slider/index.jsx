@@ -12,20 +12,7 @@ import suitupable from "../component";
 class Slider extends React.Component {
     constructor(props) {
         super(props);
-        this.previous = ::this.previous;
-        this.next = ::this.next;
-        this.goTo = ::this.goTo;
-        this.onUserNext = ::this.onUserNext;
-        this.onUserPrevious = ::this.onUserPrevious;
-
-        this.onStartDrag = ::this.onStartDrag;
-        this.onEndDrag = ::this.onEndDrag;
-        this.onDrag = ::this.onDrag;
-        this.onResize = ::this.onResize;
-        this.autoPlayJob = ::this.autoPlayJob;
-
         this.slides = [];
-
         this.state = {
             alreadyLoaded: [], //save the slides that has been rendered before
             activeIndex: 0, //index of the current active slider
@@ -43,7 +30,9 @@ class Slider extends React.Component {
             lazyLoad: false, //when true, the slider only loads the slides when needed
             minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
             animation: "translate", //translate - fade - zoom
-            centerModePadding: 100
+            centerModePadding: 100,
+            slidesSpacing: 50,
+            slideStep: 1
         };
 
         this.autoPlayInterval = false;
@@ -70,7 +59,7 @@ class Slider extends React.Component {
         if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
     }
 
-    autoPlayJob() {
+    autoPlayJob = () => {
         const { autoPlayDuration = 5000 } = this.state;
 
         if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
@@ -78,34 +67,44 @@ class Slider extends React.Component {
         this.autoPlayInterval = setInterval(() => {
             if (this.state.autoPlay) this.next();
         }, autoPlayDuration);
-    }
+    };
 
-    loadSettings(settings) {
+    loadSettings = settings => {
         if (!settings) return;
         this.state = { ...this.state, ...settings };
-    }
+    };
 
-    onResize() {
+    onResize = () => {
         this.goTo(this.state.activeIndex);
-    }
+    };
 
-    previous() {
+    previous = () => {
         let active = this.state.activeIndex;
-
-        if (active - 1 < 0) active = this.props.children.length - 1;
-        else --active;
+        const { slideStep } = this.state;
+        if (active - slideStep < 0) {
+            if (slideStep === 1) active = this.props.children.length - 1;
+            else active = 0;
+        } else {
+            active = active - slideStep;
+        }
         this.goTo(active);
-    }
+    };
 
-    next() {
+    next = () => {
         let active = this.state.activeIndex;
-
-        if (active > this.props.children.length - 2) active = 0;
-        else ++active;
+        const { slideStep } = this.state;
+        if (active > this.props.children.length - slideStep - 1) {
+            if (slideStep === 1) active = 0;
+            else active = this.props.children.length - 1;
+        } else {
+            active = active + slideStep;
+        }
         this.goTo(active);
-    }
+    };
 
-    goTo(index) {
+    goTo = index => {
+        const { displayItems, slideStep } = this.state;
+
         if (index < 0) {
             index = 0;
         }
@@ -118,7 +117,13 @@ class Slider extends React.Component {
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / this.props.children.length;
 
-        let x = sw * index * -1;
+        let x = sw * index * -1 / displayItems;
+
+        const maxX =
+            (sw * (this.props.children.length - 1) - sw * (displayItems - 1)) /
+            displayItems;
+
+        if (-1 * x > maxX) x = -1 * maxX;
 
         this.setState({
             activeIndex: index
@@ -130,9 +135,11 @@ class Slider extends React.Component {
         setTimeout(() => {
             this.draggableContent.style.transition = "";
         }, 500);
-    }
+        //we return the x variable in order to check if it has changed
+        return x;
+    };
 
-    setupChildStyle(props, style) {
+    setupChildStyle = (props, style) => {
         let res = null;
 
         if (props.children) {
@@ -149,21 +156,22 @@ class Slider extends React.Component {
             }
         }
         return res;
-    }
+    };
 
-    onStartDrag(event) {
+    onStartDrag = event => {
         this.stopAutoPlay();
         this.state.positionTrack = this.draggableComponent.state.x;
-    }
+    };
 
-    onDrag(event) {
+    onDrag = event => {
         return;
-    }
+    };
 
-    onEndDrag(event) {
+    onEndDrag = event => {
+        const { displayItems } = this.state;
         let x = -1 * this.draggableComponent.state.x;
         let dw = this.draggableContent.offsetWidth;
-        let sw = dw / this.props.children.length;
+        let sw = dw / this.props.children.length / displayItems;
 
         let index = parseInt(x / sw);
 
@@ -180,25 +188,38 @@ class Slider extends React.Component {
         }
 
         this.goTo(index);
-    }
+    };
 
-    stopAutoPlay() {
+    stopAutoPlay = () => {
         if (this.autoPlayInterval) {
             clearInterval(this.autoPlayInterval);
         }
-    }
+    };
 
-    onUserNext() {
+    onUserNext = () => {
         this.stopAutoPlay();
         this.next();
-    }
+    };
 
-    onUserPrevious() {
+    onUserPrevious = () => {
         this.stopAutoPlay();
         this.previous();
-    }
+    };
 
     render() {
+        const {
+            slidesSpacing,
+            displayItems,
+            centerMode,
+            centerModePadding,
+            showArrows,
+            arrowSize,
+            lazyLoad,
+            activeIndex,
+            minimalRender,
+            alreadyLoaded
+        } = this.state;
+
         let classes = {
             slider: true
         };
@@ -207,9 +228,12 @@ class Slider extends React.Component {
         //let translate = this.state.activeIndex * (100/this.props.children.length) * -1;
 
         const slideStyle = {
-            width: `calc(${100 / this.props.children.length}% - 4rem)`,
+            width: `calc(${100 /
+                (this.props.children.length * displayItems)}% - ${parseInt(
+                slidesSpacing
+            )}px)`,
             display: "inline-block",
-            margin: "1rem 2rem",
+            margin: `1rem ${parseInt(slidesSpacing / 2)}px`,
             boxSizing: "border-box"
         };
 
@@ -219,28 +243,25 @@ class Slider extends React.Component {
         };
 
         const sliderStyle = {
-            paddingLeft: this.state.centerMode ? `${this.state.centerModePadding}px` : "0px",
-            paddingRight: this.state.centerMode ? `${this.state.centerModePadding}px` : "0px",
+            paddingLeft: centerMode ? `${centerModePadding}px` : "0px",
+            paddingRight: centerMode ? `${centerModePadding}px` : "0px",
             boxSizing: "border-box"
-        }
+        };
 
         return (
             <div className={classes} style={sliderStyle}>
-                <If condition={this.state.showArrows}>
+                <If condition={showArrows}>
                     <div
                         className="slider-arrow slider-arrow-left"
                         onClick={this.onUserPrevious}
                     >
-                        <Icon name="chevron_left" size={this.state.arrowSize} />
+                        <Icon name="chevron_left" size={arrowSize} />
                     </div>
                     <div
                         className="slider-arrow slider-arrow-right"
                         onClick={this.onUserNext}
                     >
-                        <Icon
-                            name="chevron_right"
-                            size={this.state.arrowSize}
-                        />
+                        <Icon name="chevron_right" size={arrowSize} />
                     </div>
                 </If>
                 <Draggable
@@ -260,40 +281,39 @@ class Slider extends React.Component {
                             this.draggableContent = c;
                         }}
                     >
-                        {this.props.children.map((child, index) => {
-                            //we render the component after and before the current one and the components that was loaded before
-                            let shouldRenderChild =
-                                !this.state.lazyLoad ||
-                                (this.state.lazyLoad &&
-                                    Math.abs(this.state.activeIndex - index) <
-                                        2);
+                        <div className="slider-visible-area">
+                            {this.props.children.map((child, index) => {
+                                //we render the component after and before the current one and the components that was loaded before
+                                let shouldRenderChild =
+                                    !lazyLoad ||
+                                    (lazyLoad &&
+                                        Math.abs(activeIndex - index) <
+                                            displayItems + 1);
 
-                            if (
-                                shouldRenderChild &&
-                                !this.state.minimalRender
-                            ) {
-                                this.state.alreadyLoaded[index] = true;
-                            }
+                                if (shouldRenderChild && !minimalRender) {
+                                    alreadyLoaded[index] = true;
+                                }
 
-                            return (
-                                <div
-                                    style={slideStyle}
-                                    key={index}
-                                    ref={c => {
-                                        this.slides[index] = c;
-                                    }}
-                                >
-                                    <If
-                                        condition={
-                                            shouldRenderChild ||
-                                            this.state.alreadyLoaded[index]
-                                        }
+                                return (
+                                    <div
+                                        style={slideStyle}
+                                        key={index}
+                                        ref={c => {
+                                            this.slides[index] = c;
+                                        }}
                                     >
-                                        {child}
-                                    </If>
-                                </div>
-                            );
-                        })}
+                                        <If
+                                            condition={
+                                                shouldRenderChild ||
+                                                alreadyLoaded[index]
+                                            }
+                                        >
+                                            {child}
+                                        </If>
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </Draggable>
 
@@ -309,9 +329,7 @@ class Slider extends React.Component {
                                     let classes = classnames({
                                         dot: true,
                                         active:
-                                            index == this.state.activeIndex
-                                                ? true
-                                                : false
+                                            index == activeIndex ? true : false
                                     });
 
                                     return (
