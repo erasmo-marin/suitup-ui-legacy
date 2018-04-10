@@ -10,31 +10,28 @@ class ModalMountController extends EventEmitter {
         super(args);
         this.modals = [];
         this.changeEvent = "modalsChanged";
-        this.requestModalUpdate = ::this.requestModalUpdate;
-        this.requestModalMount = ::this.requestModalMount;
-        this.requestModalUnmount = ::this.requestModalUnmount;
     }
 
-    requestModalMount(component) {
+    requestModalMount = component => {
         this.modals.push(component);
         this.emitChange(this.modals);
     }
 
-    requestModalUpdate(component) {
+    requestModalUpdate = component => {
         this.modals[findIndex({key: component.key}, this.modals)] = component;
         this.emitChange(this.modals);
     }
 
-    requestModalUnmount(component) {
+    requestModalUnmount = component => {
         this.modals = without(component, this.modals);
         this.emitChange(this.modals);
     }
 
-    emitChange(modals) {
+    emitChange = modals => {
         this.emit(this.changeEvent, modals);
     }
 
-    onModalsChange(callback) {
+    onModalsChange = callback => {
         return this.addListener(this.changeEvent, callback);
     }
 } 
@@ -48,7 +45,6 @@ const requestModalUpdate = modalMountController.requestModalUpdate;
 class Layout extends React.Component {
     constructor(props) {
         super(props);
-        this.onModalsChange = ::this.onModalsChange;
         this.modalsController = modalMountController;
         this.state = {
             modals: []
@@ -64,13 +60,13 @@ class Layout extends React.Component {
         this.modalsMountListener.remove();
     }
 
-    onModalsChange() {
+    onModalsChange = () => {
         this.setState({
             modals: this.modalsController.modals
         });
-    }
+    };
 
-    findHeader(x) {
+    findHeader = x => {
         if (!x || !x.props) return;
         if (x.type && (x.type.name == "Header" || x.type.name == "Component(Header)")) {
             this.setState({

@@ -16,8 +16,6 @@ const suitupable = (
         class Component extends React.Component {
             constructor(props) {
                 super(props);
-                this.onScreenChange = ::this.onScreenChange;
-                this.onSettingsChange = ::this.onSettingsChange;
                 this.state = {
                     screen: listenScreen ? Screen.getScreen() : undefined,
                     settings: listenSettings
@@ -37,25 +35,24 @@ const suitupable = (
                     );
             }
 
-            onViewChange(value) {
-                console.log("ON VIEW CHANGE");
+            onViewChange = value => {
                 this.setState({
                     onView: value
                 });
-            }
+            };
 
             componentWillUnmount() {
                 if (this.screenListener) this.screenListener.remove();
                 if (this.settingsListener) this.settingsListener.remove();
             }
 
-            onScreenChange(screen) {
+            onScreenChange = screen => {
                 this.setState({ screen });
-            }
+            };
 
-            onSettingsChange(settings) {
+            onSettingsChange = settings => {
                 this.setState({ settings });
-            }
+            };
 
             render() {
                 let breakpoints = this.state.settings.Device.Breakpoints;

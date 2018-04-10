@@ -21,7 +21,7 @@ class MenuItem extends React.Component {
         hide: PropTypes.func
     }
 
-    toggleItems() {
+    toggleItems = () => {
         let style = cloneDeep(this.state.subItemsStyle);
         if (this.props.children)
             style.transition = `margin ${this.calculeAnimationTime(this.props.children.length)}ms ease-in`;
@@ -30,12 +30,12 @@ class MenuItem extends React.Component {
             subItemsVisible: !this.state.subItemsVisible,
             subItemsStyle: style
         });
-    }
+    };
 
     /*
      * Calcule animation time in miliseconds depending on children number
      */
-    calculeAnimationTime(items) {
+    calculeAnimationTime = items => {
         const base = 100;
         const max = 600;
         const min = 300;

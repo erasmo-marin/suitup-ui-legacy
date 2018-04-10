@@ -36,9 +36,9 @@ class Modal extends React.Component {
         requestModalUpdate(this.modal);
     }
 
-    renderModal(props) {
+    renderModal = props => {
         return <ModalImplementation {...props} key={this.renderKey} />;
-    }
+    };
 
     render() {
         return null;

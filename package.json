@@ -6,8 +6,8 @@
   "scripts": {
     "less": "lessc --clean-css --autoprefix='last 2 versions' src/styles/index.less dist/suitup.ui.min.css",
     "babel": "babel src/components/ -d lib/",
-    "webpack": "webpack --progress --colors",
-    "build": "yarn run babel && yarn run webpack && yarn run less",
+    "webpack": "NODE_ENV=production webpack --progress --colors",
+    "build": "rm -rf ./dist && rm -rf ./lib && yarn run babel && yarn run webpack && yarn run less",
     "hot": "babel src/components/ -d ../suitup-www/node_modules/suitup-ui/lib --watch",
     "hot-less": "lessc --clean-css --autoprefix='last 2 versions' src/styles/index.less dist/suitup.ui.min.css --watch"
   },

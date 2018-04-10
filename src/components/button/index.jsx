@@ -6,37 +6,34 @@ import suitupable from "../component";
 class Button extends React.Component {
     constructor(props) {
         super(props);
-        this.onClick = ::this.onClick;
-        this.onMouseDown = ::this.onMouseDown;
-        this.onMouseUp = ::this.onMouseUp;
         this.state = {
             pressed: false
         };
     }
 
-    onClick(e) {
+    onClick = e => {
         if (this.props.onClick && !this.props.disabled) {
             this.props.onClick(e);
         }
-    }
+    };
 
-    onMouseDown(e) {
+    onMouseDown = e => {
         this.setState({
             pressed: true
         });
         if (this.props.onMouseDown) {
             this.props.onMouseDown(e);
         }
-    }
+    };
 
-    onMouseUp(e) {
+    onMouseUp = e => {
         this.setState({
             pressed: false
         });
         if (this.props.onMouseUp) {
             this.props.onMouseUp(e);
         }
-    }
+    };
 
     render() {
         let {

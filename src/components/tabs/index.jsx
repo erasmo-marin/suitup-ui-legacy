@@ -9,7 +9,6 @@ import suitupable from "../component";
 class Tabs extends React.Component {
     constructor(props) {
         super(props);
-        this.onTabClick = ::this.onTabClick;
 
         let { children } = this.props;
         if (!children.map) children = [children];
@@ -28,7 +27,7 @@ class Tabs extends React.Component {
         };
     }
 
-    onTabClick(tab, index) {
+    onTabClick = (tab, index) => {
         if (tab == this.state.activeTab) return;
 
         let { children, onChange } = this.props;
@@ -47,7 +46,7 @@ class Tabs extends React.Component {
         if (onChange) {
             onchange(index);
         }
-    }
+    };
 
     /*
      * Style tag is applyied only to tabs buttons,

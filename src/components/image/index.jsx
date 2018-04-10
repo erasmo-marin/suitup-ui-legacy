@@ -13,7 +13,6 @@ import Screen from "../device/screen";
 class Image extends React.Component {
     constructor(props) {
         super(props);
-        this.recalculeSize = ::this.recalculeSize;
         this.mounted = false;
 
         let { src } = props;
@@ -88,7 +87,7 @@ class Image extends React.Component {
         });
     }
 
-    recalculeSize() {
+    recalculeSize = () => {
         
         if (!this.mounted)
             return;
@@ -121,31 +120,31 @@ class Image extends React.Component {
             width: `${width}px`,
             height: `${height}px`
         });
-    }
+    };
 
-    getHeightFromWidth(dimensions, width) {
+    getHeightFromWidth = (dimensions, width) => {
         return width / (dimensions.width / dimensions.height);
-    }
+    };
 
-    getWidthFromHeight(dimensions, height) {
+    getWidthFromHeight = (dimensions, height) => {
         return height * (dimensions.width / dimensions.height);
-    }
+    };
 
-    isPercent(str) {
+    isPercent = str => {
         if (str.endsWith("%")) {
             return true;
         }
         return false;
     }
 
-    isPixel(str) {
+    isPixel = str => {
         if (str.endsWith("px")) {
             return true;
         }
         return false;
     }
 
-    computeSizeInPixels(size, axis) {
+    computeSizeInPixels = (size, axis) => {
 
         let isPercent = false;
 
@@ -167,7 +166,7 @@ class Image extends React.Component {
             }
         }
         return size;
-    }
+    };
 
     onHQLoad = () =>
         this.setState({
