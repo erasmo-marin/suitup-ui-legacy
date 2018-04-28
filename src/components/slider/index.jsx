@@ -1,5 +1,4 @@
 import React from "react";
-//import ReactElement from "react/lib/Element";
 import classnames from "classnames";
 import Slide from "./slide";
 import Icon from "../icon";
@@ -7,6 +6,8 @@ import Box from "../box";
 import isArray from "lodash/fp/isArray";
 import Draggable, { DraggableCore } from "react-draggable";
 import suitupable from "../component";
+import concat from "lodash/concat";
+import reverse from "lodash/reverse";
 
 @suitupable(true, true)
 class Slider extends React.Component {
@@ -32,10 +33,13 @@ class Slider extends React.Component {
             animation: "translate", //translate - fade - zoom
             centerModePadding: 100,
             slidesSpacing: 50,
-            slideStep: 1
+            slideStep: 1,
+            infinite: false,
+            animationTime: 500
         };
 
         this.autoPlayInterval = false;
+        this.sliderIsLocked = false;
 
         this.loadSettings(this.props);
     }
@@ -51,6 +55,7 @@ class Slider extends React.Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.onResize);
+        this.goTo(0, false);
         this.autoPlayJob();
     }
 
@@ -79,62 +84,95 @@ class Slider extends React.Component {
     };
 
     previous = () => {
+        if(this.sliderIsLocked)
+            return;
+        const { infinite, slideStep, animationTime } = this.state;
+        const { children } = this.props;
         let active = this.state.activeIndex;
-        const { slideStep } = this.state;
-        if (active - slideStep < 0) {
-            if (slideStep === 1) active = this.props.children.length - 1;
-            else active = 0;
+
+        if(infinite) {
+            active -= slideStep;
+            this.goTo(active);
+            setTimeout(() => {
+                if(active < 0)
+                    this.goTo(children.length - active - 2, false);
+            }, animationTime);
         } else {
-            active = active - slideStep;
+            if (active - slideStep < 0) {
+                if (slideStep === 1) active = children.length - 1;
+                else active = 0;
+            } else {
+                active = active - slideStep;
+            }
+            this.goTo(active);
         }
-        this.goTo(active);
     };
 
     next = () => {
+        console.log("next");
+        if(this.sliderIsLocked)
+            return;
+        const { infinite, slideStep, animationTime } = this.state;
+        const { children } = this.props;
         let active = this.state.activeIndex;
-        const { slideStep } = this.state;
-        if (active > this.props.children.length - slideStep - 1) {
-            if (slideStep === 1) active = 0;
-            else active = this.props.children.length - 1;
+
+        if(infinite) {
+            active += slideStep;
+            this.goTo(active);
+            setTimeout(() => {
+                if(active > children.length - 1) {
+                    this.goTo(active - children.length, false);
+                }
+            }, animationTime);
         } else {
-            active = active + slideStep;
+            if (active > children.length - slideStep - 1) {
+                if (slideStep === 1) active = 0;
+                else active = children.length - 1;
+            } else {
+                active = active + slideStep;
+            }
+            this.goTo(active);
         }
-        this.goTo(active);
     };
 
-    goTo = index => {
-        const { displayItems, slideStep } = this.state;
+    goTo = (index, animate = true) => {
+        if(this.sliderIsLocked)
+            return;
+        index = index + this.itemsToClone;
+        const totalItems = this.props.children.length + 2 * this.itemsToClone;
+
+        const { displayItems, slideStep, animationTime } = this.state;
 
         if (index < 0) {
             index = 0;
         }
 
-        if (index > this.props.children.length - 1) {
-            index = this.props.children.length - 1;
+        if (index > totalItems - 1) {
+            index = totalItems - 1;
         }
 
-        this.draggableContent.style.transition = "all 0.5s ease-in-out";
+        if(animate)
+            this.draggableContent.style.transition = `all ${animationTime/1000}s ease-in-out`;
         let dw = this.draggableContent.offsetWidth;
-        let sw = dw / this.props.children.length;
+        let sw = dw / totalItems;
 
         let x = sw * index * -1 / displayItems;
 
         const maxX =
-            (sw * (this.props.children.length - 1) - sw * (displayItems - 1)) /
-            displayItems;
+            (sw * (totalItems - 1) - sw * (displayItems - 1)) / displayItems;
 
         if (-1 * x > maxX) x = -1 * maxX;
 
+        this.sliderIsLocked = true;
         this.setState({
-            activeIndex: index
+            activeIndex: index - this.itemsToClone
         });
-        this.draggableComponent.setState({
-            x: x
-        });
+        this.draggableComponent.setState({x});
 
         setTimeout(() => {
             this.draggableContent.style.transition = "";
-        }, 500);
+            this.sliderIsLocked = false;
+        }, animationTime);
         //we return the x variable in order to check if it has changed
         return x;
     };
@@ -169,9 +207,10 @@ class Slider extends React.Component {
 
     onEndDrag = event => {
         const { displayItems } = this.state;
+        const totalItems = this.props.children.length + 2 * this.itemsToClone;
         let x = -1 * this.draggableComponent.state.x;
         let dw = this.draggableContent.offsetWidth;
-        let sw = dw / this.props.children.length / displayItems;
+        let sw = dw / totalItems / displayItems;
 
         let index = parseInt(x / sw);
 
@@ -187,7 +226,7 @@ class Slider extends React.Component {
             index++;
         }
 
-        this.goTo(index);
+        this.goTo(index - this.itemsToClone);
     };
 
     stopAutoPlay = () => {
@@ -205,6 +244,42 @@ class Slider extends React.Component {
         this.stopAutoPlay();
         this.previous();
     };
+
+    get itemsToClone() {
+        const {
+            displayItems = 1,
+            centerMode = false,
+            infinite = false
+        } = this.state;
+        if (!infinite) return 0;
+        return displayItems + (centerMode ? 2 : 0);
+    }
+
+    get leftClonedItems() {
+        const top = this.itemsToClone;
+        let result = [];
+        let index = 0;
+        for (let i = 0; i < top; i++) {
+            result.push(this.props.children[index]);
+            index++;
+            if (index >= this.props.children.length) index = 0;
+        }
+        return result;
+    }
+
+    get rightClonedItems() {
+        let result = [];
+
+        const times = this.itemsToClone;
+        let index = this.props.children.length - 1;
+        for(let i = times; i > 0; i--) {
+            result.unshift(this.props.children[index]);
+            index--;
+            if(index < 0)
+                index = this.props.children.length - 1;
+        }
+        return result;
+    }
 
     render() {
         const {
@@ -225,11 +300,12 @@ class Slider extends React.Component {
         };
 
         classes = classnames(classes);
+        const clonedElements = this.itemsToClone;
+        const totalItems = this.props.children.length + 2 * clonedElements;
         //let translate = this.state.activeIndex * (100/this.props.children.length) * -1;
 
         const slideStyle = {
-            width: `calc(${100 /
-                (this.props.children.length * displayItems)}% - ${parseInt(
+            width: `calc(${100 / (totalItems * displayItems)}% - ${parseInt(
                 slidesSpacing
             )}px)`,
             display: "inline-block",
@@ -239,7 +315,7 @@ class Slider extends React.Component {
 
         const style = {
             /*transform: `translateX(${translate}%)`,*/
-            width: `${this.props.children.length * 100}%`
+            width: `${totalItems * 100}%`
         };
 
         const sliderStyle = {
@@ -282,22 +358,28 @@ class Slider extends React.Component {
                         }}
                     >
                         <div className="slider-visible-area">
-                            {this.props.children.map((child, index) => {
+                            {concat(
+                                this.rightClonedItems,
+                                this.props.children,
+                                this.leftClonedItems
+                            ).map((child, index) => {
                                 //we render the component after and before the current one and the components that was loaded before
-                                let shouldRenderChild =
-                                    !lazyLoad ||
+                                let shouldRenderChild = true;
+                                /*!lazyLoad ||
                                     (lazyLoad &&
                                         Math.abs(activeIndex - index) <
                                             displayItems + 1);
 
                                 if (shouldRenderChild && !minimalRender) {
                                     alreadyLoaded[index] = true;
-                                }
+                                }*/
+
+                                let currentIndex = index - clonedElements;
 
                                 return (
                                     <div
                                         style={slideStyle}
-                                        key={index}
+                                        key={currentIndex}
                                         ref={c => {
                                             this.slides[index] = c;
                                         }}
