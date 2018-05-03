@@ -123,10 +123,14 @@ class Image extends React.Component {
     };
 
     getHeightFromWidth = (dimensions, width) => {
+        if(!dimensions || !dimensions.width || !dimensions.height)
+            return 0;
         return width / (dimensions.width / dimensions.height);
     };
 
     getWidthFromHeight = (dimensions, height) => {
+        if(!dimensions || !dimensions.width || !dimensions.height)
+            return 0;
         return height * (dimensions.width / dimensions.height);
     };
 
