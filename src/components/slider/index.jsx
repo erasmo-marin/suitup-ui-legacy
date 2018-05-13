@@ -8,6 +8,9 @@ import Draggable, { DraggableCore } from "react-draggable";
 import suitupable from "../component";
 import concat from "lodash/concat";
 import reverse from "lodash/reverse";
+import cloneDeep from "lodash/cloneDeep";
+import merge from "lodash/merge";
+import get from "lodash/get";
 
 @suitupable(true, true)
 class Slider extends React.Component {
@@ -76,11 +79,14 @@ class Slider extends React.Component {
 
     loadSettings = settings => {
         if (!settings) return;
-        this.state = { ...this.state, ...settings };
+        const { screen } = this.props;
+        merge(this.state, settings, get(settings, screen, {}));
     };
 
     onResize = () => {
-        this.goTo(this.state.activeIndex);
+        setTimeout(() => {
+            this.goTo(this.state.activeIndex);
+        }, 500);  
     };
 
     previous = () => {
@@ -109,7 +115,6 @@ class Slider extends React.Component {
     };
 
     next = () => {
-        console.log("next");
         if(this.sliderIsLocked)
             return;
         const { infinite, slideStep, animationTime } = this.state;
@@ -282,6 +287,9 @@ class Slider extends React.Component {
     }
 
     render() {
+
+        this.loadSettings(this.props);
+
         const {
             slidesSpacing,
             displayItems,
