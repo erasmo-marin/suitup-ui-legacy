@@ -38,7 +38,9 @@ class Slider extends React.Component {
             slidesSpacing: 50,
             slideStep: 1,
             infinite: false,
-            animationTime: 500
+            animationTime: 500,
+            nextArrow: false,
+            prevArrow: false
         };
 
         this.autoPlayInterval = false;
@@ -86,22 +88,20 @@ class Slider extends React.Component {
     onResize = () => {
         setTimeout(() => {
             this.goTo(this.state.activeIndex);
-        }, 500);  
+        }, 500);
     };
 
     previous = () => {
-        if(this.sliderIsLocked)
-            return;
+        if (this.sliderIsLocked) return;
         const { infinite, slideStep, animationTime } = this.state;
         const { children } = this.props;
         let active = this.state.activeIndex;
 
-        if(infinite) {
+        if (infinite) {
             active -= slideStep;
             this.goTo(active);
             setTimeout(() => {
-                if(active < 0)
-                    this.goTo(children.length - active - 2, false);
+                if (active < 0) this.goTo(children.length - active - 2, false);
             }, animationTime);
         } else {
             if (active - slideStep < 0) {
@@ -115,17 +115,16 @@ class Slider extends React.Component {
     };
 
     next = () => {
-        if(this.sliderIsLocked)
-            return;
+        if (this.sliderIsLocked) return;
         const { infinite, slideStep, animationTime } = this.state;
         const { children } = this.props;
         let active = this.state.activeIndex;
 
-        if(infinite) {
+        if (infinite) {
             active += slideStep;
             this.goTo(active);
             setTimeout(() => {
-                if(active > children.length - 1) {
+                if (active > children.length - 1) {
                     this.goTo(active - children.length, false);
                 }
             }, animationTime);
@@ -141,8 +140,7 @@ class Slider extends React.Component {
     };
 
     goTo = (index, animate = true) => {
-        if(this.sliderIsLocked)
-            return;
+        if (this.sliderIsLocked) return;
         index = index + this.itemsToClone;
         const totalItems = this.props.children.length + 2 * this.itemsToClone;
 
@@ -156,8 +154,9 @@ class Slider extends React.Component {
             index = totalItems - 1;
         }
 
-        if(animate)
-            this.draggableContent.style.transition = `all ${animationTime/1000}s ease-in-out`;
+        if (animate)
+            this.draggableContent.style.transition = `all ${animationTime /
+                1000}s ease-in-out`;
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / totalItems;
 
@@ -172,7 +171,7 @@ class Slider extends React.Component {
         this.setState({
             activeIndex: index - this.itemsToClone
         });
-        this.draggableComponent.setState({x});
+        this.draggableComponent.setState({ x });
 
         setTimeout(() => {
             this.draggableContent.style.transition = "";
@@ -277,17 +276,23 @@ class Slider extends React.Component {
 
         const times = this.itemsToClone;
         let index = this.props.children.length - 1;
-        for(let i = times; i > 0; i--) {
+        for (let i = times; i > 0; i--) {
             result.unshift(this.props.children[index]);
             index--;
-            if(index < 0)
-                index = this.props.children.length - 1;
+            if (index < 0) index = this.props.children.length - 1;
         }
         return result;
     }
 
-    render() {
+    slideIsActive(index) {
+        const { displayItems, activeIndex } = this.state;
 
+        if (index >= activeIndex && index < displayItems + activeIndex)
+            return true;
+        return false;
+    }
+
+    render() {
         this.loadSettings(this.props);
 
         const {
@@ -300,7 +305,9 @@ class Slider extends React.Component {
             lazyLoad,
             activeIndex,
             minimalRender,
-            alreadyLoaded
+            alreadyLoaded,
+            nextArrow,
+            prevArrow
         } = this.state;
 
         let classes = {
@@ -339,13 +346,23 @@ class Slider extends React.Component {
                         className="slider-arrow slider-arrow-left"
                         onClick={this.onUserPrevious}
                     >
-                        <Icon name="chevron_left" size={arrowSize} />
+                        <Choose>
+                            <When condition={prevArrow}>{prevArrow}</When>
+                            <Otherwise>
+                                <Icon name="chevron_left" size={arrowSize} />
+                            </Otherwise>
+                        </Choose>
                     </div>
                     <div
                         className="slider-arrow slider-arrow-right"
                         onClick={this.onUserNext}
                     >
-                        <Icon name="chevron_right" size={arrowSize} />
+                        <Choose>
+                            <When condition={nextArrow}>{nextArrow}</When>
+                            <Otherwise>
+                                <Icon name="chevron_right" size={arrowSize} />
+                            </Otherwise>
+                        </Choose>
                     </div>
                 </If>
                 <Draggable
@@ -371,19 +388,7 @@ class Slider extends React.Component {
                                 this.props.children,
                                 this.leftClonedItems
                             ).map((child, index) => {
-                                //we render the component after and before the current one and the components that was loaded before
-                                let shouldRenderChild = true;
-                                /*!lazyLoad ||
-                                    (lazyLoad &&
-                                        Math.abs(activeIndex - index) <
-                                            displayItems + 1);
-
-                                if (shouldRenderChild && !minimalRender) {
-                                    alreadyLoaded[index] = true;
-                                }*/
-
-                                let currentIndex = index - clonedElements;
-
+                                const currentIndex = index - clonedElements;
                                 return (
                                     <div
                                         style={slideStyle}
@@ -391,15 +396,13 @@ class Slider extends React.Component {
                                         ref={c => {
                                             this.slides[index] = c;
                                         }}
+                                        className={
+                                            this.slideIsActive(currentIndex)
+                                                ? "slide-active"
+                                                : "slide-inactive"
+                                        }
                                     >
-                                        <If
-                                            condition={
-                                                shouldRenderChild ||
-                                                alreadyLoaded[index]
-                                            }
-                                        >
-                                            {child}
-                                        </If>
+                                        {child}
                                     </div>
                                 );
                             })}
