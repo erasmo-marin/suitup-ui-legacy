@@ -218,13 +218,11 @@ class Slider extends React.Component {
     onDrag = event => {
         event.stopPropagation();
         event.preventDefault();
-        console.log("on drag")
         this.dragging = true;
         return true;
     };
 
     set dragging(val) {
-        console.log("set dragging", !!val);
         this._dragging = !!val;
     }
 
@@ -243,7 +241,6 @@ class Slider extends React.Component {
         } else {
             this.dragging = false;
         }
-        console.log("end drag");
         const { displayItems, infinite, slideStep, animationTime } = this.state;
         const { children } = this.props;
         const totalItems = children.length + 2 * this.itemsToClone;
@@ -379,7 +376,6 @@ class Slider extends React.Component {
             e.preventDefault();
             e.stopPropagation();
         }
-        console.log("check click propagation", this.dragging);
     }
 
     render() {
