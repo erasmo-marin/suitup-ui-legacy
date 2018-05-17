@@ -380,7 +380,6 @@ class Slider extends React.Component {
 
     render() {
         this.loadSettings(this.props);
-
         const {
             slidesSpacing,
             displayItems,
@@ -394,7 +393,7 @@ class Slider extends React.Component {
             alreadyLoaded
         } = this.state;
 
-        let { nextArrow, prevArrow } = this.props;
+        let { nextArrow, prevArrow } = this.state;
 
         let classes = {
             slider: true
