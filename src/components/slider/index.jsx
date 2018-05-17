@@ -17,9 +17,10 @@ class Slider extends React.Component {
     constructor(props) {
         super(props);
         this.slides = [];
+        this.dragging = false;
         this.state = {
             alreadyLoaded: [], //save the slides that has been rendered before
-            activeIndex: 0, //index of the current active slider
+            activeIndex: this.props.activeIndex || 0, //index of the current active slider
             position: null, //the position object for the slider
             positionTrack: null, //the position used to track the drag event
             autoPlay: false,
@@ -60,12 +61,14 @@ class Slider extends React.Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.onResize);
+        this._slider.addEventListener("click", this.checkClickPropagation);
         this.goTo(0, false);
         this.autoPlayJob();
     }
 
     componentWillUnmount() {
         window.removeEventListener("resize", this.onResize);
+        this._slider.removeEventListener("click", this.checkClickPropagation);
         if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
     }
 
@@ -82,7 +85,10 @@ class Slider extends React.Component {
     loadSettings = settings => {
         if (!settings) return;
         const { screen } = this.props;
-        merge(this.state, settings, get(settings, screen, {}));
+        let screenSettings = get(settings, screen, {});
+        const preservedIndex = this.state.activeIndex;
+        merge(this.state, settings, screenSettings);
+        this.state.activeIndex = preservedIndex;
     };
 
     onResize = () => {
@@ -119,7 +125,6 @@ class Slider extends React.Component {
         const { infinite, slideStep, animationTime } = this.state;
         const { children } = this.props;
         let active = this.state.activeIndex;
-
         if (infinite) {
             active += slideStep;
             this.goTo(active);
@@ -168,17 +173,19 @@ class Slider extends React.Component {
         if (-1 * x > maxX) x = -1 * maxX;
 
         this.sliderIsLocked = true;
+
         this.setState({
             activeIndex: index - this.itemsToClone
-        });
-        this.draggableComponent.setState({ x });
+        }, () => {
+            this.draggableComponent.setState({ x });
 
-        setTimeout(() => {
-            this.draggableContent.style.transition = "";
-            this.sliderIsLocked = false;
-        }, animationTime);
-        //we return the x variable in order to check if it has changed
-        return x;
+            setTimeout(() => {
+                this.draggableContent.style.transition = "";
+                this.sliderIsLocked = false;
+            }, animationTime);
+            //we return the x variable in order to check if it has changed
+            return x;
+        });
     };
 
     setupChildStyle = (props, style) => {
@@ -201,17 +208,45 @@ class Slider extends React.Component {
     };
 
     onStartDrag = event => {
+        event.stopPropagation();
+        event.preventDefault();
         this.stopAutoPlay();
         this.state.positionTrack = this.draggableComponent.state.x;
+        return true;
     };
 
     onDrag = event => {
-        return;
+        event.stopPropagation();
+        event.preventDefault();
+        console.log("on drag")
+        this.dragging = true;
+        return true;
     };
 
+    set dragging(val) {
+        console.log("set dragging", !!val);
+        this._dragging = !!val;
+    }
+
+    get dragging() {
+        return !!this._dragging;
+    }
+
     onEndDrag = event => {
-        const { displayItems } = this.state;
-        const totalItems = this.props.children.length + 2 * this.itemsToClone;
+        event.stopPropagation();
+        event.preventDefault();
+
+        if(this.dragging) {
+            setTimeout(() => {
+                this.dragging = false;
+            }, 500)
+        } else {
+            this.dragging = false;
+        }
+        console.log("end drag");
+        const { displayItems, infinite, slideStep, animationTime } = this.state;
+        const { children } = this.props;
+        const totalItems = children.length + 2 * this.itemsToClone;
         let x = -1 * this.draggableComponent.state.x;
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / totalItems / displayItems;
@@ -223,14 +258,24 @@ class Slider extends React.Component {
 
         if (Math.abs(this.state.positionTrack - x * -1) < minimumDrag) {
             this.goTo(this.state.activeIndex);
-            return;
+            return false;
         }
 
         if (x * -1 < this.state.positionTrack) {
             index++;
         }
 
-        this.goTo(index - this.itemsToClone);
+        let active = index - this.itemsToClone;
+        this.goTo(active);
+
+        if (infinite) {
+            setTimeout(() => {
+                if (active < 0) this.goTo(children.length - active - 2, false);
+                if (active > children.length - 1)
+                    this.goTo(active - children.length, false);
+            }, animationTime);
+        }
+        return false;
     };
 
     stopAutoPlay = () => {
@@ -239,12 +284,20 @@ class Slider extends React.Component {
         }
     };
 
-    onUserNext = () => {
+    onUserNext = e => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         this.stopAutoPlay();
         this.next();
     };
 
-    onUserPrevious = () => {
+    onUserPrevious = e => {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
         this.stopAutoPlay();
         this.previous();
     };
@@ -292,6 +345,43 @@ class Slider extends React.Component {
         return false;
     }
 
+    shouldRenderSlide = (currentIndex, index) => {
+        const {
+            activeIndex,
+            lazyLoad,
+            displayItems,
+            itemsToClone
+        } = this.state;
+
+        //should be rendered always
+        if (!lazyLoad) {
+            return true;
+        }
+
+        //the component is already mounted, so render it anyways
+        if (this.slides[index]) {
+            return true;
+        }
+
+        let left = activeIndex - 1;
+        let right = activeIndex + displayItems + 1;
+
+        if (left <= currentIndex && right > currentIndex) {
+            return true;
+        }
+
+        return false;
+    };
+
+    /*This disable clicks globally while dragging because a bug in react-draggable*/
+    checkClickPropagation = e => {
+        if(this.dragging === true) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        console.log("check click propagation", this.dragging);
+    }
+
     render() {
         this.loadSettings(this.props);
 
@@ -305,10 +395,10 @@ class Slider extends React.Component {
             lazyLoad,
             activeIndex,
             minimalRender,
-            alreadyLoaded,
-            nextArrow,
-            prevArrow
+            alreadyLoaded
         } = this.state;
+
+        let { nextArrow, prevArrow } = this.props;
 
         let classes = {
             slider: true
@@ -339,31 +429,43 @@ class Slider extends React.Component {
             boxSizing: "border-box"
         };
 
+        if (nextArrow) {
+            nextArrow = React.cloneElement(nextArrow, {
+                onClick: this.onUserNext
+            });
+        }
+
+        if (prevArrow) {
+            prevArrow = React.cloneElement(prevArrow, {
+                onClick: this.onUserPrevious
+            });
+        }
+
         return (
-            <div className={classes} style={sliderStyle}>
+            <div className={classes} style={sliderStyle} ref={c => this._slider = c}>
                 <If condition={showArrows}>
-                    <div
-                        className="slider-arrow slider-arrow-left"
-                        onClick={this.onUserPrevious}
-                    >
-                        <Choose>
-                            <When condition={prevArrow}>{prevArrow}</When>
-                            <Otherwise>
+                    <Choose>
+                        <When condition={prevArrow}>{prevArrow}</When>
+                        <Otherwise>
+                            <div
+                                className="slider-arrow slider-arrow-left"
+                                onClick={this.onUserPrevious}
+                            >
                                 <Icon name="chevron_left" size={arrowSize} />
-                            </Otherwise>
-                        </Choose>
-                    </div>
-                    <div
-                        className="slider-arrow slider-arrow-right"
-                        onClick={this.onUserNext}
-                    >
-                        <Choose>
-                            <When condition={nextArrow}>{nextArrow}</When>
-                            <Otherwise>
+                            </div>
+                        </Otherwise>
+                    </Choose>
+                    <Choose>
+                        <When condition={nextArrow}>{nextArrow}</When>
+                        <Otherwise>
+                            <div
+                                className="slider-arrow slider-arrow-right"
+                                onClick={this.onUserNext}
+                            >
                                 <Icon name="chevron_right" size={arrowSize} />
-                            </Otherwise>
-                        </Choose>
-                    </div>
+                            </div>
+                        </Otherwise>
+                    </Choose>
                 </If>
                 <Draggable
                     axis="x"
@@ -389,21 +491,41 @@ class Slider extends React.Component {
                                 this.leftClonedItems
                             ).map((child, index) => {
                                 const currentIndex = index - clonedElements;
+                                const slideIsActive = this.slideIsActive(
+                                    currentIndex
+                                );
+                                const shouldRenderSlide = this.shouldRenderSlide(
+                                    currentIndex,
+                                    index
+                                );
+
                                 return (
-                                    <div
-                                        style={slideStyle}
-                                        key={currentIndex}
-                                        ref={c => {
-                                            this.slides[index] = c;
-                                        }}
-                                        className={
-                                            this.slideIsActive(currentIndex)
-                                                ? "slide-active"
-                                                : "slide-inactive"
-                                        }
-                                    >
-                                        {child}
-                                    </div>
+                                    <Choose>
+                                        <When condition={shouldRenderSlide}>
+                                            <div
+                                                style={slideStyle}
+                                                key={currentIndex}
+                                                ref={c => {
+                                                    this.slides[index] = c;
+                                                }}
+                                                className={
+                                                    slideIsActive
+                                                        ? "slide-active"
+                                                        : "slide-inactive"
+                                                }
+                                                onClick={this.checkClickPropagation}
+                                                onMouseUp={this.checkClickPropagation}
+                                            >
+                                                {child}
+                                            </div>
+                                        </When>
+                                        <Otherwise>
+                                            <div
+                                                style={slideStyle}
+                                                key={currentIndex}
+                                            />
+                                        </Otherwise>
+                                    </Choose>
                                 );
                             })}
                         </div>
