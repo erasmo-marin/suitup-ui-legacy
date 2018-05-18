@@ -445,6 +445,7 @@ class Slider extends React.Component {
                             <div
                                 className="slider-arrow slider-arrow-left"
                                 onClick={this.onUserPrevious}
+                                key="arrow-left"
                             >
                                 <Icon name="chevron_left" size={arrowSize} />
                             </div>
@@ -456,6 +457,7 @@ class Slider extends React.Component {
                             <div
                                 className="slider-arrow slider-arrow-right"
                                 onClick={this.onUserNext}
+                                key="arrow-right"
                             >
                                 <Icon name="chevron_right" size={arrowSize} />
                             </div>
