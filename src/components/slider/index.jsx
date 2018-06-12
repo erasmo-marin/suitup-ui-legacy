@@ -107,6 +107,7 @@ class Slider extends React.Component {
             active -= slideStep;
             this.goTo(active);
             setTimeout(() => {
+                this.sliderIsLocked = false;
                 if (active < 0) this.goTo(children.length - active - 2, false);
             }, animationTime);
         } else {
@@ -130,6 +131,7 @@ class Slider extends React.Component {
             this.goTo(active);
             setTimeout(() => {
                 if (active > children.length - 1) {
+                    this.sliderIsLocked = false;
                     this.goTo(active - children.length, false);
                 }
             }, animationTime);
@@ -145,7 +147,9 @@ class Slider extends React.Component {
     };
 
     goTo = (index, animate = true) => {
+
         if (this.sliderIsLocked) return;
+
         index = index + this.itemsToClone;
         const totalItems = this.props.children.length + 2 * this.itemsToClone;
 
@@ -267,6 +271,7 @@ class Slider extends React.Component {
 
         if (infinite) {
             setTimeout(() => {
+                this.sliderIsLocked = false;
                 if (active < 0) this.goTo(children.length - active - 2, false);
                 if (active > children.length - 1)
                     this.goTo(active - children.length, false);
