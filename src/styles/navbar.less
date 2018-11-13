@@ -27,7 +27,7 @@
                 background: @activeBackground;
             }
 
-            > span {
+            &>span {
                 font-weight: @fontWeight;
                 padding: @padding;
                 color: @color;
@@ -35,7 +35,7 @@
                 line-height: @height;
             }
 
-            > .navbar-submenu {
+            &>.navbar-submenu {
                 position: absolute;
                 top: 100%;
                 left: 0;
@@ -43,16 +43,21 @@
                 min-width: @vm_minWidth;
                 box-shadow: @vm_boxShadow;
 
-                > .navbar-submenu-item {
+                &>.navbar-submenu-item {
                     display: block;
                     width: 100%;
                     line-height: @vm_itemPadding;
                     padding: @vm_lineHeight;
                     box-sizing: border-box;
                     cursor: pointer;
+                    overflow: visible;
 
                     &:hover {
                         background: @vm_hoverBackground;
+
+                        > .navbar-submenu {
+                            display: block;
+                        }
                     }
 
                     &.active {
@@ -63,6 +68,37 @@
                         font-size: @vm_fontSize;
                         font-weight: @vm_fontWeight;
                         color: @vm_color;
+                    }
+                    /*third level menu*/
+                    &>.navbar-submenu {
+                        position: absolute;
+                        display: none;
+                        left: 100%;
+                        background: @vm_backgroundColor;
+                        min-width: @vm_minWidth;
+                        box-shadow: @vm_boxShadow;
+                        margin-top: -2.2rem;
+
+                        &>.navbar-submenu-item {
+                            display: block;
+                            width: 100%;
+                            line-height: @vm_itemPadding;
+                            padding: @vm_lineHeight;
+                            box-sizing: border-box;
+                            cursor: pointer;
+
+                            &>span {
+                                font-size: @vm_fontSize;
+                                font-weight: @vm_fontWeight;
+                                color: @vm_color;
+                            }
+                            &.active {
+                                background: @vm_activeBackground;
+                            }
+                            &:hover {
+                                background: @vm_activeBackground;
+                            }
+                        }
                     }
                 }
             }

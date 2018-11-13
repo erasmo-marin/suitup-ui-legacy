@@ -51,7 +51,11 @@ class NavbarSubmenu extends React.Component {
                         <If condition={text}>
                             <span>{text}</span>
                         </If>
-                        {children}
+                        <If condition={hover}>
+                            <div className="navbar-submenu">
+                                {children}
+                            </div>
+                        </If>
                     </div>
                 </Otherwise>
             </Choose>
