@@ -1,28 +1,28 @@
-import React from "react";
+import React from 'react';
 import classnames from 'classnames';
-import suitupable from "../component";
+import suitupable from '../component';
 
 @suitupable(true, true)
 class CardFooter extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+    constructor(props) {
+        super(props);
+    }
 
-  render() {
-    let classes = {
-      "card-footer": true
-    };
+    render() {
+        let classes = {
+            'card-footer': true,
+        };
 
-    classes = classnames(classes);
+        classes = classnames(classes);
 
-    let { children, screen, settings, ...rest } = this.props;
+        let { children, screen, settings, ...rest } = this.props;
 
-    return (
-      <div {...rest} className={classes}>
-        {children}
-      </div>
-    );
-  }
+        return (
+            <div {...rest} className={classes}>
+                {children}
+            </div>
+        );
+    }
 }
 
 export default CardFooter;

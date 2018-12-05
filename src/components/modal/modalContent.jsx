@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class ModalContent extends React.Component {
@@ -12,7 +12,7 @@ class ModalContent extends React.Component {
         let { children, screen, settings, ...rest } = this.props;
 
         let classes = {
-            "modal-content": true
+            'modal-content': true,
         };
 
         classes = classnames(classes);

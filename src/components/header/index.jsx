@@ -1,8 +1,8 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
-@suitupable (true, true)
+@suitupable(true, true)
 class Header extends React.Component {
     render() {
         let { fixed, top, bottom, children, screen, settings, ...rest } = this.props;
@@ -11,7 +11,7 @@ class Header extends React.Component {
             fixed: fixed,
             top: top,
             bottom: bottom,
-            [`is-${screen}`]: true
+            [`is-${screen}`]: true,
         });
 
         return (
@@ -22,5 +22,5 @@ class Header extends React.Component {
     }
 }
 
-Header.displayName = "Header";
+Header.displayName = 'Header';
 export default Header;

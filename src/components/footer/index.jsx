@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Footer extends React.Component {
@@ -13,7 +13,7 @@ class Footer extends React.Component {
 
         let classes = classnames({
             footer: true,
-            [screen]: true
+            [screen]: true,
         });
 
         return (

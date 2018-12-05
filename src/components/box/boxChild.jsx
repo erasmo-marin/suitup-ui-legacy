@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import forEach from "lodash/forEach";
+import React from 'react';
+import classnames from 'classnames';
+import forEach from 'lodash/forEach';
 
 class BoxChild extends React.Component {
     constructor(props) {
@@ -14,38 +14,26 @@ class BoxChild extends React.Component {
 
         return {
             number: number,
-            measure: gutter.replace(number, "")
+            measure: gutter.replace(number, ''),
         };
     }
 
     render() {
         let cstyle = {};
-        let {
-            verticalExpand,
-            columns,
-            wide,
-            wides,
-            width,
-            children,
-            style,
-            gutter,
-            className,
-            ...rest
-        } = this.props;
+        let { verticalExpand, columns, wide, wides, width, children, style, gutter, className, ...rest } = this.props;
 
         let classes = {
-            "box-child": true,
-            "full-height": verticalExpand
+            'box-child': true,
+            'full-height': verticalExpand,
         };
 
         if (wide && columns) {
-            cstyle.width = `${100 / columns * wide}%`;
+            cstyle.width = `${(100 / columns) * wide}%`;
             cstyle.padding = gutter;
         }
 
-
-        if(className) {
-            let propClasses = className.split(" ");
+        if (className) {
+            let propClasses = className.split(' ');
             forEach(propClasses, theClass => {
                 classes[theClass] = true;
             });
@@ -54,7 +42,7 @@ class BoxChild extends React.Component {
         classes = classnames(classes);
 
         return (
-            <div {...rest} className={classes} style={{...cstyle, ...style}}>
+            <div {...rest} className={classes} style={{ ...cstyle, ...style }}>
                 {children}
             </div>
         );

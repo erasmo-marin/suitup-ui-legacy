@@ -1,13 +1,13 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Button extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            pressed: false
+            pressed: false,
         };
     }
 
@@ -19,7 +19,7 @@ class Button extends React.Component {
 
     onMouseDown = e => {
         this.setState({
-            pressed: true
+            pressed: true,
         });
         if (this.props.onMouseDown) {
             this.props.onMouseDown(e);
@@ -28,7 +28,7 @@ class Button extends React.Component {
 
     onMouseUp = e => {
         this.setState({
-            pressed: false
+            pressed: false,
         });
         if (this.props.onMouseUp) {
             this.props.onMouseUp(e);
@@ -64,22 +64,22 @@ class Button extends React.Component {
         } = this.props;
 
         let classes = {
-            "transparent": transparent,
-            "circular": circular,
-            "rounded": rounded,
-            "menu-button": menu,
-            "pressed": this.state.pressed,
-            "colored": (primary || primaryDark || primaryLight || accent),
-            "primary": primary,
-            "primary-dark": primaryDark,
-            "primary-light": primaryLight,
-            "accent": accent,
-            "flat": flat,
-            "raised": raised,
-            "inverted": inverted,
-            "disabled": disabled,
-            "full-width": fullWidth,
-            [screen]: true
+            transparent: transparent,
+            circular: circular,
+            rounded: rounded,
+            'menu-button': menu,
+            pressed: this.state.pressed,
+            colored: primary || primaryDark || primaryLight || accent,
+            primary: primary,
+            'primary-dark': primaryDark,
+            'primary-light': primaryLight,
+            accent: accent,
+            flat: flat,
+            raised: raised,
+            inverted: inverted,
+            disabled: disabled,
+            'full-width': fullWidth,
+            [screen]: true,
         };
 
         classes = classnames(classes);

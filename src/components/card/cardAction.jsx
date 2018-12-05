@@ -1,7 +1,7 @@
-import React from "react";
-import classnames from "classnames";
-import Button from "../button";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import Button from '../button';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class CardAction extends React.Component {
@@ -10,13 +10,12 @@ class CardAction extends React.Component {
     }
 
     render() {
-
         let { text, onClick, start, end, screen, settings, ...rest } = this.props;
 
         let classes = {
-            "card-action": true,
+            'card-action': true,
             start: start,
-            end: end
+            end: end,
         };
 
         classes = classnames(classes);

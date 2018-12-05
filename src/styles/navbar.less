@@ -51,12 +51,13 @@
                     box-sizing: border-box;
                     cursor: pointer;
                     overflow: visible;
+                    position: relative;
 
                     &:hover {
                         background: @vm_hoverBackground;
 
                         > .navbar-submenu {
-                            display: block;
+                            display: inline-table;
                         }
                     }
 
@@ -72,12 +73,16 @@
                     /*third level menu*/
                     &>.navbar-submenu {
                         position: absolute;
-                        display: none;
+                        /*display: none;*/
                         left: 100%;
                         background: @vm_backgroundColor;
                         min-width: @vm_minWidth;
                         box-shadow: @vm_boxShadow;
-                        margin-top: -2.2rem;
+                        top: 0;
+
+                        &.left {
+                            left: -100%;
+                        } 
 
                         &>.navbar-submenu-item {
                             display: block;

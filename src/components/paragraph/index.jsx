@@ -1,19 +1,18 @@
-import React from "react";
-import classnames from "classnames";
-import Placeholder from "./placeholder";
+import React from 'react';
+import classnames from 'classnames';
+import Placeholder from './placeholder';
 
-const Paragraph = ({text, loading, placeholder, children, ...rest}) => {
-
+const Paragraph = ({ text, loading, placeholder, children, ...rest }) => {
     const classes = classnames({
-        "paragraph-holder": true,
-        "loading": loading
+        'paragraph-holder': true,
+        loading: loading,
     });
 
     return (
         <div {...rest} className={classes}>
             <Choose>
                 <When condition={loading}>
-                    <Placeholder {...placeholder}/>
+                    <Placeholder {...placeholder} />
                 </When>
                 <Otherwise>
                     <Choose>
@@ -21,13 +20,13 @@ const Paragraph = ({text, loading, placeholder, children, ...rest}) => {
                             <p>{children}</p>
                         </When>
                         <Otherwise>
-                            <p>{ text }</p>
+                            <p>{text}</p>
                         </Otherwise>
                     </Choose>
                 </Otherwise>
             </Choose>
         </div>
-    )
-}
+    );
+};
 
 export default Paragraph;

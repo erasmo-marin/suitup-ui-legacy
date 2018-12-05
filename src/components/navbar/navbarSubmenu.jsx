@@ -1,26 +1,42 @@
-import React from "react";
-import classnames from "classnames";
-import { NavLink as Link } from "react-router-dom";
+import React from 'react';
+import classnames from 'classnames';
+import { NavLink as Link } from 'react-router-dom';
 
 class NavbarSubmenu extends React.Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            hover: false
-        }
+            hover: false,
+            left: false
+        };
     }
 
     onMouseEnter = () => this.setState({ hover: true });
     onMouseLeave = () => this.setState({ hover: false });
 
-    render() {
-        let { active, href, children, text, ...rest } = this.props;
-        let { hover } = this.state;
+    checkSubMenuPosition = c => {
+        this._submenu = c;
+        if(!this._submenu || !this._submenu.getBoundingClientRect)
+            return;
+        const { x, width } = this._submenu.getBoundingClientRect();
+        const limit = window.outerWidth;
+        const boxEnd = x + width;
+        const left = boxEnd > limit;
+        this.setState({left});
+    }
 
-        let menuClasses = classnames({
-            "active": active,
-            "navbar-submenu-item": true
+    render() {
+        const { active, href, children, text, ...rest } = this.props;
+        const { hover, left } = this.state;
+
+        const menuClasses = classnames({
+            active,
+            'navbar-submenu-item': true
+        });
+
+        const subMenuClasses = classnames({
+            "navbar-submenu": true,
+            left
         });
 
         return (
@@ -38,7 +54,11 @@ class NavbarSubmenu extends React.Component {
                         <If condition={text}>
                             <span>{text}</span>
                         </If>
-                        {children}
+                        <div className={subMenuClasses}
+                             style={{visibility: hover ? "visible" : "hidden" }}
+                             ref={this.checkSubMenuPosition}>
+                                {children}
+                        </div>
                     </Link>
                 </When>
                 <Otherwise>
@@ -51,11 +71,11 @@ class NavbarSubmenu extends React.Component {
                         <If condition={text}>
                             <span>{text}</span>
                         </If>
-                        <If condition={hover}>
-                            <div className="navbar-submenu">
+                        <div className={subMenuClasses}
+                             style={{visibility: hover ? "visible" : "hidden" }}
+                             ref={this.checkSubMenuPosition}>
                                 {children}
-                            </div>
-                        </If>
+                        </div>
                     </div>
                 </Otherwise>
             </Choose>

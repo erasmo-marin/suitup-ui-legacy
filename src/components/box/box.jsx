@@ -1,9 +1,9 @@
-import React from "react";
-import classnames from "classnames";
-import isArray from "lodash/fp/isArray";
-import forEach from "lodash/forEach";
-import Child from "./boxChild";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import isArray from 'lodash/fp/isArray';
+import forEach from 'lodash/forEach';
+import Child from './boxChild';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Box extends React.Component {
@@ -19,29 +19,26 @@ class Box extends React.Component {
             }
 
             if (isArray(props.children)) {
-                return props.children.map(
-                    element => {
-                        let wides = element.props.wides;
-                        let wide;
+                return props.children.map(element => {
+                    let wides = element.props.wides;
+                    let wide;
 
-                        if (wides && wides[this.props.screen]) {
-                            wide = wides[this.props.screen];
-                        } else {
-                            wide = element.props.wide ? element.props.wide : 1;
-                        }
+                    if (wides && wides[this.props.screen]) {
+                        wide = wides[this.props.screen];
+                    } else {
+                        wide = element.props.wide ? element.props.wide : 1;
+                    }
 
-                        return React.cloneElement(element, {
-                            columns: props.columns,
-                            gutter: gutter ? gutter : "0.5rem",
-                            wide: wide
-                        });
-                    },
-                    this
-                );
+                    return React.cloneElement(element, {
+                        columns: props.columns,
+                        gutter: gutter ? gutter : '0.5rem',
+                        wide: wide,
+                    });
+                }, this);
             } else {
                 return React.cloneElement(props.children, {
                     columns: props.columns,
-                    gutter: gutter ? gutter : "0.5rem"
+                    gutter: gutter ? gutter : '0.5rem',
                 });
             }
         } else {
@@ -56,7 +53,7 @@ class Box extends React.Component {
 
         return {
             number: number,
-            measure: gutter.replace(number, "")
+            measure: gutter.replace(number, ''),
         };
     }
 
@@ -80,30 +77,28 @@ class Box extends React.Component {
         } = this.props;
 
         if (!gutter) {
-            gutter = "0.5rem";
+            gutter = '0.5rem';
         }
-
 
         let classesObj = {
-            "box": true,
-            "horizontal": vertical == null ? true : false,
-            "vertical": vertical,
-            "fill-space": autoFill,
-            "centered": justify == "center",
-            "left": justify == "left",
-            "right": justify == "right",
-            "align-start": align == "start",
-            "align-end": align == "end",
-            "align-center": align == "center",
-            "align-stretch": align == "stretch",
-            "align-baseline": align == "baseline",
-            "full-height": verticalExpand,
-            [screen]: true
-        }
+            box: true,
+            horizontal: vertical == null ? true : false,
+            vertical: vertical,
+            'fill-space': autoFill,
+            centered: justify == 'center',
+            left: justify == 'left',
+            right: justify == 'right',
+            'align-start': align == 'start',
+            'align-end': align == 'end',
+            'align-center': align == 'center',
+            'align-stretch': align == 'stretch',
+            'align-baseline': align == 'baseline',
+            'full-height': verticalExpand,
+            [screen]: true,
+        };
 
-
-        if(className) {
-            let propClasses = className.split(" ");
+        if (className) {
+            let propClasses = className.split(' ');
             forEach(propClasses, theClass => {
                 classesObj[theClass] = true;
             });
@@ -114,12 +109,12 @@ class Box extends React.Component {
         gutter = this.parseGutter(gutter);
 
         if (gutter && gutter.number) {
-            gutter = gutter.number / 2 * -1 + gutter.measure;
+            gutter = (gutter.number / 2) * -1 + gutter.measure;
         }
 
         let cstyle = {
             marginLeft: gutter,
-            marginRight: gutter
+            marginRight: gutter,
         };
 
         return (

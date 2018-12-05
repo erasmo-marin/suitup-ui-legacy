@@ -1,16 +1,16 @@
-import React from "react";
-import classnames from "classnames";
-import Slide from "./slide";
-import Icon from "../icon";
-import Box from "../box";
-import isArray from "lodash/fp/isArray";
-import Draggable, { DraggableCore } from "react-draggable";
-import suitupable from "../component";
-import concat from "lodash/concat";
-import reverse from "lodash/reverse";
-import cloneDeep from "lodash/cloneDeep";
-import merge from "lodash/merge";
-import get from "lodash/get";
+import React from 'react';
+import classnames from 'classnames';
+import Slide from './slide';
+import Icon from '../icon';
+import Box from '../box';
+import isArray from 'lodash/fp/isArray';
+import Draggable, { DraggableCore } from 'react-draggable';
+import suitupable from '../component';
+import concat from 'lodash/concat';
+import reverse from 'lodash/reverse';
+import cloneDeep from 'lodash/cloneDeep';
+import merge from 'lodash/merge';
+import get from 'lodash/get';
 
 @suitupable(true, true)
 class Slider extends React.Component {
@@ -34,14 +34,14 @@ class Slider extends React.Component {
             arrowSize: 36, //the arrow font size, should be 16, 24, 36 or 48
             lazyLoad: false, //when true, the slider only loads the slides when needed
             minimalRender: false, //when true, the unused slides are not rendered, can cause some lag
-            animation: "translate", //translate - fade - zoom
+            animation: 'translate', //translate - fade - zoom
             centerModePadding: 100,
             slidesSpacing: 50,
             slideStep: 1,
             infinite: false,
             animationTime: 500,
             nextArrow: false,
-            prevArrow: false
+            prevArrow: false,
         };
 
         this.autoPlayInterval = false;
@@ -60,15 +60,15 @@ class Slider extends React.Component {
     }
 
     componentDidMount() {
-        window.addEventListener("resize", this.onResize);
-        this._slider.addEventListener("click", this.checkClickPropagation);
+        window.addEventListener('resize', this.onResize);
+        this._slider.addEventListener('click', this.checkClickPropagation);
         this.goTo(0, false);
         this.autoPlayJob();
     }
 
     componentWillUnmount() {
-        window.removeEventListener("resize", this.onResize);
-        this._slider.removeEventListener("click", this.checkClickPropagation);
+        window.removeEventListener('resize', this.onResize);
+        this._slider.removeEventListener('click', this.checkClickPropagation);
         if (this.autoPlayInterval) clearInterval(this.autoPlayInterval);
     }
 
@@ -147,7 +147,6 @@ class Slider extends React.Component {
     };
 
     goTo = (index, animate = true) => {
-
         if (this.sliderIsLocked) return;
 
         index = index + this.itemsToClone;
@@ -163,33 +162,33 @@ class Slider extends React.Component {
             index = totalItems - 1;
         }
 
-        if (animate)
-            this.draggableContent.style.transition = `all ${animationTime /
-                1000}s ease-in-out`;
+        if (animate) this.draggableContent.style.transition = `all ${animationTime / 1000}s ease-in-out`;
         let dw = this.draggableContent.offsetWidth;
         let sw = dw / totalItems;
 
-        let x = sw * index * -1 / displayItems;
+        let x = (sw * index * -1) / displayItems;
 
-        const maxX =
-            (sw * (totalItems - 1) - sw * (displayItems - 1)) / displayItems;
+        const maxX = (sw * (totalItems - 1) - sw * (displayItems - 1)) / displayItems;
 
         if (-1 * x > maxX) x = -1 * maxX;
 
         this.sliderIsLocked = true;
 
-        this.setState({
-            activeIndex: index - this.itemsToClone
-        }, () => {
-            this.draggableComponent.setState({ x });
+        this.setState(
+            {
+                activeIndex: index - this.itemsToClone,
+            },
+            () => {
+                this.draggableComponent.setState({ x });
 
-            setTimeout(() => {
-                this.draggableContent.style.transition = "";
-                this.sliderIsLocked = false;
-            }, animationTime);
-            //we return the x variable in order to check if it has changed
-            return x;
-        });
+                setTimeout(() => {
+                    this.draggableContent.style.transition = '';
+                    this.sliderIsLocked = false;
+                }, animationTime);
+                //we return the x variable in order to check if it has changed
+                return x;
+            }
+        );
     };
 
     setupChildStyle = (props, style) => {
@@ -199,12 +198,12 @@ class Slider extends React.Component {
             if (isArray(props.children)) {
                 res = props.children.map(function(element) {
                     return React.cloneElement(element, {
-                        style: style
+                        style: style,
                     });
                 }, this);
             } else {
                 res = React.cloneElement(props.children, {
-                    style: style
+                    style: style,
                 });
             }
         }
@@ -238,10 +237,10 @@ class Slider extends React.Component {
         event.stopPropagation();
         event.preventDefault();
 
-        if(this.dragging) {
+        if (this.dragging) {
             setTimeout(() => {
                 this.dragging = false;
-            }, 500)
+            }, 500);
         } else {
             this.dragging = false;
         }
@@ -273,8 +272,7 @@ class Slider extends React.Component {
             setTimeout(() => {
                 this.sliderIsLocked = false;
                 if (active < 0) this.goTo(children.length - active - 2, false);
-                if (active > children.length - 1)
-                    this.goTo(active - children.length, false);
+                if (active > children.length - 1) this.goTo(active - children.length, false);
             }, animationTime);
         }
         return false;
@@ -305,11 +303,7 @@ class Slider extends React.Component {
     };
 
     get itemsToClone() {
-        const {
-            displayItems = 1,
-            centerMode = false,
-            infinite = false
-        } = this.state;
+        const { displayItems = 1, centerMode = false, infinite = false } = this.state;
         if (!infinite) return 0;
         return displayItems + (centerMode ? 2 : 0);
     }
@@ -342,18 +336,12 @@ class Slider extends React.Component {
     slideIsActive(index) {
         const { displayItems, activeIndex } = this.state;
 
-        if (index >= activeIndex && index < displayItems + activeIndex)
-            return true;
+        if (index >= activeIndex && index < displayItems + activeIndex) return true;
         return false;
     }
 
     shouldRenderSlide = (currentIndex, index) => {
-        const {
-            activeIndex,
-            lazyLoad,
-            displayItems,
-            itemsToClone
-        } = this.state;
+        const { activeIndex, lazyLoad, displayItems, itemsToClone } = this.state;
 
         //should be rendered always
         if (!lazyLoad) {
@@ -377,11 +365,11 @@ class Slider extends React.Component {
 
     /*This disable clicks globally while dragging because a bug in react-draggable*/
     checkClickPropagation = e => {
-        if(this.dragging === true) {
+        if (this.dragging === true) {
             e.preventDefault();
             e.stopPropagation();
         }
-    }
+    };
 
     render() {
         this.loadSettings(this.props);
@@ -395,13 +383,13 @@ class Slider extends React.Component {
             lazyLoad,
             activeIndex,
             minimalRender,
-            alreadyLoaded
+            alreadyLoaded,
         } = this.state;
 
         let { nextArrow, prevArrow } = this.state;
 
         let classes = {
-            slider: true
+            slider: true,
         };
 
         classes = classnames(classes);
@@ -410,39 +398,37 @@ class Slider extends React.Component {
         //let translate = this.state.activeIndex * (100/this.props.children.length) * -1;
 
         const slideStyle = {
-            width: `calc(${100 / (totalItems * displayItems)}% - ${parseInt(
-                slidesSpacing
-            )}px)`,
-            display: "inline-block",
+            width: `calc(${100 / (totalItems * displayItems)}% - ${parseInt(slidesSpacing)}px)`,
+            display: 'inline-block',
             margin: `1rem ${parseInt(slidesSpacing / 2)}px`,
-            boxSizing: "border-box"
+            boxSizing: 'border-box',
         };
 
         const style = {
             /*transform: `translateX(${translate}%)`,*/
-            width: `${totalItems * 100}%`
+            width: `${totalItems * 100}%`,
         };
 
         const sliderStyle = {
-            paddingLeft: centerMode ? `${centerModePadding}px` : "0px",
-            paddingRight: centerMode ? `${centerModePadding}px` : "0px",
-            boxSizing: "border-box"
+            paddingLeft: centerMode ? `${centerModePadding}px` : '0px',
+            paddingRight: centerMode ? `${centerModePadding}px` : '0px',
+            boxSizing: 'border-box',
         };
 
         if (nextArrow) {
             nextArrow = React.cloneElement(nextArrow, {
-                onClick: this.onUserNext
+                onClick: this.onUserNext,
             });
         }
 
         if (prevArrow) {
             prevArrow = React.cloneElement(prevArrow, {
-                onClick: this.onUserPrevious
+                onClick: this.onUserPrevious,
             });
         }
 
         return (
-            <div className={classes} style={sliderStyle} ref={c => this._slider = c}>
+            <div className={classes} style={sliderStyle} ref={c => (this._slider = c)}>
                 <If condition={showArrows}>
                     <Choose>
                         <When condition={prevArrow}>{prevArrow}</When>
@@ -487,49 +473,35 @@ class Slider extends React.Component {
                         }}
                     >
                         <div className="slider-visible-area">
-                            {concat(
-                                this.rightClonedItems,
-                                this.props.children,
-                                this.leftClonedItems
-                            ).map((child, index) => {
-                                const currentIndex = index - clonedElements;
-                                const slideIsActive = this.slideIsActive(
-                                    currentIndex
-                                );
-                                const shouldRenderSlide = this.shouldRenderSlide(
-                                    currentIndex,
-                                    index
-                                );
+                            {concat(this.rightClonedItems, this.props.children, this.leftClonedItems).map(
+                                (child, index) => {
+                                    const currentIndex = index - clonedElements;
+                                    const slideIsActive = this.slideIsActive(currentIndex);
+                                    const shouldRenderSlide = this.shouldRenderSlide(currentIndex, index);
 
-                                return (
-                                    <Choose>
-                                        <When condition={shouldRenderSlide}>
-                                            <div
-                                                style={slideStyle}
-                                                key={currentIndex}
-                                                ref={c => {
-                                                    this.slides[index] = c;
-                                                }}
-                                                className={
-                                                    slideIsActive
-                                                        ? "slide-active"
-                                                        : "slide-inactive"
-                                                }
-                                                onClick={this.checkClickPropagation}
-                                                onMouseUp={this.checkClickPropagation}
-                                            >
-                                                {child}
-                                            </div>
-                                        </When>
-                                        <Otherwise>
-                                            <div
-                                                style={slideStyle}
-                                                key={currentIndex}
-                                            />
-                                        </Otherwise>
-                                    </Choose>
-                                );
-                            })}
+                                    return (
+                                        <Choose>
+                                            <When condition={shouldRenderSlide}>
+                                                <div
+                                                    style={slideStyle}
+                                                    key={currentIndex}
+                                                    ref={c => {
+                                                        this.slides[index] = c;
+                                                    }}
+                                                    className={slideIsActive ? 'slide-active' : 'slide-inactive'}
+                                                    onClick={this.checkClickPropagation}
+                                                    onMouseUp={this.checkClickPropagation}
+                                                >
+                                                    {child}
+                                                </div>
+                                            </When>
+                                            <Otherwise>
+                                                <div style={slideStyle} key={currentIndex} />
+                                            </Otherwise>
+                                        </Choose>
+                                    );
+                                }
+                            )}
                         </div>
                     </div>
                 </Draggable>
@@ -537,24 +509,15 @@ class Slider extends React.Component {
                 <If condition={this.state.showDots}>
                     <div className="slider-dots-wrapper">
                         <div className="slider-dots">
-                            <Box
-                                horizontal
-                                columns={this.props.children.length}
-                                gutter="0"
-                            >
+                            <Box horizontal columns={this.props.children.length} gutter="0">
                                 {this.props.children.map((child, index) => {
                                     let classes = classnames({
                                         dot: true,
-                                        active:
-                                            index == activeIndex ? true : false
+                                        active: index == activeIndex ? true : false,
                                     });
 
                                     return (
-                                        <Box.Child
-                                            key={index}
-                                            onClick={() => this.goTo(index)}
-                                            wide={1}
-                                        >
+                                        <Box.Child key={index} onClick={() => this.goTo(index)} wide={1}>
                                             <div className={classes} />
                                         </Box.Child>
                                     );

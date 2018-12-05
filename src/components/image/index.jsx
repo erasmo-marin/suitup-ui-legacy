@@ -1,12 +1,12 @@
-import React from "react";
-import classnames from "classnames";
-import ImageVail from "./imageVail";
-import suitupable from "../component";
-import { isObject, isString } from "lodash/fp";
-import ReactInview from "react-inview-js";
-import get from "lodash/get";
-import isFunction from "lodash/isFunction";
-import Screen from "../device/screen";
+import React from 'react';
+import classnames from 'classnames';
+import ImageVail from './imageVail';
+import suitupable from '../component';
+import { isObject, isString } from 'lodash/fp';
+import ReactInview from 'react-inview-js';
+import get from 'lodash/get';
+import isFunction from 'lodash/isFunction';
+import Screen from '../device/screen';
 
 @ReactInview({ fullElementInView: false })
 @suitupable(true, true)
@@ -37,28 +37,24 @@ class Image extends React.Component {
             lqSrc: lqSrc,
             hqSrc: hqSrc,
             src: src,
-            hqSrcLoaded: false
+            hqSrcLoaded: false,
         };
 
-        if (isFunction(get(this, "props.instance")))
-            this.props.instance(this);
+        if (isFunction(get(this, 'props.instance'))) this.props.instance(this);
         this.mounted = false;
     }
 
     componentDidMount() {
         this.mounted = true;
-        setTimeout(
-            () => {
-                this.recalculeSize();
-            },
-            1
-        );
-        window.addEventListener("resize", this.recalculeSize);
+        setTimeout(() => {
+            this.recalculeSize();
+        }, 1);
+        window.addEventListener('resize', this.recalculeSize);
     }
 
     componentWillUnmount() {
         this.mounted = false;
-        window.removeEventListener("resize", this.recalculeSize);
+        window.removeEventListener('resize', this.recalculeSize);
     }
 
     componentWillReceiveProps(props) {
@@ -70,8 +66,7 @@ class Image extends React.Component {
         let lqSrc, hqSrc;
 
         if (isObject(src)) {
-            if (this.state.lqSrc == src.lq && this.state.hqSrc == src.hq)
-                return;
+            if (this.state.lqSrc == src.lq && this.state.hqSrc == src.hq) return;
 
             if (hqSrcLoaded && this.state.hqSrc == src.hq) return;
             lqSrc = src.lq;
@@ -83,18 +78,17 @@ class Image extends React.Component {
             lqSrc: lqSrc,
             hqSrc: hqSrc,
             src: src,
-            hqSrcLoaded: false
+            hqSrcLoaded: false,
         });
     }
 
     recalculeSize = () => {
-        
-        if (!this.mounted)
-            return;
+        if (!this.mounted) return;
 
-        let width, height = 0;
+        let width,
+            height = 0;
         let dimensions;
-        const sizes = get(this, "props.settings.Image.aspectRatios");
+        const sizes = get(this, 'props.settings.Image.aspectRatios');
 
         if (this.props.type) {
             dimensions = get(sizes, this.props.type);
@@ -106,66 +100,63 @@ class Image extends React.Component {
         let pheight = isObject(this.props.height) ? this.props.height[screen] : this.props.height;
 
         if (pwidth && !pheight) {
-            width = this.computeSizeInPixels(pwidth, "x");
+            width = this.computeSizeInPixels(pwidth, 'x');
             height = this.getHeightFromWidth(dimensions, width);
         } else if (pheight && !pwidth) {
-            height = this.computeSizeInPixels(pheight, "y");
+            height = this.computeSizeInPixels(pheight, 'y');
             width = this.getWidthFromHeight(dimensions, height);
         } else {
-            width = this.computeSizeInPixels(pwidth, "x");
-            height = this.computeSizeInPixels(pheight, "y");
+            width = this.computeSizeInPixels(pwidth, 'x');
+            height = this.computeSizeInPixels(pheight, 'y');
         }
 
         this.setState({
             width: `${width}px`,
-            height: `${height}px`
+            height: `${height}px`,
         });
     };
 
     getHeightFromWidth = (dimensions, width) => {
-        if(!dimensions || !dimensions.width || !dimensions.height)
-            return 0;
+        if (!dimensions || !dimensions.width || !dimensions.height) return 0;
         return width / (dimensions.width / dimensions.height);
     };
 
     getWidthFromHeight = (dimensions, height) => {
-        if(!dimensions || !dimensions.width || !dimensions.height)
-            return 0;
+        if (!dimensions || !dimensions.width || !dimensions.height) return 0;
         return height * (dimensions.width / dimensions.height);
     };
 
     isPercent = str => {
-        if (str.endsWith("%")) {
+        if (str.endsWith('%')) {
             return true;
         }
         return false;
-    }
+    };
 
     isPixel = str => {
-        if (str.endsWith("px")) {
+        if (str.endsWith('px')) {
             return true;
         }
         return false;
-    }
+    };
 
     computeSizeInPixels = (size, axis) => {
-
         let isPercent = false;
 
         if (this.isPercent(size)) {
             isPercent = true;
-            size = parseFloat(size.replace("%", ""));
-        } else if (size.endsWith("px")) {
-            size = parseFloat(size.replace("px", ""));
+            size = parseFloat(size.replace('%', ''));
+        } else if (size.endsWith('px')) {
+            size = parseFloat(size.replace('px', ''));
         }
 
-        let width = get(this.image, "offsetWidth") || 0;
-        let height = get(this.image, "offsetHeight") || 0;
+        let width = get(this.image, 'offsetWidth') || 0;
+        let height = get(this.image, 'offsetHeight') || 0;
 
         if (isPercent) {
-            if (axis == "x") {
+            if (axis == 'x') {
                 size = width;
-            } else if (axis == "y") {
+            } else if (axis == 'y') {
                 size = height;
             }
         }
@@ -175,10 +166,10 @@ class Image extends React.Component {
     onHQLoad = () =>
         this.setState({
             src: this.state.hqSrc ? this.state.hqSrc : this.state.lqSrc,
-            hqSrcLoaded: true
+            hqSrcLoaded: true,
         });
 
-    firstLoadVisible = () => (this.image && this.image.offsetTop <= window.innerHeight);
+    firstLoadVisible = () => this.image && this.image.offsetTop <= window.innerHeight;
 
     render() {
         let {
@@ -222,19 +213,19 @@ class Image extends React.Component {
         }
 
         let rstyle = {
-            backgroundImage: src != "none" ? `url(${this.state.src})` : "none",
+            backgroundImage: src != 'none' ? `url(${this.state.src})` : 'none',
             width: `${rwidth}`,
             height: `${rheight}`,
-            backgroundSize: "cover",
-            backgroundPositon: "center",
-            transition: "all 0.5s ease-in-out",
-            transitionProperty: "filter, background-image",
-            overflow: "hidden",
-            [screen]: true
+            backgroundSize: 'cover',
+            backgroundPositon: 'center',
+            transition: 'all 0.5s ease-in-out',
+            transitionProperty: 'filter, background-image',
+            overflow: 'hidden',
+            [screen]: true,
         };
 
         if (this.state.src == this.state.lqSrc && blurLowQuality) {
-            rstyle.filter = "blur(5px)";
+            rstyle.filter = 'blur(5px)';
         }
 
         if (style) {
@@ -245,7 +236,7 @@ class Image extends React.Component {
 
         let classes = {
             image: true,
-            centered: centered
+            centered: centered,
         };
 
         classes = classnames(classes);
@@ -260,13 +251,9 @@ class Image extends React.Component {
                 }}
             >
                 <If condition={lqSrc && hqSrc}>
-                    <img style={{ display: "none" }} src={lqSrc} />
+                    <img style={{ display: 'none' }} src={lqSrc} />
                     <If condition={elementIsInView || elementHasBeenInView || this.firstLoadVisible()}>
-                        <img
-                            style={{ display: "none" }}
-                            src={hqSrc}
-                            onLoad={this.onHQLoad}
-                        />
+                        <img style={{ display: 'none' }} src={hqSrc} onLoad={this.onHQLoad} />
                     </If>
                 </If>
                 {children}

@@ -1,6 +1,6 @@
-import findKey from "lodash/fp/findKey";
-import { EventEmitter } from "fbemitter";
-import Settings from "../settings";
+import findKey from 'lodash/fp/findKey';
+import { EventEmitter } from 'fbemitter';
+import Settings from '../settings';
 
 let breakpoints = Settings.getSettings().Device.Breakpoints;
 
@@ -9,7 +9,7 @@ class ScreenClass extends EventEmitter {
         super(args);
         this.screen = this.getScreen();
 
-        window.addEventListener("resize", () => {
+        window.addEventListener('resize', () => {
             let newScreen = this.getScreen();
             if (newScreen == this.screen) return;
 
@@ -22,9 +22,9 @@ class ScreenClass extends EventEmitter {
 
     getScreen = () => findKey(this.between(window.innerWidth), breakpoints);
 
-    emitChange = screen => this.emit("screenChange", screen);
+    emitChange = screen => this.emit('screenChange', screen);
 
-    onScreenChange = callback => this.addListener("screenChange", callback);
+    onScreenChange = callback => this.addListener('screenChange', callback);
 }
 
 const Screen = new ScreenClass();

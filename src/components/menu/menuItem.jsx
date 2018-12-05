@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import { NavLink as Link } from "react-router-dom";
-import classnames from "classnames";
-import suitupable from "../component";
-import cloneDeep from "lodash/fp/cloneDeep";
+import { NavLink as Link } from 'react-router-dom';
+import classnames from 'classnames';
+import suitupable from '../component';
+import cloneDeep from 'lodash/fp/cloneDeep';
 
 @suitupable(true, true)
 class MenuItem extends React.Component {
@@ -13,13 +13,13 @@ class MenuItem extends React.Component {
         this.state = {
             subItemsVisible: false,
             subItemsStyle: {},
-            shouldAnimate: false
+            shouldAnimate: false,
         };
     }
 
     static contextTypes = {
-        hide: PropTypes.func
-    }
+        hide: PropTypes.func,
+    };
 
     toggleItems = () => {
         let style = cloneDeep(this.state.subItemsStyle);
@@ -28,7 +28,7 @@ class MenuItem extends React.Component {
 
         this.setState({
             subItemsVisible: !this.state.subItemsVisible,
-            subItemsStyle: style
+            subItemsStyle: style,
         });
     };
 
@@ -44,29 +44,29 @@ class MenuItem extends React.Component {
         if (base * items > max) return max;
         if (base * items < min) return min;
         return base * items;
-    }
+    };
 
     componentDidMount() {
         this.state.shouldAnimate = true;
     }
 
     shouldHide = () => {
-        if(this.props.hideOnRedirect && this.context.hide) {
+        if (this.props.hideOnRedirect && this.context.hide) {
             this.context.hide();
         }
-    }
+    };
 
     render() {
         let { active, hideOnRedirect, children, href, text, screen, settings, focused, ...rest } = this.props;
         let { subItemsStyle, subItemsVisible, shouldAnimate } = this.state;
 
-        subItemsStyle.marginTop = "0px";
+        subItemsStyle.marginTop = '0px';
         let height = 0;
 
         if (this._subitems) {
             height = this._subitems.offsetHeight;
             if (subItemsVisible) {
-                subItemsStyle.marginTop = "0px";
+                subItemsStyle.marginTop = '0px';
             } else {
                 subItemsStyle.marginTop = `-${height}px`;
             }
@@ -74,14 +74,14 @@ class MenuItem extends React.Component {
         this.state.subItemsStyle = cloneDeep(subItemsStyle);
 
         const buttonClasses = classnames({
-            "menu-button": true,
-            "focus": focused
+            'menu-button': true,
+            focus: focused,
         });
 
         const itemClasses = classnames({
-            "menu-item": true,
-            "active": subItemsVisible || active
-        })
+            'menu-item': true,
+            active: subItemsVisible || active,
+        });
 
         return (
             <div>
@@ -89,16 +89,15 @@ class MenuItem extends React.Component {
                     <When condition={href}>
                         <Link exact to={href} activeClassName="active" onClick={this.shouldHide}>
                             <div {...rest} className={itemClasses}>
-                                <div className={buttonClasses}><span>{text}</span></div>
+                                <div className={buttonClasses}>
+                                    <span>{text}</span>
+                                </div>
                             </div>
                         </Link>
                     </When>
                     <Otherwise>
                         <div {...rest} className={itemClasses}>
-                            <div
-                                className={buttonClasses}
-                                onClick={this.toggleItems}
-                            >
+                            <div className={buttonClasses} onClick={this.toggleItems}>
                                 <span>{text}</span>
                             </div>
                         </div>
@@ -106,11 +105,7 @@ class MenuItem extends React.Component {
                 </Choose>
                 <If condition={this.props.children}>
                     <div className="menu-sub-items">
-                        <div
-                            className="menu-sub-items-wrapper"
-                            ref={c => this._subitems = c}
-                            style={subItemsStyle}
-                        >
+                        <div className="menu-sub-items-wrapper" ref={c => (this._subitems = c)} style={subItemsStyle}>
                             {children}
                         </div>
                     </div>

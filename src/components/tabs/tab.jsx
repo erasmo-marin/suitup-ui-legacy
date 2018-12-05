@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 
-const Tab = ({children, name, ...rest}) => (
- <div {...rest} className="tab">
-     {children}
- </div>
+const Tab = ({ children, name, ...rest }) => (
+    <div {...rest} className="tab">
+        {children}
+    </div>
 );
 
 export default Tab;

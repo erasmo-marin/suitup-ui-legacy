@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Icon extends React.PureComponent {
@@ -12,10 +12,10 @@ class Icon extends React.PureComponent {
         let { size, circle, name, screen, settings, ...rest } = this.props;
 
         let classes = {
-            "material-icons": true,
+            'material-icons': true,
             [`md-${size}`]: true,
             circle: circle,
-            [screen]: true
+            [screen]: true,
         };
 
         classes = classnames(classes);

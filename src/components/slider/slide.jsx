@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Slide extends React.Component {
@@ -10,16 +10,12 @@ class Slide extends React.Component {
 
     render() {
         let classes = {
-            slide: true
+            slide: true,
         };
 
         classes = classnames(classes);
 
-        return (
-            <div className={classes}>
-                {this.props.children}
-            </div>
-        );
+        return <div className={classes}>{this.props.children}</div>;
     }
 }
 

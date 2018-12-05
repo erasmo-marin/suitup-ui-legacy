@@ -1,9 +1,9 @@
-import React from "react";
-import Tab from "./tab";
-import Box from "../box/box";
-import classnames from "classnames";
-import isObject from "lodash/fp/isObject";
-import suitupable from "../component";
+import React from 'react';
+import Tab from './tab';
+import Box from '../box/box';
+import classnames from 'classnames';
+import isObject from 'lodash/fp/isObject';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class Tabs extends React.Component {
@@ -21,9 +21,8 @@ class Tabs extends React.Component {
         this.state = {
             activeTab: children[activeTab - 1],
             activeTabIndex: activeTab || 0,
-            activeTabIndicatorOffset: (activeTab - 1) * 100 / children.length +
-                "%",
-            activeTabIndicatorWidth: 100 / children.length + "%"
+            activeTabIndicatorOffset: ((activeTab - 1) * 100) / children.length + '%',
+            activeTabIndicatorWidth: 100 / children.length + '%',
         };
     }
 
@@ -33,14 +32,14 @@ class Tabs extends React.Component {
         let { children, onChange } = this.props;
         if (!children.map) children = [children];
 
-        let activeTabIndicatorWidth = 100 / children.length + "%";
-        let activeTabIndicatorOffset = index * (100 / children.length) + "%";
+        let activeTabIndicatorWidth = 100 / children.length + '%';
+        let activeTabIndicatorOffset = index * (100 / children.length) + '%';
 
         this.setState({
             activeTab: tab,
             activeTabIndex: index,
             activeTabIndicatorOffset: activeTabIndicatorOffset,
-            activeTabIndicatorWidth: activeTabIndicatorWidth
+            activeTabIndicatorWidth: activeTabIndicatorWidth,
         });
 
         if (onChange) {
@@ -56,11 +55,7 @@ class Tabs extends React.Component {
      */
     render() {
         let { children, style, indicatorColor, screen, settings, ...rest } = this.props;
-        let {
-            activeTab,
-            activeTabIndicatorOffset,
-            activeTabIndicatorWidth
-        } = this.state;
+        let { activeTab, activeTabIndicatorOffset, activeTabIndicatorWidth } = this.state;
 
         if (!activeTab) {
             activeTab = children[0];
@@ -73,7 +68,7 @@ class Tabs extends React.Component {
         let indicatorStyle = {
             width: activeTabIndicatorWidth,
             marginLeft: activeTabIndicatorOffset,
-            background: indicatorColor
+            background: indicatorColor,
         };
 
         return (
@@ -83,17 +78,13 @@ class Tabs extends React.Component {
                         {children.map((child, index) => {
                             let classes = classnames({
                                 tab: true,
-                                active: this.state.activeTabIndex == index
+                                active: this.state.activeTabIndex == index,
                             });
 
                             return (
                                 <Box.Child key={index} wide={1}>
                                     <div
-                                        style={
-                                            child.props
-                                                ? child.props.style
-                                                : null
-                                        }
+                                        style={child.props ? child.props.style : null}
                                         className={classes}
                                         onClick={() => {
                                             this.onTabClick(child, index);
@@ -105,10 +96,7 @@ class Tabs extends React.Component {
                             );
                         })}
                     </Box>
-                    <div
-                        className="active-tab-indicator"
-                        style={indicatorStyle}
-                    />
+                    <div className="active-tab-indicator" style={indicatorStyle} />
                 </div>
                 {activeTab}
             </div>

@@ -1,6 +1,6 @@
-import React from "react";
-import classnames from "classnames";
-import suitupable from "../component";
+import React from 'react';
+import classnames from 'classnames';
+import suitupable from '../component';
 
 @suitupable(true, true)
 class CardContent extends React.Component {
@@ -10,7 +10,7 @@ class CardContent extends React.Component {
 
     render() {
         let classes = {
-            "card-content": true
+            'card-content': true,
         };
 
         classes = classnames(classes);

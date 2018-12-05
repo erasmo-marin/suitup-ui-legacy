@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import PropTypes from 'prop-types';
-import classnames from "classnames";
-import suitupable from "../component";
-import MenuHeader from "./menuHeader";
-import MenuItem from "./menuItem";
-import MenuSubItem from "./menuSubItem";
-import isArray from "lodash/fp/isArray";
+import classnames from 'classnames';
+import suitupable from '../component';
+import MenuHeader from './menuHeader';
+import MenuItem from './menuItem';
+import MenuSubItem from './menuSubItem';
+import isArray from 'lodash/fp/isArray';
 
 @suitupable(true, true)
 class Menu extends React.Component {
@@ -13,65 +13,52 @@ class Menu extends React.Component {
         super(props);
         this.state = {
             visible: this.props.visible,
-            focusedItem: -1
+            focusedItem: -1,
         };
     }
 
     static childContextTypes = {
-        hide: PropTypes.func
-    }
+        hide: PropTypes.func,
+    };
 
     getChildContext() {
         return {
-            hide: this.hide
-        }
+            hide: this.hide,
+        };
     }
 
     toggleItems = () =>
         this.setState({
-            subItems: !this.state.subItems
+            subItems: !this.state.subItems,
         });
 
     hide = () => {
         this.setState({
-            visible: false
+            visible: false,
         });
         this.props.onHide && this.props.onHide();
     };
 
     show = () => {
         this.setState({
-            visible: true
+            visible: true,
         });
         this.props.onShow && this.props.onShow();
     };
 
     setActiveItem = index =>
         this.setState({
-            focusedItem: index
+            focusedItem: index,
         });
 
     componentWillReceiveProps(nextProps) {
         this.setState({
-            visible: nextProps.visible != null
-                ? nextProps.visible
-                : this.state.visible
+            visible: nextProps.visible != null ? nextProps.visible : this.state.visible,
         });
     }
 
     render() {
-        let {
-            children,
-            left,
-            right,
-            visible,
-            onShow,
-            onHide,
-            style,
-            screen,
-            settings,
-            ...rest
-        } = this.props;
+        let { children, left, right, visible, onShow, onHide, style, screen, settings, ...rest } = this.props;
 
         if (!isArray(children)) {
             children = [children];
@@ -83,20 +70,18 @@ class Menu extends React.Component {
             left: left,
             right: right,
             visible: visible,
-            [`is-${screen}`]: true
+            [`is-${screen}`]: true,
         });
 
         let veilClasses = classnames({
-            "menu-veil": true,
-            visible: this.state.visible
+            'menu-veil': true,
+            visible: this.state.visible,
         });
 
         return (
             <div {...rest}>
                 <div className={veilClasses} onClick={this.hide} />
-                <nav className={classes}>
-                    {children}
-                </nav>
+                <nav className={classes}>{children}</nav>
             </div>
         );
     }

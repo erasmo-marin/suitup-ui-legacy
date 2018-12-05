@@ -1,12 +1,12 @@
-import React from "react";
-import classnames from "classnames";
-import { NavLink as Link } from "react-router-dom";
+import React from 'react';
+import classnames from 'classnames';
+import { NavLink as Link } from 'react-router-dom';
 
 class NavbarMenu extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            hover: false
+            hover: false,
         };
     }
 
@@ -14,12 +14,17 @@ class NavbarMenu extends React.Component {
     onMouseLeave = () => this.setState({ hover: false });
 
     render() {
-        let { active, href, children, text, ...rest } = this.props;
-        let { hover } = this.state;
+        const { active, href, children, text, left, ...rest } = this.props;
+        const { hover } = this.state;
 
-        let menuClasses = classnames({
-            "active": active,
-            "navbar-menu": true
+        const menuClasses = classnames({
+            active,
+            'navbar-menu': true,
+        });
+
+        const subMenuClasses = classnames({
+            "navbar-submenu": true,
+            left
         });
 
         return (
@@ -49,9 +54,7 @@ class NavbarMenu extends React.Component {
                         >
                             <span>{text}</span>
                             <If condition={hover}>
-                                <div className="navbar-submenu">
-                                    {children}
-                                </div>
+                                <div className={subMenuClasses}>{children}</div>
                             </If>
                         </div>
                     </li>
