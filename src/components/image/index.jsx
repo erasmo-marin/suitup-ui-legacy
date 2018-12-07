@@ -217,7 +217,7 @@ class Image extends React.Component {
             width: `${rwidth}`,
             height: `${rheight}`,
             backgroundSize: 'cover',
-            backgroundPositon: 'center',
+            backgroundPosition: 'center',
             transition: 'all 0.5s ease-in-out',
             transitionProperty: 'filter, background-image',
             overflow: 'hidden',
